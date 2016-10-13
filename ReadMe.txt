@@ -1,4 +1,9 @@
 
+[Checkout Random Number Generator](https://www.random.org/)
+
+# Workshop: ASP.NET Core
+
+This workshop goes through creating an ASP.NET Core application from scratch, so it is easier to see what all the parts are and what they do. We will use the new, platform-agnostic tools - the .NET Core CLI and VS Code so we can see the cross-platform experience. This can be conducted as a group workshop, or done individually. 
 
 # Workshop: ASP.NET Core
 
