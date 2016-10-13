@@ -5727,21 +5727,4 @@ void
 
 
 
-//;
-
-void
-@rtm
-{
-str fp = "";
-
-// fcd: Oct-13-2016
-// This is the latest.
-
-//qq-1
-
-@say(fp);
-}
-
-
-
 //;EOF << (!efjo)
