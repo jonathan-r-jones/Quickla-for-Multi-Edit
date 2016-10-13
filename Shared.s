@@ -2758,7 +2758,7 @@ if(at_eol)
 
 
 
-//;+ Create files. (!cnf)
+//;+ Create files.
 
 
 

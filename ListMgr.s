@@ -10538,6 +10538,9 @@ void
 @add_text_begin_all_lines_with_x
 {
 
+//skw begin each line with
+
+
 str fp = "Begin all lines in the file with a variable defined here.";
 str rs;
 str sc;
@@ -10556,6 +10559,7 @@ sc = '^';
 // begin line variable
 rs = 'copy "';
 rs = 'move "';
+rs = 'del /f c:\\pcarss\\';
 
 @replace_all_occurrences_no_tof(sc, rs);
 
