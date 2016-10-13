@@ -1,4 +1,4 @@
-##Quickla 
+# Quickla 
 
 Quickla is a suite of macros written in Multi-Edit's CMAC C-style macro programming
 language. The main features of the suite are:
