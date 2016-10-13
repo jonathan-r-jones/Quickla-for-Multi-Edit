@@ -12,6 +12,7 @@ All the macros run from within Multi-Edit running on Windows 10 and older versio
 For more information, email me at jonathan.r.jones.3@gmail.com.
 
 
-Jonathan
+
+- Jonathan
 
 Oct-12-2016
