@@ -9655,7 +9655,7 @@ if(@seek_in_all_files_2_arguments(sc, so))
 }
 else
 {
-  fp += ' Double q NOT found, so go to the default location.';
+  fp += ' Double q was NOT found, so go to the default location.';
   @switch_to_task_window;
   @bof;
   @find_next_bullet;
