@@ -1070,7 +1070,7 @@ str fp = "Archive big segment.";
 
 // fcd: Jan-16-2015
 
-if(!(@is_s_file) or (@is_bullet_file))
+if(!((@is_s_file) or (@is_bullet_file) or (@is_batch_file)))
 {
   @say(fp + " Error: This macro doesn't work with the current file type.");
   return();
@@ -1093,6 +1093,11 @@ else if(@is_bullet_file)
 {
   rm("@open_file_with_writability /FN=" + Get_Environment('savannah') +
     "\\miscellany\\historical rubrics.asc");
+}
+else if(@is_batch_file)
+{
+  rm("@open_file_with_writability /FN=" + Get_Environment('savannah') +
+    "\\miscellany\\batch file code archive.bat");
 }
 
 @bof;
@@ -5724,6 +5729,23 @@ void
 @header;
 @bullet_action_model_2(sc);
 @footer;
+}
+
+
+
+//;
+
+void
+@rtm
+{
+str fp = "oct 17 test";
+
+// fcd: Oct-17-2016
+// This is the latest.
+
+//qq-1
+
+@say(fp);
 }
 
 
