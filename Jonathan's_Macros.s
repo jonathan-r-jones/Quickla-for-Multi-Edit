@@ -5738,7 +5738,7 @@ void
 void
 @rtm
 {
-str fp = "test 4:52";
+str fp = "test 624";
 @header;
 
 // fcd: Oct-17-2016
