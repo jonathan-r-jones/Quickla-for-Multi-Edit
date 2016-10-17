@@ -1831,6 +1831,7 @@ switch(sc)
     reserved_word_definition = @hc_subject;
     break;
   case "cl":
+  case "uc":
     reserved_word_definition = @get_line;
     break;
   case "clp": // Current line - path only.
