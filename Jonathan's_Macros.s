@@ -1337,10 +1337,6 @@ sc = 'system.io.';
 rs = '';
 Number_of_Replacements += @replace_string_in_file_int(sc, rs);
 
-
-//  _/) � � � _/) � � �_/)  Dividing Line: Add Semicolons Sector Below Here
-//  ~~~~~~~~~~~~~~~~~~~~~~~~
-
 sc = '^(var .+[^;])$';
 rs = '^\0;';
 Number_of_Replacements += @replace_string_in_file_int(sc, rs);
@@ -5682,13 +5678,18 @@ switch(arg_3)
 
 @save_location;
 
+if(arg_4 == 'c')
+{
+  @copy_and_paste_bullet;
+}
+
 @cut_bullet;
 
 @find_lc(lc);
 
 if((location_modifier == 'b') || (location_modifier == ''))
 {
-  @bor;
+  @bobs;
 }
 else if(location_modifier == 'm')
 {
