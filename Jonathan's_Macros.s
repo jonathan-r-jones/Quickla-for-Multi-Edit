@@ -5733,4 +5733,21 @@ void
 
 
 
+//;
+
+void
+@rtm
+{
+str fp = "oct 17 test";
+
+// fcd: Oct-17-2016
+// This is the latest.
+
+//qq-1
+
+@say(fp);
+}
+
+
+
 //;EOF << (!efjo)
