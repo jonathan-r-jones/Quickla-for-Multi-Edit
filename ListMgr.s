@@ -7287,7 +7287,7 @@ return(location_refiner);
 //;;
 
 void
-@move_bullet_to_appropriate_lc(str remain_at_location = parse_str('/1=', mparm_str))
+@move_bullet_to_appropriate_lc(int return_home = parse_int('/1=', mparm_str))
 {
 str fp = "Move bullet to appropriate lc.";
 
@@ -7322,28 +7322,21 @@ if(!@find_lc_known(fp, lc))
   return();
 }
 
-int remain_at_lc_location = false;
-
-if(remain_at_location == 'true')
-{
-  remain_at_lc_location = true;
-}
-
 switch(@trim(location_refiner))
 {
   case 'ew':
   case 'we':
-    remain_at_lc_location = true;
+    return_home = false;
   case 'e':
     @eor;
     modifier = ' (eor @ lc ' + lc + ')';
     break;
   case 'w': // This means Go to, a.k.a. remain, at lc location.
-    remain_at_lc_location = true;
+    return_home = false;
     break;
   case 'wm':
   case 'mw':
-    remain_at_lc_location = true;
+    return_home = false;
   case 'm':
     @mor;
     modifier = ' (mor @ lc ' + lc + ')';
@@ -7360,7 +7353,7 @@ cr;
 up;
 text(@trim(line_without_lc));
 
-if(!remain_at_lc_location)
+if(return_home)
 {
   @recall_location;
   if(!@is_structured_line)
@@ -7380,7 +7373,7 @@ void
 @@move_bullet_to_appropriate_lc
 {
 @header;
-@move_bullet_to_appropriate_lc('true');
+@move_bullet_to_appropriate_lc(true);
 @footer;
 }
 
@@ -9623,6 +9616,12 @@ str so = '';
 down;
 down;
 
+if(@seek_in_all_files_2_arguments('1' + sc, so))
+{
+  @say(fp + ' Primary case.');
+  return();
+}
+
 if(@seek_in_all_files_2_arguments(sc, so))
 {
   fp += ' Double q found.';
@@ -10000,6 +9999,10 @@ void
 @add_bullet_above()
 {
 str fp = 'Add bullet above.';
+if(@is_subbullet)
+{
+  @bob;
+}
 if(@is_bullet_file)
 {
   @add_small_segment_above(true);

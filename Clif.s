@@ -1517,7 +1517,7 @@ if(@first_5_characters_is_month)
 
 if(@current_line_contains_regex(@comma_lc))
 {
-  @move_bullet_to_appropriate_lc('false');
+  @move_bullet_to_appropriate_lc(return_home);
   @footer;
   return();
 }
@@ -1582,6 +1582,7 @@ if(!@find_lc_known(fp, lc))
 
 fp += ' (' + lc + ')';
 
+
 if(return_home == 1)
 {
   @recall_location;
@@ -1595,7 +1596,7 @@ if(return_home == 1)
 
 @footer;
 
-@say(fp + 'rh: ' + str(return_home));
+@say("return home:" + str(return_home));
 @say(fp);
 }
 
@@ -2990,7 +2991,7 @@ if(@current_line_contains(' &'))
 
 if(@current_line_contains_regex(@comma_lc))
 {
-  @move_bullet_to_appropriate_lc('false');
+  @move_bullet_to_appropriate_lc(true);
   return();
 }
 

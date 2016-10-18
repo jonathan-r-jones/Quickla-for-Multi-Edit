@@ -60,6 +60,7 @@ prototype ListMgr
   str  @find_next_bobs();
   str  @find_next_bsr();
   // (!sp)
+//qq-1
   void @find_next_content_area();
   int  @find_next_rubric();
   str  @find_next_small_segment();
@@ -101,7 +102,7 @@ prototype ListMgr
   str  @look_up_rubrics_source_lc(int &lc_is_found);
   str  @look_up_rubrics_asap_lc(int &lc_is_found);
   void @mor();
-  void @move_bullet_to_appropriate_lc(str return_home);
+  void @move_bullet_to_appropriate_lc(int return_home);
   void @move_bullet_to_bor();
   void @move_bullet_to_calendar(int return_home);
   void @move_bullet_to_eor_alone();
