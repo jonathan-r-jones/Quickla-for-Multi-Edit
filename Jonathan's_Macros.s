@@ -5733,4 +5733,39 @@ void
 
 
 
+//;
+
+void
+@rtm
+{
+str fp = "";
+str rs;
+str sc;
+str so;
+int efbo = true; // execute first block only
+
+if(@current_line > 14000)
+{
+  tof;
+}
+
+@header;
+sc = '';
+//qq-1
+rs = '\0';
+@eol;
+
+if(efbo){ @seek_next(sc, so); efbo = false; }
+if(efbo){ so = @replace_next_occurrence_only(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrences_no_tof(sc, rs); efbo = 0; }
+if(efbo){ int is_found = @seek_in_all_files_2_arguments(sc, fp); efbo = 0; }
+
+@footer;
+@say(found_str);
+@say(so);
+@say(fp);
+}
+
+
+
 //;EOF << (!efjo)
