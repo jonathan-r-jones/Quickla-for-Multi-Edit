@@ -1526,14 +1526,6 @@ text(' ');
 @add_subrubric_above;
 text('Completed Items (!' + 'cp, !' + 'refercp) for the Week Ending');
 
-sc = 'refercj';
-
-if(!@find_lc_known(fp, sc))
-{
-  @footer;
-  return();
-}
-
 @footer;
 
 @say(fp);
@@ -5729,26 +5721,6 @@ void
 @header;
 @bullet_action_model_2(sc);
 @footer;
-}
-
-
-
-//;
-
-void
-@rtm
-{
-str fp = "241";
-@header;
-
-// fcd: Oct-18-2016
-// This is the latest.
-
-
-//qq-1
-
-@footer;
-@say(fp);
 }
 
 
