@@ -8,6 +8,7 @@ prototype Clif
   str  @get_path_using_lw();
   str  @get_remote_oj_using_klc(str lc, int &lc_Is_Found);
   str  @get_subject_or_selected_text();
+  int  @is_paste_before_in_same_window();
   void @load_my_macros_into_memory_1(); //(skw qkq) Remove from production Clif.
   int  @open_folder(str path);
   void @open_folder_remotely();

@@ -5640,6 +5640,7 @@ if(!@is_bullet)
   return();
 }
 
+int initial_column = @current_column;
 str arg_1, arg_2, arg_3, arg_4;
 @parse_aguments_4_parameters(arguments, ".", arg_1, arg_2, arg_3, arg_4);
 
@@ -5705,7 +5706,16 @@ else
 
 if(togetherness != 'w')
 {
-  @recall_location;
+  if(@is_paste_before_in_same_window)
+  {
+    @recall_location_2;
+    goto_col(initial_column);
+  }
+  else
+  {
+    @recall_location;
+    goto_col(initial_column);
+  }
 }
 
 @say(fp);
@@ -5723,6 +5733,24 @@ void
 @footer;
 }
 
+
+
+//;
+
+void
+@instrument_global_variables
+{
+str fp = "Instrument global variables.";
+
+// fcd: Oct-19-2016
+// This is the latest.
+
+fp += ' ir: ' + str(global_int('initial row number'));
+fp += ', ic: ' + str(global_int('initial column number'));
+fp += ', iw: ' + str(global_int('initial window number'));
+
+@say(fp);
+}
 
 
 //;EOF << (!efjo)

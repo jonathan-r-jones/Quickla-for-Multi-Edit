@@ -1743,38 +1743,6 @@ void
 //;;
 
 int
-@count_lines_in_bullet()
-{
-str fp = 'Count the number of lines in this bullet.';
-
-int first_line_in_bullet;
-int last_line_in_bullet;
-int Number_of_Lines_in_bullet = 0;
-
-mark_pos;
-
-@bob;
-
-First_Line_in_bullet = @current_line_number;
-@find_next_bobs;
-last_line_in_bullet = @current_line_number;
-number_of_lines_in_bullet = last_line_in_bullet - first_line_in_bullet;
-
-goto_mark;
-
-if(number_of_lines_in_bullet == 0)
-{
-  number_of_lines_in_bullet = 1;
-}
-
-return(number_of_lines_in_bullet);
-}
-
-
-
-//;;
-
-int
 @count_lines_in_rubric()
 {
 str fp = 'Count number of lines in current rubric.';
@@ -2689,6 +2657,37 @@ if(@current_character == ':')
 @select_all;
 
 @copy;
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@configure_file_delete_carrets
+{
+str fp = "Configure File - Delete Carriage Returns.";
+
+str filename[128] = Get_Environment('savannah') + '\reach out\delete carriage returns.txt';
+
+@open_file(filename);
+
+rm('block^selectall');
+
+delete_block;
+
+@paste;
+
+@bof;
+
+while(@current_character == ':')
+{
+  @delete_character;
+}
+
+@format_carriage_returnless_file;
 
 @say(fp);
 }
@@ -4076,7 +4075,7 @@ int search_criterion_was_found = 0;
 int initial_column = @current_column;
 int initial_row = @current_row;
 int initial_window = @current_window;
-int is_same_window_and_lower_row_num;
+
 int is_lc_action = 0;
 
 if(!@is_bullet_file)
@@ -4240,7 +4239,6 @@ else
       @find_next_bullet;
     }
   }
-  goto_mark;
 }
 
 fp += ' ' + so;
@@ -12859,6 +12857,60 @@ if(!found)
 @footer;
 
 @say(fp);
+}
+
+
+
+//;
+
+int
+@count_lines_in_bullet()
+{
+str fp = 'Count the number of lines in this bullet.';
+
+int first_line_in_bullet;
+int last_line_in_bullet;
+int Number_of_Lines_in_bullet = 0;
+
+mark_pos;
+
+@bob;
+
+First_Line_in_bullet = @current_line_number;
+@find_next_bobs;
+last_line_in_bullet = @current_line_number;
+number_of_lines_in_bullet = last_line_in_bullet - first_line_in_bullet;
+
+goto_mark;
+
+if(number_of_lines_in_bullet == 0)
+{
+  number_of_lines_in_bullet = 1;
+}
+
+return(number_of_lines_in_bullet);
+}
+
+
+
+//;
+
+void
+@recall_location_2()
+{
+str fp = "Load previously saved location and check for edge case.";
+
+int i = 0;
+int lines_in_bullet = @count_lines_in_bullet;
+
+@recall_location;
+
+while(i < lines_in_bullet)
+{
+  down;
+  i++;
+}
+
 }
 
 

@@ -171,9 +171,9 @@ if(sc == "(^:$)|(^:[^:_])")
 
 // I don't want double q to "usurp" the buffer for "find again". So this is what this
 // if block accomplishes.
-if(sc == ('q' + 'q'))
+if(@contains(sc, 'q' + 'q'))
 {
-  Set_Global_Search_Tag = false;
+  set_global_search_tag = false;
 }
 
 if(Set_Global_Search_Tag)

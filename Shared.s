@@ -880,9 +880,10 @@ void
 @save_location()
 {
 // Used in conjuction with "@recall_location".
-Set_Global_Str('Filename', Truncate_Path(File_Name));
-Set_Global_Int('initial row number', @current_row);
-Set_Global_Int('initial column number', @current_column);
+set_global_str('filename', truncate_path(file_name));
+set_global_int('initial window number', @current_window_number);
+set_global_int('initial row number', @current_row);
+set_global_int('initial column number', @current_column);
 }
 
 
@@ -1004,11 +1005,12 @@ void
 @recall_location()
 {
 // Used in conjuction with "@save_location".
-str fp = "Load previous window's location.";
+str fp = "Load previously saved location.";
 @next_window;
+
 @switch_to_named_window(Global_Str('Filename'));
-goto_col(Global_int('initial column number'));
-goto_line(Global_int('initial row number'));
+goto_col(global_int('initial column number'));
+goto_line(global_int('initial row number'));
 }
 
 

@@ -1481,6 +1481,33 @@ show_outer_status_message = false;
 
 
 
+//;
+
+int
+@is_paste_before_in_same_window()
+{
+str fp = "Is paste before in same window edge case.";
+
+// fcd: Oct-19-2016
+// This is the latest.
+
+int source_line = global_int('initial row number');
+int source_window = global_int('initial window number');
+
+int destination_line = @current_line;
+int destination_window = @current_window;
+
+if((destination_line < source_line) and (source_window == destination_window))
+{
+  return(1);
+}
+
+@say(fp + ' (false)');
+return(0);
+}
+
+
+
 //; (skw the gun, bullet gun)
 
 void
@@ -1502,9 +1529,11 @@ if(!@is_bullet_or_subbullet)
 
 @header;
 
-@save_column;
+int initial_column = @current_column;
+
 @bob;
 @save_location;
+mark_pos;
 
 // I moved this check above the others because of monthly itinerary items that also
 // have launch codes on their line. Jun-2-2014
@@ -1569,34 +1598,37 @@ if(lc == 'destcj')
   }
 }
 
+@find_lc(lc);
+
 if(!@find_lc_known(fp, lc))
 {
   switch_window(Initial_Window);
   rm('paste');
-  fp += ' Error: Cannot find known lc. (' + lc + ')';
+  fp += ' Error: Lc NOT found. (' + lc + ')';
   @say(fp);
+  @footer;
   return();
 }
 
 @paste_after;
 
-fp += ' (' + lc + ')';
-
-
 if(return_home == 1)
 {
-  @recall_location;
-  @recall_column;
-  if(@current_line_type == 'rubric')
+  if(@is_paste_before_in_same_window)
   {
-    @find_next_bullet;
+    @recall_location_2;
+    goto_col(initial_column);
   }
-  @put_cursor_somewhere_useful;
+  else
+  {
+    @recall_location;
+    goto_col(initial_column);
+  }
 }
 
 @footer;
 
-@say("return home:" + str(return_home));
+fp += ' (' + lc + ')';
 @say(fp);
 }
 
