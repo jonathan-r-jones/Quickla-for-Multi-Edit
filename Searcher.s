@@ -1849,4 +1849,42 @@ plco
 
 
 
+//;
+
+void
+@search_github_users(str parameter = parse_str('/1=', mparm_str))
+{
+
+str fp = 'Search GitHub users.';
+
+// fcd: Oct-20-2016
+
+str URL = 'https://github.com/search?utf8=%E2%9C%93&q=';
+
+str sc = parameter;
+
+if(sc == '')
+{
+  sc = @get_subject_or_selected_text;
+}
+
+str Pretty_sc = sc;
+sc = @commute_character(sc, ' ', '+');
+
+URL += sc;
+URL += '&type=Users&ref=searchresults';
+
+@surf(URL, 0);
+
+/* Use Cases
+
+Don Box
+
+*/
+
+@say(@trim_period(fp) + ' for "' + pretty_sc + '".');
+}
+
+
+
 //;EOF << (!sp, !efse)

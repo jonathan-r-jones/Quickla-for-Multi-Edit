@@ -4593,18 +4593,18 @@ sc = make_literal_x(sc);
 switch(find_Precision)
 {
   case 1:
-    sc = @equate_dashes_and_spaces(sc);
+    sc = @equate_spaces_and_dashes(sc);
     sc = '^((:#)||(;#))' + sc;
     sc += '((:)||($)||(\.)||(\?)||( \()||(,))';
     break;
   case 2:
-    sc = @equate_dashes_and_spaces(sc);
+    sc = @equate_spaces_and_dashes(sc);
     sc = '@;@' + sc;
     break;
   case 3:
     sc = @trim_trailing_spaces(sc);
     sc = @trim_string_after_open_paren(sc);
-    sc = @equate_dashes_and_spaces_wcl(sc);
+    sc = @equate_spaces_and_dashes_wcl(sc);
     break;
 }
 
@@ -4737,17 +4737,18 @@ sc = make_literal_x(sc);
 switch(find_Precision)
 {
   case 1:
-    sc = @equate_dashes_and_spaces(sc);
+    sc = @equate_spaces_and_dashes(sc);
     //Last Updated: Sep-26-2016
     sc = '^((:#)||(;#)||(:\+ @)||(;\+ @))' + sc;
     sc += '((:)||($)||(!)||(\.)||(\?)||( \()||(,))';
     break;
   case 2:
-    sc = @equate_dashes_and_spaces(sc);
+    sc = @equate_spaces_and_dashes(sc);
     sc = '^((:#)||(;#))' + sc;
     break;
   case 3:
-    sc = @equate_dashes_and_spaces_wcl(sc);
+    sc = @equate_spaces_and_underscores(sc);
+    sc = @equate_spaces_and_dashes_wcl(sc);
     break;
 }
 

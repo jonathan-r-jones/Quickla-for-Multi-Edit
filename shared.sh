@@ -27,8 +27,8 @@ prototype Shared
   void @cursor_up_1_line();
   void @cut();
   void @delete_word_conservatively();
-  str  @equate_dashes_and_spaces(str sc);
-  str  @equate_dashes_and_spaces_wcl(str sc);
+  str  @equate_spaces_and_dashes(str sc);
+  str  @equate_spaces_and_dashes_wcl(str sc);
   str  @escape_slashes(str sc);
   void @delete_line();
   void @delete_word_backwards();
@@ -37,6 +37,7 @@ prototype Shared
   void @eof();
   void @eol();
   void @eos();
+  str  @equate_spaces_and_underscores(str space_filled_string);
   int  @file_is_read_only(str &introduction);
   void @footer();
   str  @get_current_line();

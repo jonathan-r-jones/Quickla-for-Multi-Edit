@@ -1,3 +1,60 @@
+//;
+
+void
+@rtm
+{
+str fp = "";
+str rs;
+str sc;
+str so;
+int efbo = true; // execute first block only
+
+@header;
+down;
+sc = '^ÃÄÄÄ.*$ÃÄÄÄ';
+sc = 'ÃÄÄÄtest';
+sc = '^ÃÄÄÄ.+$';
+sc = '(^À)||(^Ä)';
+sc = '^À';
+sc = '^Ã||^À';
+sc = '^(Ã)||(À).+$(À)';
+sc = '^(Ã)||(À).+$((Ã)||(À))';
+//qq-1
+rs = '\0';
+@eol;
+
+if(efbo){ @seek_next(sc, so); efbo = false; }
+if(efbo){ so = @replace_next_occurrence_only(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrences_no_tof(sc, rs); efbo = 0; }
+if(efbo){ int is_found = @seek_in_all_files_2_arguments(sc, fp); efbo = 0; }
+
+@footer;
+@say(found_str);
+@say(so);
+@say(fp);
+}
+
+
+
+//;
+
+void
+@go_to_my_weekly_schedule
+{
+str fp = "Go to my weekly schedule.";
+@header;
+
+// fcd: Jan-5-2016
+
+@find_lc('refernow');
+@find_next_bullet;
+
+@footer;
+@say(fp);
+}
+
+
+
 //;;
 
 void

@@ -2366,7 +2366,7 @@ return(rv);
 //;
 
 str
-@equate_dashes_and_spaces(str sc)
+@equate_spaces_and_dashes(str sc)
 {
 int length_of_sc = length(sc);
 int number_of_dashes = 1;
@@ -2410,7 +2410,7 @@ return(accommodate_special_chars);
 //;
 
 str
-@equate_dashes_and_spaces_wcl(str sc)
+@equate_spaces_and_dashes_wcl(str sc)
 {
 str fp = 'Decorate the string with special character with cross-line searching support.';
 
@@ -2458,6 +2458,38 @@ while(position_counter <= length_of_sc)
   position_counter += 1;
 }
 return(accommodate_special_chars);
+}
+
+
+
+//; (!2mum4)
+
+str
+@equate_spaces_and_underscores(str space_filled_string)
+{
+str fp = "Replace spaces with dashes.";
+
+// fcd: Jan-13-2016
+
+str underscore_filled_string = "";
+int position_counter = 1;
+int length_of_sc = length(space_filled_string);
+str current_character;
+
+while(position_counter <= length_of_sc)
+{
+  current_character = str_char(space_filled_string, position_counter);
+  if(current_character == ' ')
+  {
+    underscore_filled_string += '()||( )||(_)';
+  }
+  else
+  {
+    underscore_filled_string += current_character;
+  }
+  position_counter++;
+}
+return(underscore_filled_string);
 }
 
 

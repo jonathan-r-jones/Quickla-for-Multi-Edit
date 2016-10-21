@@ -2345,9 +2345,10 @@ str fp = "Open or close CMAC files.";
 @header;
 
 // fcd: Aug-6-2015
-if(@find_lc("al"))
+
+if(@window_count > 13)
 {
-  fp += " CMAC macros are open so close them.";
+  fp += " Excess files are open, so close them.";
   @close_excess_windows;
 }
 else
@@ -2782,7 +2783,7 @@ fp = "Start new Jira ticket.";
 @delete_text_lc_on_cl;
 @find_lc('refercj');
 @add_subrubric_below('');
-text('MT-:');
+text('WK-:');
 @add_text_lc_on_current_line('cj');
 eol;
 text(' ');
@@ -5105,25 +5106,6 @@ if(!@current_line_has_an_lc_partner(lc))
 //;
 
 void
-@go_to_my_weekly_schedule
-{
-str fp = "Go to my weekly schedule.";
-@header;
-
-// fcd: Jan-5-2016
-
-@find_lc('refernow');
-@find_next_bullet;
-
-@footer;
-@say(fp);
-}
-
-
-
-//;
-
-void
 go_to_first_bullet_at_lc(str lc = parse_str('/1=', mparm_str))
 {
 
@@ -5625,7 +5607,7 @@ if(!@is_batch_file)
 
 
 
-//;; (!2rum3)
+//;; (!2mum3)
 
 void
 @bullet_action_model_2(str arguments = parse_str('/1=', mparm_str))
@@ -5634,6 +5616,11 @@ str fp = "Bullet Action Model 2.";
 
 // fcd: Oct-3-2016
 // This is the latest.
+
+if(@is_subbullet)
+{
+  @bob;
+}
 
 if(!@is_bullet)
 {
@@ -5709,15 +5696,20 @@ if(togetherness != 'w')
   if(@is_paste_before_in_same_window)
   {
     @recall_location_2;
-    goto_col(initial_column);
   }
   else
   {
     @recall_location;
-    goto_col(initial_column);
   }
+  goto_col(initial_column);
 }
 
+if(@is_blank_line)
+{
+  @put_cursor_somewhere_useful;
+}
+
+fp += " (Args: '" + arguments + "')";
 @say(fp);
 }
 
@@ -5751,6 +5743,7 @@ fp += ', iw: ' + str(global_int('initial window number'));
 
 @say(fp);
 }
+
 
 
 //;EOF << (!efjo)

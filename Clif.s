@@ -1617,13 +1617,17 @@ if(return_home == 1)
   if(@is_paste_before_in_same_window)
   {
     @recall_location_2;
-    goto_col(initial_column);
   }
   else
   {
     @recall_location;
-    goto_col(initial_column);
   }
+  goto_col(initial_column);
+}
+
+if(@is_blank_line)
+{
+  @put_cursor_somewhere_useful;
 }
 
 @footer;
@@ -3975,7 +3979,7 @@ if(!@i_am_on_my_tablet)
 
 
 
-//; (!2rum1)
+//; (!2mum1)
 
 void
 @paste_with_arguments(str arguments = parse_str('/1=', mparm_str))
@@ -4020,7 +4024,7 @@ else
 
 
 
-//; (!2rum2)
+//; (!2mum2)
 
 void
 @find_backwards(str arguments = parse_str('/1=', mparm_str))

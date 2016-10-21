@@ -1218,7 +1218,7 @@ mark_pos;
 up;
 eol;
 
-sc = @equate_dashes_and_spaces_wcl(sc);
+sc = @equate_spaces_and_dashes_wcl(sc);
 sc = make_literal_x(sc);
 
 set_global_str('search_str', sc);
@@ -1258,7 +1258,7 @@ if((sc == "Function aborted."))
 
 mark_pos;
 
-sc = @equate_dashes_and_spaces_wcl(sc);
+sc = @equate_spaces_and_dashes_wcl(sc);
 
 set_global_str('search_str', sc);
 
@@ -1522,7 +1522,7 @@ if((sc == "Function aborted."))
   return();
 }
 
-sc = @equate_dashes_and_spaces_wcl(sc);
+sc = @equate_spaces_and_dashes_wcl(sc);
 
 // The following regex enables cross-line searching up to 3 lines long.
 // This only works based on the file type you're in!
@@ -1569,7 +1569,7 @@ if((sc == "Function aborted."))
   return();
 }
 
-sc = @equate_dashes_and_spaces_wcl(sc);
+sc = @equate_spaces_and_dashes_wcl(sc);
 
 sc = '^;.@(()||($.@)||($.+$.@))' + sc;
 
@@ -1599,7 +1599,7 @@ if((sc == "Function aborted."))
   return();
 }
 
-sc = @equate_dashes_and_spaces_wcl(sc);
+sc = @equate_spaces_and_dashes_wcl(sc);
 
 sc = @big_segment + '.@' + sc;
 
@@ -2248,38 +2248,6 @@ sc = ".*" + sc;
 @find_tsql_definition(sc);
 
 @footer;
-}
-
-
-
-//;
-
-str
-@equate_spaces_with_underscores(str space_filled_string)
-{
-str fp = "Replace spaces with dashes.";
-
-// fcd: Jan-13-2016
-
-str underscore_filled_string = "";
-int position_counter = 1;
-int length_of_sc = length(space_filled_string);
-str current_character;
-
-while(position_counter <= length_of_sc)
-{
-  current_character = str_char(space_filled_string, position_counter);
-  if(current_character == ' ')
-  {
-    underscore_filled_string += '()||( )||(_)';
-  }
-  else
-  {
-    underscore_filled_string += current_character;
-  }
-  position_counter++;
-}
-return(underscore_filled_string);
 }
 
 
@@ -3372,7 +3340,7 @@ str fp = 'Find CMAC helper.';
 
 str so;
 str sc = @get_subject_or_selected_text;
-sc = @equate_spaces_with_underscores(sc);
+sc = @equate_spaces_and_underscores(sc);
 
 @open_cmac_files;
 
@@ -3401,7 +3369,7 @@ str fp = 'Go to macro definition with ss.';
 @header;
 
 str sc = @get_subject_or_selected_text;
-sc = @equate_spaces_with_underscores(sc);
+sc = @equate_spaces_and_underscores(sc);
 
 sc = ".*" + sc;
 
