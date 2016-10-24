@@ -1160,37 +1160,44 @@ return(return_string);
 
 //;
 
-str
-@peek_ahead_2()
+void
+@find_next_content_area()
 {
-str fp = 'Looks for bullets, subbullets and rubrics.';
+str fp = "Find next content area.";
+down;
+find_text(@content_area, 0, _regexp);
+@say(fp);
+}
+
+
+
+//;
+
+str
+@peek_ahead_3()
+{
+str fp = 'Looks at what the next content area is.';
 
 str return_string = 'rubric';
 
 mark_pos;
 
-if((Cur_Char == ':') or (Cur_Char == ';') or (Cur_Char == '/'))
+@find_next_content_area;
+
+if(@current_character == ':')
 {
+  return_string = 'bullet';
   right;
 }
-
-find_text('()||(^;)||(^//;)', 0, _regexp);
-str First_Character = Copy(found_str, 1, 1);
-str Second_Character = Copy(get_line, 2, 1);
-if(First_Character == ':')
+if(@current_character == ':')
 {
-  Return_String = 'bullet';
-}
-if(Second_Character == ':')
-{
-  Return_String = 'subbullet';
+  return_string = 'subbullet';
 }
 
 goto_mark;
 
 @say(fp);
-return(Return_String);
-// return(found_str);
+return(return_string);
 }
 
 
@@ -1202,7 +1209,7 @@ int
 {
 str fp = 'True if the user is on the last bullet of a rubric.';
 
-if(@peek_ahead_2 == 'rubric')
+if(@peek_ahead_3 == 'rubric')
 {
   @say('You are on the last bullet.');
   return(1);
@@ -1215,19 +1222,6 @@ return(0);
 
 
 //;+ Content Area
-
-
-
-//;;
-
-void
-@find_next_content_area()
-{
-str fp = "Find next content area.";
-down;
-find_text(@content_area, 0, _regexp);
-@say(fp);
-}
 
 
 
@@ -12904,6 +12898,11 @@ str fp = "Load previously saved location and check for edge case.";
 int i = 0;
 int lines_in_bullet = @count_lines_in_bullet;
 
+if(@is_last_bullet)
+{
+  lines_in_bullet -= 2;
+}
+
 @recall_location;
 
 while(i < lines_in_bullet)
@@ -12912,6 +12911,9 @@ while(i < lines_in_bullet)
   i++;
 }
 
+fp = 'i: ' + str(i);
+fp = 'lines_in_bullet: ' + str(lines_in_bullet);
+@say(fp);
 }
 
 

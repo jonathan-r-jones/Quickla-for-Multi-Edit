@@ -1,5 +1,42 @@
 //;
 
+str
+@peek_ahead_2()
+{
+str fp = 'Looks for bullets, subbullets and rubrics.';
+
+str return_string = 'rubric';
+
+mark_pos;
+
+if((Cur_Char == ':') or (Cur_Char == ';') or (Cur_Char == '/'))
+{
+  right;
+}
+
+find_text('()||(^;)||(^//;)', 0, _regexp);
+str First_Character = Copy(found_str, 1, 1);
+str Second_Character = Copy(get_line, 2, 1);
+if(First_Character == ':')
+{
+  Return_String = 'bullet';
+}
+if(Second_Character == ':')
+{
+  Return_String = 'subbullet';
+}
+
+goto_mark;
+
+@say(fp);
+return(Return_String);
+// return(found_str);
+}
+
+
+
+//;
+
 void
 @rtm
 {

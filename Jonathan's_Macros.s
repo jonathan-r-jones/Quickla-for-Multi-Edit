@@ -3196,7 +3196,7 @@ fp += ' Current L' + 'K# = ' + str(current_line_lk_number) + '.';
 //;;
 
 void
-@compare_lck_for_bs
+@compare_lkc_for_bs
 {
 str fp = "Determine if first bullet is possessed of the greatest lookup counter in this bs.";
 
@@ -3313,6 +3313,8 @@ void
 {
 str fp = "Find next lck equal or higher.";
 @header;
+
+// skw highest, greatest
 
 str so;
 int starting_line_lk_number;
@@ -5634,45 +5636,122 @@ str arg_1, arg_2, arg_3, arg_4;
 str lc = arg_1;
 
 str incorrect_parameter_value = '';
+
 str location_modifier = '';
+str move_style = '';
 str togetherness = '';
 
 switch(arg_2)
 {
+  case 'a':
+    togetherness = arg_2;
+    break;
   case 'b':
+    location_modifier = arg_2;
+    break;
+  case 'c':
+    move_style = arg_2;
+    break;
+  case 'd':
+    move_style = arg_2;
+    break;
   case 'e':
+    location_modifier = arg_2;
+    break;
   case 'm':
     location_modifier = arg_2;
+    break;
+  case 'v':
+    move_style = arg_2;
     break;
   case 'w':
     togetherness = arg_2;
     break;
 }
-
 switch(arg_3)
 {
+  case 'a':
+    togetherness = arg_3;
+    break;
   case 'b':
+    location_modifier = arg_3;
+    break;
+  case 'c':
+    move_style = arg_3;
+    break;
+  case 'd':
+    move_style = arg_3;
+    break;
   case 'e':
+    location_modifier = arg_3;
+    break;
   case 'm':
     location_modifier = arg_3;
+    break;
+  case 'v':
+    move_style = arg_3;
     break;
   case 'w':
     togetherness = arg_3;
     break;
 }
+switch(arg_4)
+{
+  case 'a':
+    togetherness = arg_4;
+    break;
+  case 'b':
+    location_modifier = arg_4;
+    break;
+  case 'c':
+    move_style = arg_4;
+    break;
+  case 'd':
+    move_style = arg_4;
+    break;
+  case 'e':
+    location_modifier = arg_4;
+    break;
+  case 'm':
+    location_modifier = arg_4;
+    break;
+  case 'v':
+    move_style = arg_4;
+    break;
+  case 'w':
+    togetherness = arg_4;
+    break;
+}
+
+// Set the defaults.
+if(location_modifier == '')
+{
+  location_modifier = 'b';
+}
+if(move_style == '')
+{
+  move_style = 'v';
+}
+if(togetherness == '')
+{
+  togetherness = 'a';
+}
 
 @save_location;
 
-if(arg_4 == 'c')
+if(move_style == 'c')
 {
   @copy_and_paste_bullet;
 }
 
 @cut_bullet;
 
-@find_lc(lc);
+if(lc != '')
+{
+  @find_lc(lc);
+}
 
-if((location_modifier == 'b') || (location_modifier == ''))
+if(location_modifier == 'b')
 {
   @bobs;
 }
@@ -5696,18 +5775,21 @@ if(togetherness != 'w')
   if(@is_paste_before_in_same_window)
   {
     @recall_location_2;
+    fp += ' Rc2.';
   }
   else
   {
     @recall_location;
+    fp += ' Rc.';
   }
-  goto_col(initial_column);
 }
 
 if(@is_blank_line)
 {
   @put_cursor_somewhere_useful;
 }
+
+goto_col(initial_column);
 
 fp += " (Args: '" + arguments + "')";
 @say(fp);
