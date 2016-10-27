@@ -3426,6 +3426,12 @@ int lc_is_found = 0;
 
 str application = @get_remote_oj_using_klc(application_lc, lc_is_found);
 
+//fp += ' Oct-27-2016: ' + application;
+//fp += ' Oct-27-2016: ' + application_lc;
+//fp += ' Oct-27-2016: ' + status_bar_arguments;
+//@say(fp);
+//return();
+
 if(@first_character(application) == '@')
 {
   @application_is_a_cmac_macro(application, postperiod_status_bar_arguments);
@@ -3853,6 +3859,13 @@ if(xpos(',', user_input, 1))
 }
 else if(xpos('.', user_input, 1))
 {
+  if(@first_character(user_input) == '.')
+  {
+    // Oct-27-2016: This is a trick/hack which allows me not have to type the "e" for 
+    // the very common macro.
+    user_input = 'e' + user_input;
+  }
+  //  @say(' Oct-27-2016: ' + user_input);
   @run_skeleton_router(user_input);
   @footer;
   return();

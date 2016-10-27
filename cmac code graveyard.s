@@ -1,3 +1,33 @@
+//;;
+
+void
+@replace_space_curly_brace()
+{
+str fp = "Replace space curly brace with newline curly brace.";
+
+// fcd: Aug-29-2016
+
+str rs;
+str sc;
+str so;
+int efbo = true; // execute first block only
+
+sc = ' {';
+rs = '${';
+@eol;
+
+if(efbo){ so = @replace_all_occurrences_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_next_occurrence_only(sc, rs); efbo = 0; }
+if(efbo){ @seek_next(sc, so); efbo = false; }
+if(efbo){ int is_found = @seek_in_all_files_2_arguments(sc, fp); efbo = 0; }
+
+@say(found_str);
+@say(so);
+@say(fp);
+}
+
+
+
 //;
 
 str

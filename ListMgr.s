@@ -2519,24 +2519,16 @@ if(!@is_text_file)
 //;;
 
 void
-@replace_space_curly_brace()
+@put_catch_keyword_on_newline()
 {
-str fp = "Replace space curly brace with newline curly brace.";
-
-// fcd: Aug-29-2016
-
+str fp = "Put catch keyword on newline.";
 str rs;
 str sc;
 str so;
 int efbo = true; // execute first block only
 
-if(@current_line > 14000)
-{
-  tof;
-}
-
-sc = ' {';
-rs = '${';
+sc = '} catch';
+rs = '}$catch';
 @eol;
 
 if(efbo){ so = @replace_all_occurrences_no_tof(sc, rs); efbo = 0; }
@@ -2554,21 +2546,43 @@ if(efbo){ int is_found = @seek_in_all_files_2_arguments(sc, fp); efbo = 0; }
 //;;
 
 void
-@put_catch_keyword_on_newline()
+@put_else_keyword_on_newline()
 {
-str fp = "Put catch keyword on newline.";
+str fp = "Put else keyword on newline.";
 str rs;
 str sc;
 str so;
 int efbo = true; // execute first block only
 
-if(@current_line > 14000)
-{
-  tof;
+sc = '} else';
+rs = '}$else';
+@eol;
+
+if(efbo){ so = @replace_all_occurrences_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_next_occurrence_only(sc, rs); efbo = 0; }
+if(efbo){ @seek_next(sc, so); efbo = false; }
+if(efbo){ int is_found = @seek_in_all_files_2_arguments(sc, fp); efbo = 0; }
+
+@say(found_str);
+@say(so);
+@say(fp);
 }
 
-sc = '} catch';
-rs = '}$catch';
+
+
+//;;
+
+void
+@put_opening_braces_on_new_line()
+{
+str fp = "Put opening braces on new line.";
+str rs;
+str sc;
+str so;
+int efbo = true; // execute first block only
+
+sc = '(\)) ({)$';
+rs = '\0$  \1';
 @eol;
 
 if(efbo){ so = @replace_all_occurrences_no_tof(sc, rs); efbo = 0; }
@@ -2595,10 +2609,11 @@ if(!@is_text_file)
   return();
 }
 
-@replace_space_curly_brace;
 @put_catch_keyword_on_newline;
+@put_else_keyword_on_newline;
 @delete_blank_lines;
 @delete_blank_line_at_eof;
+@put_opening_braces_on_new_line;
 
 @select_all;
 @copy;
