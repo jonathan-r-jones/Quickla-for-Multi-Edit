@@ -5639,6 +5639,7 @@ str incorrect_parameter_value = '';
 
 str location_modifier = '';
 str move_style = '';
+str selected_rubric = '';
 str togetherness = '';
 
 switch(arg_2)
@@ -5660,6 +5661,12 @@ switch(arg_2)
     break;
   case 'm':
     location_modifier = arg_2;
+    break;
+  case 'n':
+    selected_rubric  = arg_2;
+    break;
+  case 'p':
+    selected_rubric  = arg_2;
     break;
   case 'v':
     move_style = arg_2;
@@ -5688,6 +5695,12 @@ switch(arg_3)
   case 'm':
     location_modifier = arg_3;
     break;
+  case 'n':
+    selected_rubric  = arg_3;
+    break;
+  case 'p':
+    selected_rubric  = arg_3;
+    break;
   case 'v':
     move_style = arg_3;
     break;
@@ -5714,6 +5727,12 @@ switch(arg_4)
     break;
   case 'm':
     location_modifier = arg_4;
+    break;
+  case 'n':
+    selected_rubric  = arg_4;
+    break;
+  case 'p':
+    selected_rubric  = arg_4;
     break;
   case 'v':
     move_style = arg_4;
@@ -5746,7 +5765,21 @@ if(move_style == 'c')
 
 @cut_bullet;
 
-if(lc != '')
+if(selected_rubric != '')
+{
+  if(selected_rubric == 'p')
+  {
+    @bor;
+    up;
+    @bor;
+  }
+  else
+  {
+    // Else it must be 'n'.
+    @find_next_big_segment;
+  }
+}
+else if(lc != '')
 {
   @find_lc(lc);
 }
@@ -5823,6 +5856,50 @@ fp += ' ir: ' + str(global_int('initial row number'));
 fp += ', ic: ' + str(global_int('initial column number'));
 fp += ', iw: ' + str(global_int('initial window number'));
 
+@say(fp);
+}
+
+
+
+//;
+
+void
+@bam_2_alone_caller
+{
+str fp = "BAM 2 (alone) caller.";
+@header;
+
+// fcd: Oct-27-2016
+// This is the latest.
+
+str user_input = @get_user_input_nonspace(fp);
+
+@bullet_action_model_2(user_input);
+
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
+@bam_2_with_caller
+{
+str fp = "BAM 2 (alone) caller.";
+@header;
+
+// fcd: Oct-27-2016
+// This is the latest.
+
+str user_input = @get_user_input_nonspace(fp);
+
+user_input += '.w';
+
+@bullet_action_model_2(user_input);
+
+@footer;
 @say(fp);
 }
 

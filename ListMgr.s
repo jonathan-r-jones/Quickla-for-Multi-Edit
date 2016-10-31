@@ -4756,7 +4756,6 @@ switch(find_Precision)
     sc = '^((:#)||(;#))' + sc;
     break;
   case 3:
-    sc = @equate_spaces_and_underscores(sc);
     sc = @equate_spaces_and_dashes_wcl(sc);
     break;
 }

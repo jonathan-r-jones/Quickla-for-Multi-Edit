@@ -2155,12 +2155,12 @@ fp += ' at ' + @get_formatted_full_time + '.';
 
 
 
-//;;
+//;; (skw prompt_user)
 
 str
 @get_user_input_raw(str introduction)
 {
-str fp = 'Get user input and display it in the status bar.';
+str fp = 'Get user input and display it in the status bar. Spaces allowed.';
 
 int Countdown = 1;
 introduction = @trim_last_character(introduction) + ':';
@@ -2253,7 +2253,7 @@ str
 str fp = 'Get user input. Separator spaces are not allowed and launch codes are separated by a 
   comma.';
 
-fp = 'Type verb and noun launch codes separated by a comma.';
+fp = 'Type verb and noun launch codes separated by a comma. No spaces allowed.';
 
 int Countdown = 1;
 str rv;

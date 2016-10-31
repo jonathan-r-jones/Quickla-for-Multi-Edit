@@ -3859,11 +3859,11 @@ if(xpos(',', user_input, 1))
 }
 else if(xpos('.', user_input, 1))
 {
-  if(@first_character(user_input) == '.')
+  if(@first_character(user_input) == '.') //period
   {
     // Oct-27-2016: This is a trick/hack which allows me not have to type the "e" for 
     // the very common macro.
-    user_input = 'e' + user_input;
+    user_input = 'bam2' + user_input;
   }
   //  @say(' Oct-27-2016: ' + user_input);
   @run_skeleton_router(user_input);
