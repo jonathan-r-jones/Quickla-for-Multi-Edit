@@ -1,6 +1,35 @@
 //;;
 
 void
+@open_or_close_cmac_files
+{
+str fp = "Open or close CMAC files.";
+
+@header;
+
+// fcd: Aug-6-2015
+
+if(@window_count > 13)
+{
+  fp += " Excess files are open, so close them.";
+  @close_excess_windows;
+}
+else
+{
+  fp += " CMAC macros are closed so open them.";
+  @open_cmac_files;
+}
+
+@footer;
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
 @replace_space_curly_brace()
 {
 str fp = "Replace space curly brace with newline curly brace.";

@@ -3324,6 +3324,7 @@ str so = @find_lc_core(search_starting_point_lc, search_criterion_was_found, fp)
 
 if(search_criterion_was_found)
 {
+  sc = @equate_spaces_and_dashes_wcl(sc);
   @seek_in_all_files_2_arguments(sc, fp);
 }
 

@@ -12840,9 +12840,9 @@ str fp = "";
 //;
 
 void
-@find_lc_for_humans
+@find_lc_using_user_input
 {
-str fp = "Find LC for humans.";
+str fp = "Find LC using user input.";
 
 @header;
 

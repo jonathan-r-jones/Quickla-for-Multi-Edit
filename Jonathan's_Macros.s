@@ -2305,29 +2305,17 @@ void
 str fp = "Close excess windows.";
 
 @header_bloff;
-
+@save_location;
 @switch_to_first_window;
-
-int Default_Number_of_Windows_Open = 13;
-
-switch(@lower(Get_Environment("ComputerName")))
-{
-  case "vaio":
-    Default_Number_of_Windows_Open = 13;
-    break;
-}
-
-int Open_Window_Counter = @count_open_windows;
-
-while(Open_Window_Counter > Default_Number_of_Windows_Open)
+int default_number_of_windows_open = 13;
+int open_window_counter = @count_open_windows;
+while(open_window_counter > default_number_of_windows_open)
 {
   @close_last_window;
   @switch_to_first_window;
-  Open_Window_Counter--;
+  open_window_counter--;
 }
-
-@find_bookmark_primary;
-
+@recall_location;
 @footer;
 
 @say(fp);
@@ -2338,9 +2326,9 @@ while(Open_Window_Counter > Default_Number_of_Windows_Open)
 //;;
 
 void
-@open_or_close_cmac_files
+@binary_window_opening_n_closing
 {
-str fp = "Open or close CMAC files.";
+str fp = "Binary window opening and closing.";
 
 @header;
 
