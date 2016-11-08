@@ -5096,44 +5096,6 @@ if(!@current_line_has_an_lc_partner(lc))
 //;
 
 void
-go_to_first_bullet_at_lc(str lc = parse_str('/1=', mparm_str))
-{
-
-/*
-
-skw
-
-go to jd, go_to_jd, junk_drawer
-
-*/
-
-str fp = 'Go to the first bullet at lc "' + lc + '".';
-
-@header;
-
-if(!@find_lc_known(fp, lc))
-{
-  @footer;
-  return();
-}
-
-if(!@is_bullet_file)
-{
-  @footer;
-  return();
-}
-
-@find_next_bullet;
-
-@footer;
-@say(fp);
-}
-
-
-
-//;
-
-void
 @pair_with_k
 {
 str fp = "Pair with k.";
@@ -5888,23 +5850,6 @@ user_input += '.w';
 @bullet_action_model_2(user_input);
 
 @footer;
-@say(fp);
-}
-
-
-
-//;
-
-void
-@rtm
-{
-str fp = "";
-
-// fcd: Nov-3-2016
-// This is the latest.
-
-//qq-1
-
 @say(fp);
 }
 

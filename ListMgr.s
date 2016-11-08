@@ -9507,6 +9507,44 @@ eof;
 
 
 
+//;
+
+void
+@go_to_first_bullet_at_lc(str lc = parse_str('/1=', mparm_str))
+{
+
+/*
+
+skw
+
+go to jd, go_to_jd, junk_drawer
+
+*/
+
+str fp = 'Go to the first bullet at lc "' + lc + '".';
+
+@header;
+
+if(!@find_lc_known(fp, lc))
+{
+  @footer;
+  return();
+}
+
+if(!@is_bullet_file)
+{
+  @footer;
+  return();
+}
+
+@find_next_bullet;
+
+@footer;
+@say(fp);
+}
+
+
+
 //;+ Find Bookmarks
 
 
@@ -9661,11 +9699,8 @@ if(@seek_in_all_files_2_arguments(sc, so))
 }
 else
 {
-  fp += ' Double q was NOT found, so go to the default location.';
-  @switch_to_task_window;
-  @bof;
-  @find_next_bullet;
-  @eol;
+  fp += ' Double q was NOT found, so go to the now playing item of the task list.';
+  @go_to_first_bullet_at_lc('refernptl');
 }
 
 @say(fp);
