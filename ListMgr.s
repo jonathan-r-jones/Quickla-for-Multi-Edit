@@ -4624,7 +4624,7 @@ return(sc);
 
 
 
-//;; Partially deprecated. Please use @craft_search_string going forward for grabbing strings.
+//;;
 
 int
 @find_continuum(int find_precision = parse_int('/1=', mparm_str), 
@@ -6962,9 +6962,9 @@ if(@is_bullet_file)
 }
 else
 {
-  up;
-  @move_line_down;
   down;
+  @move_line_down;
+  up;
 }
 
 @footer;
@@ -8177,7 +8177,9 @@ block_off;
 str_block_begin;
 
 @eol;
-//rm('CutPlus /O=0');
+// Nov-14-2016: I UNCOMMENTED the following line to make the 'highcopy' work.
+// Without this line, only the highlight works.
+rm('CutPlus /O=0');
 
 block_end;
 
@@ -9549,34 +9551,6 @@ if(!@is_bullet_file)
 
 
 
-//;; (skw Universal_Window, Universal Window, Window Universal)
-
-int
-@switch_to_task_window()
-{
-str fp = 'Switch to task window.';
-str Named_Window;
-
-named_window = 'ne.asc';
-
-if(@switch_to_named_window(Named_Window) == 0)
-{
-  Named_Window = 'ne.asc';
-  @switch_to_named_window(Named_Window);
-  @say('Tried to switch to ' + Named_Window + ', but could not find it.');
-  return(0);
-}
-
-@cursor_to_my_bof;
-
-@center_line;
-@say(fp);
-return(1);
-
-}
-
-
-
 //;;
 
 void
@@ -9699,7 +9673,7 @@ if(@seek_in_all_files_2_arguments(sc, so))
 }
 else
 {
-  fp += ' Double q was NOT found, so go to the now playing item of the task list.';
+  fp += ' Double q was NOT found, so go to the now playing task list.';
   @go_to_first_bullet_at_lc('refernptl');
 }
 
@@ -9802,7 +9776,7 @@ str so = '';
 str SC1 = '(qj' + 'q)';
 str SC2 = '(\@rt' + 'm)';
 
-str Orred_Search_Criteria = sC1 + '||' + sC2;
+str orred_search_criteria = sc1 + '||' + sc2;
 
 int search_criterion_was_found = @seek_in_all_files_core(Orred_Search_Criteria, so, FS);
 
@@ -9812,12 +9786,8 @@ if(search_criterion_was_found)
 }
 else
 {
-  so = 'Search criterion NOT found, so switch to task window.';
-  @switch_to_task_window;
-  if(@first_character_in_line == '')
-  {
-    @find_next_bullet;
-  }
+  so = 'Search criterion NOT found, so go to now playing task list.';
+  @go_to_first_bullet_at_lc('refernptl');
 }
 
 /* Use Case(s)
@@ -10513,17 +10483,6 @@ text(text_to_add);
 //;;
 
 void
-@add_text_skw
-{
-str fp = 'Add text skw.';
-@add_text_at_eol('skw');
-}
-
-
-
-//;;
-
-void
 @add_text_misspelling
 {
 str fp = 'Add text misspelling.';
@@ -10939,28 +10898,6 @@ test [blank] a
 //;;
 
 void
-@add_text_internet_explorer()
-{
-str fp = 'Add text internet explorer.';
-
-if(@text_is_selected)
-{
-  delete_block;
-}
-
-// Note that it says %programfiles% and not "program files". This is because
-// the first directs towards the 32-bit version of IE, which is for some reason required
-// by the Windows Update site. - JRJ Jan-4-2011
-text('%programfiles%\internet explorer\iexplore.exe ' + char(34));
-
-@say(fp);
-}
-
-
-
-//;;
-
-void
 @add_text_blank_url_here()
 {
 str fp = 'Add blank browser text here.';
@@ -11013,64 +10950,6 @@ up;
 //;;
 
 void
-@add_text_safari
-{
-str fp = 'Add text safari.';
-
-if(@text_is_selected)
-{
-  delete_block;
-}
-
-text('%programfiles%\safari\safari.exe ' + char(34));
-
-@say(fp);
-}
-
-
-
-//;;
-
-void
-@add_text_multiedit()
-{
-str fp = 'Add text Multi-Edit.';
-
-if(@text_is_selected)
-{
-  delete_block;
-}
-
-text('c:\Program Files (x86)\Multi-Edit 2008\Mew32.exe ' + char(34));
-cr;
-
-@say(fp);
-}
-
-
-
-//;;
-
-void
-@add_text_firefox
-{
-str fp = 'Add text Firefox.';
-
-if(@text_is_selected)
-{
-  delete_block;
-}
-
-text('%programfiles%\mozilla firefox\firefox.exe ' + char(34));
-
-@say(fp);
-}
-
-
-
-//;;
-
-void
 @add_text_my_initials_and_date
 {
 str fp = 'Add text my initials and date.';
@@ -11089,6 +10968,30 @@ void
 {
 str fp = 'Add text global search string, the cmac value, not THE value.';
 text("global_str('search_str')");
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@add_text_global_search_string_v
+{
+str fp = 'Add text global search string value.';
+text(global_str('search_str'));
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@add_text_global_ss_pretty_sc
+{
+str fp = 'Add text global search string value.';
+text(global_str('pretty_sc'));
 @say(fp);
 }
 
@@ -11159,52 +11062,6 @@ text('  return();');
 cr;
 text('}');
 cr;
-
-@footer;
-@say(fp);
-}
-
-
-
-//;;
-
-void
-@add_text_use_case_bullet()
-{
-str fp = 'Add text use case bullet.';
-
-@bol;
-text('2. Use Case on ' + @get_formatted_date + ':');
-cr;
-
-@say(fp);
-}
-
-
-
-//;;
-
-void
-@add_text_use_case
-{
-str fp = 'Add text use case.';
-@header;
-
-@bol;
-cr;
-cr;
-up;
-text('/* ');
-text('Use Case(s)');
-cr;
-cr;
-@add_text_use_case_bullet;
-cr;
-cr;
-text('*/');
-up;
-up;
-@bol;
 
 @footer;
 @say(fp);
@@ -11369,92 +11226,6 @@ text('}');
 cr;
 
 @say(fp);
-}
-
-
-
-//;;
-
-void
-@add_text_sp_definitions
-{
-str fp = "Add text 'sp definitions'.";
-
-@header;
-
-@save_location;
-
-str lc = "msob";
-if(!@find_lc_known(fp, lc))
-{
-  return();
-}
-
-@eol;
-cr;
-cr;
-text("exec sp_ms_marksystemobject '");
-@paste;
-@eol;
-text("'");
-cr;
-text("go");
-
-lc = "grex";
-if(!@find_lc_known(fp, lc))
-{
-  return();
-}
-
-@eol;
-cr;
-cr;
-text("grant execute on ");
-@paste;
-@eol;
-text(" to public");
-cr;
-text("go");
-
-@recall_location;
-
-/* Use Case(s)
-
-
-*/
-
-@footer;
-@say(fp);
-}
-
-
-
-//;;
-
-void
-@add_text_for_if_code_block
-{
-str fp = "Add text for 'if' code block.";
-
-@header;
-
-text("if()");
-cr;
-text("{");
-cr;
-cr;
-text("}");
-cr;
-up;
-up;
-up;
-up;
-@eol;
-left;
-
-@footer;
-
-@say(fp)
 }
 
 

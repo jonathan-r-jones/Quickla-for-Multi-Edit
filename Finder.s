@@ -2151,8 +2151,12 @@ switch(@filename_extension)
   case 'config':
     @find_mappings_file_definition;
     break;
-  default:
+  case 's':
     @find_cmac_definition_f12_key;
+    break;
+  default:
+//    @find_continuum('4');
+//qq-1
     break;
 }
 

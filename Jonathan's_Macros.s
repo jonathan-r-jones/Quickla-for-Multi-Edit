@@ -1509,7 +1509,7 @@ void
 {
 str fp = "Add text new rubric for completed items.";
 
-str sc = 'refercp';
+str sc = 'referco';
 
 @header;
 
@@ -1524,7 +1524,7 @@ text(' ');
 @add_text_date;
 @delete_text_lc_on_cl;
 @add_subrubric_above;
-text('Completed Items (!' + 'cp, !' + 'refercp) for the Week Ending');
+text('Completed Items (!' + 'co, !' + 'referco) for the Week Ending');
 
 @footer;
 
@@ -4058,7 +4058,7 @@ str oj = @hc_object;
 
 @recall_location;
 
-text(oj);
+text(oj + ' "');
 
 @footer;
 @say(fp + ' (' + oj + ')');
@@ -5697,10 +5697,12 @@ if(location_modifier == '')
 {
   location_modifier = 'b';
 }
+
 if(move_style == '')
 {
   move_style = 'v';
 }
+
 if(togetherness == '')
 {
   togetherness = 'a';
@@ -5837,7 +5839,7 @@ str user_input = @get_user_input_nonspace(fp);
 void
 @bam_2_with_caller
 {
-str fp = "BAM 2 (alone) caller.";
+str fp = "BAM 2 (together) caller.";
 @header;
 
 // fcd: Oct-27-2016

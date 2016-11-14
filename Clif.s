@@ -1585,7 +1585,7 @@ if(@filename == 'ne.asc')
   }
   else
   {
-    lc = 'cp';
+    lc = 'co';
   }
 }
 
@@ -1594,7 +1594,7 @@ if(lc == 'destcj')
   lc = 'cj';
   if(!@find_lc(lc))
   {
-    lc = 'refercp';
+    lc = 'referco';
   }
 }
 

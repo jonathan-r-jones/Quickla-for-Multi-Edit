@@ -1,6 +1,257 @@
 //;;
 
 void
+@add_text_for_if_code_block
+{
+str fp = "Add text for 'if' code block.";
+
+@header;
+
+text("if()");
+cr;
+text("{");
+cr;
+cr;
+text("}");
+cr;
+up;
+up;
+up;
+up;
+@eol;
+left;
+
+@footer;
+
+@say(fp)
+}
+
+
+
+//;;
+
+void
+@add_text_sp_definitions
+{
+str fp = "Add text 'sp definitions'.";
+
+@header;
+
+@save_location;
+
+str lc = "msob";
+if(!@find_lc_known(fp, lc))
+{
+  return();
+}
+
+@eol;
+cr;
+cr;
+text("exec sp_ms_marksystemobject '");
+@paste;
+@eol;
+text("'");
+cr;
+text("go");
+
+lc = "grex";
+if(!@find_lc_known(fp, lc))
+{
+  return();
+}
+
+@eol;
+cr;
+cr;
+text("grant execute on ");
+@paste;
+@eol;
+text(" to public");
+cr;
+text("go");
+
+@recall_location;
+
+/* Use Case(s)
+
+
+*/
+
+@footer;
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@add_text_use_case
+{
+str fp = 'Add text use case.';
+@header;
+
+@bol;
+cr;
+cr;
+up;
+text('/* ');
+text('Use Case(s)');
+cr;
+cr;
+@add_text_use_case_bullet;
+cr;
+cr;
+text('*/');
+up;
+up;
+@bol;
+
+@footer;
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@add_text_use_case_bullet()
+{
+str fp = 'Add text use case bullet.';
+
+@bol;
+text('2. Use Case on ' + @get_formatted_date + ':');
+cr;
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@add_text_firefox
+{
+str fp = 'Add text Firefox.';
+
+if(@text_is_selected)
+{
+  delete_block;
+}
+
+text('%programfiles%\mozilla firefox\firefox.exe ' + char(34));
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@add_text_multiedit()
+{
+str fp = 'Add text Multi-Edit.';
+
+if(@text_is_selected)
+{
+  delete_block;
+}
+
+text('c:\Program Files (x86)\Multi-Edit 2008\Mew32.exe ' + char(34));
+cr;
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@add_text_safari
+{
+str fp = 'Add text safari.';
+
+if(@text_is_selected)
+{
+  delete_block;
+}
+
+text('%programfiles%\safari\safari.exe ' + char(34));
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@add_text_internet_explorer()
+{
+str fp = 'Add text internet explorer.';
+
+if(@text_is_selected)
+{
+  delete_block;
+}
+
+// Note that it says %programfiles% and not "program files". This is because
+// the first directs towards the 32-bit version of IE, which is for some reason required
+// by the Windows Update site. - JRJ Jan-4-2011
+text('%programfiles%\internet explorer\iexplore.exe ' + char(34));
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@add_text_skw
+{
+str fp = 'Add text skw.';
+@add_text_at_eol('skw');
+}
+
+
+
+//;; (skw Universal_Window, Universal Window, Window Universal)
+
+int
+@switch_to_task_window()
+{
+str fp = 'Switch to task window.';
+str Named_Window;
+
+named_window = 'ne.asc';
+
+if(@switch_to_named_window(Named_Window) == 0)
+{
+  Named_Window = 'ne.asc';
+  @switch_to_named_window(Named_Window);
+  @say('Tried to switch to ' + Named_Window + ', but could not find it.');
+  return(0);
+}
+
+@cursor_to_my_bof;
+
+@center_line;
+@say(fp);
+return(1);
+
+}
+
+
+
+//;;
+
+void
 @open_or_close_cmac_files
 {
 str fp = "Open or close CMAC files.";

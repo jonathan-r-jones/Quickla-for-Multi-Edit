@@ -2499,7 +2499,6 @@ return(underscore_filled_string);
 void
 @add_text_date()
 {
-
 str fp = 'Add text date.';
 
 if(@text_is_selected)
