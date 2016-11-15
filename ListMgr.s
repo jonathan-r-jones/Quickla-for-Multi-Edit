@@ -246,17 +246,6 @@ find_text(@bullet_or_big_segment, 0, _regexp | _backward);
 //;;
 
 void
-@bobs()
-{
-str fp = 'Go to the beginning of the current big segment. ';
-find_text(@big_segment, 0, _regexp | _backward);
-}
-
-
-
-//;;
-
-void
 @@bobs
 {
 @header;
@@ -4516,11 +4505,7 @@ str fp = 'Find next big segment.';
 
 
 
-//;+ Search String Related Macros
-
-
-
-//;;
+//;
 
 str
 @craft_search_string(int find_Precision = parse_int('/1=', mparm_str))
@@ -4620,267 +4605,6 @@ switch(find_Precision)
 //@log('sp Aug-4-2009 = ' + sc);
 return(sc);
 
-}
-
-
-
-//;;
-
-int
-@find_continuum(int find_precision = parse_int('/1=', mparm_str), 
-  str starting_position_of_search = parse_str('/2=', mparm_str))
-{
-str fp = 'Find continuum.';
-str fp = '';
-
-// Find with a gradient of search strengths (1-3), with 1 being the most precise.
-
-// I realize that there is no @recall_location in this method. The @recall_location is
-// actually called manually after this method. - JRJ Feb-9-2011
-@save_location;
-
-int text_is_selected = false;
-
-if(@text_is_selected)
-{
-  @save_highlighted_text;
-  text_is_selected = true;
-}
-
-switch(starting_Position_of_Search)
-{
-  case 'bof':
-    fp += ' Begin at BOF.';
-    break;
-  case 'bor':
-    fp += ' Begin at BOR.';
-    break;
-  case '':
-    break;
-  default:
-    fp += ' Begin at "' + starting_Position_of_Search + '".';
-}
-
-switch(find_precision)
-{
-  case 1:
-    fp += ' Find precisely (fp1).';
-    break;
-  case 2:
-    fp += ' Find normally (fp2).';
-    break;
-  case 3:
-    fp += ' Find liberally (fp3).';
-    break;
-  case 4:
-    fp += ' Find precisely (fp4).';
-    break;
-  case 5:
-    fp += ' Find normally (fp5).';
-    break;
-  case 6:
-    fp += ' Find liberally (fp6).';
-    break;
-  case 7:
-    fp += ' Find precisely using user input (fp7).';
-    break;
-  case 8:
-    fp += ' Find normally using user input (fp8).';
-    break;
-  case 9:
-    fp += ' Find liberally using user input (fp9).';
-    break;
-  case 12:
-    fp += ' Find liberally using Global Search String (fp10).';
-    break;
-}
-
-str Name_of_File = Truncate_Path(File_Name);
-
-str sc;
-
-if(find_Precision > 9)
-{
-  sc = global_str('search_str');
-  if(sc == 'Function aborted.')
-  {
-    @say(sc);
-    return(0);
-  }
-  find_Precision -= 9;
-}
-else if(find_Precision > 6)
-{
-  sc = @get_user_input_raw(fp);
-  if(sc == 'Function aborted.')
-  {
-    @say(sc);
-    return(0);
-  }
-  find_Precision -= 6;
-}
-else if(find_Precision > 3)
-{
-  if(@text_is_selected)
-  {
-    sc = @get_selected_text;
-  }
-  else
-  {
-    sc = @get_word_uc_or_st;
-    sc = @trim_colon_et_al(sc);
-  }
-  find_Precision -= 3;
-}
-else if(find_Precision <= 3)
-{
-  sc = @get_subject_or_selected_text;
-}
-str Pretty_sc = sc;
-set_global_str('pretty_sc', sc);
-
-sc = make_literal_x(sc);
-
-// This enforces the idea that 3 will ALWAYS return at least as many as 2 which will ALWAYS
-// return at least as many results as 1.
-switch(find_Precision)
-{
-  case 1:
-    sc = @equate_spaces_and_dashes(sc);
-    //Last Updated: Sep-26-2016
-    sc = '^((:#)||(;#)||(:\+ @)||(;\+ @))' + sc;
-    sc += '((:)||($)||(!)||(\.)||(\?)||( \()||(,))';
-    break;
-  case 2:
-    sc = @equate_spaces_and_dashes(sc);
-    sc = '^((:#)||(;#))' + sc;
-    break;
-  case 3:
-    sc = @equate_spaces_and_dashes_wcl(sc);
-    break;
-}
-
-//@log('sp Aug-4-2009 = ' + sc);
-
-/* Use Cases for the ALL 3 types of finds.
-
-test88
-
-- Use Case Dec-29-2008: "wallow in the mire " should find "wallow in the mire". The
-trailing space in the search phrase should be truncated for LIBERAL searches only.
-
-wallow in the mire
-
-Use Case Sep-2-2008: If you highlight "c\:" and search, it should not find "c\system" as is
-currently the case in the following example.
-
-c\:
-
-c:\
-
-c:\windows\assembly\gac\system.windows.forms\
-
-Use Case #16. If the cursor is at column 1 in the following line, Ctrl+Shift+F should NOT
-find this line itself.
-
-searchxx3
-
-searchxx2
-
-Use Case #15:
-searchxx
-
-searchxx
-
-Use Case #1: Plain Jane
-Emancipate Now
-
-Use Case #2: trailing spaces
-Emancipate Now
-
-Use Case #3: Leading colons
-
-Emancipate Now
-
-Use Case #4: dash
-Emancipate-Now
-
-Use Case #5: Additional Text
-Emancipate Now I hate ticketmaster.
-
-Use Case #6: Cross Line Instance - Unvarnished
-Emancipate
-Now
-
-Use Case #7: Cross Line Instance With a Space after the first line
-Emancipate
-Now
-
-Use Case #8: Cross Line Instance With a dash after the first line
-Emancipate-
-Now
-
-Use Case #9: Nada
-Emancipatenow
-
-Use Case #10: Dash Plus Additional Text
-Emancipate-Now I hate ticketmaster.
-
-Use Case #11: Nada Plus Additional Text
-EmancipateNow I hate ticketmaster.
-
-Use Case #12: Nada Plus Additional Text
-EmancipateNow I hate ticketmaster.
-
-Use Case #13: Leading colons Plus Dash Plus Period
-Emancipate-Now.
-
-Use Case #14: Not at the beginning of the line
-hey now Emancipate-Now.
-
-Search Use Case #14: Intentional Trailing Space
-Emancipate
-
-you can't afford not
-
-you can't afford not to
-
-*/
-
-switch(starting_Position_of_Search)
-{
-  case 'bof':
-    @bof;
-    break;
-  case 'bor':
-    @bobs;
-    break;
-  case '':
-    break;
-  default:
-    if(!@find_lc_known(fp, starting_Position_of_Search)) 
-    {
-      return(0);
-    }
-}
-
-str so;
-int rv;
-
-rv = @seek_in_all_files_2_arguments(sc, so);
-
-if(rv == 2)
-{
-  @recall_location;
-}
-
-if((text_is_selected) && (rv == 2))
-{
-  @load_highlighted_text; 
-}
-
-@say(fp += ' ' + so + ' (' + Pretty_sc + ')');
-return(rv);
 }
 
 
@@ -8176,7 +7900,8 @@ block_off;
 
 str_block_begin;
 
-@eol;
+down;
+
 // Nov-14-2016: I UNCOMMENTED the following line to make the 'highcopy' work.
 // Without this line, only the highlight works.
 rm('CutPlus /O=0');

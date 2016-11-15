@@ -19,7 +19,6 @@ prototype ListMgr
   void @add_text_multiedit();
   void @bob();
   void @bobbs();
-  void @bobs();
   str  @bobsr();
   str  @boca();
   void @bor();

@@ -5715,7 +5715,10 @@ if(move_style == 'c')
   @copy_and_paste_bullet;
 }
 
-@cut_bullet;
+if(move_style == 'v')
+{
+  @cut_bullet;
+}
 
 if(selected_rubric != '')
 {
@@ -5753,7 +5756,14 @@ else
   incorrect_parameter_value = 'Location modifier parameter has an incorrect value.';
 }
 
-@paste_after;
+if(move_style == 'd')
+{
+  @add_bullet_below;
+}
+else
+{
+  @paste_after;  
+}
 
 if(togetherness != 'w')
 {

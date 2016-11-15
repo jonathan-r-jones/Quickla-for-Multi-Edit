@@ -1,6 +1,8 @@
 prototype Finder
 {
+  void @bobs();
   void @determine_if_lc_is_unique();
+  int  @find_continuum(int search_precision, str starting_position);
   void @find_from_here_ui();
   int  @find_lc(str lc);
   int  @find_lc_ui(str introduction);
@@ -13,8 +15,8 @@ prototype Finder
   void @find_rightmost_colon_on_curline();
   str  @find_special_character(str sc);
   str  @get_indicated_lc_2();
-  str  @highcopy_multiline_object();
   void @open_cmac_files();
+//qq-1
   str  @replace(str original_String, str old_Characters, str new_Characters);
   str  @replace_all_occurrences_in_file(str character_to_Replace, str new_Character);
   str  @replace_all_occurrences_no_tof(str character_to_Replace, str new_Character);
