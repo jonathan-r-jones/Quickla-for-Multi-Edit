@@ -3521,27 +3521,7 @@ return(rv);
 
 
 
-//;+ F12 Related Macros
-
-
-
-//;;
-
-void
-@find_batch_file_label()
-{
-str fp = "Find batch file label.";
-
-eol;
-str sc = ':' + @get_word_uc_or_st;
-@seek_in_all_files_simplest(sc);
-
-@say(fp);
-}
-
-
-
-//;;
+//;
 
 void
 @find_mappings_file_definition()
@@ -3557,7 +3537,7 @@ str sc = @get_word_uc_or_st;
 
 
 
-//;;
+//;
 
 void
 @find_cmac_definition_f12_key()
@@ -3583,7 +3563,7 @@ sc = make_literal_x(sc);
 
 
 
-//;;
+//;
 
 void
 @@find_cmac_definition_f12_key
@@ -3595,7 +3575,7 @@ void
 
 
 
-//;;
+//;
 
 void
 @go_to_definition
@@ -3634,7 +3614,7 @@ switch(@filename_extension)
 
 
 
-//;;
+//;
 
 void
 @find_cmac_definition_lc

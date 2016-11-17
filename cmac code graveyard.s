@@ -1,3 +1,19 @@
+//;
+
+void
+@find_batch_file_label()
+{
+str fp = "Find batch file label.";
+
+eol;
+str sc = ':' + @get_word_uc_or_st;
+@seek_in_all_files_simplest(sc);
+
+@say(fp);
+}
+
+
+
 //;;
 
 void

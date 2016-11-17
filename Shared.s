@@ -2090,6 +2090,7 @@ str
 {
 
 str fp = 'Get word under cursor or selected text.';
+//qq-1
 
 str sc;
 

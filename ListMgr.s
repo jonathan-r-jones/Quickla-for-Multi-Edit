@@ -841,6 +841,18 @@ switch(lc)
 //;;
 
 void
+@@add_rubric(str lc = parse_str('/1=', mparm_str))
+{
+@header;
+@add_rubric(lc);
+@footer;
+}
+
+
+
+//;;
+
+void
 @add_subrubric_above()
 {
 str fp = 'Add subrubric above.';
@@ -6430,6 +6442,8 @@ if(!@is_structured_line)
   return();
 }
 
+int initial_column = @current_column;
+
 switch(@current_area_type)
 {
   case 'bullet':
@@ -6447,6 +6461,9 @@ switch(@current_area_type)
   default:
     @say(fp + " This macro doesn't work with all category types.");
 }
+
+goto_col(initial_column);
+
 @say(fp);
 }
 
@@ -11721,6 +11738,54 @@ else
 
 
 
+//;+
+
+void
+@move_current_rubric_w_dog_park()
+{
+str fp = "Move current rubric and dog park to eof.";
+
+// fcd: Sep-22-2016
+
+if(!@is_batch_file)
+{
+  return();
+}
+
+@bor;
+@cut_rubric;
+@eof;
+@bol;
+@paste;
+
+@seek_from_bof('referdp');
+
+@bor;
+@cut_rubric;
+
+@eof;
+@bol;
+up;
+@bor;
+@paste;
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@@move_current_rubric_w_dog_park
+{
+@header;
+@move_current_rubric_w_dog_park;
+@footer;
+}
+
+
+
 //;+ Move to Last Position
 
 
@@ -11929,6 +11994,10 @@ str fp = "Move context object to last position.";
 switch(lower(get_extension(File_name)))
 {
   case 'bat':
+    @move_current_rubric_w_dog_park;
+    @footer;
+    return();
+    break;
   case 's':
     @bor;
     @cut_rubric;
@@ -12458,6 +12527,33 @@ while(i < lines_in_bullet)
 
 fp = 'i: ' + str(i);
 fp = 'lines_in_bullet: ' + str(lines_in_bullet);
+@say(fp);
+}
+
+
+
+//;
+
+void
+@make_a_copy_work_with_the_copy
+{
+str fp = "Make a copy, work with the copy.";
+
+if(!@is_batch_file)
+{
+  return();
+}
+
+@header;
+
+// fcd: Sep-22-2016
+// This is the latest.
+
+@bor;
+@copy_and_paste_rubric;
+@move_current_rubric_w_dog_park;
+
+@footer;
 @say(fp);
 }
 
