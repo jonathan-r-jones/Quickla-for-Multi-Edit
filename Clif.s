@@ -2403,8 +2403,9 @@ void
 {
 str fp = 'Open folder under cursor in a command prompt.';
 str Command_String = 'c:\windows\system32\cmd.exe /k ';
-str Set_My_Path = "%savannah%\\belfry\\set_my_path_2.bat";
-Set_My_Path = char(34) + @resolve_environment_variable(Set_My_Path) + char(34);
+str Set_My_Path = "%savannah%\\belfry\\set_my_path.bat";
+
+set_my_path = char(34) + @resolve_environment_variable(set_my_path) + char(34);
 
 Command_String += Set_My_Path; //qcq
 

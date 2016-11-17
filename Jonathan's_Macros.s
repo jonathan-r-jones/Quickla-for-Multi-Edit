@@ -5758,6 +5758,7 @@ else
 
 if(move_style == 'd')
 {
+  togetherness = 'w';
   @add_bullet_below;
 }
 else

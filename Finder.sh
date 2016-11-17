@@ -2,6 +2,7 @@ prototype Finder
 {
   void @bobs();
   void @determine_if_lc_is_unique();
+  int  @find_cmac_definition(str macro_Name, int is_exact_search);
   int  @find_continuum(int search_precision, str starting_position);
   void @find_from_here_ui();
   int  @find_lc(str lc);

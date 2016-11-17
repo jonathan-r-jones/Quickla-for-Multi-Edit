@@ -1718,7 +1718,7 @@ str fp = 'Find macro definition.';
 str so;
 int rv;
 
-str Distilled_Macro_Name = macro_Name;
+str distilled_macro_name = macro_name;
 
 macro_Name = @cmac_function_header + macro_Name;
 
@@ -3566,7 +3566,7 @@ str fp = 'Find macro definition, use word under cursor or selected block.';
 
 if(!@current_line_contains('@'))
 { 
-  down;
+  //  down;
 }
 
 str sc = @get_word_uc_or_st;
@@ -3598,18 +3598,24 @@ void
 //;;
 
 void
-@f12_key
+@go_to_definition
 {
-str fp = 'Use the F12 key to go to the definition for the word under cursor or selected 
-block.';
+str fp = 'Go to definition';
 
 @header;
 
+if(@first_character(@get_word_uc_or_st) == '@')
+{
+  @find_cmac_definition_f12_key;
+  @footer;
+  return();
+}
+
 switch(@filename_extension)
 {
-  case 'bat':
-    @find_batch_file_label;
-    break;
+//  case 'bat':
+//    @find_batch_file_label;
+//    break;
   case 'config':
     @find_mappings_file_definition;
     break;

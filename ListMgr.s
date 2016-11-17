@@ -814,7 +814,7 @@ str fp = 'Add rubric below.';
 //;;
 
 void
-@@add_rubric(str lc = parse_str('/1=', mparm_str))
+@add_rubric(str lc = parse_str('/1=', mparm_str))
 {
 @header;
 if(lc == '')
@@ -7896,7 +7896,7 @@ str rv = 'Returns current line.';
 
 block_off;
 
-@eoc;
+@bol;
 
 str_block_begin;
 
