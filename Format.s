@@ -20,6 +20,8 @@ Metadata: Track Size (!tsfo)
     Date       Lines     Bytes    Macros   Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+:Nov-17-2016   2,127     34,195       71
+
 : Oct-7-2016   2,125     34,156       71
 
 : Apr-8-2016   2,230     35,765       74
@@ -1220,7 +1222,7 @@ str fp = "Delete the word Wikipedia.";
 
 eof;
 @eol;
-str wuc = @get_word_uc;
+str wuc = @get_uc;
 if(wuc == 'Wikipedia')
 {
   @delete_word_backwards;

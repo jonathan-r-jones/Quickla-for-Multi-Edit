@@ -28,6 +28,7 @@ Metadata: Track Size (!tscl, !tscf)
     Date       Lines     Bytes    Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+:Nov-17-2016   4,120     75,752      105
 
 : Oct-7-2016   4,064     74,683      104
 
@@ -1868,7 +1869,6 @@ switch(sc)
     reserved_word_definition = @hc_subject;
     break;
   case "cl":
-  case "uc":
     reserved_word_definition = @get_line;
     break;
   case "clp": // Current line - path only.
@@ -1904,6 +1904,9 @@ switch(sc)
     break;
   case "tf":
     reserved_word_definition = file_name;
+    break;
+  case "uc":
+    reserved_word_definition = @hc_word_uc;
     break;
   default:
     return('');
@@ -2823,10 +2826,9 @@ str fp = 'Is reserved word.';
 switch(sc)
 {
   case "cj":
-    break;
   case "oj":
-    break;
   case "sj":
+  case "uc":
     break;
   default:
     @say('Not a reserved word.');
@@ -3311,7 +3313,7 @@ str sc = @get_postsecondperiod_string(arguments);
 
 if(sc == search_starting_point_lc)
 {
-  sc = 'sj';
+  sc = 'uc';
 }
 
 if(@is_reserved_word(sc))
@@ -4044,7 +4046,7 @@ else
 void
 @find_backwards(str arguments = parse_str('/1=', mparm_str))
 {
-str fp = "Find backwards wucost at lc.";
+str fp = "Find backwards wost at lc.";
 
 @header;
 
@@ -4068,7 +4070,7 @@ if(option == 'u')
 }
 else
 {
-  sc = @get_word_uc_or_st; // default, a. k. a. nothing
+  sc = @get_wost; // default, a. k. a. nothing
 }
 
 if(lc == '')

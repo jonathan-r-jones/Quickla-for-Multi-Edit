@@ -64,8 +64,8 @@ prototype Shared
   str  @get_user_input_raw(str introduction);
   str  @get_user_input_nonspace(str introduction);
   str  @get_time();
-  str  @get_word_uc();
-  str  @get_word_uc_or_st();
+  str  @get_uc();
+  str  @get_wost();
   str  @highcopy_current_line();
   str  @highcopy_first_sentence();
   str  @highcopy_word_under_cursor();
@@ -91,6 +91,7 @@ prototype Shared
   str  @lowercase(str string);
   void @multi_edit_paste();
   // (!sp)
+  //QQ-1
   void @open_file(str filename);
   int  @open_file_with_writability();
   void @parse_aguments(str arguments, str separating_character, str &argument_1, str &argument_2);

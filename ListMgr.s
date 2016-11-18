@@ -21,6 +21,8 @@ Metadata: Track Size (!tsli, !tslm)
     Date       Lines     Bytes     Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+:Nov-17-2016  12,562    165,515      461
+
 : Oct-7-2016  12,857    170,830      464
 
 : Apr-8-2016  12,591    167,310      452
@@ -4588,7 +4590,7 @@ else if(find_Precision > 6)
 }
 else if(find_Precision > 3)
 {
-  sc = @get_word_uc_or_st;
+  sc = @get_wost;
   fp += '"' + sc + '".';
   find_Precision -= 3;
 }
@@ -4691,7 +4693,7 @@ void
 str fp = 'Begin a search on the word under cursor from a particular user inputted launch code.';
 @header;
 
-str  sc = @get_word_uc_or_st;
+str  sc = @get_wost;
 set_global_str('search_str', sc);
 
 str lc = @get_user_input_nonspace('Search from launch code.');
@@ -4945,7 +4947,7 @@ str so;
 
 int Number_of_Lines_in_Rubric = @count_lines_in_rubric;
 
-str sc = @get_word_uc_or_st;
+str sc = @get_wost;
 set_global_str('search_str', sc);
 
 mark_pos;

@@ -26,6 +26,8 @@ Metadata: Track Size (!tsjo)
     Date       Lines    Bytes    Macros   Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+:Nov-17-2016   5,796     80,742      208
+
 : Oct-7-2016   5,724     78,939      210
 
 :Sep-21-2016   5,619     77,633      206
@@ -1566,7 +1568,7 @@ str fp = "It's a new day.";
 @find_next_big_segment;
 @eoc;
 @hc_word_uc;
-str weekday = @get_word_uc_or_st;
+str weekday = @get_wost;
 @delete_line;
 up;
 up;
@@ -5240,7 +5242,7 @@ int efbo = true; // execute first block only
 
 @header;
 
-str sc = @get_word_uc_or_st;
+str sc = @get_wost;
 
 sc = '\(!.#' + sc + '.#\)';
 
@@ -5788,6 +5790,24 @@ user_input += '.w';
 @bullet_action_model_2(user_input);
 
 @footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
+@rtm
+{
+str fp = "";
+
+// fcd: Nov-18-2016
+// This is the latest.
+
+fp = @hc_word_uc;
+//qq-1
+
 @say(fp);
 }
 

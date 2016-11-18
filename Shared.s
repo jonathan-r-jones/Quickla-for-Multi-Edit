@@ -18,6 +18,8 @@ Metadata: Track Size (!tssh)
     Date       Lines    Bytes     Macros  Notes
  -----------  ------  ---------  -------  ---------------------------------------------------
 
+:Nov-17-2016   4,056     67,610      182
+
 : Oct-7-2016   4,021     66,839      181
 
 : Apr-8-2016   3,793     62,597      172
@@ -2083,14 +2085,13 @@ return(rv);
 
 
 
-//;; (!wucost) (skw get word or block under cursor, get_word_or_block_uc)
+//;; (!wost) (skw get word or block under cursor, get_word_or_block_uc)
 
 str
-@get_word_uc_or_st()
+@get_wost()
 {
 
 str fp = 'Get word under cursor or selected text.';
-//qq-1
 
 str sc;
 
@@ -3920,7 +3921,7 @@ set_global_str('inner_status_message', fp);
 //;;
 
 str
-@get_word_uc()
+@get_uc()
 {
 str fp = 'Get word under the cursor.';
 

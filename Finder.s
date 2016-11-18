@@ -32,6 +32,8 @@ Metadata: Track Size (!tsfi)
      Date      Lines     Bytes    Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+:Nov-17-2016   3,645     59,070      106
+
 : Oct-7-2016   3,413     54,741      106
 
 : Apr-8-2016   3,376     54,224      103
@@ -558,7 +560,7 @@ when such and easy and straightfoward method exists.
 
 @header;
 
-str sc = @get_word_uc_or_st;
+str sc = @get_wost;
 sc = ' ||\(\!.+' + sc + ',||\)';
 
 int Is_Found = @seek_in_all_files_2_arguments(sc, fp);
@@ -580,7 +582,7 @@ str fp = 'Find launch codes with word under cursor.';
 
 @header;
 @save_location;
-if(!@find_lc(@get_word_uc_or_st))
+if(!@find_lc(@get_wost))
 {
   fp += ' NOT found.';
 }
@@ -1025,7 +1027,7 @@ void
 str fp = 'Find phrases ending in the word under the cursor.';
 @header;
 
-str sc = @get_word_uc_or_st;
+str sc = @get_wost;
 sc = ' ' + sc;
 
 int Is_Found = @seek_in_all_files_2_arguments(sc, fp);
@@ -1125,7 +1127,7 @@ str sc;
 
 if(length(introduction) > 0)
 {
-  sc = @get_word_uc_or_st;
+  sc = @get_wost;
 }
 else
 {
@@ -1205,7 +1207,7 @@ void
 str fp = 'Search BACKWARDS from here using word or block under cursor in this file only: ';
 @header;
 
-str sc = @get_word_uc_or_st;
+str sc = @get_wost;
 
 if((sc == "Function aborted."))
 {
@@ -1385,7 +1387,7 @@ void
 str fp = 'Find last part of word. This is a more liberal version of "Find_Last_Word".';
 @header;
 
-str sc = @get_word_uc_or_st;
+str sc = @get_wost;
 sc = sc + ':||$';
 
 int Is_Found = @seek_in_all_files_2_arguments(sc, fp);
@@ -1807,7 +1809,7 @@ void
 str fp = "Find template definition.";
 
 @header;
-@find_template_definition_core(@get_word_uc_or_st);
+@find_template_definition_core(@get_wost);
 
 @footer;
 }
@@ -1857,7 +1859,7 @@ str fp = 'Find macro content, use word under cursor or selected block.';
 str sc = Global_Str('highlighted_text');
 if(sc == "")
 {
-  sc = @get_word_uc_or_st;
+  sc = @get_wost;
 }
 
 str so;
@@ -2023,7 +2025,7 @@ void
 {
 str fp = "Find definition under cursor, search exactly.";
 
-str sc = @get_word_uc_or_st;
+str sc = @get_wost;
 
 @find_definition_router(sc, @filename_extension);
 }
@@ -2080,7 +2082,7 @@ str fp = 'Find macro definition, use word under cursor or selected block.';
 
 @header;
 
-str sc = @get_word_uc_or_st;
+str sc = @get_wost;
 
 while(@first_character(sc) == '@')
 {
@@ -2136,7 +2138,7 @@ str fp = 'Go to T-SQL definition, for word under cursor or selected block.';
 
 @header;
 
-str sc = @get_word_uc_or_st;
+str sc = @get_wost;
 
 sc = make_literal_x(sc);
 
@@ -2158,7 +2160,7 @@ str fp = 'Go to T-SQL definition, for word under cursor or selected block.';
 
 @header;
 
-str sc = @get_word_uc_or_st;
+str sc = @get_wost;
 
 sc = make_literal_x(sc);
 
@@ -3363,7 +3365,7 @@ else if(find_Precision > 3)
   }
   else
   {
-    sc = @get_word_uc_or_st;
+    sc = @get_wost;
     sc = @trim_colon_et_al(sc);
   }
   find_Precision -= 3;
@@ -3528,7 +3530,7 @@ void
 {
 str fp = 'Find mappings file definition.';
 
-str sc = @get_word_uc_or_st;
+str sc = @get_wost;
 
 @bof;
 
@@ -3549,7 +3551,7 @@ if(!@current_line_contains('@'))
   //  down;
 }
 
-str sc = @get_word_uc_or_st;
+str sc = @get_wost;
 
 if(@first_2_characters(sc) == '@@')
 {
@@ -3584,7 +3586,7 @@ str fp = 'Go to definition';
 
 @header;
 
-if(@first_character(@get_word_uc_or_st) == '@')
+if(@first_character(@get_wost) == '@')
 {
   @find_cmac_definition_f12_key;
   @footer;
