@@ -3,6 +3,7 @@ macro_file Searcher; // (!se)
 // Used for searching on the internet instead of finding thing on your local machine.
 
 #include Aliases.sh
+#include Finder.sh
 #include Shared.sh
 
 
@@ -1037,7 +1038,20 @@ void
 void
 @search_google_liberally(str sc = parse_str('/1=', mparm_str))
 {
+str first_parameter, second_parameter;
+@parse_aguments(sc, ".", first_parameter, second_parameter);
+str lc = first_parameter; // location here below (default) versus remote
+
+@save_location;
+
+if(lc != '')
+{
+  @find_lc(lc);
+}
+
 @search_google_main(0, 0, @get_sj);
+
+@recall_location;
 }
 
 

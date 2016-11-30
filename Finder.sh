@@ -5,6 +5,7 @@ prototype Finder
   int  @find_cmac_definition(str macro_Name, int is_exact_search);
   int  @find_continuum(int search_precision, str starting_position);
   void @find_from_here_ui();
+  void @find_in_big_segment_header_uc(str sc);
   int  @find_lc(str lc);
   int  @find_lc_ui(str introduction);
   int  @find_lc_known(str &introduction, str lc);
@@ -16,6 +17,7 @@ prototype Finder
   void @find_rightmost_colon_on_curline();
   str  @find_special_character(str sc);
   str  @get_indicated_lc_2();
+  str  @hc_word_uc();
   void @open_cmac_files();
 //qq-1
   str  @replace(str original_String, str old_Characters, str new_Characters);

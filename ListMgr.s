@@ -828,8 +828,8 @@ switch(lc)
   case 'ch':
     lc = 'ggch';
     break;
-  case 'gc':
-    lc = 'gggc';
+  case 'ne':
+    lc = 'ggne';
     break;
   default:
 }
@@ -1597,61 +1597,6 @@ block_begin;
 @copy_with_marking_left_on;
 
 @say(fp);
-}
-
-
-
-//;;
-
-str
-@hc_word_uc()
-{
-str fp = 'Highcopy the word under the cursor to the clipboard.';
-fp = 'Highcopy word uc.';
-str rv = 'Return word under cursor';
-
-@position_cursor_on_a_valid_word;
-
-str_block_begin;
-
-str sc;
-
-sc = get_word_in(@define_what_a_word_is);
-// Saw this cool line of code in the forums: Forward_Till(Word_Delimits);
-
-switch(@previous_character)
-{
-  // I uncommented the following line on Apr-23-2014.
-  case '.':
-  case ',':
-    left;
-    break;
-}
-
-@copy_with_marking_left_on;
-
-block_end;
-
-rv = @get_selected_text;
-@say(fp + ' (' + sc + ' - length = ' + str(length(rv)) + ')');
-return(rv);
-
-/* Use Case(s)
-
-3. Dec-11-2013: Equals signs in batch files. In the following line "testcase" should be 
-highcopied.
-
-set case=testcase
-
-2. May-13-2013: If you start on the right of the string, email address should be highlighted.
-raybass8@gmail.com
-
-- 1. Jan-5-2012: Cursor is at eol and I want the function name to be highlighted.
-str  @hc_word_uc();
-
-
-*/
-
 }
 
 
@@ -11770,6 +11715,14 @@ if(!@is_batch_file)
 up;
 @bor;
 @paste;
+@eof;
+up;
+up;
+up;
+up;
+up;
+up;
+@eol;
 
 @say(fp);
 }
@@ -12442,13 +12395,11 @@ str fp = "";
 //;
 
 void
-@find_lc_using_user_input
+@find_lc_using_user_input()
 {
 str fp = "Find LC using user input.";
 
-@header;
-
-// fcd: Sep-13-2016
+// fud: Sep-13-2016
 
 int found = @find_lc('');
 
@@ -12465,11 +12416,117 @@ if(!found)
   fp += ' LC NOT found.';
 }
 
-@footer;
-
 @say(fp);
 }
 
+
+
+//;
+
+void
+@specialty_string_search_l1(str arguments = parse_str('/1=', mparm_str))
+{
+str fp = "Specialty string search level 1, a.k.a. sea level.";
+
+// fcd: Nov-28-2016
+// This is the latest.
+
+str arg1, arg2, arg3, arg4;
+str search_target;
+
+if(arguments == "")
+{
+  arguments = @get_user_input_nonspace(fp);
+}
+
+@parse_aguments_4_parameters(arguments, ".", arg1, arg2, arg3, arg4);
+
+//@say(fp + ' arg1: ' + arg1 + ', arg2: ' + arg2 + ' (Nov-28-2016 3:04 PM)');return();
+
+if(arg2 == "")
+{
+  @find_lc(arg1);
+  @footer;
+  return();
+}
+
+switch(arg2)
+{
+  case 'b':
+  case 'bfl':
+    search_target = 'bfl';
+    break;
+  case 'c':
+  case 'cm':
+    search_target = 'cm';
+    break;
+  case 'h':
+  case 'r':
+  case 'rh':
+    search_target = 'rh';
+    break;
+}
+
+switch(search_target)
+{
+  case 'bfl':
+    str sc = arg1;
+    sc = ':\$' + sc;
+    @bof;
+    @seek_in_all_files_2_arguments(sc, fp);
+    break;
+  case 'cm':
+    str sc = arg1;
+    sc = @equate_spaces_and_underscores(sc);
+    sc = ".*" + sc;
+    @find_cmac_definition(sc, 0);
+    break;
+  case 'rh':
+    @find_in_big_segment_header_uc(arg1);
+    break;
+}
+
+/*
+:specialty string search
+
+::ui
+
+::uc
+
+::sj
+
+::partial search
+
+::exact match
+
+::lc
+
+::rubric header
+
+::batch file label
+
+::cmac method name
+
+*/
+
+
+
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
+@specialty_string_search_l0(str arguments = parse_str('/1=', mparm_str))
+{
+str fp = "Specialty string search level zero, a.k.a. above water.";
+@header;
+@specialty_string_search_l1(arguments);
+@footer;
+}
 
 
 //;

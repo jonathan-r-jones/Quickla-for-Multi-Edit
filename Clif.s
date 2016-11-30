@@ -1016,7 +1016,7 @@ if(!@find_lc_known(fp, lc))
 
 str sj = @hc_subject;
 
-str rv = '// JRJ, ';
+str rv = '  // JRJ, ';
 rv += @get_date_with_time;
 rv += ', ';
 rv += sj;
@@ -1534,7 +1534,6 @@ int initial_column = @current_column;
 
 @bob;
 @save_location;
-mark_pos;
 
 // I moved this check above the others because of monthly itinerary items that also
 // have launch codes on their line. Jun-2-2014
@@ -1846,7 +1845,7 @@ return(current_line);
 
 
 
-//;; (!rewo, !grw)
+//;;
 
 str
 @get_reserved_word(str sc = parse_str('/1=', mparm_str))
@@ -1871,17 +1870,23 @@ switch(sc)
   case "cl":
     reserved_word_definition = @get_line;
     break;
+  case "clq": // Current line - no quotes.
+    reserved_word_definition = @get_line;
+    reserved_word_definition = @trim_first_character(reserved_word_definition);
+    reserved_word_definition = @trim_last_character(reserved_word_definition);
+    break;
   case "clp": // Current line - path only.
-    // (!rw, !rv)
+    // (!rw, !rv) Reserved Words
     reserved_word_definition = @get_line;
     reserved_word_definition = get_path(reserved_word_definition);
     break;
   case "mj":
     reserved_word_definition = @get_multiline_object;
     break;
-  case "nl": // Next line (!nl)
+  case "nl": // Next line (!rewo, !nl)
     down;
     reserved_word_definition = @get_line;
+    reserved_word_definition = @trim_leading_colons_et_al(reserved_word_definition);
     break;
   case "nlp": // Next line - path only.
     down;
@@ -3300,38 +3305,21 @@ return(postperiod_string);
 //;;
 
 void
-@find_from_lc_arguments(str arguments = parse_str('/1=', mparm_str))
+@find_from_lc_arguments(str lc = parse_str('/1=', mparm_str))
 {
 str fp = 'Search from lc with reserved word sc.';
 
 // Sample Usage: f.al.sj
 // If the second parameter is left blank, the subject is used by default.
 
-str search_starting_point_lc = @get_presecondperiod_string(arguments);
+str sc = @get_sj;
 
-str sc = @get_postsecondperiod_string(arguments);
+@find_lc(lc);
 
-if(sc == search_starting_point_lc)
-{
-  sc = 'uc';
-}
+sc = @equate_spaces_and_dashes_wcl(sc);
+@seek_in_all_files_2_arguments(sc, fp);
 
-if(@is_reserved_word(sc))
-{
-  sc = @get_reserved_word(sc);
-}
-
-int search_criterion_was_found;
-
-str so = @find_lc_core(search_starting_point_lc, search_criterion_was_found, fp);
-
-if(search_criterion_was_found)
-{
-  sc = @equate_spaces_and_dashes_wcl(sc);
-  @seek_in_all_files_2_arguments(sc, fp);
-}
-
-@say(fp + ' (' + arguments + ')');
+@say(fp + ' (' + sc + ')');
 }
 
 
@@ -3949,7 +3937,7 @@ void
 void
 @repeat_quick_launch
 {
-@quick_launcher_router(Global_Str('status_bar_text'), 1);
+@quick_launcher_router(global_str('status_bar_text'), 1);
 }
 
 

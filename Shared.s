@@ -1888,6 +1888,16 @@ return(rv);
 //;;
 
 str
+@get_date_and_time()
+{
+return(@get_date_with_time);
+}
+
+
+
+//;;
+
+str
 @get_global_search_string()
 {
 str rv = global_str('search_str');
@@ -2315,7 +2325,11 @@ while(Countdown <= 155)
     //    Countdown = 1;
     //    rv = "";
   }
-  else if((key1 == 38) or (key1 == 40)) // Up or Down Arrow keys
+  else if(key1 == 38) // up arrow key
+  {
+    return(global_str('status_bar_text'));
+  }
+  else if(key1 == 40) // down arrow key
   {
     return("Function aborted.");
   }
@@ -2623,11 +2637,11 @@ void
 @copy_and_paste_line()
 {
 str fp = 'Copy and paste line.';
-mark_pos;
+//mark_pos;
 @copy;
 @bol;
 @paste;
-goto_mark;
+//goto_mark;
 @say(fp);
 }
 

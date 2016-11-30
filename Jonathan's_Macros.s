@@ -343,13 +343,16 @@ text('@rt' + 'm');
 cr;
 text('{');
 cr;
-text('str fp = "";');
+text('str fp = "');
+text(@get_date_with_time);
+text('";');
 cr;
 cr;
 text('// fcd: ');
 @add_text_date;
 cr;
 text('// This is the ' + 'latest.');
+cr;
 cr;
 cr;
 text('//q' + 'q-1');
@@ -375,6 +378,7 @@ up;
 up;
 up;
 @eol;
+left;
 left;
 left;
 @say(fp);
@@ -492,7 +496,9 @@ text('@rt' + 'm');
 cr;
 text('{');
 cr;
-text('str fp = "";');
+text('str fp = "');
+text(@get_date_with_time);
+text('";');
 cr;
 text("@header;");
 cr;
@@ -550,7 +556,9 @@ text('@rt' + 'm');
 cr;
 text('{');
 cr;
-text('str fp = "";');
+text('str fp = "');
+text(@get_date_with_time);
+text('";');
 cr;
 text("str rs;");
 cr;
@@ -2763,6 +2771,66 @@ This macro should work with QuickLauncher Registry items, e.g.
 //;
 
 void
+@delete_specific_lc_from_cl(str lc = parse_str('/1=', mparm_str))
+{
+str fp = "Delete specific lc from current line.";
+
+// fcd: Feb-11-2016
+
+up;
+@find_lc(lc);
+@backspace;
+@delete_word_conservatively;
+if((@current_character == ')') and (@previous_character == '('))
+{
+  @backspace;
+  @delete_character;
+  @backspace;
+  return();
+}
+while((@current_character != ')') and (@current_character != ','))
+{
+  @delete_character;
+}
+if((@current_character == ')') and (@previous_character == '('))
+{
+  @backspace;
+  @delete_character;
+  @backspace;
+  return();
+}
+if(@current_character == ',')
+{
+  @delete_character;
+}
+if(@current_character == ' ')
+{
+  @delete_character;
+}
+if((@previous_character == ' ') and (@current_character == ')'))
+{
+  @backspace;
+  @backspace;
+}
+
+/*
+
+Use Cases for @delete_specific_lc_from_cl
+
+:1. test
+
+:2. test (!xx3, !xx1)
+
+*/
+
+@say(fp);
+}
+
+
+
+//;
+
+void
 @start_new_jira_ticket
 {
 str fp = "";
@@ -2770,13 +2838,14 @@ fp = "Start new Jira ticket.";
 
 @header;
 @find_lc('cj');
-@delete_text_lc_on_cl;
+@delete_specific_lc_from_cl('cj');
 @find_lc('refercj');
 @add_subrubric_below('');
-text('WK-:');
+text('WK:');
 @add_text_lc_on_current_line('cj');
 eol;
-text(' ');
+text(' - Created on: ');
+@add_text_date;
 
 @footer;
 
@@ -4750,66 +4819,6 @@ while(@current_line < line_number)
 //;;
 
 void
-@delete_specific_lc_from_cl(str lc = parse_str('/1=', mparm_str))
-{
-str fp = "Delete specific lc from current line.";
-
-// fcd: Feb-11-2016
-
-up;
-@find_lc(lc);
-@backspace;
-@delete_word_conservatively;
-if((@current_character == ')') and (@previous_character == '('))
-{
-  @backspace;
-  @delete_character;
-  @backspace;
-  return();
-}
-while((@current_character != ')') and (@current_character != ','))
-{
-  @delete_character;
-}
-if((@current_character == ')') and (@previous_character == '('))
-{
-  @backspace;
-  @delete_character;
-  @backspace;
-  return();
-}
-if(@current_character == ',')
-{
-  @delete_character;
-}
-if(@current_character == ' ')
-{
-  @delete_character;
-}
-if((@previous_character == ' ') and (@current_character == ')'))
-{
-  @backspace;
-  @backspace;
-}
-
-/*
-
-Use Cases for @delete_specific_lc_from_cl
-
-:1. test
-
-:2. test (!xx3, !xx1)
-
-*/
-
-@say(fp);
-}
-
-
-
-//;;
-
-void
 @add_text_lc_and_individuate_it(str lc = parse_str('/1=', mparm_str))
 {
 str fp = "Add launch code on current line and remove its remote occurrence.";
@@ -5434,12 +5443,11 @@ if(efbo){ int is_found = @seek_in_all_files_2_arguments(sc, fp); efbo = 0; }
 //;
 
 void
-@add_batch_file_stub
+@move_dog_park_to_eof()
 {
-str fp = "Add batch file stub.";
-@header;
+str fp = "Move dog park to eof.";
 
-// fcd: Sep-21-2016
+// fcd: Nov-22-2016
 // This is the latest.
 
 if(!@is_batch_file)
@@ -5454,12 +5462,33 @@ if(!@is_batch_file)
 @eof;
 @bol;
 @paste;
+@eof;
+@bol;
 
-@save_location;
+@say(fp);
+}
+
+
+
+//;
+
+void
+@add_batch_file_stub
+{
+str fp = "Add batch file stub.";
+@header;
+
+// fcd: Sep-21-2016
+// This is the latest.
+
+if(!@is_batch_file)
+{
+  return();
+}
+
+@move_dog_park_to_eof;
 
 @lp_small_segment_content('refertpl');
-
-@recall_location;
 
 @eof;
 @bol;
@@ -5690,7 +5719,7 @@ if(move_style == 'd')
 }
 else
 {
-  @paste_after;  
+  @paste_after;
 }
 
 if(togetherness != 'w')
@@ -5798,15 +5827,70 @@ user_input += '.w';
 //;
 
 void
-@rtm
+@add_text_return_statement
 {
-str fp = "";
+str fp = "Add text return statement.";
 
-// fcd: Nov-18-2016
+// fcd: Nov-23-2016
 // This is the latest.
 
-fp = @hc_word_uc;
-//qq-1
+text(' @say(fp + ');
+text("' (" + @get_date_with_time + ")');");
+text('return();');
+text(' //q' + 'q');
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@move_rubric_to_position_1
+{
+str fp = "Move rubric to position 1.";
+
+if(!@is_batch_file)
+{
+  return();
+}
+
+@header;
+
+// fcd: Nov-28-2016
+// This is the latest.
+
+@cut_rubric;
+
+@find_lc('referrouter');
+
+@find_next_rubric;
+
+@bor;
+
+@paste;
+
+up;
+@bor;
+
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
+@add_text_barckets
+{
+str fp = "Add text barckets.";
+
+// fcd: Nov-30-2016
+// This is the latest.
+
+text(char(91) + char(93));
 
 @say(fp);
 }

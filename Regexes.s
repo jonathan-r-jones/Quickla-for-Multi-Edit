@@ -1388,7 +1388,7 @@ str
 @comma_lc()
 {
 str fp = "Comma launch code.";
-str sc = ' [a-z]@,[a-z]';
+str sc = ' [a-z]@,[0-9a-z]';
 return(sc);
 }
 

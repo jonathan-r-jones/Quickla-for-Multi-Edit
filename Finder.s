@@ -1142,7 +1142,7 @@ else
 mark_pos;
 tof;
 
-sc = Make_Literal_X(sc);
+sc = make_literal_x(sc);
 Set_Global_Str('SEARCH_STR', sc);
 
 if(find_text(sc, 0, _regexp))
@@ -1632,11 +1632,14 @@ str sc = @get_subject_or_selected_text;
 //;;
 
 void
-@find_in_big_segment_header_uc
+@find_in_big_segment_header_uc(str sc = parse_str('/1=', mparm_str))
 {
 str fp = 'Find in big segment headers using the word under the cursor.';
 @header;
-str sc = @get_subject_or_selected_text;
+if(sc == '')
+{
+  sc = @get_subject_or_selected_text;
+}
 @find_in_big_segment_header(sc);
 @footer;
 }
@@ -2518,7 +2521,7 @@ corrupted or tampered with. */
 
 @header;
 
-@find_lc('al');
+@find_lc('referc');
 
 str fp = "Validate the format and content of open files.";
 
@@ -3579,6 +3582,88 @@ void
 
 //;
 
+str
+@hc_word_uc()
+{
+str fp = 'Highcopy the word under the cursor to the clipboard.';
+fp = 'Highcopy word uc.';
+str rv = 'Return word under cursor';
+
+@position_cursor_on_a_valid_word;
+
+str_block_begin;
+
+str sc;
+
+sc = get_word_in(@define_what_a_word_is);
+// Saw this cool line of code in the forums: Forward_Till(Word_Delimits);
+
+switch(@previous_character)
+{
+  // I uncommented the following line on Apr-23-2014.
+  case '.':
+  case ',':
+    left;
+    break;
+}
+
+@copy_with_marking_left_on;
+
+block_end;
+
+rv = @get_selected_text;
+@say(fp + ' (' + sc + ' - length = ' + str(length(rv)) + ')');
+return(rv);
+
+/* Use Case(s)
+
+3. Dec-11-2013: Equals signs in batch files. In the following line "testcase" should be 
+highcopied.
+
+set case=testcase
+
+2. May-13-2013: If you start on the right of the string, email address should be highlighted.
+raybass8@gmail.com
+
+- 1. Jan-5-2012: Cursor is at eol and I want the function name to be highlighted.
+str  @hc_word_uc();
+
+
+*/
+
+}
+
+
+
+//;
+
+void
+@find_batch_file_label()
+{
+str fp = "Find batch file label";
+@header;
+
+// fcd: Nov-28-2016
+// This is the latest.
+
+str sc = @hc_word_uc();
+
+@bof;
+
+sc = make_literal_x(sc);
+
+sc = ':' + sc;
+//@say(fp + ' sc:' + sc + ' (Nov-28-2016 6:18 PM)');return(); //
+@seek_in_all_files_2_arguments(sc, fp);
+
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
 void
 @go_to_definition
 {
@@ -3595,9 +3680,9 @@ if(@first_character(@get_wost) == '@')
 
 switch(@filename_extension)
 {
-//  case 'bat':
-//    @find_batch_file_label;
-//    break;
+  case 'bat':
+    @find_batch_file_label;
+    break;
   case 'config':
     @find_mappings_file_definition;
     break;
