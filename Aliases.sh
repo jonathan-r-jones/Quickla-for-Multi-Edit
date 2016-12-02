@@ -37,6 +37,7 @@
   void @header();
   void @header_bloff();
   int  @is_alphanumeric_character(str prms_character);
+  int  @is_selected();
   str  @last_character(str parameter);
   str  @left(str string, int right_boundary);
   str  @next_character();

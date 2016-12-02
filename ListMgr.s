@@ -2620,37 +2620,6 @@ if(@current_character == ':')
 
 
 
-//;
-
-void
-@configure_file_delete_carrets
-{
-str fp = "Configure File - Delete Carriage Returns.";
-
-str filename[128] = Get_Environment('savannah') + '\reach out\delete carriage returns.txt';
-
-@open_file(filename);
-
-rm('block^selectall');
-
-delete_block;
-
-@paste;
-
-@bof;
-
-while(@current_character == ':')
-{
-  @delete_character;
-}
-
-@format_carriage_returnless_file;
-
-@say(fp);
-}
-
-
-
 //;+ Formatting Pasted Text Family
 
 
@@ -7694,9 +7663,9 @@ rm('CenterLn');
 //;; (skw export, purposes)
 
 void
-@copy_ss_content_for_external_pg
+@delete_carriage_returns_for_sms
 {
-str fp = "Copy small segment content for external pasting.";
+str fp = "Delete carriage returns for small segment for external pasting.";
 
 // fcd: May-15-2015
 
@@ -8033,6 +8002,12 @@ void
 @copy_and_paste_pb
 {
 str fp = 'Contextually aware copy and paste perimeter button.';
+
+if(@is_selected)
+{
+  @super_paste;
+  return();
+}
 
 @header;
 

@@ -1209,11 +1209,11 @@ mark_pos;
 
 eof;
 
-str Number_of_Lines_in_File = str(c_line);
+str number_of_lines_in_file = str(c_line);
 @add_commas_to_a_number(Number_of_Lines_in_File);
-while(length(Number_of_Lines_in_File) < 6)
+while(length(number_of_lines_in_file) < 6)
 {
-  Number_of_Lines_in_File = ' ' + Number_of_Lines_in_File;
+  number_of_lines_in_file = ' ' + number_of_lines_in_file;
 }
 
 str File_Size = str(cur_file_size);
@@ -2830,6 +2830,37 @@ Use Cases for @delete_specific_lc_from_cl
 
 //;
 
+int
+@increment_ticket_number_counter()
+{
+str fp = "Increment ticket number counter.";
+
+@save_location;
+
+int result;
+
+str filename = '%savannah%\cmac\source code\ticket_number_counter.txt';
+filename = @resolve_environment_variable(filename);
+@open_file(filename);
+
+str counter_string = @hc_subject;
+val(result, counter_string);
+
+delete_block;
+
+result++;
+text(str(result));
+
+@close_and_save_file_wo_prompt;
+@recall_location;
+return(result);
+@say(fp);
+}
+
+
+
+//;
+
 void
 @start_new_jira_ticket
 {
@@ -2838,18 +2869,42 @@ fp = "Start new Jira ticket.";
 
 @header;
 @find_lc('cj');
-@delete_specific_lc_from_cl('cj');
-@find_lc('refercj');
+@find_lc('refertk');
 @add_subrubric_below('');
-text('WK:');
+text('TK');
+int ticket_number_counter = @increment_ticket_number_counter;
+text(str(ticket_number_counter));
+text(': ');
 @add_text_lc_on_current_line('cj');
 eol;
 text(' - Created on: ');
 @add_text_date;
-
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
 @footer;
-
-@say(fp);
 }
 
 
@@ -5834,7 +5889,10 @@ str fp = "Add text return statement.";
 // fcd: Nov-23-2016
 // This is the latest.
 
-text(' @say(fp + ');
+@bol;
+cr;
+up;
+text('@say(fp + ');
 text("' (" + @get_date_with_time + ")');");
 text('return();');
 text(' //q' + 'q');
@@ -5892,6 +5950,40 @@ str fp = "Add text barckets.";
 
 text(char(91) + char(93));
 
+@say(fp);
+}
+
+
+
+//;
+
+void
+@create_last_updated_entry
+{
+str fp = "Create last updated entry.";
+@header;
+
+// fcd: Dec-2-2016
+// This is the latest.
+
+@find_lc('referlup');
+@add_bullet_below;
+@add_text_date_and_time_fixed_w;
+text('  ');
+text(get_environment("computername"));
+
+mark_pos;
+eof;
+str number_of_lines_in_file = str(c_line);
+@add_commas_to_a_number(Number_of_Lines_in_File);
+while(length(number_of_lines_in_file) < 6)
+{
+  number_of_lines_in_file = ' ' + number_of_lines_in_file;
+}
+goto_mark;
+text('   ' + number_of_lines_in_file);
+
+@footer;
 @say(fp);
 }
 

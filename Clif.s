@@ -3171,12 +3171,6 @@ switch(lc) //qcq
     @add_text_date;
     text('  ');
     break;
-  case 'lup': // (!2mlup)
-    @add_bullet_below;
-    @add_text_date_and_time_fixed_w;
-    text('  ');
-    text(get_environment("computername"));
-    break;
   case 'mcc':
   case 'prou':
   case 'shon': // (!2msho)

@@ -946,7 +946,7 @@ block_off;
 First_Part_of_String = @trim_after_character(global_str('highlighted_text'), ",");
 Last_Part_of_String = @trim_before_character(global_str('highlighted_text'), ",");
 
-val(First_Column_of_Block, First_Part_of_String);
+val(first_column_of_block, first_part_of_string);
 @go_to_column(First_Column_of_Block);
 col_block_begin;
 val(Last_Column_of_Block, Last_Part_of_String);
@@ -1115,11 +1115,9 @@ str fp = "Go to bol then paste.";
 //;;
 
 void
-@super_paste
+@super_paste()
 {
 str fp = 'Super paste. Context aware paste plus more.';
-
-@header;
 
 if(@text_is_selected)
 {
@@ -1133,9 +1131,19 @@ if(@text_is_selected)
 }
 @paste_at_bol;
 
-@footer;
-
 @say(fp);
+}
+
+
+
+//;;
+
+void
+@@super_paste
+{
+@header;
+@super_paste;
+@footer;
 }
 
 
@@ -3433,7 +3441,7 @@ void
 @close_and_save_file_wo_prompt()
 {
 str fp = "Close and save the file without prompting the user.";
-Save_File;
+save_file;
 delete_window;
 @say(fp);
 }

@@ -800,6 +800,16 @@ return(false);
 
 //;
 
+int
+@is_selected()
+{
+return(@text_is_selected);
+}
+
+
+
+//;
+
 void
 @go_to_the_beginning_of_block
 {

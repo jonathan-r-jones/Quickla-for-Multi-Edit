@@ -1,6 +1,37 @@
 //;
 
 void
+@configure_file_delete_carrets
+{
+str fp = "Configure File - Delete Carriage Returns.";
+
+str filename[128] = Get_Environment('savannah') + '\reach out\delete carriage returns.txt';
+
+@open_file(filename);
+
+rm('block^selectall');
+
+delete_block;
+
+@paste;
+
+@bof;
+
+while(@current_character == ':')
+{
+  @delete_character;
+}
+
+@format_carriage_returnless_file;
+
+@say(fp);
+}
+
+
+
+//;
+
+void
 @find_batch_file_label()
 {
 str fp = "Find batch file label.";
