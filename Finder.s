@@ -197,16 +197,15 @@ return(rv);
 
 //;;
 
-void
+int
 @seek(str sc = parse_str('/1=', mparm_str))
 {
 str fp = 'Easier seek.';
 str so;
 
 // Last Updated: Sep-23-2016
-// This is the latest.
 
-@seek_next(sc, so);
+return(@seek_next(sc, so));
 }
 
 
@@ -348,6 +347,103 @@ int
 {
 str fs = '';
 return(@seek_in_all_files_core(sc, sO, fs));
+}
+
+
+
+//;
+
+str
+@hc_word_uc()
+{
+str fp = 'Highcopy the word under the cursor to the clipboard.';
+fp = 'Highcopy word uc.';
+str rv = 'Return word under cursor';
+
+@position_cursor_on_a_valid_word;
+
+str_block_begin;
+
+str sc;
+
+sc = get_word_in(@define_what_a_word_is);
+// Saw this cool line of code in the forums: Forward_Till(Word_Delimits);
+
+switch(@previous_character)
+{
+  // I uncommented the following line on Apr-23-2014.
+  case '.':
+  case ',':
+    left;
+    break;
+}
+
+@copy_with_marking_left_on;
+
+block_end;
+
+rv = @get_selected_text;
+@say(fp + ' (' + sc + ' - length = ' + str(length(rv)) + ')');
+return(rv);
+
+/* Use Case(s)
+
+3. Dec-11-2013: Equals signs in batch files. In the following line "testcase" should be 
+highcopied.
+
+set case=testcase
+
+2. May-13-2013: If you start on the right of the string, email address should be highlighted.
+raybass8@gmail.com
+
+- 1. Jan-5-2012: Cursor is at eol and I want the function name to be highlighted.
+str  @hc_word_uc();
+
+
+*/
+
+}
+
+
+
+//;
+
+void
+@determine_if_bf_label_is_unique()
+{
+str fp = "Determine if batch file label is unique.";
+
+int current_column_number = @current_column_number;
+int current_line_number = @current_line_number;
+
+str sc;
+
+sc = @hc_word_uc;
+sc = make_literal_x(sc);
+sc = @batch_file_label + sc + '$';
+
+@bof;
+
+@seek(sc);
+
+if(@current_line_number == current_line_number)
+{
+  if(!@seek(sc))
+  {
+    fp += ' It is.';
+    goto_col(current_column_number);
+  }
+  else
+  {
+    fp += ' It is NOT.';    
+  }
+}
+else
+{
+  fp += ' It is NOT.';    
+}
+
+@say(fp);
 }
 
 
@@ -691,6 +787,12 @@ void
 str fp = "Determine if launch code is unique.";
 
 str lc;
+
+if((@first_character(get_line) == ':') && (@is_batch_file))
+{
+  @determine_if_bf_label_is_unique;
+  return();
+}
 
 @save_location;
 
@@ -2521,7 +2623,7 @@ corrupted or tampered with. */
 
 @header;
 
-@find_lc('referc');
+@find_lc('rfc');
 
 str fp = "Validate the format and content of open files.";
 
@@ -3582,61 +3684,6 @@ void
 
 //;
 
-str
-@hc_word_uc()
-{
-str fp = 'Highcopy the word under the cursor to the clipboard.';
-fp = 'Highcopy word uc.';
-str rv = 'Return word under cursor';
-
-@position_cursor_on_a_valid_word;
-
-str_block_begin;
-
-str sc;
-
-sc = get_word_in(@define_what_a_word_is);
-// Saw this cool line of code in the forums: Forward_Till(Word_Delimits);
-
-switch(@previous_character)
-{
-  // I uncommented the following line on Apr-23-2014.
-  case '.':
-  case ',':
-    left;
-    break;
-}
-
-@copy_with_marking_left_on;
-
-block_end;
-
-rv = @get_selected_text;
-@say(fp + ' (' + sc + ' - length = ' + str(length(rv)) + ')');
-return(rv);
-
-/* Use Case(s)
-
-3. Dec-11-2013: Equals signs in batch files. In the following line "testcase" should be 
-highcopied.
-
-set case=testcase
-
-2. May-13-2013: If you start on the right of the string, email address should be highlighted.
-raybass8@gmail.com
-
-- 1. Jan-5-2012: Cursor is at eol and I want the function name to be highlighted.
-str  @hc_word_uc();
-
-
-*/
-
-}
-
-
-
-//;
-
 void
 @find_batch_file_label()
 {
@@ -3644,7 +3691,6 @@ str fp = "Find batch file label";
 @header;
 
 // fcd: Nov-28-2016
-// This is the latest.
 
 str sc = @hc_word_uc();
 

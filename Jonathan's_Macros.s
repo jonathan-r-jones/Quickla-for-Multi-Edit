@@ -26,6 +26,8 @@ Metadata: Track Size (!tsjo)
     Date       Lines    Bytes    Macros   Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+: Dec-2-2016   5,992     83,208      214
+
 :Nov-17-2016   5,796     80,742      208
 
 : Oct-7-2016   5,724     78,939      210
@@ -344,14 +346,15 @@ cr;
 text('{');
 cr;
 text('str fp = "');
+text('";');
+cr;
+text('fp = "');
 text(@get_date_with_time);
 text('";');
 cr;
 cr;
 text('// fcd: ');
 @add_text_date;
-cr;
-text('// This is the ' + 'latest.');
 cr;
 cr;
 cr;
@@ -366,21 +369,10 @@ cr;
 cr;
 cr;
 up;
+@bor;
+@seek('q');
 up;
-up;
-up;
-up;
-up;
-up;
-up;
-up;
-up;
-up;
-up;
-@eol;
-left;
-left;
-left;
+@bol;
 @say(fp);
 }
 
@@ -497,16 +489,16 @@ cr;
 text('{');
 cr;
 text('str fp = "');
+text('";');
+cr;
+text('   fp = "');
 text(@get_date_with_time);
 text('";');
 cr;
+text('// fcd: "');
+text(@get_date);
+cr;
 text("@header;");
-cr;
-cr;
-text('// fcd: ');
-@add_text_date;
-cr;
-text('// This is the ' + 'latest.');
 cr;
 cr;
 cr;
@@ -557,32 +549,25 @@ cr;
 text('{');
 cr;
 text('str fp = "');
+text('";');
+cr;
+text('  fp = "');
 text(@get_date_with_time);
 text('";');
+cr;
+text("// fcd: ");
+text(@get_date);
 cr;
 text("str rs;");
 cr;
 text("str sc;");
-cr;
-text("str so;");
-cr;
-text("int efbo = true; // execute first block only");
-cr;
-cr;
-text("if(@current_line > 14000)");
-cr;
-text("{");
-cr;
-text("  tof;");
-cr;
-text("}");
 cr;
 cr;
 text("@header;");
 cr;
 text("sc = '';");
 cr;
-text("//q" + "q-1");
+text("  //q" + "q-1");
 cr;
 text("rs = '\\0';");
 cr;
@@ -590,21 +575,21 @@ text("@eol;");
 cr;
 cr;
 
-text("if(efbo){ @seek_next(sc, so); efbo = false; }");
+text("@seek(sc);");
 cr;
-text("if(efbo){ so = @replace_next_occurrence_only(sc, rs); efbo = 0; }");
+text("return();");
 cr;
-text("if(efbo){ so = @replace_all_occurrences_no_tof(sc, rs); efbo = 0; }");
+text("@replace_next_occurrence_only(sc, rs);");
 cr;
-text("if(efbo){ int is_found = @seek_in_all_files_2_arguments(sc, fp); efbo = 0; }");
+text("@replace_all_occurrences_no_tof(sc, rs);");
+cr;
+text("int is_found = @seek_in_all_files_2_arguments(sc, fp);");
 
 cr;
 cr;
 text("@footer;");
 cr;
 text('@say(found_str);');
-cr;
-text('@say(so);');
 cr;
 text('@say(fp);');
 cr;
@@ -1519,7 +1504,7 @@ void
 {
 str fp = "Add text new rubric for completed items.";
 
-str sc = 'referco';
+str sc = 'rfco';
 
 @header;
 
@@ -1534,7 +1519,7 @@ text(' ');
 @add_text_date;
 @delete_text_lc_on_cl;
 @add_subrubric_above;
-text('Completed Items (!' + 'co, !' + 'referco) for the Week Ending');
+text('Completed Items (!' + 'co, !' + 'rfco) for the Week Ending');
 
 @footer;
 
@@ -1569,7 +1554,7 @@ str fp = "It's a new day.";
 
 @header;
 
-@find_lc_known(fp, "refernow");
+@find_lc_known(fp, "rfnow");
 
 @hc_big_segment_content;
 @delete_block;
@@ -1600,7 +1585,7 @@ if(!@seek_in_all_files_2_arguments(sc, so))
 
 @hc_big_segment;
 
-@find_lc('refermyca');
+@find_lc('rfmyca');
 
 @bol;
 
@@ -1620,7 +1605,7 @@ text(' (!');
 text(lower(@left(weekday, 2)));
 text(')');
 
-@find_lc('refernow');
+@find_lc('rfnow');
 @find_next_bullet;
 
 @footer;
@@ -2862,56 +2847,6 @@ return(result);
 //;
 
 void
-@start_new_jira_ticket
-{
-str fp = "";
-fp = "Start new Jira ticket.";
-
-@header;
-@find_lc('cj');
-@find_lc('refertk');
-@add_subrubric_below('');
-text('TK');
-int ticket_number_counter = @increment_ticket_number_counter;
-text(str(ticket_number_counter));
-text(': ');
-@add_text_lc_on_current_line('cj');
-eol;
-text(' - Created on: ');
-@add_text_date;
-left;
-left;
-left;
-left;
-left;
-left;
-left;
-left;
-left;
-left;
-left;
-left;
-left;
-left;
-left;
-left;
-left;
-left;
-left;
-left;
-left;
-left;
-left;
-left;
-left;
-@footer;
-}
-
-
-
-//;
-
-void
 @start_new_travel_rubric
 {
 str fp = "";
@@ -2920,7 +2855,7 @@ fp = "Start new travel rubric.";
 @header;
 @find_lc('tr');
 @delete_text_lc_on_cl;
-@find_lc('refertr');
+@find_lc('rftr');
 @add_subrubric_below('');
 @add_text_lc_on_current_line('tr');
 @eoc;
@@ -3512,7 +3447,7 @@ str fp = "Set configuration.";
 
 str selected_configuration = get_line;
 
-@find_lc('refermc');
+@find_lc('rfmc');
 
 down;
 down;
@@ -3662,7 +3597,7 @@ str fp = "Add new piton.";
 
 // fcd: Feb-18-2015
 
-@find_lc('referpi');
+@find_lc('rfpi');
 @add_bullet_below;
 @add_text_date_and_time;
 @paste_without_wrapping;
@@ -3802,7 +3737,7 @@ str fp = "Play YouTube video.";
 
 @save_location;
 
-@find_lc('referyt');
+@find_lc('rfyt');
 str operation_outcome;
 
 if(@query_next_bsr == 'bullet')
@@ -4183,8 +4118,8 @@ if(!@find_lc_known(fp, lc))
 str oj = @hc_object;
 
 @recall_location;
-
-text(oj + ' "');
+text(oj);
+@eol;
 
 @footer;
 @say(fp + ' (' + oj + ')');
@@ -4810,7 +4745,7 @@ str fp = 'Add text new CMAC Macro List entry.';
 
 @header;
 
-str lc = "referc0";
+str lc = "rfc0";
 if(!@find_lc_known(fp, lc))
 {
   return();
@@ -5192,7 +5127,7 @@ str fp = "Add bullet at c and paste without wrapping.";
 
 @header;
 
-@add_bullet_at_lc('referc');
+@add_bullet_at_lc('rfc');
 @paste;
 
 @footer;
@@ -5361,25 +5296,25 @@ str fp = "Pass a url to a browser.";
 int is_found = 0;
 str url;
 
-url = @get_remote_oj_using_klc('refertech', is_found);
+url = @get_remote_oj_using_klc('rftech', is_found);
 @surf(url, 1);
 
-url = @get_remote_oj_using_klc('referbbc', is_found);
+url = @get_remote_oj_using_klc('rfbbc', is_found);
 @surf(url, 1);
 
-url = @get_remote_oj_using_klc('refercnn', is_found);
+url = @get_remote_oj_using_klc('rfcnn', is_found);
 @surf(url, 1);
 
-url = @get_remote_oj_using_klc('referfran', is_found);
+url = @get_remote_oj_using_klc('rffran', is_found);
 @surf(url, 1);
 
-url = @get_remote_oj_using_klc('refernyt', is_found);
+url = @get_remote_oj_using_klc('rfnyt', is_found);
 @surf(url, 1);
 
-url = @get_remote_oj_using_klc('referfox', is_found);
+url = @get_remote_oj_using_klc('rffox', is_found);
 @surf(url, 1);
 
-url = @get_remote_oj_using_klc('referwash', is_found);
+url = @get_remote_oj_using_klc('rfwash', is_found);
 @surf(url, 1);
 
 @footer;
@@ -5428,7 +5363,7 @@ cr;
 
 @close_and_save_file_wo_prompt;
 
-@find_lc('referc');
+@find_lc('rfc');
 
 @find_next_bullet;
 
@@ -5503,14 +5438,13 @@ void
 str fp = "Move dog park to eof.";
 
 // fcd: Nov-22-2016
-// This is the latest.
 
 if(!@is_batch_file)
 {
   return();
 }
 
-@seek_from_bof('referdp');
+@seek_from_bof('!rfdp');
 
 @bor;
 @cut_rubric;
@@ -5534,7 +5468,6 @@ str fp = "Add batch file stub.";
 @header;
 
 // fcd: Sep-21-2016
-// This is the latest.
 
 if(!@is_batch_file)
 {
@@ -5543,19 +5476,25 @@ if(!@is_batch_file)
 
 @move_dog_park_to_eof;
 
-@lp_small_segment_content('refertpl');
+@seek_from_bof('!rfmc');
+@bor;
 
+@hc_rubric;
 @eof;
 @bol;
 @paste;
-cr;
-cr;
-cr;
+@find_bobs_or_previous_bs;
+@delete_text_lc_on_cl;
 
-@find_backwards('.x');
-@bol;
-@delete_character;
+@seek('Creation Date');
+@eol;
+@add_text_date;
 
+down;
+down;
+down;
+down;
+down;
 down;
 down;
 @eol;
@@ -5578,7 +5517,6 @@ void
 str fp = "Bullet Action Model 2.";
 
 // fcd: Oct-3-2016
-// This is the latest.
 
 if(@is_subbullet)
 {
@@ -5824,7 +5762,6 @@ void
 str fp = "Instrument global variables.";
 
 // fcd: Oct-19-2016
-// This is the latest.
 
 fp += ' ir: ' + str(global_int('initial row number'));
 fp += ', ic: ' + str(global_int('initial column number'));
@@ -5838,20 +5775,25 @@ fp += ', iw: ' + str(global_int('initial window number'));
 //;
 
 void
-@bam_2_alone_caller
+@move_bullet_to_lc
 {
-str fp = "BAM 2 (alone) caller.";
+str fp = "Move bullet to lc.";
 @header;
 
 // fcd: Oct-27-2016
-// This is the latest.
 
 str user_input = @get_user_input_nonspace(fp);
+
+if((user_input == "Function aborted."))
+{
+  @say(user_input);
+  return();
+}
 
 @bullet_action_model_2(user_input);
 
 @footer;
-@say(fp);
+@say(fp + ' (' + user_input + ')');
 }
 
 
@@ -5861,13 +5803,18 @@ str user_input = @get_user_input_nonspace(fp);
 void
 @bam_2_with_caller
 {
-str fp = "BAM 2 (together) caller.";
+str fp = "Move bullet to lc (together).";
 @header;
 
 // fcd: Oct-27-2016
-// This is the latest.
 
 str user_input = @get_user_input_nonspace(fp);
+
+if((user_input == "Function aborted."))
+{
+  @say(user_input);
+  return();
+}
 
 user_input += '.w';
 
@@ -5887,7 +5834,6 @@ void
 str fp = "Add text return statement.";
 
 // fcd: Nov-23-2016
-// This is the latest.
 
 @bol;
 cr;
@@ -5895,7 +5841,7 @@ up;
 text('@say(fp + ');
 text("' (" + @get_date_with_time + ")');");
 text('return();');
-text(' //q' + 'q');
+text(' //q' + 'jq');
 
 @say(fp);
 }
@@ -5917,11 +5863,10 @@ if(!@is_batch_file)
 @header;
 
 // fcd: Nov-28-2016
-// This is the latest.
 
 @cut_rubric;
 
-@find_lc('referrouter');
+@find_lc('rfrouter');
 
 @find_next_rubric;
 
@@ -5946,7 +5891,6 @@ void
 str fp = "Add text barckets.";
 
 // fcd: Nov-30-2016
-// This is the latest.
 
 text(char(91) + char(93));
 
@@ -5964,27 +5908,106 @@ str fp = "Create last updated entry.";
 @header;
 
 // fcd: Dec-2-2016
-// This is the latest.
 
-@find_lc('referlup');
+@find_lc('rflup');
 @add_bullet_below;
 @add_text_date_and_time_fixed_w;
 text('  ');
-text(get_environment("computername"));
 
+text(get_environment("computername"));
+goto_col(39);
 mark_pos;
 eof;
 str number_of_lines_in_file = str(c_line);
 @add_commas_to_a_number(Number_of_Lines_in_File);
-while(length(number_of_lines_in_file) < 6)
-{
-  number_of_lines_in_file = ' ' + number_of_lines_in_file;
-}
 goto_mark;
-text('   ' + number_of_lines_in_file);
+text(number_of_lines_in_file);
 
 @footer;
 @say(fp);
+}
+
+
+
+//;
+
+void
+@find_new_dates(str lc = parse_str('/1=', mparm_str))
+{
+str fp = "Find new dates";
+
+// fcd: Dec-4-2016
+str rs;
+str sc;
+
+@header;
+
+str month = 'Dec';
+
+if(lc != '')
+{
+  @find_lc(lc);
+}
+
+sc = month + '-([0-9][0-9])||([0-9])-2016';
+
+@eol;
+
+int is_found = @seek_in_all_files_2_arguments(sc, fp);
+
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
+@start_new_jira_ticket
+{
+str fp = "";
+fp = "Start new Jira ticket.";
+
+@header;
+@find_lc('cj');
+@find_lc('rftk');
+@add_subrubric_below('');
+text('TK');
+int ticket_number_counter = @increment_ticket_number_counter;
+text(str(ticket_number_counter));
+text(': ');
+@add_text_lc_on_current_line('tk' + str(ticket_number_counter));
+@add_text_lc_and_individuate_it('cj');
+eol;
+text(' - Created on: ');
+@add_text_date;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+left;
+@footer;
 }
 
 

@@ -1,3 +1,52 @@
+//;;
+
+void
+@delete_lines(str sc = parse_str('/1=', mparm_str), int is_Matching_Line = parse_int('/2=', mparm_str))
+{
+str fp = 'Delete lines.';
+
+/*
+(skw 
+beginning_with
+delete certain lines
+delete lines
+delete lines beginning with
+delete_line_containing 
+delete_lines
+delete_lines_b
+delete_lines_containing
+lines with
+lines_beginning
+lines_with
+)
+*/
+
+if(!@is_text_file)
+{
+  return();
+}
+
+@header;
+
+if(is_Matching_Line)
+{
+  fp = @delete_matching_lines(sc);
+  //fp = 'branch 1. (' + str(is_matching_line) + ')';
+}
+else
+{
+  fp = @delete_nonmatching_lines(sc); 
+  //fp = 'branch 2. (' + str(is_matching_line) + ')';
+}
+
+@footer;
+//fp = sc;
+//fp = str(is_Matching_Line);
+@say(fp);
+}
+
+
+
 //;
 
 void
@@ -21115,6 +21164,8 @@ rs = '\0May-\3-\5';
 
    Date        Lines     Bytes    Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
+
+: Dec-2-2016  21,201    301,163      721
 
 : Apr-1-2016  20,164    287,897      684
 

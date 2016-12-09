@@ -480,13 +480,10 @@ if(@fourth_to_last_character(path) == '.')
 
 /* Use Case(s)
 
-:
 :Test: \\fuji\shared
 
-:
 :Test: \\fuji\shared\usr\jrj
 
-:
 :Test: %temp%\
 
 :Only supported as a clif block.
@@ -1490,7 +1487,6 @@ int
 str fp = "Is paste before in same window edge case.";
 
 // fcd: Oct-19-2016
-// This is the latest.
 
 int source_line = global_int('initial row number');
 int source_window = global_int('initial window number');
@@ -1528,8 +1524,6 @@ if(!@is_bullet_or_subbullet)
   return();
 }
 
-@header;
-
 int initial_column = @current_column;
 
 @bob;
@@ -1540,14 +1534,12 @@ int initial_column = @current_column;
 if(@first_5_characters_is_month)
 {
   @move_bullet_to_calendar(return_home);
-  @footer;
   return();
 }
 
 if(@current_line_contains_regex(@comma_lc))
 {
   @move_bullet_to_appropriate_lc(return_home);
-  @footer;
   return();
 }
 
@@ -1594,7 +1586,7 @@ if(lc == 'destcj')
   lc = 'cj';
   if(!@find_lc(lc))
   {
-    lc = 'referco';
+    lc = 'rfco';
   }
 }
 
@@ -1606,7 +1598,6 @@ if(!@find_lc_known(fp, lc))
   rm('paste');
   fp += ' Error: Lc NOT found. (' + lc + ')';
   @say(fp);
-  @footer;
   return();
 }
 
@@ -1630,10 +1621,20 @@ if(@is_blank_line)
   @put_cursor_somewhere_useful;
 }
 
-@footer;
-
 fp += ' (' + lc + ')';
 @say(fp);
+}
+
+
+
+//;;
+
+void
+@@gun(int return_home = parse_int('/1=', mparm_str))
+{
+@header;
+@gun(return_home);
+@footer;
 }
 
 
@@ -3988,7 +3989,6 @@ str fp = "Paste with arguments.";
 @header;
 
 // Last Updated: Sep-21-2016
-// This is the latest.
 
 str first_parameter, second_parameter;
 
@@ -4039,12 +4039,10 @@ str first_parameter, second_parameter;
 @parse_aguments(arguments, ".", first_parameter, second_parameter);
 
 str lc = first_parameter; // location here (default) versus remote
+
 str sc;
 
 str option = second_parameter;
-
-//@say('P1: ' + first_parameter + ', P2: ' + second_parameter + ', Args: ' + arguments);
-//return();
 
 if(option == 'u')
 {
@@ -4052,14 +4050,15 @@ if(option == 'u')
 }
 else
 {
-  sc = @get_wost; // default, a. k. a. nothing
+  sc = second_parameter;
+  //  sc = @get_wost; // default, a. k. a. nothing
 }
 
 if(lc == '')
 {
   up;  // default, a. k. a. from here
 }
-else if (lc == 'refereof')
+else if (lc == 'rfeof')
 {
   @eof;
 }
@@ -4093,7 +4092,7 @@ str fp = "Find backwards from EOF using user input.";
 
 // fcd: Sep-22-2016
 
-@find_backwards('refereof.u');
+@find_backwards('rfeof.u');
 
 @footer;
 }

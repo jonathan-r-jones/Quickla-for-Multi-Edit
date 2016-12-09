@@ -52,6 +52,7 @@ prototype ListMgr
   void @delete_text_lc_on_cl();
   str  @delete_subbullet();
   void @eor();
+  void @find_bobs_or_previous_bs();
   void @find_bookmark_primary();
   void @find_bor_or_previous_rubric();
   void @find_from_lc_known(str lc);
@@ -59,7 +60,6 @@ prototype ListMgr
   str  @find_next_bobs();
   str  @find_next_bsr();
   // (!sp)
-//qq-1
   void @find_next_content_area();
   int  @find_next_rubric();
   str  @find_next_small_segment();

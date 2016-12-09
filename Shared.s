@@ -1768,11 +1768,6 @@ str fp = 'Get time.';
 
 str formatted_time = time;
 
-//if((@left(time, 2) != '10') and (@left(time, 2) != '11') and (@left(time, 2) != '12'))
-//{
-//  formatted_time = ' ' + time;
-//}
-
 str ampm = @right(formatted_time, 2);
 
 int length_of_formatted_time = length(formatted_time);
@@ -2315,7 +2310,7 @@ while(Countdown <= 155)
   else if((key1 == 32) && (countdown == 2)) // space bar "trick"
   {
     // (!sptr) (skw space bar trick)
-    return('refercwl');
+    return('rfcwl');
   }
   // If you make a mistake and want to start over, hit the F1 key.
   else if (key1 == 186) // You hit the ";" key again, so reset the string.
@@ -2323,7 +2318,7 @@ while(Countdown <= 155)
     if(Countdown == 2)
     {
       // (skw semicolon trick)
-      return('refercwl');
+      return('rfcwl');
     }
     else
     {

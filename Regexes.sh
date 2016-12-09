@@ -4,6 +4,7 @@ prototype Regexes
   str  @alphabetic_character_space_lk(str &regex_Description, str &rS);
   str  @alphanumeric_space_period(str &regex_Description, str &rS);
   str  @anything(str &regex_Description, str &rS);
+  str  @batch_file_label();
   str  @big_segment();
   str  @blank_line(str &regex_Description, str &rS);
   str  @bol_colon(str &regex_Description, str &rS);
@@ -60,6 +61,7 @@ prototype Regexes
   str  @space_space_eol(str &regex_Description, str &rS);
   str  @space_space(str &regex_Description, str &rS);
   str  @special_character(str &regex_Description, str &rS, str sc);
+  str  @ssn();
   str  @subbullet();
   str  @subrubric();
   str  @subrubric_text();

@@ -1,4 +1,4 @@
-macro_file Regexes; // Regular Expressions (!re)
+macro_file Regexes; // Regular Expressions (!rx)
 
 #include Aliases.sh
 #include Shared.sh
@@ -1070,18 +1070,6 @@ return(sc);
 //;
 
 str
-@lc
-{
-str fp = "Launch Code.";
-str sc = '\(!.#\)';
-return(sc);
-}
-
-
-
-//;
-
-str
 @lc_ending_in_2_letters(str last_2_Letters_of_lc)
 {
 str fp = "Launch Code ending in 2 letters.";
@@ -1295,11 +1283,7 @@ return(sc);
 
 
 
-//;+ Marketing Detritus
-
-
-
-//;;
+//;
 
 str
 @share_american_heritage_dot_com(str &regex_Description, str &rS)
@@ -1459,6 +1443,87 @@ str fp = "Rhymes with.";
 str sc = ' (Rhymes ($^)@With)';
 rs = '$$\0';
 regex_Description = fp;
+return(sc);
+}
+
+
+
+//;
+
+str
+@lc
+{
+str fp = "Launch Code.";
+str sc = '\(!.#\)';
+return(sc);
+}
+
+
+
+//;
+
+str
+@ssnorig
+{
+str fp = "Social security number.";
+str sc;
+
+sc = '[0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]';                         // Version 1.
+sc = '[^0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]';                   // Version 2.
+sc = '[^#0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]';                  // Version 3.
+sc = '[^\-#0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]';                // Version 4.
+
+// False positives:
+// 1: 5915-01-2531
+// 2: ID#219-92-2677
+// 3: -031-11-6487
+// 4: 54-031-11-6487
+// 5: 031-11-6487-8177
+
+// Positive: 045-65-0000
+
+return(sc);
+}
+
+
+
+//;
+
+str
+@ssn
+{
+str fp = "Social security number.";
+str sc;
+
+sc = '-[0-9][0-9][0-9][0-9]([^\-]||$)';
+sc = '[0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]'; // V. 1
+sc = '[^#\-0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]'; // V. 2
+sc = '[^#\-0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]([^\-]||$)'; // V. 3
+
+// False positives:
+// 1: 5915-01-2531
+// 2: ID#219-92-2677
+// 3: -031-11-6487
+// 4: 54-031-11-6487
+// 5: 031-11-6487-8177
+
+// Positive: 045-65-0000
+
+return(sc);
+}
+
+
+
+//;
+
+str
+@batch_file_label
+{
+str fp = "Batch file label.";
+str sc;
+
+sc = '^:';
+
 return(sc);
 }
 

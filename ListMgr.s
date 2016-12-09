@@ -5050,6 +5050,9 @@ str rs;
 str sc;
 
 tof;
+@replace_next_occurrence_only('search results', rs);
+
+tof;
 str sc = @share_american_heritage_dot_com(description, rs);
 @replace_next_occurrence_only(sc, rs);
 
@@ -5536,14 +5539,11 @@ else
 
 /* Use Case(s)
 
-:
 :http://www.dmvnow.com/#/
 
-:
 ::http://www.dmvnow.com/#/
 
-:
-Use Case 4: A subject separated by some launch codes.
+:Use Case 4: A subject separated by some launch codes.
 
 Debug WriteLine (!+dw, !+deb): System.Diagnostics.Debug.WriteLine("");
 
@@ -9338,7 +9338,7 @@ if(@seek_in_all_files_2_arguments(sc, so))
 else
 {
   fp += ' Double q was NOT found, so go to the now playing task list.';
-  @go_to_first_bullet_at_lc('refernptl');
+  @go_to_first_bullet_at_lc('rfnptl');
 }
 
 @say(fp);
@@ -9451,7 +9451,7 @@ if(search_criterion_was_found)
 else
 {
   so = 'Search criterion NOT found, so go to now playing task list.';
-  @go_to_first_bullet_at_lc('refernptl');
+  @go_to_first_bullet_at_lc('rfnptl');
 }
 
 /* Use Case(s)
@@ -10300,9 +10300,9 @@ if(xpos('itinerary', get_line, 1))
   @delete_bullet;
 }
 
-if(!@find_lc('referowt'))
+if(!@find_lc('rfowt'))
 {
-  @say(fp + ' Error. Cannot find "referowt".');
+  @say(fp + ' Error. Cannot find "rfowt".');
   @footer;
   return();
 }
@@ -10338,9 +10338,9 @@ if(xpos('itinerary', get_line, 1))
   @delete_bullet;
 }
 
-if(!@find_lc('referomt'))
+if(!@find_lc('rfomt'))
 {
-  @say(fp + ' Error. Cannot find "referomt".');
+  @say(fp + ' Error. Cannot find "rfomt".');
   @footer;
   return();
 }
@@ -10383,9 +10383,9 @@ if(xpos('itinerary', get_line, 1))
   @delete_bullet;
 }
 
-if(!@find_lc('referoqt'))
+if(!@find_lc('rfoqt'))
 {
-  @say(fp + ' Error. Cannot find "referoqt".');
+  @say(fp + ' Error. Cannot find "rfoqt".');
   @footer;
   return();
 }
@@ -11680,7 +11680,7 @@ if(!@is_batch_file)
 @bol;
 @paste;
 
-@seek_from_bof('referdp');
+@seek_from_bof('rfdp');
 
 @bor;
 @cut_rubric;
@@ -12399,12 +12399,11 @@ if(!found)
 //;
 
 void
-@specialty_string_search_l1(str arguments = parse_str('/1=', mparm_str))
+@find_specialty_string(str arguments = parse_str('/1=', mparm_str))
 {
-str fp = "Specialty string search level 1, a.k.a. sea level.";
+str fp = "Find specialty string.";
 
 // fcd: Nov-28-2016
-// This is the latest.
 
 str arg1, arg2, arg3, arg4;
 str search_target;
@@ -12412,6 +12411,11 @@ str search_target;
 if(arguments == "")
 {
   arguments = @get_user_input_nonspace(fp);
+  if(arguments == @fa)
+  {
+    @say(@fa);
+    return();
+  }
 }
 
 @parse_aguments_4_parameters(arguments, ".", arg1, arg2, arg3, arg4);
@@ -12421,6 +12425,7 @@ if(arguments == "")
 if(arg2 == "")
 {
   @find_lc(arg1);
+  @process_move_marker;
   @footer;
   return();
 }
@@ -12446,7 +12451,7 @@ switch(search_target)
 {
   case 'bfl':
     str sc = arg1;
-    sc = ':\$' + sc;
+    sc = '^:' + sc + '$';
     @bof;
     @seek_in_all_files_2_arguments(sc, fp);
     break;
@@ -12495,13 +12500,14 @@ switch(search_target)
 //;
 
 void
-@specialty_string_search_l0(str arguments = parse_str('/1=', mparm_str))
+@find_specialty_string_l1(str arguments = parse_str('/1=', mparm_str))
 {
-str fp = "Specialty string search level zero, a.k.a. above water.";
+str fp = "Find specialty string.";
 @header;
-@specialty_string_search_l1(arguments);
+@find_specialty_string(arguments);
 @footer;
 }
+
 
 
 //;
@@ -12581,7 +12587,6 @@ if(!@is_batch_file)
 @header;
 
 // fcd: Sep-22-2016
-// This is the latest.
 
 @bor;
 @copy_and_paste_rubric;
