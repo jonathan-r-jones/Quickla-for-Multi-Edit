@@ -101,6 +101,16 @@ return(1);
 //;;
 
 int
+@is_bull_file()
+{
+return(@is_bullet_file);
+}
+
+
+
+//;;
+
+int
 @is_text_file()
 {
 str fp = 'Verify that the user is in a file with a white list extension.';

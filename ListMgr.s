@@ -2479,7 +2479,7 @@ sc = '} catch';
 rs = '}$catch';
 @eol;
 
-if(efbo){ so = @replace_all_occurrences_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
 if(efbo){ so = @replace_next_occurrence_only(sc, rs); efbo = 0; }
 if(efbo){ @seek_next(sc, so); efbo = false; }
 if(efbo){ int is_found = @seek_in_all_files_2_arguments(sc, fp); efbo = 0; }
@@ -2506,7 +2506,7 @@ sc = '} else';
 rs = '}$else';
 @eol;
 
-if(efbo){ so = @replace_all_occurrences_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
 if(efbo){ so = @replace_next_occurrence_only(sc, rs); efbo = 0; }
 if(efbo){ @seek_next(sc, so); efbo = false; }
 if(efbo){ int is_found = @seek_in_all_files_2_arguments(sc, fp); efbo = 0; }
@@ -2533,7 +2533,7 @@ sc = '(\)) ({)$';
 rs = '\0$  \1';
 @eol;
 
-if(efbo){ so = @replace_all_occurrences_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
 if(efbo){ so = @replace_next_occurrence_only(sc, rs); efbo = 0; }
 if(efbo){ @seek_next(sc, so); efbo = false; }
 if(efbo){ int is_found = @seek_in_all_files_2_arguments(sc, fp); efbo = 0; }
@@ -2586,8 +2586,8 @@ if(!@is_text_file)
 str sc = '(.)$(.)';
 str rs = '\0 \1';
 
-str so = @replace_all_occurrences_no_tof(sc, rs);
-str so = @replace_all_occurrences_no_tof("  ", " ");
+str so = @replace_all_occurrs_inf_no_tof(sc, rs);
+str so = @replace_all_occurrs_inf_no_tof("  ", " ");
 
 @tof;
 
@@ -2660,7 +2660,7 @@ str replacement_description;
 @replace_string_in_file_cs('^i ', 'I ');
 
 @replace_all_occurrences_in_file('((^)||( ))(im)(( )||($))', '\0i' + char(39) + 'm\4');
-@replace_all_occurrences_no_tof('\.\.', ":");
+@replace_all_occurrs_inf_no_tof('\.\.', ":");
 @replace_all_occurrences_in_file('^ive ', "I've ");
 @replace_all_occurrences_in_file(' ive ', " I've ");
 @replace_all_occurrences_in_file('^itll', "it'll");
@@ -9366,6 +9366,16 @@ if(find_text(sc, 1, _regexp))
   right;
   @make_double_q_adjustment;
 }
+else
+{
+  if(@is_bullet_file)
+  {
+    if((@current_line_type == 'rubric') || (@current_line_type == 'subrubric'))
+    {
+      @find_next_bullet;
+    }
+  }
+}
 
 @say(fp);
 }
@@ -10229,7 +10239,7 @@ rs = 'copy "';
 rs = 'move "';
 rs = 'del /f c:\\pcarss\\';
 
-@replace_all_occurrences_no_tof(sc, rs);
+@replace_all_occurrs_inf_no_tof(sc, rs);
 
 //tof;
 
@@ -10239,7 +10249,7 @@ rs = 'del /f c:\\pcarss\\';
 // end line variable
 //rs = '" "c:\\!\\ by Pete Shop boys.mp3"$';
 
-//@replace_all_occurrences_no_tof(sc, rs);
+//@replace_all_occurrs_inf_no_tof(sc, rs);
 
 @say(found_str);
 @say(fp);
@@ -10272,7 +10282,7 @@ sc = '$^';
 // End line variable.
 rs = '" ".\\Error Screen Shots"$';
 
-@replace_all_occurrences_no_tof(sc, rs);
+@replace_all_occurrs_inf_no_tof(sc, rs);
 
 @footer;
 @say(found_str);
@@ -12433,6 +12443,7 @@ if(arg2 == "")
 switch(arg2)
 {
   case 'b':
+  case 'l':
   case 'bfl':
     search_target = 'bfl';
     break;
@@ -12451,6 +12462,7 @@ switch(search_target)
 {
   case 'bfl':
     str sc = arg1;
+    sc = make_literal_x(sc);
     sc = '^:' + sc + '$';
     @bof;
     @seek_in_all_files_2_arguments(sc, fp);

@@ -75,6 +75,7 @@ prototype Shared
   int  @i_am_on_my_home_computer();
   int  @is_batch_file();
   int  @is_blank_line();
+  int  @is_bul_file();
   int  @is_bullet_file();
   int  @is_code_file();
   int  @is_code_indentation();

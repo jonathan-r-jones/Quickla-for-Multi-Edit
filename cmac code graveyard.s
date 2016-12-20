@@ -1,3 +1,21 @@
+//; (skw how to run a batch file from CMAC)
+
+void
+@synchronize()
+{
+str fp = "Synchronize my Savannah files in the background.";
+
+str command_String = 'c:\windows\system32\cmd.exe /k';
+
+str parameter = Get_Environment("savannah") + '\belfry\synchronize_layer_of_abstraction.bat';
+
+@run_application_2p(command_String, parameter);
+
+@say(fp);
+}
+
+
+
 //;;
 
 void

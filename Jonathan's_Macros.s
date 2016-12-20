@@ -581,7 +581,7 @@ text("return();");
 cr;
 text("@replace_next_occurrence_only(sc, rs);");
 cr;
-text("@replace_all_occurrences_no_tof(sc, rs);");
+text("@replace_all_occurrs_inf_no_tof(sc, rs);");
 cr;
 text("int is_found = @seek_in_all_files_2_arguments(sc, fp);");
 
@@ -1990,10 +1990,9 @@ str URL = 'https://outlook.office365.com/owa/?realm=nesassociates.com&exsvurl=1&
 void
 @open_outlook_an_easier_way_2
 {
-str fp = "Open Outlook and R8 together";
+str fp = "Open Outlook.";
 
 @header;
-@run_clif_internally('r8');
 @run_clif_internally('outl');
 @footer;
 
@@ -2109,24 +2108,6 @@ str fp = "Save file.";
 Save_File;
 
 @footer;
-@say(fp);
-}
-
-
-
-//; (skw how to run a batch file from CMAC)
-
-void
-@synchronize()
-{
-str fp = "Synchronize my Savannah files in the background.";
-
-str command_String = 'c:\windows\system32\cmd.exe /k';
-
-str parameter = Get_Environment("savannah") + '\belfry\synchronize_layer_of_abstraction.bat';
-
-@run_application_2p(command_String, parameter);
-
 @say(fp);
 }
 
@@ -3968,7 +3949,7 @@ down;
 down;
 if(efbo){ @seek_next(sc, so); efbo = false; }
 if(efbo){ so = @replace_next_occurrence_only(sc, rs); efbo = 0; }
-if(efbo){ so = @replace_all_occurrences_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
 
 @footer;
 @say(found_str);
@@ -4339,7 +4320,7 @@ sc = '(<tr)';
 rs = '$$$$\0';
 @eol;
 
-if(efbo){ so = @replace_all_occurrences_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
 
 @say(found_str);
 @say(so);
@@ -4363,7 +4344,7 @@ sc = '(<b)';
 rs = '$\0';
 @eol;
 
-if(efbo){ so = @replace_all_occurrences_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
 
 @say(found_str);
 @say(so);
@@ -4387,7 +4368,7 @@ sc = '(</tr)';
 rs = '$\0';
 @eol;
 
-if(efbo){ so = @replace_all_occurrences_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
 
 @say(found_str);
 @say(so);
@@ -4411,7 +4392,7 @@ sc = '(<td)';
 rs = '$\0';
 @eol;
 
-if(efbo){ so = @replace_all_occurrences_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
 
 @say(found_str);
 @say(so);
@@ -4435,7 +4416,7 @@ sc = '(</td)';
 rs = '$\0';
 @eol;
 
-if(efbo){ so = @replace_all_occurrences_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
 
 @say(found_str);
 @say(so);
@@ -4459,7 +4440,7 @@ sc = '(<table)';
 rs = '$\0';
 @eol;
 
-if(efbo){ so = @replace_all_occurrences_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
 
 @say(found_str);
 @say(so);
@@ -4483,7 +4464,7 @@ sc = '(</table)';
 rs = '$\0';
 @eol;
 
-if(efbo){ so = @replace_all_occurrences_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
 
 @say(found_str);
 @say(so);
@@ -4855,7 +4836,7 @@ rs = '\0';
 
 if(efbo){ @seek_next(sc, so); efbo = false; }
 if(efbo){ so = @replace_next_occurrence_only(sc, rs); efbo = 0; }
-if(efbo){ so = @replace_all_occurrences_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
 if(efbo){ int is_found = @seek_in_all_files_2_arguments(sc, fp); efbo = 0; }
 
 @footer;
@@ -5350,7 +5331,7 @@ str sc = '\#';
 
 @bof;
 
-@replace_all_occurrences_no_tof(sc, rs);
+@replace_all_occurrs_inf_no_tof(sc, rs);
 
 @eof;
 
@@ -5417,7 +5398,7 @@ sc = '(c:)';
 rs = '$$\0';
 @eol;
 
-if(efbo){ so = @replace_all_occurrences_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
 if(efbo){ so = @replace_next_occurrence_only(sc, rs); efbo = 0; }
 if(efbo){ @seek_next(sc, so); efbo = false; }
 if(efbo){ int is_found = @seek_in_all_files_2_arguments(sc, fp); efbo = 0; }
@@ -6008,6 +5989,156 @@ left;
 left;
 left;
 @footer;
+}
+
+
+
+//;
+
+void
+@replace_semicolons_with_crs()
+{
+str fp = "Replace all semicolons in file with carriage returns.";
+// fcd: Dec-13-2016
+str rs;
+str sc;
+
+if(@is_bullet_file)
+{
+  return();
+}
+
+@tof;
+
+sc = ';';
+rs = '$';
+@eol;
+
+@replace_all_occurrs_inf_no_tof(sc, rs);
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@@replace_semicolons_with_crs
+{
+@header;
+@replace_semicolons_with_crs;
+@footer;
+}
+
+
+
+//;
+
+void
+@open_pretty_sett_file()
+{
+str fp = "Open pretty sett file.";
+
+str fp = "Synchronize my Savannah files in the background.";
+
+str command_string = 'c:\windows\system32\cmd.exe /k ';
+str parameter = get_environment("savannah") + '\belfry\show_set_2.bat';
+
+command_string += parameter;
+
+execprog(
+  command_string, 
+  '', 
+  '', 
+  '', 
+  _EP_FLAGS_EXEWIN | 
+  _EP_Flags_NoBypass);
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@open_pretty_sett_file_l1
+{
+@header;
+@open_pretty_sett_file;
+
+@open_file('c:\a\j');
+@tof;
+@replace_semicolons_with_crs;
+@tof;
+@seek('^PATH=');
+@bol;
+cr;
+@footer;
+}
+
+
+
+//;
+
+void
+@open_rdp_an_easier_way
+{
+str fp = "Open RDP an easier way.";
+
+@header;
+@run_clif_internally('rfrdp');
+@set_clipboard('mercury-jp.dreamhammer.com:21624');
+@footer;
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@open_local_host_an_easier_way
+{
+str fp = "Open Local Host with interplay prepasted into buffer.";
+fp = "Open Local Host an easier way.";
+
+@header;
+
+str URL = 'http://localhost:8080';
+
+@set_clipboard('pa55w0rd');
+
+@surf(URL, 1);
+
+@footer;
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@open_japan_an_easier_way
+{
+str fp = "Open Local Host with interplay prepasted into buffer.";
+fp = "Open Local Host an easier way.";
+
+@header;
+
+str URL = 'http://mercury-jp.dreamhammer.com';
+
+@set_clipboard('Billions!');
+
+@surf(URL, 1);
+
+@footer;
+
+@say(fp);
 }
 
 
