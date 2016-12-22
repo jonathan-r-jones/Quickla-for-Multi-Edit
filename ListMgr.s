@@ -11934,7 +11934,13 @@ str fp = "Move context object to last position.";
 switch(lower(get_extension(File_name)))
 {
   case 'bat':
-    @move_current_rubric_w_dog_park;
+    @bor;
+    @cut_rubric;
+    @eof;
+    @bol;
+    @paste;
+    up;
+    @bor;
     @footer;
     return();
     break;

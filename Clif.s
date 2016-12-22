@@ -1639,6 +1639,21 @@ void
 
 
 
+//;
+
+void
+@run_batch_file_with_parameter(str application, str argument);
+{
+str fp = "Run batch file with parameter.";
+fp = "Dec-21-2016 3:43 PM";
+
+// fcd: Dec-21-2016
+
+//@say(lowercased_clif_block);
+}
+
+
+
 //;+ Anatomizing
 
 
@@ -2099,12 +2114,9 @@ if(xpos('.cmd', lowercased_clif_block, 1)) // Visual Studio Code ***************
 }
 
 // This allows a batch file to work with a parameter. Feb-5-2015
-if(xpos('.bat', Lowercased_clif_Block, 1)) // Batch File with a parameter ****************
+if(xpos('.bat', lowercased_clif_Block, 1)) // Batch File with a parameter ****************
 {
-  if(xpos('"', Lowercased_clif_Block, 1)) // Has a parameter.
-  {
-    is_exe_or_bat_file = true;
-  }
+  is_exe_or_bat_file = true;
 }
 
 if(is_exe_or_bat_file)
@@ -2120,9 +2132,7 @@ if(is_exe_or_bat_file)
     pos_of_first_colon_backslash = xpos('\\', clif_block, 1);
 
     /* Use Case(s)
-
       Use Case Jun-1-2009: Executable on the network: \\pxad\COTS\Utilities\daemon400.exe
-
     */
     application = str_del(application, 1, Pos_of_First_Colon_Backslash - 1);
   }
@@ -2131,13 +2141,20 @@ if(is_exe_or_bat_file)
     application = str_del(application, 1, Pos_of_First_Colon_Backslash - 2);
   }
 
+  str quoteless_application = application;
+
   if(xpos(' ', application, 1))
   {
     application = char(34) + application + char(34);
   }
 
-  if(Position_of_Double_Quote == 0) // application WITHOUT argument *********************
+  if(position_of_double_quote == 0) // application without argument *********************
   {
+    if(xpos('.bat', quoteless_application, 1))
+    {
+      @run_this_executable_file(quoteless_application);
+      return(1);
+    }
     status_message_rp = 'Run application: ' + application;
 
     ExecProg(application,
@@ -2154,7 +2171,7 @@ if(is_exe_or_bat_file)
   }
   else // application WITH argument ******************************************************
   {
-    argument = str_del(clif_Block, 1, Position_of_Double_Quote);
+    argument = str_del(clif_block, 1, position_of_double_quote);
 
     status_message_rp = 'Run app with arg: ' + argument;
 
@@ -2182,14 +2199,31 @@ if(is_exe_or_bat_file)
       argument = char(34) + argument + char(34);
     }
 
-    application_Plus_Argument = application + ' ' + argument;
+    application_plus_argument = application + ' ' + argument;
+
+    // This allows a batch file to work with a parameter. Feb-5-2015
+    if(xpos('.bat', lowercased_clif_block, 1))
+    {
+      if(xpos('"', lowercased_clif_block, 1)) // Has a parameter.
+      {
+        is_exe_or_bat_file = true;
+        int position_of_double_quote = xpos('"', lowercased_clif_block, 1);
+        int position_of_dot_bat = xpos('.bat', lowercased_clif_block, 1);
+        if(position_of_dot_bat < position_of_double_quote)
+        {
+          // Then we know we are dealing with a batch with a parameter.
+          // I tried to make this work but it conficts with "Edit" batch file say. 
+          // It's too much spaghetti code. Dec-21-2016
+          @run_batch_file_with_parameter(application, argument);
+        }
+      }
+    }
 
     ExecProg(application_Plus_Argument,
       Get_Environment("TEMP"),
       Get_Environment("TEMP") + '\\multi-edit output.txt',
       Get_Environment("TEMP") + '\\multi-edit error.txt',
       Flag);
-
   }
 }
 else If(xpos('http', Lowercased_clif_Block, 1)) // Open Link Using Default application ******
@@ -2730,7 +2764,6 @@ int return_home = true;
 int
 @run_clif_under_cursor(str &operation_Outcome)
 {
-
 str fp = "Run cl uc.";
 
 int rv;
@@ -2765,7 +2798,10 @@ if(@is_bullet_file)
 rv = @anatomize_clif(0, fp);
 
 operation_Outcome = fp;
-@say(fp);
+
+//@say(fp);
+//qjq-1
+
 return(rv);
 }
 
@@ -3070,12 +3106,12 @@ if(@contains(operation_outcome, 'not an executable'))
   {
     // (!setr2)
     @search_google_liberally(''); 
-    //@search_google_with_wiki(); 
   }
   return();
 }
 
-@say(fp + ' ' + Operation_Outcome);
+//@say(fp + ' ' + Operation_Outcome);
+//qjq-1
 }
 
 
