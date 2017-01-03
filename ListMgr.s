@@ -9377,7 +9377,7 @@ else
   }
 }
 
-@say(fp);
+//@say(fp);
 }
 
 
@@ -12440,8 +12440,15 @@ if(arguments == "")
 
 if(arg2 == "")
 {
-  @find_lc(arg1);
-  @process_move_marker;
+  if(@find_lc(arg1))
+  {
+    @process_move_marker;
+    @say(fp + ' (' + arg1 + ')');
+  }
+  else
+  {
+    @say(fp + ' NOT found. (' + arg1 + ')');
+  }
   @footer;
   return();
 }
@@ -12506,7 +12513,6 @@ switch(search_target)
 ::cmac method name
 
 */
-
 
 
 @footer;

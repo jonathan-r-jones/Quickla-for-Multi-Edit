@@ -1548,7 +1548,6 @@ Austin
 void
 @search_pluralsight(str parameter = parse_str('/1=', mparm_str))
 {
-
 str fp = 'Search Pluralsight.';
 
 str URL = 'http://pluralsight.com/search?q=';
