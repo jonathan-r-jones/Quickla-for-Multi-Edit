@@ -868,21 +868,6 @@ return (xpos(parameter, get_line, 1));
 //;
 
 void
-@add_text_semicolon
-{
-str fp = 'Add semicolon.';
-/*
-This function used to live in Jonathan's_Macros.s. But then when I was doing testing and 
-it wouldn't compile, I could use the semicolon key, so that wasn't working for me.
-*/
-text(';');
-}
-
-
-
-//;
-
-void
 @add_carriage_return()
 {
 cr;

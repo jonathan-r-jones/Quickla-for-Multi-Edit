@@ -383,7 +383,7 @@ switch(@previous_character)
 block_end;
 
 rv = @get_selected_text;
-@say(fp + ' (' + sc + ' - length = ' + str(length(rv)) + ')');
+@say(fp + ' (length = ' + str(length(rv)) + ')');
 return(rv);
 
 /* Use Case(s)
@@ -398,7 +398,6 @@ raybass8@gmail.com
 
 - 1. Jan-5-2012: Cursor is at eol and I want the function name to be highlighted.
 str  @hc_word_uc();
-
 
 */
 
@@ -784,9 +783,10 @@ return(indicated_lc);
 void
 @determine_if_lc_is_unique()
 {
-str fp = "Determine if launch code is unique.";
+str fp = "Determine if lc is unique.";
 
 str lc;
+str so;
 
 if((@first_character(get_line) == ':') && (@is_batch_file))
 {
@@ -814,9 +814,11 @@ if(length(lc) == 0)
   return();
 }
 
+//@say(fp + ' lc: ' + lc + ' (Jan-17-2017 1:09 PM)');return(); //qjq
+
 fp += ' (' + lc + ')';
 
-if(@find_lc_known(fp, lc) == 2)
+if(@find_lc_known(so, lc) == 2)
 {
   fp += ' It is.';
 }
@@ -835,7 +837,7 @@ blah (!tttx)
 
 */
 
-@say('Lc is unique.');
+@say(fp);
 }
 
 
@@ -1533,7 +1535,7 @@ int Is_Found = @seek_in_all_files_2_arguments(sc, fp);
 
 
 
-//; (!cmrx, !reg, !regex) (skw universal_search_criterion, regex collection, regex list)
+//; (!cmrx, !reg, !regex) (skw universal_search_criterion, regex collection, regex list, not in the list)
 
 void
 @find_minor_league_regex

@@ -2446,7 +2446,7 @@ void
 {
 str fp = 'Open folder under cursor in a command prompt.';
 str Command_String = 'c:\windows\system32\cmd.exe /k ';
-str Set_My_Path = "%savannah%\\belfry\\set_my_path.bat";
+str Set_My_Path = "%dropbox%\\it\\batch_files\\set my path 4.bat";
 
 set_my_path = char(34) + @resolve_environment_variable(set_my_path) + char(34);
 
@@ -2573,6 +2573,7 @@ void
 @open_folder_in_dos_remotely_2(str lc = parse_str('/1=', mparm_str))
 {
 str fp = 'Open folder in DOS remotely 2.';
+
 @header;
 
 @save_location;
@@ -2584,6 +2585,7 @@ str fp = 'Open folder in DOS remotely 2.';
 @recall_location;
 
 @footer;
+
 @say(fp);
 }
 
@@ -2889,7 +2891,7 @@ void
 
 str fp = 'Search Jira.';
 
-str URL = "http://kili:8080/browse/";
+str url = "https://mercuryproject.atlassian.net/browse/";
 
 str reserved_word_definition = '';
 
@@ -2906,7 +2908,7 @@ if(sc == '')
 
 str Pretty_sc = sc;
 
-if(@contains(sc, 'MT-'))
+if(@contains(sc, 'MERDEV-'))
 {
   URL += sc;
 }
@@ -2921,8 +2923,8 @@ else if(@contains(sc, 'TNG-'))
 else
 {
   Pretty_sc = "All Tickets Sorted By Newest First";
-  @set_clipboard('MT-2581');
-  URL = "http://kili:8080/secure/IssueNavigator.jspa?mode=hide&requestId=10151";
+  @set_clipboard('MERDEV-12');
+  URL = "https://mercuryproject.atlassian.net/projects/MERDEV/issues/MERDEV-36?filter=allopenissues";
 }
 
 sc = @commute_character(sc, ' ', '+');
@@ -2939,7 +2941,7 @@ else
 
 /* Use Case(s)
 
-MT-4436
+MERDEV-12
 
 */
 
@@ -3110,7 +3112,7 @@ if(@contains(operation_outcome, 'not an executable'))
   return();
 }
 
-//@say(fp + ' ' + Operation_Outcome);
+@say(fp + ' ' + Operation_Outcome);
 //qjq-1
 }
 

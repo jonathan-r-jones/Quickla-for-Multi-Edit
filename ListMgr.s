@@ -1653,13 +1653,16 @@ int Counter = 0;
 
 @bobs;
 
-while(Counter <= (Number_of_Bullets_in_Rubric / 2))
+if(number_of_bullets_in_rubric != 0)
 {
-  @find_next_bullet;
-  Counter++;
-}
+  while(counter <= (number_of_bullets_in_rubric / 2))
+  {
+    @find_next_bullet;
+    counter++;
+  }
 
-@bob;
+  @bob;
+}
 
 @say(fp);
 }
@@ -5440,8 +5443,10 @@ block_end;
 
 @copy_with_marking_left_on;
 
-@say(fp);
-return(@get_selected_text);
+str rv = @get_selected_text;
+
+@say(fp + ' (length = ' + str(length(rv)) + ')');
+return(rv);
 
 /* Use Case(s)
 
@@ -9316,7 +9321,10 @@ if(@seek_in_all_files_2_arguments(sc, so))
   {
     if(@first_character_in_line == ':')
     {
-      @find_next_small_segment;
+      if(!@is_last_bullet)
+      {
+        @find_next_small_segment;
+      }
       @recall_column;
     }
   }

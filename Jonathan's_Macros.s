@@ -569,8 +569,6 @@ text("sc = '';");
 cr;
 text("  //q" + "q-1");
 cr;
-text("rs = '\\0';");
-cr;
 text("@eol;");
 cr;
 cr;
@@ -588,6 +586,8 @@ text("int is_found = @seek_in_all_files_2_arguments(sc, fp);");
 cr;
 cr;
 text("@footer;");
+cr;
+text("rs = '\\0';");
 cr;
 text('@say(found_str);');
 cr;
@@ -5457,7 +5457,7 @@ if(!@is_batch_file)
 
 @move_dog_park_to_eof;
 
-@seek_from_bof('!rfmc');
+@seek_from_bof('!rftnew');
 @bor;
 
 @hc_rubric;
@@ -5493,7 +5493,7 @@ down;
 //;; (!2mum3)
 
 void
-@bullet_action_model_2(str arguments = parse_str('/1=', mparm_str))
+@run_bullet_action_model_2(str arguments = parse_str('/1=', mparm_str))
 {
 str fp = "Bullet Action Model 2.";
 
@@ -5511,7 +5511,13 @@ if(!@is_bullet)
 
 int initial_column = @current_column;
 str arg_1, arg_2, arg_3, arg_4;
+
+arguments = @lower(arguments);
+
 @parse_aguments_4_parameters(arguments, ".", arg_1, arg_2, arg_3, arg_4);
+
+//@say(fp + ' arg_2: ' + arg_2 + ' (Jan-8-2017 11:06 PM)');return();
+//@say(fp + ' arg_1: ' + arg_1 + ' (Jan-8-2017 11:06 PM)');return();
 
 str lc = arg_1;
 
@@ -5726,10 +5732,10 @@ fp += " (Args: '" + arguments + "')";
 //;;
 
 void
-@@bullet_action_model_2(str sc = parse_str('/1=', mparm_str))
+@@run_bullet_action_model_2(str sc = parse_str('/1=', mparm_str))
 {
 @header;
-@bullet_action_model_2(sc);
+@run_bullet_action_model_2(sc);
 @footer;
 }
 
@@ -5771,7 +5777,7 @@ if((user_input == "Function aborted."))
   return();
 }
 
-@bullet_action_model_2(user_input);
+@run_bullet_action_model_2(user_input);
 
 @footer;
 @say(fp + ' (' + user_input + ')');
@@ -5799,7 +5805,7 @@ if((user_input == "Function aborted."))
 
 user_input += '.w';
 
-@bullet_action_model_2(user_input);
+@run_bullet_action_model_2(user_input);
 
 @footer;
 @say(fp);
@@ -5890,7 +5896,7 @@ str fp = "Create last updated entry.";
 
 // fcd: Dec-2-2016
 
-@find_lc('rflup');
+@find_lc('rflu');
 @add_bullet_below;
 @add_text_date_and_time_fixed_w;
 text('  ');
@@ -5903,6 +5909,14 @@ str number_of_lines_in_file = str(c_line);
 @add_commas_to_a_number(Number_of_Lines_in_File);
 goto_mark;
 text(number_of_lines_in_file);
+
+@bob;
+
+@hc_bullet;
+
+@find_lc('rfc');
+
+@paste_after;
 
 @footer;
 @say(fp);
@@ -5963,6 +5977,7 @@ text(': ');
 eol;
 text(' - Created on: ');
 @add_text_date;
+left;
 left;
 left;
 left;
@@ -6103,7 +6118,7 @@ void
 @open_local_host_an_easier_way
 {
 str fp = "Open Local Host with interplay prepasted into buffer.";
-fp = "Open Local Host an easier way.";
+fp = "Open localhost an easier way.";
 
 @header;
 
@@ -6126,7 +6141,7 @@ void
 @open_japan_an_easier_way
 {
 str fp = "Open Local Host with interplay prepasted into buffer.";
-fp = "Open Local Host an easier way.";
+fp = "Open JP an easier way.";
 
 @header;
 
@@ -6139,6 +6154,76 @@ str URL = 'http://mercury-jp.dreamhammer.com';
 @footer;
 
 @say(fp);
+}
+
+
+
+//;
+
+void
+@word_search_game_engine_f1
+{
+str fp = "4 letter word starts with z ends with r";
+
+// fcd: Jan-18-2017
+
+// Word Search Game Engine: skw
+
+str rs;
+str sc;
+str sc_core;
+str special_characters;
+
+@header;
+sc = "[^a-zé!·]z[a-z][a-z]r[^a-z]";
+sc = "[^\\-]1";
+
+special_characters = "[^a-zé!·\\-']";
+sc_core = "z[a-z][a-z]r";
+sc = special_characters + sc_core + special_characters;
+
+@eol;
+
+int is_found = @seek_in_all_files_2_arguments(sc, fp);
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
+@add_text_semicolon
+{
+str fp = 'Add semicolon.';
+/*
+This function used to live in Jonathan's_Macros.s. But then when I was doing testing and 
+it wouldn't compile, I could use the semicolon key, so that wasn't working for me.
+*/
+text(';');
+}
+
+
+
+//;
+
+void
+@add_text_bracket
+{
+str fp = 'Add text bracket.';
+text('[');
+}
+
+
+
+//;
+
+void
+@add_text_close_bracket
+{
+str fp = 'Add text close bracket.';
+text(']');
 }
 
 
