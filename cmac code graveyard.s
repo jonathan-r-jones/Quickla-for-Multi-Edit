@@ -1,3 +1,59 @@
+//;
+
+void
+@open_japan_an_easier_way
+{
+str fp = "Open JP an easier way.";
+
+str URL = 'http://mercury-jp.dreamhammer.com';
+
+@set_clipboard('');
+
+@surf(URL, 1);
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@open_deltek_an_easier_way
+{
+str fp = "Open Deltek an easier way.";
+
+str URL = 'https://tcg9.hostedaccess.com/DeltekTC/welcome.msv';
+
+@set_clipboard('[Interplay goes here].');
+
+@surf(URL, 1);
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@open_outlook_an_easier_way
+{
+str fp = "Open Outlook with interplay prepasted into buffer.";
+fp = "Open Outlook an easier way.";
+
+str URL = 'https://outlook.office365.com/owa/?realm=nesassociates.com&exsvurl=1&ll-cc=1033&modurl=0&path=/mail/inbox';
+
+@set_clipboard('DCCapsApril19');
+
+@surf(URL, 3);
+
+@footer;
+
+}
+
+
+
 //; (skw how to run a batch file from CMAC)
 
 void

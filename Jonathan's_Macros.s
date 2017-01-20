@@ -1965,59 +1965,11 @@ up;
 //;;
 
 void
-@open_outlook_an_easier_way
-{
-str fp = "Open Outlook with interplay prepasted into buffer.";
-fp = "Open Outlook an easier way.";
-
-@header;
-
-str URL = 'https://outlook.office365.com/owa/?realm=nesassociates.com&exsvurl=1&ll-cc=1033&modurl=0&path=/mail/inbox';
-
-@set_clipboard('DCCapsApril19');
-
-@surf(URL, 3);
-
-@footer;
-
-@say(fp);
-}
-
-
-
-//;;
-
-void
 @open_outlook_an_easier_way_2
 {
 str fp = "Open Outlook.";
 
-@header;
 @run_clif_internally('outl');
-@footer;
-
-@say(fp);
-}
-
-
-
-//;;
-
-void
-@open_deltek_an_easier_way
-{
-str fp = "Open Deltek with interplay prepasted into buffer.";
-fp = "Open Deltek an easier way.";
-
-@header;
-
-str URL = 'https://tcg9.hostedaccess.com/DeltekTC/welcome.msv';
-
-@set_clipboard('$Imagine1');
-
-@surf(URL, 1);
-
-@footer;
 
 @say(fp);
 }
@@ -2049,15 +2001,11 @@ void
 {
 str fp = "Open Deltek with cell number prepasted into buffer.";
 
-@header;
-
 str URL = 'http://www.verizonwireless.com/myverizon';
 
 @set_clipboard('7039271233');
 
 @surf(URL, 0);
-
-@footer;
 
 @say(fp);
 }
@@ -6102,10 +6050,8 @@ void
 {
 str fp = "Open RDP an easier way.";
 
-@header;
 @run_clif_internally('rfrdp');
 @set_clipboard('mercury-jp.dreamhammer.com:21624');
-@footer;
 
 @say(fp);
 }
@@ -6120,38 +6066,11 @@ void
 str fp = "Open Local Host with interplay prepasted into buffer.";
 fp = "Open localhost an easier way.";
 
-@header;
-
 str URL = 'http://localhost:8080';
 
 @set_clipboard('pa55w0rd');
 
 @surf(URL, 1);
-
-@footer;
-
-@say(fp);
-}
-
-
-
-//;
-
-void
-@open_japan_an_easier_way
-{
-str fp = "Open Local Host with interplay prepasted into buffer.";
-fp = "Open JP an easier way.";
-
-@header;
-
-str URL = 'http://mercury-jp.dreamhammer.com';
-
-@set_clipboard('Billions!');
-
-@surf(URL, 1);
-
-@footer;
 
 @say(fp);
 }

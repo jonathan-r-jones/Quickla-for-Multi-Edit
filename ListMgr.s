@@ -5302,7 +5302,7 @@ up;
 left;
 put_line(@replace(get_line, ' Miscellany', ''));
 @bobs;
-@delete_text_lc_on_cl;
+//@delete_text_lc_on_cl;
 eol;
 
 @footer;
@@ -9380,7 +9380,10 @@ else
   {
     if((@current_line_type == 'rubric') || (@current_line_type == 'subrubric'))
     {
-      @find_next_bullet;
+      if(@peek_ahead_3 != 'rubric')
+      {
+        @find_next_bullet;
+      }
     }
   }
 }
