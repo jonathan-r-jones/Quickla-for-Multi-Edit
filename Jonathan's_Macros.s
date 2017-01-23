@@ -5090,24 +5090,6 @@ str fp = "Add bullet below and paste without wrapping.";
 //;
 
 void
-@add_bullet_at_lc(str lc = parse_str('/1=', mparm_str))
-{
-str fp = "Add bullet.";
-@header;
-
-// fcd: Mar-25-2016
-@find_lc(lc);
-@add_bullet_below;
-
-@footer;
-@say(fp);
-}
-
-
-
-//;
-
-void
 @bam_2
 {
 str fp = "BAM 2.";
@@ -5405,21 +5387,35 @@ if(!@is_batch_file)
 
 @move_dog_park_to_eof;
 
-@seek_from_bof('!rftnew');
-@bor;
+@save_location;
 
-@hc_rubric;
+str sc = '!' + 'rftnew';
+int is_found = @seek_in_all_files_2_arguments(sc, fp);
+
+@hc_small_segment_content_dinc();
+
+@recall_location;
+
 @eof;
 @bol;
+cr;
+cr;
+cr;
+up;
+up;
+up;
 @paste;
 @find_bobs_or_previous_bs;
-@delete_text_lc_on_cl;
+@seek('x_marker');
+
+@hc_subject;
+
+@delete_block;
 
 @seek('Creation Date');
 @eol;
 @add_text_date;
 
-down;
 down;
 down;
 down;
@@ -6143,6 +6139,24 @@ void
 {
 str fp = 'Add text close bracket.';
 text(']');
+}
+
+
+
+//;
+
+void
+@open_deltek_an_easier_way
+{
+str fp = "Open Deltek an easier way.";
+
+str URL = 'https://tcg9.hostedaccess.com/DeltekTC/welcome.msv';
+
+//@set_clipboard('[Interplay goes here].');
+
+@surf(URL, 1);
+
+@say(fp);
 }
 
 

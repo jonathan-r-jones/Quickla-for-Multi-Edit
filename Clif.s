@@ -3079,7 +3079,7 @@ if(@current_line_contains_regex(@comma_lc))
 }
 
 str sc = @get_subject_or_selected_text;
-if(@contains(sc, 'MT-'))
+if(@contains(sc, 'MERDEV-'))
 {
   @search_jira('', 0);
   return();

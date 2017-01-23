@@ -19,24 +19,6 @@ str URL = 'http://mercury-jp.dreamhammer.com';
 //;;
 
 void
-@open_deltek_an_easier_way
-{
-str fp = "Open Deltek an easier way.";
-
-str URL = 'https://tcg9.hostedaccess.com/DeltekTC/welcome.msv';
-
-@set_clipboard('[Interplay goes here].');
-
-@surf(URL, 1);
-
-@say(fp);
-}
-
-
-
-//;;
-
-void
 @open_outlook_an_easier_way
 {
 str fp = "Open Outlook with interplay prepasted into buffer.";

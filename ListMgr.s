@@ -9617,7 +9617,7 @@ else
 void
 @add_bullet_below()
 {
-str fp = 'Add below.';
+str fp = 'Add below below.';
 if(@is_bullet_file)
 {
   @add_small_segment_below(true);
@@ -9656,6 +9656,10 @@ str fp = 'Add bullet at launch code.';
 if(@find_lc(lc))
 {
   @add_bullet_below;
+}
+else
+{
+  fp += ' LC NOT found.';
 }
 
 @footer;
