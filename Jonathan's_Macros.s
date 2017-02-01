@@ -1101,7 +1101,7 @@ else if(@is_batch_file)
 
 @close_and_save_file_wo_prompt;
 
-@recall_location;
+@restore_location;
 
 @bobs;
 
@@ -1412,7 +1412,7 @@ if(!@find_lc_known(fp, lc))
 
 @hc_bullet_content_dinc;
 
-@recall_location;
+@restore_location;
 
 @footer;
 @say(fp);
@@ -2239,7 +2239,7 @@ while(open_window_counter > default_number_of_windows_open)
   @switch_to_first_window;
   open_window_counter--;
 }
-@recall_location;
+@restore_location;
 @footer;
 
 @say(fp);
@@ -2284,7 +2284,7 @@ void
 @header;
 @save_location;
 @open_cmac_files;
-@recall_location;
+@restore_location;
 @footer;
 }
 
@@ -2337,7 +2337,7 @@ str lc = 'cj';
 
 if(!@find_lc_known(fp, lc))
 {
-  @recall_location;
+  @restore_location;
   @say(" Error: LC NOT found. (" + lc + ")");
   @footer;
   return();
@@ -2378,7 +2378,7 @@ switch(@trim(executable_number))
 
 @open_microsoft_product_for_jira(filename, executable_name, filename_extension);
 
-@recall_location;
+@restore_location;
 }
 
 
@@ -2766,7 +2766,7 @@ result++;
 text(str(result));
 
 @close_and_save_file_wo_prompt;
-@recall_location;
+@restore_location;
 return(result);
 @say(fp);
 }
@@ -3040,7 +3040,7 @@ if(!@find_lc('q' + 'q'))
 }
 @bol;
 @paste;
-@recall_location;
+@restore_location;
 
 @footer;
 @say(fp);
@@ -3356,7 +3356,7 @@ if(!@is_subbullet)
 @find_lc('jd');
 @paste_after;
 
-@recall_location;
+@restore_location;
 
 @footer;
 @say(fp);
@@ -3428,7 +3428,7 @@ if(@current_character == ' ')
 
 @word_wrap;
 
-@recall_location;
+@restore_location;
 
 @footer;
 
@@ -3508,7 +3508,7 @@ str fp = "Move bullet down 3 bullets.";
 @bol;
 @paste;
 
-@recall_location;
+@restore_location;
 
 @footer;
 @say(fp);
@@ -3681,7 +3681,7 @@ else
   @run_clif_under_cursor(operation_outcome);
 }
 
-@recall_location;
+@restore_location;
 
 @footer;
 @say(fp);
@@ -3708,7 +3708,7 @@ str fp = "Play Pluralsight video.";
 str operation_outcome;
 @run_clif_under_cursor(operation_outcome);
 
-@recall_location;
+@restore_location;
 
 @footer;
 @say(fp);
@@ -3790,7 +3790,7 @@ do
 if(!found_bad_parent)
 {
   fp += ' No bad parents found.';
-  @recall_location;
+  @restore_location;
 }
 
 @say(fp);
@@ -3864,7 +3864,7 @@ do
 if(!found_crowded_family)
 {
   fp += ' No bad parents found.';
-  @recall_location;
+  @restore_location;
 }
 
 @say(fp);
@@ -3926,7 +3926,7 @@ str fp = "Load clipboard with small segment content.";
 
 if(!@find_lc_known(fp, lc))
 {
-  @recall_location;
+  @restore_location;
   @footer;
   @say(" Error: LC NOT found. (" + lc + ")");
   return();
@@ -3942,7 +3942,7 @@ if(!@find_lc_known(fp, lc))
 
 @close_and_save_file_wo_prompt;
 
-@recall_location;
+@restore_location;
 @footer;
 @say(fp);
 }
@@ -3964,7 +3964,7 @@ str fp = "Load clipboard with remote subject.";
 
 if(!@find_lc_known(fp, lc))
 {
-  @recall_location;
+  @restore_location;
   @footer;
   @say(" Error: LC NOT found. (" + lc + ")");
   return();
@@ -3972,7 +3972,7 @@ if(!@find_lc_known(fp, lc))
 
 str sj = @hc_subject;
 
-@recall_location;
+@restore_location;
 
 @footer;
 
@@ -3994,7 +3994,7 @@ str fp = "Add text with remote subject.";
 
 if(!@find_lc_known(fp, lc))
 {
-  @recall_location;
+  @restore_location;
   @footer;
   @say(" Error: LC NOT found. (" + lc + ")");
   return();
@@ -4002,7 +4002,7 @@ if(!@find_lc_known(fp, lc))
 
 str sj = @hc_subject;
 
-@recall_location;
+@restore_location;
 
 text(sj + ': ');
 
@@ -4038,7 +4038,7 @@ str fp = "Add text with remote object.";
 
 if(!@find_lc_known(fp, lc))
 {
-  @recall_location;
+  @restore_location;
   @footer;
   @say(" Error: LC NOT found. (" + lc + ")");
   return();
@@ -4046,7 +4046,7 @@ if(!@find_lc_known(fp, lc))
 
 str oj = @hc_object;
 
-@recall_location;
+@restore_location;
 text(oj);
 @eol;
 
@@ -4072,7 +4072,7 @@ fp = "LPO.";
 
 if(!@find_lc_known(fp, lc))
 {
-  @recall_location;
+  @restore_location;
   @footer;
   @say(" Error: LC NOT found. (" + lc + ")");
   return();
@@ -4080,7 +4080,7 @@ if(!@find_lc_known(fp, lc))
 
 str oj = @hc_object;
 
-@recall_location;
+@restore_location;
 @footer;
 @say(fp + ' (' + oj + ')');
 }
@@ -4192,7 +4192,7 @@ str fp = "Copy subject.";
 @save_location;
 @find_lc(lc);
 str sj = @hc_subject;
-@recall_location;
+@restore_location;
 
 @footer;
 @say(fp + ' (' + sj + ')');
@@ -4212,7 +4212,7 @@ str fp = "Load clipboard with cj subject.";
 @save_location;
 @find_lc('cj');
 str sj = @hc_subject;
-@recall_location;
+@restore_location;
 
 @footer;
 @say(fp + ' (' + sj + ')');
@@ -4644,7 +4644,7 @@ str so;
 cr;
 //@convert_line_to_lower_case;
 @word_wrap;
-@recall_location;
+@restore_location;
 
 @say(fp);
 }
@@ -4749,7 +4749,7 @@ if(@find_lc(lc))
   @delete_specific_lc_from_cl(lc);
 }
 
-@recall_location;
+@restore_location;
 
 @add_text_lc_on_current_line(lc);
 
@@ -5038,7 +5038,7 @@ str fp = "Pair with k.";
 @find_lc('k');
 @find_next_bullet;
 @paste_after_with_subbullet;
-@recall_location;
+@restore_location;
 
 @footer;
 
@@ -5185,7 +5185,7 @@ up;
 @paste;
 @bob;
 
-@recall_location;
+@restore_location;
 @find_next_bullet;
 @footer;
 @say(fp);
@@ -5376,7 +5376,6 @@ void
 @add_batch_file_stub
 {
 str fp = "Add batch file stub.";
-@header;
 
 // fcd: Sep-21-2016
 
@@ -5384,6 +5383,8 @@ if(!@is_batch_file)
 {
   return();
 }
+
+@header;
 
 @move_dog_park_to_eof;
 
@@ -5394,7 +5395,7 @@ int is_found = @seek_in_all_files_2_arguments(sc, fp);
 
 @hc_small_segment_content_dinc();
 
-@recall_location;
+@restore_location;
 
 @eof;
 @bol;
@@ -5414,6 +5415,7 @@ up;
 
 @seek('Creation Date');
 @eol;
+text(' ');
 @add_text_date;
 
 down;
@@ -5436,12 +5438,14 @@ down;
 
 //;; (!2mum3)
 
-void
+str
 @run_bullet_action_model_2(str arguments = parse_str('/1=', mparm_str))
 {
 str fp = "Bullet Action Model 2.";
 
 // fcd: Oct-3-2016
+
+@save_column;
 
 if(@is_subbullet)
 {
@@ -5450,7 +5454,8 @@ if(@is_subbullet)
 
 if(!@is_bullet)
 {
-  return();
+  @restore_column;
+  return(@constant_not_a_bullet);
 }
 
 int initial_column = @current_column;
@@ -5460,8 +5465,8 @@ arguments = @lower(arguments);
 
 @parse_aguments_4_parameters(arguments, ".", arg_1, arg_2, arg_3, arg_4);
 
-//@say(fp + ' arg_2: ' + arg_2 + ' (Jan-8-2017 11:06 PM)');return();
 //@say(fp + ' arg_1: ' + arg_1 + ' (Jan-8-2017 11:06 PM)');return();
+//@say(fp + ' arg_2: ' + arg_2 + ' (Jan-8-2017 11:06 PM)');return();
 
 str lc = arg_1;
 
@@ -5595,9 +5600,11 @@ if(move_style == 'c')
   @copy_and_paste_bullet;
 }
 
+int bullet_was_cut = false;
 if(move_style == 'v')
 {
   @cut_bullet;
+  bullet_was_cut = true;
 }
 
 if(selected_rubric != '')
@@ -5616,7 +5623,16 @@ if(selected_rubric != '')
 }
 else if(lc != '')
 {
-  @find_lc(lc);
+  if(!@find_lc(lc))
+  {
+    if(bullet_was_cut)
+    {
+      @paste;
+      @bob;
+    }
+    @restore_column;
+    return(@constant_lc_not_found);
+  }
 }
 
 if(location_modifier == 'b')
@@ -5650,12 +5666,12 @@ if(togetherness != 'w')
 {
   if(@is_paste_before_in_same_window)
   {
-    @recall_location_2;
+    @restore_location_2;
     fp += ' Rc2.';
   }
   else
   {
-    @recall_location;
+    @restore_location;
     fp += ' Rc.';
   }
 }
@@ -5669,17 +5685,18 @@ goto_col(initial_column);
 
 fp += " (Args: '" + arguments + "')";
 @say(fp);
+return('');
 }
 
 
 
 //;;
 
-void
+str
 @@run_bullet_action_model_2(str sc = parse_str('/1=', mparm_str))
 {
 @header;
-@run_bullet_action_model_2(sc);
+return(@run_bullet_action_model_2(sc));
 @footer;
 }
 
@@ -5735,23 +5752,31 @@ void
 @bam_2_with_caller
 {
 str fp = "Move bullet to lc (together).";
+
 @header;
 
 // fcd: Oct-27-2016
 
 str user_input = @get_user_input_nonspace(fp);
 
-if((user_input == "Function aborted."))
+if((user_input == @constant_function_aborted))
 {
   @say(user_input);
+  @footer;
   return();
 }
 
 user_input += '.w';
 
-@run_bullet_action_model_2(user_input);
+if(@run_bullet_action_model_2(user_input) == @constant_lc_not_found)
+{
+  @say(fp + ' ' + @constant_lc_not_found);
+  @footer;
+  return();
+}
 
 @footer;
+
 @say(fp);
 }
 

@@ -891,7 +891,7 @@ while(cur_char == ' ')
 void
 @save_location()
 {
-// Used in conjuction with "@recall_location".
+// Used in conjuction with "@restore_location".
 set_global_str('filename', truncate_path(file_name));
 set_global_int('initial window number', @current_window_number);
 set_global_int('initial row number', @current_row);
@@ -905,7 +905,7 @@ set_global_int('initial column number', @current_column);
 void
 @save_column()
 {
-// Used in conjuction with "@recall_column".
+// Used in conjuction with "@restore_column".
 Set_Global_Int('initial column number 2', @current_column);
 }
 
@@ -1014,7 +1014,7 @@ return(Window_Is_Found);
 //;;
 
 void
-@recall_location()
+@restore_location()
 {
 // Used in conjuction with "@save_location".
 str fp = "Load previously saved location.";
@@ -1030,7 +1030,7 @@ goto_line(global_int('initial row number'));
 //;;
 
 void
-@recall_column()
+@restore_column()
 {
 // Used in conjuction with "@save_column".
 str fp = "Recall initial column number.";
@@ -1042,10 +1042,10 @@ goto_col(Global_int('initial column number 2'));
 //;; (skw return home, return_home)
 
 void
-@@recall_location
+@@restore_location
 {
 @header;
-@recall_location;
+@restore_location;
 @footer;
 }
 
@@ -1115,7 +1115,7 @@ str fp = "Go to bol then paste.";
 @save_location;
 @bol; 
 @paste;
-@recall_location;
+@restore_location;
 @footer;
 @say(fp);
 }
@@ -4078,6 +4078,39 @@ if(@contains(argument_3, '.'))
 
 @say(fp);
 @say('a1: ' + argument_1 + ', a2: ' + argument_2 + ', a3: ' + argument_3 + ', a4: ' + argument_4);
+}
+
+
+
+//;
+
+str
+@constant_function_aborted()
+{
+// fcd: Dec-2-2016
+return("Function aborted.");
+}
+
+
+
+//;
+
+str
+@constant_not_a_bullet()
+{
+// fcd: Jan-25-2017
+return('This macro only works on bullets.');
+}
+
+
+
+//;
+
+str
+@constant_lc_not_found()
+{
+// fcd: Jan-25-2017
+return('LC NOT found.');
 }
 
 

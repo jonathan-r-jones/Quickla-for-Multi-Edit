@@ -1051,7 +1051,7 @@ if(lc != '')
 
 @search_google_main(0, 0, @get_sj);
 
-@recall_location;
+@restore_location;
 }
 
 
@@ -1894,6 +1894,44 @@ URL += '&type=Users&ref=searchresults';
 /* Use Cases
 
 Don Box
+
+*/
+
+@say(@trim_period(fp) + ' for "' + pretty_sc + '".');
+}
+
+
+
+//;
+
+void
+@search_google_play(str parameter = parse_str('/1=', mparm_str))
+{
+
+str fp = 'Search Google Play.';
+
+// fcd: Jan-24-2017
+
+str URL = 'https://play.google.com/store/search?q=';
+
+str sc = parameter;
+
+if(sc == '')
+{
+  sc = @get_subject_or_selected_text;
+}
+
+str Pretty_sc = sc;
+sc = @commute_character(sc, ' ', '+');
+
+URL += sc;
+URL += '&c=apps';
+
+@surf(URL, 0);
+
+/* Use Cases
+
+Server Beacon
 
 */
 

@@ -14,6 +14,9 @@ prototype Shared
   str  @commute_character(str string, str old_character, str new_character);
   str  @commute_common_characters(str sc);
   str  @concatenate_multiple_lines();
+  str  @constant_function_aborted();
+  str  @constant_lc_not_found();
+  str  @constant_not_a_bullet();
   int  @contains(str source, str sc);
   void @copy();
   void @copy_and_paste_line();
@@ -93,7 +96,6 @@ prototype Shared
   str  @lowercase(str string);
   void @multi_edit_paste();
   // (!sp)
-  //QQ-1
   void @open_file(str filename);
   int  @open_file_with_writability();
   void @parse_aguments(str arguments, str separating_character, str &argument_1, str &argument_2);
@@ -104,8 +106,8 @@ prototype Shared
   int  @position_of_last_occurrence(str parameter, str character);
   int  @position_of_regex(str parameter);
   void @previous_window();
-  void @recall_column();
-  void @recall_location();
+  void @restore_column();
+  void @restore_location();
   str  @remove_nonmeaningful_term_chars(str parameter);
   str  @replace(str original_String, str old_Characters, str new_Characters);
   str  @resolve_environment_variable(str command_line);

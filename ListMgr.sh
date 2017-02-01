@@ -118,7 +118,7 @@ prototype ListMgr
   str  @query_next_br();
   str  @query_next_bsr();
   str  @query_previous_bsr();
-  void @recall_location_2();
+  void @restore_location_2();
   void @run_both_track_size_clifs(str lc);
   void @switch_to_task_window();
 }

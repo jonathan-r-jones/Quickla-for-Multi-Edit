@@ -1048,7 +1048,7 @@ int
 str fp = 'Verify that the user is in on a bullet.';
 if(@current_area_type != 'bullet')
 {
-  @say('This macro only works on bullets.');
+  @say(@constant_not_a_bullet());
   return(0);
 }
 @say(fp + ' True.');
@@ -3401,7 +3401,7 @@ str fp = 'Move bullet to lc alone. (' + lc + ')';
 
 @move_bullet_to_lc_wme(lc);
 
-@recall_location;
+@restore_location;
 
 if(!@is_structured_line)
 {
@@ -4160,7 +4160,7 @@ else
   fp += ' alone.';
   int destination_row = @current_row;
   int destination_window = @current_window;
-  @recall_location;
+  @restore_location;
   if(initial_window == destination_window)
   {
     if(initial_row > destination_row)
@@ -4258,7 +4258,7 @@ if(!@is_bullet_file)
 
 @paste_after_with_subbullet;
 
-@recall_location;
+@restore_location;
 
 @bobsr;
 
@@ -4291,7 +4291,7 @@ if(!@is_bullet_file)
 
 @paste_after_with_subbullet;
 
-@recall_location;
+@restore_location;
 
 @bobsr;
 
@@ -4443,7 +4443,7 @@ str
 {
 str fp = 'Find gradation.';
 
-// I realize that there is no @recall_location in this method. The @recall_location is
+// I realize that there is no @restore_location in this method. The @restore_location is
 // actually called manually after this method. - JRJ Feb-9-2011
 @save_location;
 
@@ -5097,18 +5097,18 @@ rm('Block^SelectAll');
 @copy;
 @close_and_save_file_wo_prompt;
 
-@recall_location;
+@restore_location;
 eol;
 @paste;
 
 @backspace;
 
 @fix_fat_colon;
-@recall_location;
+@restore_location;
 @word_wrap;
-@recall_location;
+@restore_location;
 @fix_fat_rubric;
-@recall_location;
+@restore_location;
 
 switch(@current_column)
 {
@@ -6194,7 +6194,7 @@ if(!@is_bullet_file)
 @bol;
 @paste;
 
-@recall_location;
+@restore_location;
 
 @footer;
 @say(fp);
@@ -6781,7 +6781,7 @@ else
 
 if(There_Was_A_Problem)
 {
-  @recall_location;
+  @restore_location;
   rm('paste');
 }
 
@@ -7024,7 +7024,7 @@ text(@trim(line_without_lc));
 
 if(return_home)
 {
-  @recall_location;
+  @restore_location;
   if(!@is_structured_line)
   {
     @bobbs;
@@ -7184,7 +7184,7 @@ while(current_line_integer <= original_integer)
 
 if(return_home)
 {
-  @recall_location; 
+  @restore_location; 
 }
 else
 {
@@ -7690,7 +7690,7 @@ str fp = "Delete carriage returns for small segment for external pasting.";
 
 @close_and_save_file_wo_prompt;
 
-@recall_location;
+@restore_location;
 
 @footer;
 
@@ -8452,7 +8452,7 @@ if(@is_bullet_File())
   }
 }
 
-@recall_location;
+@restore_location;
 
 @footer;
 
@@ -8753,7 +8753,7 @@ else
   fp += ' ' + so;
 }
 
-@recall_location;
+@restore_location;
 
 if(initial_window_is_current_window)
 {
@@ -8858,7 +8858,7 @@ str destination_filename = @filename;
 
 paste_at_line_number = @current_line_number;
 
-@recall_location;
+@restore_location;
 
 //if(destination_filename == lower(global_str('filename')))
 //{
@@ -9325,7 +9325,7 @@ if(@seek_in_all_files_2_arguments(sc, so))
       {
         @find_next_small_segment;
       }
-      @recall_column;
+      @restore_column;
     }
   }
   else
@@ -9754,7 +9754,7 @@ if(length(em) == 0)
 else
 {
   fp += ' ' + em;
-  @recall_location;
+  @restore_location;
 }
 
 @footer;
@@ -9812,7 +9812,7 @@ if(length(em) == 0)
 else
 {
   fp += ' ' + em;
-  @recall_location;
+  @restore_location;
 }
 
 @footer;
@@ -10086,7 +10086,7 @@ else
 
 text('q' + 'q');
 
-@recall_location;
+@restore_location;
 down;
 
 if(@is_bullet_file)
@@ -10125,7 +10125,7 @@ rm('Block^SelectAll');
 @copy;
 @close_and_save_file_wo_prompt;
 
-@recall_location;
+@restore_location;
 @add_bullet_above;
 cr;
 @paste;
@@ -10334,12 +10334,12 @@ if(!@find_lc('rfowt'))
 
 @hc_big_segment_content;
 
-@recall_location;
+@restore_location;
 
 @bol;
 @paste;
 
-@recall_location;
+@restore_location;
 
 @footer;
 @say(fp);
@@ -10379,12 +10379,12 @@ if(!@find_lc('rfomt'))
 @format_data_for_monthly_itin;
 
 @close_and_save_file_wo_prompt;
-@recall_location;
+@restore_location;
 
 @bol;
 @paste;
 
-@recall_location;
+@restore_location;
 
 @footer;
 @say(fp);
@@ -10401,7 +10401,7 @@ str fp = 'Paste your quarterly itinerary to its proper place.';
 
 @header;
 
-@recall_location;
+@restore_location;
 
 if(xpos('itinerary', get_line, 1))
 {
@@ -10417,12 +10417,12 @@ if(!@find_lc('rfoqt'))
 
 @hc_big_segment_content;
 
-@recall_location;
+@restore_location;
 
 @bol;
 @paste;
 
-@recall_location;
+@restore_location;
 
 @footer;
 @say(fp);
@@ -11080,11 +11080,54 @@ return(line_Product);
 //;;
 
 void
+@convert_line_to_lower_case()
+{
+str fp = 'Convert line to lower case.';
+
+if(@text_is_selected)
+{
+  str selected_Text = @get_selected_text;
+  delete_block;
+  text(lower(selected_Text));
+  @say(fp);
+  return();
+}
+
+/* Use Case(s)
+
+- 1. Use Case on Dec-21-2011: hey now
+
+*/
+
+put_line(lower(get_line));
+@say(fp);
+}
+
+
+
+//;;
+
+void
 @convert_line_to_sent_and_proper()
 {
 str fp = "Convert line to sentence and proper case.";
 
 @convert_line_to_proper_case;
+@convert_line_to_sentence_case;
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@convert_line_to_sent_and_lower
+{
+str fp = 'Convert line to sentecne and lower case.';
+
+@convert_line_to_lower_case;
 @convert_line_to_sentence_case;
 
 @say(fp);
@@ -11144,34 +11187,6 @@ put_line(Colon_String + Action_Line);
 */
 
 @footer;
-@say(fp);
-}
-
-
-
-//;;
-
-void
-@convert_line_to_lower_case()
-{
-str fp = 'Convert line to lower case.';
-
-if(@text_is_selected)
-{
-  str selected_Text = @get_selected_text;
-  delete_block;
-  text(lower(selected_Text));
-  @say(fp);
-  return();
-}
-
-/* Use Case(s)
-
-- 1. Use Case on Dec-21-2011: hey now
-
-*/
-
-put_line(lower(get_line));
 @say(fp);
 }
 
@@ -11377,22 +11392,7 @@ text(Current_Line);
 
 
 
-//;;
-
-void
-@convert_line_to_lowr_and_senten
-{
-str fp = 'Convert line to lower and sentence case.';
-
-@convert_line_to_lower_case;
-@convert_line_to_sentence_case;
-
-@say(fp);
-}
-
-
-
-//; Dangerous Macro (skw lower case, lower_case)
+//; Dangerous Macro (skw lower case, lower_case, convert_file_to_lowercase)
 
 void
 @convert_file_to_lower_case()
@@ -11453,7 +11453,7 @@ str fp = "Move line to p1 alone.";
 
 @move_line_to_firstp_wme;
 
-@recall_location;
+@restore_location;
 
 @say(fp);
 }
@@ -11506,7 +11506,7 @@ str fp = "Move line to p1 alone.";
 
 @move_subbullet_to_firstp_wme;
 
-@recall_location;
+@restore_location;
 
 @say(fp);
 }
@@ -11550,7 +11550,7 @@ str fp = "Move subrubric to the first position alone.";
 
 @move_subrubric_to_firstp_wme;
 
-@recall_location;
+@restore_location;
 
 @find_next_big_segment;
 
@@ -11598,7 +11598,7 @@ str fp = "Move rubric to the first position alone.";
 
 @move_rubric_to_firstp_wme;
 
-@recall_location;
+@restore_location;
 
 if(@current_line_type != 'rubric')
 {
@@ -11778,7 +11778,7 @@ str fp = "Move line to last position alone.";
 
 @move_line_to_lastp_wme;
 
-@recall_location;
+@restore_location;
 
 @say(fp);
 }
@@ -11828,7 +11828,7 @@ str fp = "Move line to last position alone.";
 
 @move_subbullet_to_lastp_wme;
 
-@recall_location;
+@restore_location;
 
 @say(fp);
 }
@@ -11870,7 +11870,7 @@ str fp = "Move subrubric to the last position alone.";
 
 @move_subrubric_to_lastp_wme;
 
-@recall_location;
+@restore_location;
 
 if(!@is_structured_line)
 {
@@ -11921,7 +11921,7 @@ str fp = "Move rubric to the last position alone.";
 
 @move_rubric_to_lastp_wme;
 
-@recall_location;
+@restore_location;
 
 if(@current_line_type != 'rubric')
 {
@@ -12442,9 +12442,9 @@ str search_target;
 if(arguments == "")
 {
   arguments = @get_user_input_nonspace(fp);
-  if(arguments == @fa)
+  if(arguments == @constant_function_aborted)
   {
-    @say(@fa);
+    @say(@constant_function_aborted);
     return();
   }
 }
@@ -12584,7 +12584,7 @@ return(number_of_lines_in_bullet);
 //;
 
 void
-@recall_location_2()
+@restore_location_2()
 {
 str fp = "Load previously saved location and check for edge case.";
 
@@ -12596,7 +12596,7 @@ if(@is_last_bullet)
   lines_in_bullet -= 2;
 }
 
-@recall_location;
+@restore_location;
 
 while(i < lines_in_bullet)
 {

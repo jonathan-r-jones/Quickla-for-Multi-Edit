@@ -21,7 +21,6 @@ prototype Aliases
   void @delete_next_blank_line();
   void @delete_previous_character();
   void @delete_previous_line();
-  str  @fa();
   str  @filename();
   str  @full_filename();
   str  @filename_extension();

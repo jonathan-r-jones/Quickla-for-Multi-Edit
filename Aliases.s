@@ -1,4 +1,4 @@
-macro_file Aliases; // (!al, !bfal) Aliases.
+macro_file Aliases; // (!rfal, !al, !bfal) Aliases.
 
 // No calls to any at functions. The order of the functions in this file should not matter 
 // for compilation success.
@@ -872,17 +872,6 @@ void
 {
 cr;
 goto_col(1);
-}
-
-
-
-//;
-
-str
-@fa()
-{
-// fcd: Dec-2-2016
-return("Function aborted.");
 }
 
 

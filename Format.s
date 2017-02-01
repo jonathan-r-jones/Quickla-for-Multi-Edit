@@ -1933,7 +1933,7 @@ if(!@is_text_file)
 @copy;
 @close_and_save_file_wo_prompt;
 
-@recall_location;
+@restore_location;
 
 @paste;
 

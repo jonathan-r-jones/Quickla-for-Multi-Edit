@@ -282,7 +282,7 @@ if(!xpos(char(92), Clif_Block, 1))
     {
       Clif_Block = @resolve_environment_variable(Clif_Block);
     }
-    @recall_location;
+    @restore_location;
   }
   else
   {
@@ -365,7 +365,7 @@ if(!@find_lc_ui(fp))
 
 @delete_file;
 
-@recall_location;
+@restore_location;
 
 @footer;
 @say(fp);
@@ -828,7 +828,7 @@ str object_Portion;
 
 if(!@find_lc_known(fp, lc))
 {
-  @recall_location;
+  @restore_location;
   @footer;
   lc_Is_Found = false;
   return(" Error: LC NOT found.");
@@ -838,7 +838,7 @@ object_Portion = @get_multiline_object;
 
 lc_is_found = true;
 
-@recall_location;
+@restore_location;
 
 return(object_Portion);
 }
@@ -857,7 +857,7 @@ str subject_Portion;
 
 if(!@find_lc_known(fp, lc))
 {
-  @recall_location;
+  @restore_location;
   @footer;
   lc_Is_Found = false;
   return(" Error: LC NOT found.");
@@ -865,7 +865,7 @@ if(!@find_lc_known(fp, lc))
 
 subject_Portion = @get_subject;
 
-@recall_location;
+@restore_location;
 lc_Is_Found = true;
 return(subject_Portion);
 }
@@ -980,7 +980,7 @@ rv = @trim_leading_colons_et_al(rv);
 rv = @replace(rv, " (!", "");
 rv = @replace(rv, "cj)", "");
 
-@recall_location;
+@restore_location;
 
 @footer;
 
@@ -1005,7 +1005,7 @@ str lc = 'cj';
 
 if(!@find_lc_known(fp, lc))
 {
-  @recall_location;
+  @restore_location;
   @footer;
   @say(" Error: LC NOT found. (" + lc + ")");
   return('');
@@ -1021,7 +1021,7 @@ rv += '. ';
 
 @set_clipboard(rv);
 
-@recall_location;
+@restore_location;
 
 @say(fp + ' (' + rv + ')');
 return(rv);
@@ -1607,11 +1607,11 @@ if(return_home == 1)
 {
   if(@is_paste_before_in_same_window)
   {
-    @recall_location_2;
+    @restore_location_2;
   }
   else
   {
-    @recall_location;
+    @restore_location;
   }
   goto_col(initial_column);
 }
@@ -1712,7 +1712,7 @@ str path = @get_path_using_lw;
 
 if(lc_is_found)
 {
-  @recall_location;
+  @restore_location;
 }
 
 if(@open_folder(path) == 0)
@@ -1834,7 +1834,7 @@ if(@multiedit(path) == 0)
 
 if(lc_is_found)
 {
-  @recall_location;
+  @restore_location;
 }
 
 @say(fp);
@@ -1877,7 +1877,7 @@ switch(sc)
   case "cj":
     if(!@find_lc_known(fp, sc))
     {
-      @recall_location;
+      @restore_location;
       @say(" Error: LC NOT found. (" + sc + ")");
       return(" Error: LC NOT found. (" + sc + ")");
     }
@@ -1933,7 +1933,7 @@ switch(sc)
     return('');
 }
 
-@recall_location;
+@restore_location;
 return(reserved_word_definition);
 }
 
@@ -2361,7 +2361,7 @@ if(@is_bullet_file)
 
 @anatomize_clif(3, fp);
 
-@recall_location;
+@restore_location;
 
 fp = @trim_period(fp) + ' "' + Distilled_lc + '".';
 
@@ -2472,7 +2472,7 @@ if(!xpos(char(92), Clif_Block, 1))
     {
       Clif_Block = @resolve_environment_variable(Clif_Block);
     }
-    @recall_location;
+    @restore_location;
   }
   else
   {
@@ -2559,7 +2559,7 @@ if(!@find_lc_ui(fp))
 
 @open_folder_in_dos;
 
-@recall_location;
+@restore_location;
 
 @footer;
 @say(fp);
@@ -2582,7 +2582,7 @@ str fp = 'Open folder in DOS remotely 2.';
 
 @open_folder_in_dos;
 
-@recall_location;
+@restore_location;
 
 @footer;
 
@@ -2639,7 +2639,7 @@ else if(!@find_lc_ui(fp))
 
 @open_folder_lw('');
 
-@recall_location;
+@restore_location;
 
 @footer;
 
@@ -2828,7 +2828,7 @@ if(!@find_lc_known(fp, lc))
 str Operation_Outcome;
 @run_clif_under_cursor(Operation_Outcome);
 
-@recall_location;
+@restore_location;
 }
 
 
@@ -2847,7 +2847,7 @@ str fp = "Copy the subject to the clipboard and run the given lc.";
 str sj = @get_subject;
 @set_clipboard(sj);
 
-@recall_location;
+@restore_location;
 
 str lc = @get_indicated_lc_3;
 
@@ -2979,7 +2979,7 @@ str fp = "Search Jira with CJ.";
 @save_location;
 @find_lc('cj');
 @search_jira('', 0);
-@recall_location;
+@restore_location;
 @footer;
 
 @say(fp);
@@ -3268,7 +3268,7 @@ str lc = @hc_word_uc;
 int return_home = true;
 @run_clif_remotely(lc, return_home, fp);
 
-@recall_location;
+@restore_location;
 
 @footer;
 @say(fp);
@@ -3913,7 +3913,7 @@ else
 
 if(return_home)
 {
-  @recall_location;
+  @restore_location;
 }
 
 if(text_Is_Selected)

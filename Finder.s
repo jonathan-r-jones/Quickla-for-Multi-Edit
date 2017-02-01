@@ -1842,7 +1842,7 @@ if(is_exact_search)
 
 @open_cmac_files;
 
-@recall_location;
+@restore_location;
 
 fp = 'Find macro definition for ' + '"' + Distilled_Macro_Name + '".';
 
@@ -1854,7 +1854,7 @@ if(@seek_in_all_files_2_arguments(macro_Name, so))
 }
 else
 {
-  @recall_location;
+  @restore_location;
   fp += ' NOT found.';
   rv = 0;
 }
@@ -1900,7 +1900,7 @@ if(@seek_in_all_files_2_arguments(sc, so))
 }
 else
 {
-  @recall_location;
+  @restore_location;
   fp += ' NOT found.';
 }
 
@@ -1947,7 +1947,7 @@ fp = 'Find T-SQL definition for ' + '"' + function_Name + '".';
 if(!@seek_in_all_files_2_arguments(function_Name, so))
 {
   fp += ' NOT found.';
-  @recall_location;
+  @restore_location;
 }
 
 @say(fp);
@@ -1978,12 +1978,12 @@ fp = 'Find macro content for ' + '"' + sc + '".';
 
 @open_cmac_files;
 
-@recall_location;
+@restore_location;
 eol;
 
 if(!@seek_in_all_files_2_arguments(sc, so))
 {
-  @recall_location;
+  @restore_location;
   fp += ' NOT found.';
 }
 
@@ -2626,7 +2626,7 @@ corrupted or tampered with. */
 
 @header;
 
-@find_lc('rfc');
+@find_lc('rfal');
 
 str fp = "Validate the format and content of open files.";
 
@@ -3381,7 +3381,7 @@ str fp = '';
 
 // Find with a gradient of search strengths (1-3), with 1 being the most precise.
 
-// I realize that there is no @recall_location in this method. The @recall_location is
+// I realize that there is no @restore_location in this method. The @restore_location is
 // actually called manually after this method. - JRJ Feb-9-2011
 @save_location;
 
@@ -3617,7 +3617,7 @@ rv = @seek_in_all_files_2_arguments(sc, so);
 
 if(rv == 2)
 {
-  @recall_location;
+  @restore_location;
 }
 
 if((text_is_selected) && (rv == 2))
@@ -3627,22 +3627,6 @@ if((text_is_selected) && (rv == 2))
 
 @say(fp += ' ' + so + ' (' + Pretty_sc + ')');
 return(rv);
-}
-
-
-
-//;
-
-void
-@find_mappings_file_definition()
-{
-str fp = 'Find mappings file definition.';
-
-str sc = @get_wost;
-
-@bof;
-
-@say(sc);
 }
 
 
@@ -3707,6 +3691,22 @@ sc = ':' + sc;
 
 @footer;
 @say(fp);
+}
+
+
+
+//;
+
+void
+@find_mappings_file_definition()
+{
+str fp = 'Find mappings file definition.';
+
+str sc = @get_wost;
+
+@bof;
+
+@say(sc);
 }
 
 
