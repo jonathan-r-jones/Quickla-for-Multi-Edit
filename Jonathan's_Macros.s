@@ -6186,23 +6186,4 @@ str URL = 'https://tcg9.hostedaccess.com/DeltekTC/welcome.msv';
 
 
 
-//;
-
-void
-@rtm
-{
-str fp = "test";
-   fp = "Feb-14-2017 0:52 AM";
-// fcd: "Feb-14-2017
-@header;
-
-
-//qq-1
-
-@footer;
-@say(fp);
-}
-
-
-
 //;EOF << (!efjo)
