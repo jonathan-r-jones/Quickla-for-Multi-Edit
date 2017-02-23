@@ -88,7 +88,7 @@ prototype Shared
   int  @is_s_file();
   int  @is_sql_file();
   int  @is_text_file();
-  int  @is_xxl_file(str filename_Extension);
+  int  @is_markup_file(str filename_Extension);
   int  @length(str string);
   void @load_highlighted_text();
   void @log(str text_to_write);

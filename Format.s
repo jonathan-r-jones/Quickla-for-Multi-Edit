@@ -1337,6 +1337,7 @@ switch(lower(Get_Extension(File_name)))
     rv = 'rem ';
     break;
   case 'config':
+  case 'htm':
   case 'xml':
   case 'xsl':
   case 'xslt':
@@ -1505,7 +1506,7 @@ if(Comment_Determinant != @left(Comment_Characters, 2)) // Comment the block.
   {
     Find_Text('^', 1, _regexp);
     Replace(Comment_Characters);
-    if(@is_xxl_file(@filename_extension))
+    if(@is_markup_file(@filename_extension))
     {
       eol;
       text('-->');
@@ -1583,7 +1584,7 @@ if(Comment_Determinant == @left(Comment_Characters, 2)) // Uncomment the block.
   {
     Find_Text(Comment_Characters, 1, 0);
     Replace('');
-    if(@is_xxl_file(@filename_extension))
+    if(@is_markup_file(@filename_extension))
     {
       @eol;
       @backspace;
@@ -1636,7 +1637,7 @@ int is_Already_Commented = false;
 char Comment_Character = @left(@comment_characters, 1);
 char Comment_Determinant = cur_char;
 
-if(@is_xxl_file(@filename_extension))
+if(@is_markup_file(@filename_extension))
 {
   right;
   if(@current_character == '!')
@@ -1662,7 +1663,7 @@ if(is_Already_Commented) // Uncomment the block.
 {
   while(c_line <= Block_Line2)
   {
-    if(@is_xxl_file(@filename_extension))
+    if(@is_markup_file(@filename_extension))
     {
       Find_Text(@comment_characters, 1, 0);
       Replace('');
@@ -1685,7 +1686,7 @@ else // Comment the block.
 {
   while(c_line <= Block_Line2)
   {
-    if(@is_xxl_file(@filename_extension))
+    if(@is_markup_file(@filename_extension))
     {
       Find_Text('', 1, _regexp);
       Replace(@comment_characters);

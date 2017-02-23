@@ -1565,31 +1565,6 @@ if(source_lc_is_found)
   lc = 'dest' + looked_up_rubrics_lc;
 }
 
-if(@filename == 'ne.asc')
-{
-  if(lc == 'destjd')
-  {
-    lc = 'jd';
-  }
-  else if(lc == 'destcj')
-  {
-    // Is this supposed to be blank? Feb-27-2014
-  }
-  else
-  {
-    lc = 'co';
-  }
-}
-
-if(lc == 'destcj')
-{
-  lc = 'cj';
-  if(!@find_lc(lc))
-  {
-    lc = 'rfco';
-  }
-}
-
 @find_lc(lc);
 
 if(!@find_lc_known(fp, lc))
@@ -1861,7 +1836,7 @@ return(current_line);
 
 
 
-//;;
+//;; (!rese)
 
 str
 @get_reserved_word(str sc = parse_str('/1=', mparm_str))
@@ -2802,7 +2777,6 @@ rv = @anatomize_clif(0, fp);
 operation_Outcome = fp;
 
 //@say(fp);
-//qjq-1
 
 return(rv);
 }
@@ -3113,7 +3087,6 @@ if(@contains(operation_outcome, 'not an executable'))
 }
 
 @say(fp + ' ' + Operation_Outcome);
-//qjq-1
 }
 
 
@@ -4133,6 +4106,106 @@ str fp = "Find backwards from EOF using user input.";
 @find_backwards('rfeof.u');
 
 @footer;
+}
+
+
+
+//; (!2mum6)
+
+str
+@flex_search(str arguments = parse_str('/1=', mparm_str))
+{
+str fp = "Flex search.";
+
+// fcd: Feb-16-2017
+
+@save_column;
+
+int initial_column = @current_column;
+str arg_1, arg_2, arg_3, arg_4;
+
+arguments = @lower(arguments);
+
+@parse_aguments_4_parameters(arguments, ".", arg_1, arg_2, arg_3, arg_4);
+
+//@say(fp + ' arg_1: ' + arg_1 + ' (Jan-8-2017 11:06 PM)');return();
+
+str lc = arg_1;
+
+str incorrect_parameter_value = '';
+
+str location_modifier = '';
+str search_direction = '';
+
+str sc = @get_reserved_word(arg_2);
+
+if(lc != '')
+{
+  @find_lc(lc);
+}
+
+switch(arg_3)
+{
+  case 'b':
+    search_direction = arg_3;
+    break;
+  case 'ef':
+    location_modifier = arg_3;
+    break;
+  case 'tf':
+    location_modifier = arg_3;
+    break;
+}
+
+switch(arg_4)
+{
+  case 'b':
+    search_direction = arg_4;
+    break;
+  case 'ef':
+    location_modifier = arg_4;
+    break;
+  case 'tf':
+    location_modifier = arg_4;
+    break;
+}
+
+if(location_modifier == 'ef')
+{
+  @eof;
+}
+else if(location_modifier == 'tf')
+{
+  @tof;
+}
+
+if(search_direction == '')
+{
+  @seek(sc);
+}
+else
+{
+  up;
+  if(find_text(sc, 0, _regexp | _backward))
+  {
+    pop_mark;
+    fp = 'Found in this file.';
+  }
+  else
+  {
+    goto_mark;
+    fp = "NOT found in this file.";
+  }
+}
+
+//@say(fp + ' sc: ' + sc + ' (Feb-16-2017)');return('');
+//@say(fp + ' arg_2: ' + arg_2 + ' (Jan-8-2017 11:06 PM)');return('');
+
+goto_col(initial_column);
+
+fp += " (Args: '" + arguments + "')";
+@say(fp);
+return('');
 }
 
 

@@ -10,6 +10,7 @@ prototype Aliases
   int  @current_line_contains_regex(str parameter);
   int  @current_line_number();
   int  @current_row();
+  int  @current_row_number();
   int  @current_window();
   int  @current_window_number();
   str  @define_what_a_word_is();

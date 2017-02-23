@@ -504,6 +504,16 @@ return(c_line);
 //;
 
 int
+@current_row_number()
+{
+return(c_line);
+}
+
+
+
+//;
+
+int
 @current_row()
 {
 return(c_line);

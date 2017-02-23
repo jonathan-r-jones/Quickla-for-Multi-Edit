@@ -192,21 +192,21 @@ return(1);
 //;;
 
 int
-@is_xxl_file(str filename_Extension)
+@is_markup_file(str filename_Extension)
 {
-str fp = 'Verify that the user is in a file with a "xsl" extension.';
+str fp = 'Is markup file.';
 switch(filename_Extension)
 {
   case "config":
+  case "htm":
   case "xml":
   case "xsl":
   case "xslt":
+    return(1);
     break;
-  default:
-    @say(fp + ' (false) ');
-    return(0);
 }
-return(1);
+@say(fp + ' (false) ');
+return(0);
 }
 
 
@@ -3411,8 +3411,8 @@ while(Window_Counter < Window_Count)
 }
 */
 
-int Window_Counter = 0;
-int Initial_Window = cur_Window;
+int window_counter = 0;
+int initial_window = cur_window;
 
 do
 {
@@ -3420,7 +3420,7 @@ do
   @next_window;
 } while(cur_window != Initial_Window);
 
-return(Window_Counter);
+return(window_counter);
 }
 
 
@@ -4111,6 +4111,24 @@ str
 {
 // fcd: Jan-25-2017
 return('LC NOT found.');
+}
+
+
+
+//;
+
+str
+@initial_window_and_line_number
+{
+str fp = "Initial window and line number.";
+
+// fcd: "Feb-18-2017
+
+int initial_window_number = @current_window_number;
+int initial_row_number = @current_row_number;
+str return_value = str(initial_window_number) + '-' + str(@current_row_number);
+@say(fp + ' (' + return_value + ')');
+return(return_value);
 }
 
 

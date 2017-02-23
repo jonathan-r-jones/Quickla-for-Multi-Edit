@@ -164,7 +164,7 @@ else if(find_text(@subrubric, 1, _regexp))
 }
 goto_col(current_column);
 
-@say(rv);
+//@say(rv);
 return(rv);
 }
 
@@ -1660,7 +1660,6 @@ if(number_of_bullets_in_rubric != 0)
     @find_next_bullet;
     counter++;
   }
-
   @bob;
 }
 
@@ -10020,7 +10019,7 @@ else
   cr;
   text(@comment_characters);
   text('q' + 'q-1');
-  if(@is_xxl_file(@filename_extension))
+  if(@is_markup_file(@filename_extension))
   {
     eol;
     text(' -->');
@@ -11705,7 +11704,7 @@ if(!@is_batch_file)
 @bol;
 @paste;
 
-@seek_from_bof('rfdp');
+@seek_from_bof('rfcea');
 
 @bor;
 @cut_rubric;

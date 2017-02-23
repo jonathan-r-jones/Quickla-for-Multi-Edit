@@ -212,7 +212,7 @@ return(@seek_next(sc, so));
 
 //;;
 
-void
+int
 @seek_from_bof(str sc = parse_str('/1=', mparm_str))
 {
 str fp = 'Seek from bof.';
@@ -222,7 +222,7 @@ str so;
 
 @bof;
 
-@seek_next(sc, so);
+return(@seek_next(sc, so));
 }
 
 
@@ -282,7 +282,7 @@ if(@seek_next(sc, sO))
 {
   fs = Found_Str;
   pop_mark;
-  if((@current_line_number == Initial_Line_Number))
+  if((@current_line_number == initial_line_number))
   {
     sO = 'This is the ONLY occurrence in all open files.';
     return(2);
@@ -814,7 +814,7 @@ if(length(lc) == 0)
   return();
 }
 
-//@say(fp + ' lc: ' + lc + ' (Jan-17-2017 1:09 PM)');return(); //qjq
+//@say(fp + ' lc: ' + lc + ' (Jan-17-2017 1:09 PM)');return();
 
 fp += ' (' + lc + ')';
 
@@ -1096,7 +1096,7 @@ if(Current_Line_Number == @current_line_number)
   fp += ' Cursor has reached the last bullet.';
 }
 
-@say(fp);
+//@say(fp);
 return(rv);
 }
 
@@ -2103,7 +2103,7 @@ void
 {
 str fp = "Find definition, search exactly.";
 
-if(@is_xxl_file(filename_Extension))
+if(@is_markup_file(filename_Extension))
 {
   @find_template_definition_core(function_Name);
   return();
@@ -3685,7 +3685,8 @@ str sc = @hc_word_uc();
 
 sc = make_literal_x(sc);
 
-sc = ':' + sc;
+sc = ':' + sc + '$';
+
 //@say(fp + ' sc:' + sc + ' (Nov-28-2016 6:18 PM)');return(); //
 @seek_in_all_files_2_arguments(sc, fp);
 

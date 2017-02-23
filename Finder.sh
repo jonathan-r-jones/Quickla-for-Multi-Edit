@@ -27,7 +27,7 @@ prototype Finder
   int  @replace_string_in_file_int(str old_String, str new_String);
   int  @replace_string_in_file_cs(str old_String, str new_String);
   int  @seek(str sc);
-  void @seek_from_bof(str sc);
+  int  @seek_from_bof(str sc);
   int  @seek_in_all_files_2_arguments(str sc, str &so);
   int  @seek_in_all_files_core(str sc, str &so, str &fs);
   void @seek_in_all_files_descriptive(str fp, str sc);

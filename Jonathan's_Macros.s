@@ -5355,7 +5355,10 @@ if(!@is_batch_file)
   return();
 }
 
-@seek_from_bof('!rfdp');
+if(@seek_from_bof('!rf' + 'cea') != 1)
+{
+  return();
+}
 
 @bor;
 @cut_rubric;
@@ -5413,7 +5416,7 @@ up;
 
 @delete_block;
 
-@seek('Creation Date');
+@seek('FCD');
 @eol;
 text(' ');
 @add_text_date;
@@ -5424,9 +5427,21 @@ down;
 down;
 down;
 down;
+@bol;
+text('rem q' + 'q-1');
+up;
+up;
+up;
+up;
+up;
+up;
+up;
+up;
 @eol;
+text(' ');
 
 @footer;
+
 @say(fp);
 }
 
@@ -6181,6 +6196,43 @@ str URL = 'https://tcg9.hostedaccess.com/DeltekTC/welcome.msv';
 
 @surf(URL, 1);
 
+@say(fp);
+}
+
+
+
+//;
+
+void
+@words_with_friends_helper
+{
+str fp = "Words with Friends Word Finder.";
+  fp = "Feb-18-2017 10:55 PM";
+// fcd: Feb-18-2017
+
+// Problem: Grammar should be unaccaptable because it has a double m.
+
+str rs;
+str sc;
+
+@header;
+sc = '[. .][armyhag][armyhag][armyhag][armyhag][armyhag][armyhag][armyhag][. .]';
+@eol;
+
+int is_found = @seek_in_all_files_2_arguments(sc, fp);
+
+if(@contains(found_str, 'mm'))
+{
+  @seek_in_all_files_2_arguments(sc, fp);
+}
+@footer;
+return();
+@seek(sc);
+@replace_next_occurrence_only(sc, rs);
+@replace_all_occurrs_inf_no_tof(sc, rs);
+
+rs = '\0';
+@say(found_str);
 @say(fp);
 }
 
