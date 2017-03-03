@@ -1564,6 +1564,11 @@ if(source_lc_is_found)
 {
   lc = 'dest' + looked_up_rubrics_lc;
 }
+else if(@filename == 'ne.asc')
+{
+  // The destination-source convention should override the "if-I'm-in-the-NE" window convention.
+  lc = 'rfco';  
+}
 
 @find_lc(lc);
 
@@ -3010,7 +3015,7 @@ Set_Global_Str('inner_status_message', status_Message);
 
 
 
-//;; Acting as opposed to thinking.
+//;;
 
 void
 @execute_code_word_line()
@@ -4137,7 +4142,16 @@ str incorrect_parameter_value = '';
 str location_modifier = '';
 str search_direction = '';
 
-str sc = @get_reserved_word(arg_2);
+str sc;
+
+if(@is_reserved_word(arg_2))
+{
+  sc = @get_reserved_word(arg_2);
+}
+else
+{
+  sc = arg_2;
+}
 
 if(lc != '')
 {

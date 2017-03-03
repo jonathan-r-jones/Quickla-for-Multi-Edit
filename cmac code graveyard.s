@@ -1,3 +1,39 @@
+//;;
+
+void
+@open_verizon_an_easier_way
+{
+str fp = "Open Deltek with cell number prepasted into buffer.";
+
+str URL = 'http://www.verizonwireless.com/myverizon';
+
+//@set_clipboard('');
+
+@surf(URL, 0);
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@open_deltek_an_easier_way
+{
+str fp = "Open Deltek an easier way.";
+
+str URL = 'https://tcg9.hostedaccess.com/DeltekTC/welcome.msv';
+
+//@set_clipboard('[Interplay goes here].');
+
+@surf(URL, 1);
+
+@say(fp);
+}
+
+
+
 //;
 
 void

@@ -119,9 +119,6 @@ switch(@filename_extension)
   case 'config':
     return("^ @<entity type");
     break;
-  case 'htm':
-    return("^<header");
-    break;
   case 'ps1':
     return("^;");
     break;
@@ -135,6 +132,7 @@ switch(@filename_extension)
   case 'xsl':
     return("^ @<xsl:t");
     break;
+  case 'htm':
   case 'xml':
   case 'xslt':
     return('^ @<!--;');
@@ -178,10 +176,10 @@ switch(lower(get_extension(File_name)))
   case 'sql':
     return("^--;");
     break;
-  case 'htm':
   case 'xml':
     return("^<header");
     break;
+  case 'htm':
   case 'xsl':
   case 'xslt':
     return('^ @<!--;');

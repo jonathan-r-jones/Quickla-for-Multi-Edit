@@ -1994,24 +1994,6 @@ url = 'https://mail.google.com';
 
 
 
-//;;
-
-void
-@open_verizon_an_easier_way
-{
-str fp = "Open Deltek with cell number prepasted into buffer.";
-
-str URL = 'http://www.verizonwireless.com/myverizon';
-
-@set_clipboard('7039271233');
-
-@surf(URL, 0);
-
-@say(fp);
-}
-
-
-
 //;
 
 void
@@ -4048,7 +4030,7 @@ str oj = @hc_object;
 
 @restore_location;
 text(oj);
-@eol;
+//@eol;
 
 @footer;
 @say(fp + ' (' + oj + ')');
@@ -5378,7 +5360,7 @@ if(@seek_from_bof('!rf' + 'cea') != 1)
 void
 @add_batch_file_stub
 {
-str fp = "Add batch file stub.";
+str fp = "Add batch file new stub.";
 
 // fcd: Sep-21-2016
 
@@ -6042,7 +6024,7 @@ str fp = "Open pretty sett file.";
 str fp = "Synchronize my Savannah files in the background.";
 
 str command_string = 'c:\windows\system32\cmd.exe /k ';
-str parameter = get_environment("savannah") + '\belfry\show_set_2.bat';
+str parameter = get_environment("savannah") + '\belfry\show_set_3.bat';
 
 command_string += parameter;
 
@@ -6074,6 +6056,7 @@ void
 @seek('^PATH=');
 @bol;
 cr;
+@tof;
 @footer;
 }
 
@@ -6084,10 +6067,14 @@ cr;
 void
 @open_rdp_an_easier_way
 {
-str fp = "Open RDP an easier way.";
+str fp = "Run RDP.";
+
+@header;
 
 @run_clif_internally('rfrdp');
 @set_clipboard('mercury-jp.dreamhammer.com:21624');
+
+@footer;
 
 @say(fp);
 }
@@ -6186,24 +6173,6 @@ text(']');
 //;
 
 void
-@open_deltek_an_easier_way
-{
-str fp = "Open Deltek an easier way.";
-
-str URL = 'https://tcg9.hostedaccess.com/DeltekTC/welcome.msv';
-
-//@set_clipboard('[Interplay goes here].');
-
-@surf(URL, 1);
-
-@say(fp);
-}
-
-
-
-//;
-
-void
 @words_with_friends_helper
 {
 str fp = "Words with Friends Word Finder.";
@@ -6233,6 +6202,22 @@ return();
 
 rs = '\0';
 @say(found_str);
+@say(fp);
+}
+
+
+
+//;
+
+void
+@echo_string
+{
+str fp = "Echo string.";
+
+// fcd: "Feb-23-2017
+
+fp += ' Current line type: "' + @current_line_type + '"';
+
 @say(fp);
 }
 

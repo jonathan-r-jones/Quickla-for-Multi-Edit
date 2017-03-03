@@ -164,6 +164,11 @@ else if(find_text(@subrubric, 1, _regexp))
 }
 goto_col(current_column);
 
+if(!@is_content_area_file)
+{
+  rv = ''; 
+}
+
 //@say(rv);
 return(rv);
 }
@@ -7859,7 +7864,7 @@ void
 {
 str fp = "Contextually aware highcopy perimeter button.";
 
-//@header; //This is commented because it messes up the highligthing. Mar-4-2011
+//@header; This is commented because it messes up the highligthing. Mar-4-2011
 
 str current_line_type = @current_line_type;
 
@@ -8016,11 +8021,6 @@ if(@is_selected)
 @header;
 
 str current_line_type = @current_line_type;
-
-if(!@is_content_area_file)
-{
-  current_line_type = ''; 
-}
 
 switch(current_line_type)
 {
@@ -9318,14 +9318,11 @@ if(@seek_in_all_files_2_arguments(sc, so))
   // This is the default behavior.
   if(@is_bullet_file)
   {
-    if(@first_character_in_line == ':')
+    if(!@is_last_bullet)
     {
-      if(!@is_last_bullet)
-      {
-        @find_next_small_segment;
-      }
-      @restore_column;
+      @find_next_small_segment;
     }
+    @restore_column;
   }
   else
   {
