@@ -1567,7 +1567,7 @@ if(source_lc_is_found)
 else if(@filename == 'ne.asc')
 {
   // The destination-source convention should override the "if-I'm-in-the-NE" window convention.
-  lc = 'rfco';  
+  lc = 'rfco';
 }
 
 @find_lc(lc);

@@ -2923,14 +2923,6 @@ do
 
   if(length(em) == 0)
   {
-    if(@seek_next(@space_close_bracket(Regex_Description, rs), so))
-    {
-      em = Regex_Description;
-    }
-  }
-
-  if(length(em) == 0)
-  {
     if(@seek_next(@space_eol_blank_line(Regex_Description, rs), so))
     {
       em = Regex_Description;

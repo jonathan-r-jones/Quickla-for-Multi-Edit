@@ -2189,16 +2189,28 @@ void
 {
 str fp = 'Close last window.';
 
+@save_location;
 @switch_to_last_window;
-
 if(!@file_is_read_only(fp))
 {
-  Save_File;
+  save_file;
 }
-
 delete_window;
+@restore_location;
 
 @say(fp);
+}
+
+
+
+//;;
+
+void
+@@close_last_window
+{
+@header;
+@close_last_window;
+@footer;
 }
 
 
@@ -4061,6 +4073,7 @@ if(!@find_lc_known(fp, lc))
 }
 
 str oj = @hc_object;
+@set_clipboard(oj);
 
 @restore_location;
 @footer;
@@ -6087,11 +6100,12 @@ void
 @open_local_host_an_easier_way
 {
 str fp = "Open Local Host with interplay prepasted into buffer.";
+
 fp = "Open localhost an easier way.";
 
 str URL = 'http://localhost:8080';
 
-@set_clipboard('pa55w0rd');
+@set_clipboard('t');
 
 @surf(URL, 1);
 

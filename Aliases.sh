@@ -18,7 +18,7 @@ prototype Aliases
   void @delete_character();
   void @delete_current_character();
   void @delete_line();
-  void @delete_markers();
+  void @clear_markers();
   void @delete_next_blank_line();
   void @delete_previous_character();
   void @delete_previous_line();

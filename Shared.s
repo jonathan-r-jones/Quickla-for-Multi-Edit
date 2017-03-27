@@ -1000,7 +1000,7 @@ do
   {
     // Notice that it returns "1" if the window is found, and "0" if not.
     Window_Is_Found = 1;
-    @delete_markers;
+    @clear_markers;
     break;
   }
   rm('NextWin');
@@ -3449,6 +3449,18 @@ str fp = "Close and save the file without prompting the user.";
 save_file;
 delete_window;
 @say(fp);
+}
+
+
+
+//;;
+
+void
+@@close_and_save_file_wo_prompt
+{
+@header;
+@close_and_save_file_wo_prompt;
+@footer;
 }
 
 

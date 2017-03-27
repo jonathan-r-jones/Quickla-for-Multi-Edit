@@ -610,20 +610,6 @@ return(sc);
 //;
 
 str
-@space_close_bracket(str &regex_Description, str &rS)
-{
-str fp = 'Space close bracket.';
-str sc = char(32) + '(\' + char(93) + ')';
-rS = '\0';
-regex_Description = fp;
-return(sc);
-}
-
-
-
-//;
-
-str
 @space_colon(str &regex_Description, str &rS)
 {
 str fp = "Space colon.";

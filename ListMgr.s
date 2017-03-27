@@ -5575,6 +5575,7 @@ blah blah: black_dwarf
 */
 
 str rv = @get_selected_text;
+rv = @resolve_environment_variable(rv);
 
 set_global_str('cmac_return_value', rv);
 

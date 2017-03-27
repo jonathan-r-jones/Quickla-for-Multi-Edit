@@ -783,9 +783,6 @@ Number_of_Replacements +=
 Number_of_Replacements += 
   @replace_string_in_file_int(@show_ipa(Replacement_Description, rs), rs);
 
-Number_of_Replacements += 
-  @replace_string_in_file_int(@space_close_bracket(Replacement_Description, rs), rs);
-
 number_of_replacements += 
   @replace_string_in_file_int(@space_eol_blank_line(replacement_description, rs), rs);
 
@@ -1079,7 +1076,9 @@ while(!at_eof)
     Number_of_Lines_Added++;
     @bol;
     cr;
-    @say('nothing');
+    down;
+    @bol;
+    cr;
   }
   down;
 }
@@ -1191,6 +1190,92 @@ if(wuc == 'Wikipedia')
 //;;
 
 void
+@format_file_3()
+{
+str fp = 'Format JSON.';
+
+// fcd: "Mar-16-2017
+
+if(!@is_text_file)
+{
+  return();
+}
+
+@header;
+
+
+@footer;
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@format_json
+{
+str fp = "Format JSON";
+
+// fcd: Mar-16-2017
+str rs;
+str sc;
+
+@header;
+sc = '(los)';
+rs = '$\0';
+right;
+right;
+right;
+
+@replace_all_occurrs_inf_no_tof(sc, rs);
+
+@footer;
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@format_file_2()
+{
+str fp = 'Format text file according to my new rules.';
+
+// fcd: "Mar-16-2017
+/*
+skw Format document, @format_document, @format_text_file, format text file), format_file, 
+reformat_file, reformat file
+
+*/
+
+if(!@is_text_file)
+{
+  return();
+}
+
+@header;
+
+@add_blank_lines;
+@word_wrap_file;
+@add_blank_line_if_ln_exceeds_96;
+@add_blank_line_if_ln_exceeds_96;
+@hard_format_long_lines_in_file;
+@delete_blank_lines;
+
+@footer;
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
 @format_file()
 {
 str fp = 'Format text file according to my rules.';
@@ -1217,8 +1302,11 @@ if(!@is_text_file)
 @replace_all_special_characters;
 
 @delete_space_at_bol;
+
 @delete_space_at_eol;
+
 @delete_blank_line_at_eof;
+
 @delete_the_word_wikipedia;
 
 @bof;
@@ -1393,11 +1481,11 @@ switch(lower(get_extension(File_name)))
     {
       Character_to_Add = ';';
     }
-    if(@next_character != Character_to_Add)
-    {
-      Have_Added_Character = true;
-      text(Character_to_Add);
-    }
+      have_added_character = true;
+      text(character_to_add);
+      if(@next_character != Character_to_Add)
+      {
+      }
     break;
   case 'ps1':
     text('#');
@@ -1419,28 +1507,24 @@ switch(lower(get_extension(File_name)))
   case 'sql':
     if(@next_character != '-')
     {
-      Have_Added_Character = true;
+      have_added_character = true;
       text('--');
     }
     break;
   default:
-    Have_Added_Character = true;
+    have_added_character = true;
     text(' ');
 }
 
 goto_mark;
 
-if(Have_Added_Character)
+if(have_added_character)
 {
-  right;
-  right;
-  mark_pos;
   @eol;
   if(@current_column > 95)
   {
     @word_wrap;
   }
-  goto_mark;
   while(@current_column > 95)
   {
     left;
@@ -1450,7 +1534,6 @@ else
 {
   fp += ' Third characters are disallowed due to my desire to keep a flattened hierarchy.';
 }
-
 
 @say(fp);
 }

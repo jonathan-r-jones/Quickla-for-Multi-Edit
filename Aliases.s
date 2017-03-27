@@ -841,7 +841,7 @@ make_message(message);
 //;
 
 void
-@delete_markers()
+@clear_markers()
 {
 str fp = 'Clear markers.';
 pop_mark;
