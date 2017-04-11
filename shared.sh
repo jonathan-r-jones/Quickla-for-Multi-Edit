@@ -107,6 +107,7 @@ prototype Shared
   int  @position_of_regex(str parameter);
   void @previous_window();
   void @restore_column();
+  void @recall_location();
   void @restore_location();
   str  @remove_nonmeaningful_term_chars(str parameter);
   str  @replace(str original_String, str old_Characters, str new_Characters);

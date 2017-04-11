@@ -26,6 +26,8 @@ Metadata: Track Size (!tsjo)
     Date       Lines    Bytes    Macros   Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+:Mar-31-2017   6,277     86,561      224
+
 : Dec-2-2016   5,992     83,208      214
 
 :Nov-17-2016   5,796     80,742      208
@@ -5232,6 +5234,36 @@ url = @get_remote_oj_using_klc('rfwash', is_found);
 //;
 
 void
+@open_multiple_local_hosts
+{
+str fp = "Open multiple local hosts.";
+
+// fcd: Mar-31-2017
+
+@header;
+
+int is_found = 0;
+str url;
+
+url = '127.0.0.1'; @surf(url, 1);
+url = '70.182.186.117'; @surf(url, 1);
+url = 'http://localhost'; @surf(url, 1);
+url = 'http://localhost/'; @surf(url, 1);
+url = 'https://localhost/app';
+url = 'http://localhost:8080'; @surf(url, 1);
+url = 'http://localhost:8081'; @surf(url, 1);
+url = 'localhost';
+url = 'localhost.com'; @surf(url, 1);
+
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
 @do_synonym_task()
 {
 str fp = "Do synonym task.";
@@ -5411,7 +5443,7 @@ up;
 
 @delete_block;
 
-@seek('FCD');
+@seek('fcd');
 @eol;
 text(' ');
 @add_text_date;
@@ -6037,6 +6069,7 @@ str fp = "Open pretty sett file.";
 str fp = "Synchronize my Savannah files in the background.";
 
 str command_string = 'c:\windows\system32\cmd.exe /k ';
+
 str parameter = get_environment("savannah") + '\belfry\show_set_3.bat';
 
 command_string += parameter;
@@ -6103,11 +6136,41 @@ str fp = "Open Local Host with interplay prepasted into buffer.";
 
 fp = "Open localhost an easier way.";
 
-str URL = 'http://localhost:8080';
+str url;
+
+url = '127.0.0.1'; // This is a working redirect. Apr-10-2017
+url = '70.182.186.117';
+url = 'http://10.0.2.2';
+url = 'http://10.0.2.2/JWS/MercuryWebService';
+url = 'http://10.0.2.2/JWS/MercuryWupService';
+url = 'http://10.0.2.2/pub/jwsController';
+url = 'http://localhost'; // This is a working redirect. Apr-10-2017
+url = 'http://localhost/'; // This is a working redirect. Apr-10-2017
+url = 'https://localhost/app';
+url = 'http://localhost:8080';
+url = 'http://localhost:8081';
+url = 'localhost.com';
+
+url = 'localhost/app/mercury.html';
+url = 'localhost/mercury.html/app/';
+url = 'localhost/mercury.html/app';
+url = 'localhost'; // This is a working redirect. Apr-10-2017
+url = 'localhost/app/mercury.html';
+url = 'localhost/app';
+url = 'localhost/mercury.html';
+
+// skw: machine, machinename, machine_name
+
+switch(@lower(Get_Environment("ComputerName")))
+{
+  case "buzz":
+    url = 'http://localhost:8080';
+    break;
+}
 
 @set_clipboard('t');
 
-@surf(URL, 1);
+@surf(url, 1);
 
 @say(fp);
 }
@@ -6237,4 +6300,100 @@ fp += ' Current line type: "' + @current_line_type + '"';
 
 
 
-//;EOF << (!efjo)
+//;
+
+void
+@copy_j1_into_j2
+{
+str fp = "Copy j1.txt into j2.txt.";
+
+// fcd: "Mar-29-2017
+@header;
+
+@open_file('c:\a\j1.txt');
+@select_all;
+@copy;
+@close_and_save_file_wo_prompt;
+
+@open_file('c:\a\j2.txt');
+@select_all;
+delete_block;
+@paste;
+@bof;
+
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
+@copy_to_study_hall(str scope = parse_str('/1=', mparm_str))
+{
+str fp = "Copy to study hall.";
+
+// fcd: "Mar-31-2017
+@header;
+
+if(scope == '')
+{
+  scope = 'b';
+}
+
+switch(scope)
+{
+  case 'b':
+    if(!@is_bullet_file)
+    {
+      return();
+    }
+    @hc_bullet;
+    break;
+  case 'l':
+    @hc_line;
+    break;
+  case 'w':
+    @hc_word_uc;
+    break;
+  default:
+}
+
+@save_location;
+
+@find_lc('rfhall');
+
+switch(scope)
+{
+  case 'b':
+    @paste_after;
+    break;
+  case 'l':
+    @eol;
+    cr;
+    cr;
+    text(':');
+    @paste;
+    if(@second_character(get_line) == ':')
+    {
+      @bol;
+      right;
+      @delete_character;
+    }
+    break;
+  case 'w':
+    @add_bullet_below;
+    @paste;
+    break;
+}
+
+@recall_location;
+
+@footer;
+@say(fp);
+}
+
+
+
+//; EOF << (!efjo)

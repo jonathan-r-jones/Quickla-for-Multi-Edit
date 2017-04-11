@@ -51,10 +51,12 @@ prototype Aliases
   void @select_all();
   int  @text_is_selected();
   str  @trim_after_character(str string, cutoff_character);
+  str  @trim_after_phrase(str whole_string, str phrase);
   str  @trim_after_first_sentence(str string);
   str  @trim_before_character(str string, cutoff_character);
   str  @trim_first_character(str parameter);
-  str  @trim_before_character(str parameter);
+  str  @trim_before_character(str whole_string, str phrase);
+  str  @trim_before_phrase(str whole_string, str phrase);
   str  @trim_colons(str string);
   str  @trim_last_character(str parameter);
   str  @trim_leading_colons_et_al(str string);

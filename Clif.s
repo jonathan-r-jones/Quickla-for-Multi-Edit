@@ -28,6 +28,8 @@ Metadata: Track Size (!tscl, !tscf)
     Date       Lines     Bytes    Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+:Mar-31-2017   4,228     78,179      108
+
 :Nov-17-2016   4,120     75,752      105
 
 : Oct-7-2016   4,064     74,683      104
@@ -1965,6 +1967,56 @@ else
 
 
 
+//;;
+
+void
+@process_batx_clif_block(str clif_block)
+{
+str fp = "Process batx clif block.";
+   fp = "Apr-6-2017 3:09 PM";
+// fcd: "Apr-6-2017
+@header;
+
+str application;
+str command_line = 'c:\windows\system32\cmd.exe /k';
+
+//str batch_file_name = 'c:\projects\netbeans\batch_files\g.bat hlp';
+
+int position_of_c_colon = xpos("c:", clif_block, 1);
+
+str trimmed_clif_block = @trim_before_phrase(clif_block, 'c:');
+
+@log('trimmed_clif_block: ' + trimmed_clif_block);
+
+str bat_file_parameter = @trim_before_phrase(trimmed_clif_block, 'batx');
+bat_file_parameter = @trim_left(bat_file_parameter, 5);
+
+@log('bat_file_parameter: ' + bat_file_parameter);
+
+str batch_file_name = @trim_after_phrase(trimmed_clif_block, 'batx');
+batch_file_name = @trim_last_character(batch_file_name);
+
+str argument = char(34) + batch_file_name + ' ' + bat_file_parameter + ' ' + char(34);
+
+@log('batch_file_name: ' + batch_file_name);
+
+application = command_line + ' ' + argument;
+
+execprog(
+  application, 
+  '', 
+  '', 
+  '', 
+  _ep_flags_exewin | 
+  _ep_flags_nobypass |
+  _ep_flags_dontwait);
+
+@footer;
+@say(fp);
+}
+
+
+
 //;; (!anat)
 
 int
@@ -2000,8 +2052,13 @@ else
 // I probably need to refactor this to say if "%" occurs BEFORE http, than only modify that
 // portion of the clif_Block.
 
-int http_Position = xpos('http', clif_Block, 1);
+int http_position = xpos('http', clif_block, 1);
 
+if(@contains(clif_block, 'batx'))
+{
+  @process_batx_clif_block(clif_block);
+  return(1);
+}
 int percent_sign_position = xpos('%', clif_block, 1);
 
 if(percent_sign_position > 0)
@@ -4224,4 +4281,4 @@ return('');
 
 
 
-//;EOF << (!efcf)
+//; EOF << (!efcf)

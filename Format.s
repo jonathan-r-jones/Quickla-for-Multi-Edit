@@ -20,6 +20,8 @@ Metadata: Track Size (!tsfo)
     Date       Lines     Bytes    Macros   Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+:Mar-31-2017   2,198     34,740       74
+
 :Nov-17-2016   2,127     34,195       71
 
 : Oct-7-2016   2,125     34,156       71
@@ -394,13 +396,13 @@ str
 @delete_blank_lines()
 {
 
+str fp = 'Delete all blank lines in this file.';
+
 /*
 
 (skw remove blank lines, _remove_blank_lines, remove all blank lines, delete blank lines)
 
 */
-
-str fp = 'Delete all blank lines in this file.';
 
 // Warning: Dangerous macro.
 
@@ -1183,31 +1185,34 @@ if(wuc == 'Wikipedia')
 
 
 
-//;+ Format File
-
-
-
-//;;
+//;
 
 void
-@format_file_3()
+@add_blank_line_at_every_other_l()
 {
-str fp = 'Format JSON.';
+str fp = "Add blank line at every other line.";
 
-// fcd: "Mar-16-2017
+// fcd: Mar-29-2017
 
-if(!@is_text_file)
-{
-  return();
-}
+str rs;
+str sc;
 
-@header;
+sc = '$^';
 
+rs = '$$';
 
-@footer;
+@tof;
 
+@eol;
+
+@replace_all_occurrs_inf_no_tof(sc, rs);
 @say(fp);
+return();
 }
+
+
+
+//;+ Format File
 
 
 
@@ -1265,6 +1270,37 @@ if(!@is_text_file)
 @add_blank_line_if_ln_exceeds_96;
 @hard_format_long_lines_in_file;
 @delete_blank_lines;
+
+@footer;
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@format_file_for_wildfly_errors()
+{
+
+str fp = 'Format file for wildfly erros.';
+
+// fcd: Mar-29-2017
+
+if(!@is_text_file)
+{
+  return();
+}
+
+@header;
+
+@add_blank_line_at_every_other_l;
+@word_wrap_file;
+@hard_format_long_lines_in_file;
+@replace_2_blank_lines_with_1;
+
+@tof;
 
 @footer;
 
@@ -2161,4 +2197,4 @@ str sc = @read_more_answers_dot_com(description, rs);
 
 
 
-//;EOF << (!effm)
+//; EOF << (!effm)

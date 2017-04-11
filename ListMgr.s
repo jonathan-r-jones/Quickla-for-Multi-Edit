@@ -21,6 +21,8 @@ Metadata: Track Size (!tsli, !tslm)
     Date       Lines     Bytes     Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+:Mar-31-2017  12,637    166,514      461
+
 :Nov-17-2016  12,562    165,515      461
 
 : Oct-7-2016  12,857    170,830      464
@@ -2668,6 +2670,9 @@ str replacement_description;
 
 @replace_all_occurrences_in_file('((^)||( ))(im)(( )||($))', '\0i' + char(39) + 'm\4');
 @replace_all_occurrs_inf_no_tof('\.\.', ":");
+
+str sc = '(infor' + 'mal)([^ ilIL.):,]])';
+@replace_all_occurrences_in_file(sc, '\0 - \1');
 @replace_all_occurrences_in_file('^ive ', "I've ");
 @replace_all_occurrences_in_file(' ive ', " I've ");
 @replace_all_occurrences_in_file('^itll', "it'll");
@@ -12634,4 +12639,4 @@ if(!@is_batch_file)
 
 
 
-//;EOF << (!eflm)
+//; EOF << (!eflm)

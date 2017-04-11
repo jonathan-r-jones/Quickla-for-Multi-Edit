@@ -18,6 +18,8 @@ Metadata: Track Size (!tssh)
     Date       Lines    Bytes     Macros  Notes
  -----------  ------  ---------  -------  ---------------------------------------------------
 
+:Mar-31-2017   4,148     68,550      190
+
 :Nov-17-2016   4,056     67,610      182
 
 : Oct-7-2016   4,021     66,839      181
@@ -1030,6 +1032,16 @@ goto_line(global_int('initial row number'));
 //;;
 
 void
+@recall_location()
+{
+@restore_location();
+}
+
+
+
+//;;
+
+void
 @restore_column()
 {
 // Used in conjuction with "@save_column".
@@ -1230,7 +1242,7 @@ str fp = 'Create log.';
 int Amount;
 int Handle;
 
-str Name_of_File = 'c:\j.txt';
+str Name_of_File = 'c:\a\j3.txt';
 
 if(!File_Exists(Name_of_File))
 {
@@ -1841,6 +1853,11 @@ formatted_time = @left(formatted_time, length_of_formatted_time - 5);
 
 formatted_time += " " + ampm;
 
+if(@left(formatted_time, 2) == ' 0')
+{
+  formatted_time = @trim_left(formatted_time, 2);
+  formatted_time = '12' + formatted_time;
+}
 return(formatted_time);
 }
 
@@ -4145,4 +4162,4 @@ return(return_value);
 
 
 
-//;EOF << (!efah)
+//; EOF << (!efah)

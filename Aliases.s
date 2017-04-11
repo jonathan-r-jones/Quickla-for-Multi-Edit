@@ -18,6 +18,8 @@ Metadata: Track Size (!tsal)
      Date      Lines    Bytes     Macros  Notes
  -----------  ------  ---------  -------  ---------------------------------------------------
 
+:Mar-31-2017     889     10,966       69
+
 :Nov-17-2016     885     11,099       68
 
 : Oct-7-2016     881     11,009       68
@@ -189,7 +191,19 @@ return(String);
 //;;
 
 str
-@trim_before_character(str string, character)
+@trim_after_phrase(str whole_string, str phrase)
+{
+int position_of_phrase = xpos(phrase, whole_string, 1);
+whole_string = str_del(whole_string, position_of_phrase + length(phrase), 999);
+return(whole_string);
+}
+
+
+
+//;;
+
+str
+@trim_before_character(str string, str character)
 {
 int position_of_character = xpos(character, string, 1);
 
@@ -200,6 +214,25 @@ if(Position_of_Character == 0)
 
 string = str_del(string, 1, position_of_character);
 return(String);
+}
+
+
+
+//;;
+
+str
+@trim_before_phrase(str whole_string, str phrase)
+{
+int position_of_phrase = xpos(phrase, whole_string, 1);
+
+if(position_of_phrase == 0)
+{
+  return (whole_string);
+}
+
+whole_string = str_del(whole_string, 1, position_of_phrase - 1);
+
+return(whole_string);
 }
 
 
@@ -336,7 +369,7 @@ return(str_del(parameter, 1, 1));
 //;;
 
 str
-@trim_left(str string, int number_of_Characters_to_Trim)
+@trim_left(str string, int number_of_characters_to_trim)
 {
 return(str_del(string, 1, number_of_Characters_To_Trim));
 }
@@ -886,4 +919,4 @@ goto_col(1);
 
 
 
-//;EOF << (!efal)
+//; EOF << (!efal)
