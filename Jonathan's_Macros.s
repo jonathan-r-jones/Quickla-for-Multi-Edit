@@ -6146,18 +6146,22 @@ url = 'http://10.0.2.2/JWS/MercuryWupService';
 url = 'http://10.0.2.2/pub/jwsController';
 url = 'http://localhost'; // This is a working redirect. Apr-10-2017
 url = 'http://localhost/'; // This is a working redirect. Apr-10-2017
-url = 'https://localhost/app';
 url = 'http://localhost:8080';
 url = 'http://localhost:8081';
-url = 'localhost.com';
-
-url = 'localhost/app/mercury.html';
-url = 'localhost/mercury.html/app/';
-url = 'localhost/mercury.html/app';
+url = 'https://localhost/app';
 url = 'localhost'; // This is a working redirect. Apr-10-2017
-url = 'localhost/app/mercury.html';
+url = 'localhost.com';
 url = 'localhost/app';
-url = 'localhost/mercury.html';
+url = 'localhost/app/';
+url = 'localhost/app/mercury.html';
+url = 'localhost/index.html'; // Only half works.
+url = 'localhost/index.html/app'; // Only half works.
+url = 'localhost/mercury.html'; // This works. Apr-11-2017
+url = 'localhost/mercury.html/app';
+url = 'localhost/mercury.html/app/';
+
+// Last in wins.
+url = 'localhost/mercury.html'; // This works. Apr-11-2017
 
 // skw: machine, machinename, machine_name
 

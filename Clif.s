@@ -1015,11 +1015,11 @@ if(!@find_lc_known(fp, lc))
 
 str sj = @hc_subject;
 
-str rv = '  // JRJ, ';
+str rv = '// JRJ, ';
 rv += @get_date_with_time;
 rv += ', ';
 rv += sj;
-rv += '. ';
+rv += '.';
 
 @set_clipboard(rv);
 
