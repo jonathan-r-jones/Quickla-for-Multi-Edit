@@ -1,5 +1,92 @@
 //;
 
+void
+@words_with_friends_helper
+{
+str fp = "Words with Friends Word Finder.";
+  fp = "Feb-18-2017 10:55 PM";
+// fcd: Feb-18-2017
+
+// Problem: Grammar should be unaccaptable because it has a double m.
+
+str rs;
+str sc;
+
+@header;
+sc = '[. .][armyhag][armyhag][armyhag][armyhag][armyhag][armyhag][armyhag][. .]';
+@eol;
+
+int is_found = @seek_in_all_files_2_arguments(sc, fp);
+
+if(@contains(found_str, 'mm'))
+{
+  @seek_in_all_files_2_arguments(sc, fp);
+}
+@footer;
+return();
+@seek(sc);
+@replace_next_occurrence_only(sc, rs);
+@replace_all_occurrs_inf_no_tof(sc, rs);
+
+rs = '\0';
+@say(found_str);
+@say(fp);
+}
+
+
+
+//;
+
+void
+@add_text_close_bracket
+{
+str fp = 'Add text close bracket.';
+text(']');
+}
+
+
+
+//;
+
+void
+@search_google_images_exactly(str parameter = parse_str('/1=', mparm_str))
+{
+
+str fp = 'Search Google images using and exact phrase.';
+
+// fcd: Apr-17-2017
+
+str URL = 'https://play.google.com/store/search?q=';
+
+str sc = parameter;
+
+if(sc == '')
+{
+  sc = @get_subject_or_selected_text;
+}
+
+str Pretty_sc = sc;
+sc = @commute_character(sc, ' ', '+');
+
+URL += sc;
+URL += '&num=35&lr=&hl=en&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiQ8qm3j6zTAhVD_WMKHVh1B9IQ_AUICCgB&biw=1415&bih=700';
+//qq-1
+
+@surf(URL, 0);
+
+/* Use Cases
+
+Server Beacon
+
+*/
+
+@say(@trim_period(fp) + ' for "' + pretty_sc + '".');
+}
+
+
+
+//;
+
 str
 @space_close_bracket(str &regex_Description, str &rS)
 {

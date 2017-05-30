@@ -2788,21 +2788,20 @@ rm('Block^SelectAll');
 
 
 
-//;+ Open J File Family (new file family, new j file family)
+//;+ Open L File Family (new file family, new l file family)
 
 
 
 //;;
 
 void
-@open_j_file_in_an_empty_state
+@open_l_file_in_an_empty_state
 {
 str fp = "Open J File in an empty state.";
-@header;
-@open_file('c:\a\j');
+str full_filename[128] = get_environment('userprofile') + '\Documents\Dropbox\l';
+@open_file(full_filename);
 @select_all;
 delete_block;
-@footer;
 @say(fp);
 }
 
@@ -2811,10 +2810,11 @@ delete_block;
 //;;
 
 void
-@open_j_file_with_pasted_text()
+@open_l_file_with_pasted_text()
 {
-str fp = "Open J File with pasted text.";
-@open_file('c:\a\j');
+str fp = "Open l File with pasted text.";
+str full_filename[128] = get_environment('userprofile') + '\Documents\Dropbox\l';
+@open_file(full_filename);
 @select_all;
 delete_block;
 @paste;
@@ -2827,10 +2827,10 @@ delete_block;
 //;;
 
 void
-@@open_j_file_with_pasted_text
+@@open_l_file_with_pasted_text
 {
 @header;
-@open_j_file_with_pasted_text;
+@open_l_file_with_pasted_text;
 @footer;
 }
 
@@ -2848,7 +2848,7 @@ str fp = "Paste trace.";
 
 //Last Updated: Sep-20-2016
 
-@open_j_file_with_pasted_text();
+@open_l_file_with_pasted_text();
 @tof;
 cr;
 down;
@@ -5743,12 +5743,12 @@ void
 
 
 
-//;;
+//;
 
 void
 @replace_definition
 {
-str fp = "Replace current definition with clipboard definition.";
+str fp = "Replace current definition with the clipboard definition.";
 // This is a good example of a beautiful and composed macro.
 @header;
 @delete_definition_keep_lkctr;
@@ -6374,6 +6374,11 @@ if(!@is_structured_line)
 }
 
 int initial_column = @current_column;
+
+if(@is_bullet_file)
+{
+  @boca;
+}
 
 switch(@current_area_type)
 {
@@ -11687,58 +11692,24 @@ else
 
 
 
-//;+
+//;
 
-void
-@move_current_rubric_w_dog_park()
+int
+@is_dog_park_file()
 {
-str fp = "Move current rubric and dog park to eof.";
+str fp = "Is dog park file.";
 
-// fcd: Sep-22-2016
+// fcd: May-16-2017
+@save_location;
 
-if(!@is_batch_file)
+if(!@seek_from_bof('!rf' + 'cea'))
 {
-  return();
+  @say('This macro only works with dog park files.');
+  @recall_location;
+  return(0);
 }
-
-@bor;
-@cut_rubric;
-@eof;
-@bol;
-@paste;
-
-@seek_from_bof('rfcea');
-
-@bor;
-@cut_rubric;
-
-@eof;
-@bol;
-up;
-@bor;
-@paste;
-@eof;
-up;
-up;
-up;
-up;
-up;
-up;
-@eol;
-
-@say(fp);
-}
-
-
-
-//;;
-
-void
-@@move_current_rubric_w_dog_park
-{
-@header;
-@move_current_rubric_w_dog_park;
-@footer;
+@recall_location;
+return(1);
 }
 
 
@@ -12034,6 +12005,37 @@ else
   }
 }
 @footer;
+}
+
+
+
+//;
+
+void
+@work_with_current_rubric()
+{
+str fp = "Move current rubric and dog park to eof.";
+
+// fcd: Sep-22-2016
+
+if(!@is_dog_park_file)
+{
+  return();
+}
+
+@bor;
+@move_to_lastp(0);
+
+@seek_from_bof('!rf' + 'cea');
+@bor;
+@move_to_lastp(0);
+
+@bor;
+@move_up;
+
+@find_next_rubric;
+
+@say(fp);
 }
 
 
@@ -12474,7 +12476,7 @@ switch(arg2)
 {
   case 'b':
   case 'l':
-  case 'bfl':
+  case 'bfl': // Batch File Label
     search_target = 'bfl';
     break;
   case 'c':
@@ -12483,7 +12485,7 @@ switch(arg2)
     break;
   case 'h':
   case 'r':
-  case 'rh':
+  case 'rh': // Rubric Header
     search_target = 'rh';
     break;
 }
@@ -12616,6 +12618,18 @@ fp = 'lines_in_bullet: ' + str(lines_in_bullet);
 //;
 
 void
+@@work_with_current_rubric
+{
+@header;
+@work_with_current_rubric;
+@footer;
+}
+
+
+
+//;
+
+void
 @make_a_copy_work_with_the_copy
 {
 str fp = "Make a copy, work with the copy.";
@@ -12629,9 +12643,17 @@ if(!@is_batch_file)
 
 // fcd: Sep-22-2016
 
+if(!@is_dog_park_file)
+{
+  return();
+}
+
 @bor;
 @copy_and_paste_rubric;
-@move_current_rubric_w_dog_park;
+@bor;
+
+@work_with_current_rubric;
+
 
 @footer;
 @say(fp);

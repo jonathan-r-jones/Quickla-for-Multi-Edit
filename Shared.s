@@ -2179,20 +2179,6 @@ return(formatted_time);
 
 
 
-//;
-
-void
-@escape()
-{
-str fp = 'You pressed the escape key.';
-block_off;
-fp = @trim_period(fp);
-fp += ' at ' + @get_formatted_full_time + '.';
-@say(fp);
-}
-
-
-
 //;+ (skw Get User Input, input_from_the_user)
 
 
@@ -4140,6 +4126,20 @@ str
 {
 // fcd: Jan-25-2017
 return('LC NOT found.');
+}
+
+
+
+//;
+
+void
+@escape()
+{
+str fp = 'You pressed the escape key.';
+block_off;
+fp = @trim_period(fp);
+fp += ' at ' + @get_formatted_full_time + '.';
+@say(fp);
 }
 
 

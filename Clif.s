@@ -4078,7 +4078,7 @@ if(lc != '')
 @add_bullet_below;
 
 // Enforce the default.
-if((wrapping_is_on == '') or (wrapping_is_on == 'y'))
+if(wrapping_is_on == 'y')
 {
   @paste_with_wikipedia_format;
 }

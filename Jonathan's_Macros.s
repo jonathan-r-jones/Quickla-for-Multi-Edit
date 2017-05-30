@@ -26,6 +26,8 @@ Metadata: Track Size (!tsjo)
     Date       Lines    Bytes    Macros   Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+:May-17-2017   6,459     89,713      229
+
 :Mar-31-2017   6,277     86,561      224
 
 : Dec-2-2016   5,992     83,208      214
@@ -650,7 +652,6 @@ cr;
 
 @bobs;
 eol;
-text(';');
 
 @say(fp);
 }
@@ -3972,6 +3973,11 @@ str sj = @hc_subject;
 
 @footer;
 
+if(@first_character(lc) == 'z')
+{
+  sj = @left(sj, 4) + '**';
+}
+
 @say(fp + ' (' + sj + ')');
 }
 
@@ -4000,7 +4006,7 @@ str sj = @hc_subject;
 
 @restore_location;
 
-text(sj + ': ');
+text(sj);
 
 @say(fp + ' (' + sj + ')');
 }
@@ -4739,6 +4745,8 @@ void
 {
 str fp = "Add launch code on current line and remove its remote occurrence.";
 
+//skw replace, new lc, new_lc, unique, lc, add_lc, add lc
+
 @save_location;
 
 if(@find_lc(lc))
@@ -5403,7 +5411,7 @@ if(@seek_from_bof('!rf' + 'cea') != 1)
 //;
 
 void
-@add_batch_file_stub
+@add_batch_file_stub()
 {
 str fp = "Add batch file new stub.";
 
@@ -5413,8 +5421,6 @@ if(!@is_batch_file)
 {
   return();
 }
-
-@header;
 
 @move_dog_park_to_eof;
 
@@ -5467,9 +5473,19 @@ up;
 @eol;
 text(' ');
 
-@footer;
-
 @say(fp);
+}
+
+
+
+//;
+
+void
+@@add_batch_file_stub
+{
+@header;
+@add_batch_file_stub;
+@footer;
 }
 
 
@@ -5501,6 +5517,7 @@ if(!@is_bullet)
 }
 
 int initial_column = @current_column;
+
 str arg_1, arg_2, arg_3, arg_4;
 
 arguments = @lower(arguments);
@@ -5639,7 +5656,7 @@ if(togetherness == '')
 
 if(move_style == 'c')
 {
-  @copy_and_paste_bullet;
+  @hc_bullet;
 }
 
 int bullet_was_cut = false;
@@ -6149,6 +6166,7 @@ url = 'http://localhost/'; // This is a working redirect. Apr-10-2017
 url = 'http://localhost:8080';
 url = 'http://localhost:8081';
 url = 'https://localhost/app';
+     //http://localhost/index.html This works on the new server.
 url = 'localhost'; // This is a working redirect. Apr-10-2017
 url = 'localhost.com';
 url = 'localhost/app';
@@ -6168,7 +6186,8 @@ url = 'localhost/mercury.html'; // This works. Apr-11-2017
 switch(@lower(Get_Environment("ComputerName")))
 {
   case "buzz":
-    url = 'http://localhost:8080';
+    // For some reason this no longer works, but luckily the one for my NES laptop does.
+    //    url = 'http://localhost:8080';
     break;
 }
 
@@ -6232,58 +6251,10 @@ text(';');
 //;
 
 void
-@add_text_bracket
+@add_text_brackets
 {
-str fp = 'Add text bracket.';
-text('[');
-}
-
-
-
-//;
-
-void
-@add_text_close_bracket
-{
-str fp = 'Add text close bracket.';
-text(']');
-}
-
-
-
-//;
-
-void
-@words_with_friends_helper
-{
-str fp = "Words with Friends Word Finder.";
-  fp = "Feb-18-2017 10:55 PM";
-// fcd: Feb-18-2017
-
-// Problem: Grammar should be unaccaptable because it has a double m.
-
-str rs;
-str sc;
-
-@header;
-sc = '[. .][armyhag][armyhag][armyhag][armyhag][armyhag][armyhag][armyhag][. .]';
-@eol;
-
-int is_found = @seek_in_all_files_2_arguments(sc, fp);
-
-if(@contains(found_str, 'mm'))
-{
-  @seek_in_all_files_2_arguments(sc, fp);
-}
-@footer;
-return();
-@seek(sc);
-@replace_next_occurrence_only(sc, rs);
-@replace_all_occurrs_inf_no_tof(sc, rs);
-
-rs = '\0';
-@say(found_str);
-@say(fp);
+str fp = 'Add text brackets.';
+text('[]');
 }
 
 
@@ -6396,6 +6367,45 @@ switch(scope)
 
 @footer;
 @say(fp);
+}
+
+
+
+//;
+
+void
+@format_active_users_email
+{
+str fp = "Format active users email.";
+
+// fcd: May-5-2017
+
+str rs;
+str sc;
+
+tof;
+@bol;
+
+@header;
+sc = '$^';
+rs = ';';
+
+@replace_all_occurrs_inf_no_tof(sc, rs);
+@footer;
+}
+
+
+
+//;
+
+void
+@open_t_bat_with_new_function
+{
+str fp = 'Open t.bat file with a new function added.';
+@header;
+@open_file(get_environment('savannah') + '\belfry\t.bat');
+@add_batch_file_stub;
+@footer;
 }
 
 
