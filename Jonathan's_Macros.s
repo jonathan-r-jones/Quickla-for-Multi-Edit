@@ -26,6 +26,10 @@ Metadata: Track Size (!tsjo)
     Date       Lines    Bytes    Macros   Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+:Jun-25-2017   6,456     89,494      231
+
+:Jun-21-2017   6,454     89,450      231
+
 :May-17-2017   6,459     89,713      229
 
 :Mar-31-2017   6,277     86,561      224
@@ -893,7 +897,11 @@ else
 
 
 
-//;+
+//;+ The Jumps
+
+
+
+//;;
 
 void
 @jump
@@ -909,7 +917,20 @@ str fp = 'How high?';
 str
 @jump2()
 {
-str fp = 'How high really?';
+str fp = 'How high really? Jump 2.';
+return(fp);
+}
+
+
+
+//;;
+
+str
+@jump3()
+{
+str fp = 'Jump 3!';
+set_global_str('cmac_return_string', fp);
+@say(fp);
 return(fp);
 }
 
@@ -3237,6 +3258,7 @@ void
 @find_next_lkc_higher
 {
 str fp = "Find next lck higher.";
+
 @header;
 
 int starting_line_lk_number;
@@ -3287,6 +3309,7 @@ void
 @find_next_lkc_equal_or_higher
 {
 str fp = "Find next lck equal or higher.";
+
 @header;
 
 // skw highest, greatest
@@ -4629,7 +4652,11 @@ void
 
 
 
-//;+
+//;+ apply_2_line_format
+
+
+
+//;;
 
 void
 @apply_2_line_format()
@@ -6255,6 +6282,7 @@ void
 {
 str fp = 'Add text brackets.';
 text('[]');
+left;
 }
 
 
@@ -6278,23 +6306,46 @@ fp += ' Current line type: "' + @current_line_type + '"';
 //;
 
 void
-@copy_j1_into_j2
+@copy_this_file_into_j1
 {
-str fp = "Copy j1.txt into j2.txt.";
+str fp = "Copy this file into j1.txt.";
 
-// fcd: "Mar-29-2017
+// fcd: Jun-28-2017
 @header;
+
+@select_all;
+@copy;
 
 @open_file('c:\a\j1.txt');
 @select_all;
-@copy;
+delete_block;
+@paste;
 @close_and_save_file_wo_prompt;
+
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
+@copy_this_file_into_j2
+{
+str fp = "Copy this file into j2.txt.";
+
+// fcd: Jun-28-2017
+@header;
+
+@select_all;
+@copy;
 
 @open_file('c:\a\j2.txt');
 @select_all;
 delete_block;
 @paste;
-@bof;
+@close_and_save_file_wo_prompt;
 
 @footer;
 @say(fp);
@@ -6406,6 +6457,25 @@ str fp = 'Open t.bat file with a new function added.';
 @open_file(get_environment('savannah') + '\belfry\t.bat');
 @add_batch_file_stub;
 @footer;
+}
+
+
+
+//;
+
+void
+@copy_and_compile_documentation
+{
+str fp = "Copy and compile documentation.";
+   fp = "May-30-2017 4:47 PM";
+// fcd: "May-30-2017
+@header;
+
+@run_clif_internally('acpdoc');
+@run_clif_internally('sfdoc');
+
+@footer;
+@say(fp);
 }
 
 

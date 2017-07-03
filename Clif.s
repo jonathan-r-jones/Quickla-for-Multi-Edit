@@ -28,6 +28,8 @@ Metadata: Track Size (!tscl, !tscf)
     Date       Lines     Bytes    Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+:Jun-25-2017   4,299     79,666      109
+
 :Mar-31-2017   4,228     78,179      108
 
 :Nov-17-2016   4,120     75,752      105
@@ -2851,8 +2853,7 @@ void
 @run_clif_internally(str lc)
 {
 
-str fp = 'Run Clif for internal uses. Notice the absence of the "header" and "footer" in this 
-method.';
+str fp = 'Run Clif for internal use.';
 
 @save_location;
 
@@ -3458,8 +3459,8 @@ str application = @get_remote_oj_using_klc(application_lc, lc_is_found);
 
 if(@first_character(application) == '@')
 {
-@application_is_a_cmac_macro(application, postperiod_status_bar_arguments);
-return();
+  @application_is_a_cmac_macro(application, postperiod_status_bar_arguments);
+  return();
 }
 
 if(postperiod_status_bar_arguments == '')
@@ -3486,11 +3487,9 @@ int lc_is_found = 0;
 
 str application = @get_remote_oj_using_klc(application_lc, lc_is_found);
 
-//fp += ' Oct-27-2016: ' + application;
+fp += ' Oct-27-2016: ' + application;
 //fp += ' Oct-27-2016: ' + application_lc;
 //fp += ' Oct-27-2016: ' + status_bar_arguments;
-//@say(fp);
-//return();
 
 if(@first_character(application) == '@')
 {
@@ -3757,32 +3756,41 @@ rm(expanded_verb + ' /1=' + argument_2);
 //;;
 
 void
-@cstyle_cmac_string_consumer(str arguments = parse_str('/1=', mparm_str))
+@cstyle_say_string_consumer(str arguments = parse_str('/1=', mparm_str))
 {
 str fp = "Run CMAC that consumes a string.";
 
-// fcd: Aug-27-2015
+// flu: Jun-19-2017
 
-// Not yet implemented.
-
-/*
 str argument_1, argument_2;
-@parse_aguments(arguments, ".", argument_1, argument_2);
+
+@parse_aguments(arguments, "=", argument_1, argument_2);
+
 int lc_is_found;
+
 str expanded_verb = @get_remote_oj_using_klc(argument_1, lc_Is_Found);
 if(!lc_Is_Found)
 {
   @say("LC NOT found. (" + expanded_verb + ")");
   return();
 }
+
 expanded_verb = @resolve_environment_variable(expanded_verb);
 expanded_verb = @trim_before_character(expanded_verb, '"');
+
 if(@left(expanded_verb, 2) == '/R')
 {
   expanded_verb = @trim_left(expanded_verb, 2);
 }
-rm(expanded_verb + ' /1=' + argument_2);
-*/
+
+int lc_is_found;
+
+str lc_object = argument_2;
+str expanded_object = @get_remote_oj_using_klc(lc_object, lc_Is_Found);
+
+rm(expanded_object);
+
+rm(expanded_verb + ' /1=' + global_str('cmac_return_value'));
 
 }
 
@@ -3797,7 +3805,7 @@ str fp = "Run skeleton router.";
 
 /*
 
-By skeleton I mean a elegant and scalable structure ulike that which was found in the 
+By skeleton I mean a elegant and scalable structure unlike that which was found in the 
 deprecated RCC method.
 
 fcd: Aug-6-2015
@@ -3832,8 +3840,8 @@ switch(first_character)
   case '4': // (!rcc, !skeleton, !skel)
     @find_lc(user_input_wo_first_2_chars);
     break;
-  case '5': // tick
-    @cstyle_cmac_string_consumer(user_input_wo_first_2_chars);
+  case '5':
+    // @cstyle_cmac_string_consumer(user_input_wo_first_2_chars);
     break;
   default:  // period
     @cstyle_cmac_with_parameter(user_input);
@@ -3938,6 +3946,12 @@ else if(xpos("'", user_input, 1)){
 else if(xpos("-", user_input, 1))
 {
   @cstyle_rexe_w_context(user_input);
+  @footer;
+  return();
+}
+else if(xpos("=", user_input, 1))
+{
+  @cstyle_say_string_consumer(user_input);
   @footer;
   return();
 }

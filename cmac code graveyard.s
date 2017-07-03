@@ -1,6 +1,33 @@
 //;
 
 void
+@copy_j1_into_j2
+{
+str fp = "Copy j1.txt into j2.txt.";
+
+// fcd: "Mar-29-2017
+@header;
+
+@open_file('c:\a\j1.txt');
+@select_all;
+@copy;
+@close_and_save_file_wo_prompt;
+
+@open_file('c:\a\j2.txt');
+@select_all;
+delete_block;
+@paste;
+@bof;
+
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
 @words_with_friends_helper
 {
 str fp = "Words with Friends Word Finder.";
@@ -70,7 +97,6 @@ sc = @commute_character(sc, ' ', '+');
 
 URL += sc;
 URL += '&num=35&lr=&hl=en&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiQ8qm3j6zTAhVD_WMKHVh1B9IQ_AUICCgB&biw=1415&bih=700';
-//qq-1
 
 @surf(URL, 0);
 
@@ -1675,8 +1701,6 @@ str fp = "Show status bar message for remote subject.";
 
 // fcd: Apr-14-2015
 
-@header;
-
 @save_location;
 
 if(!@find_lc_known(fp, lc))
@@ -1691,7 +1715,6 @@ str sj = @hc_subject;
 
 @recall_location;
 
-@footer;
 @say(fp + ' (' + sj + ')');
 }
 
@@ -21357,6 +21380,8 @@ rs = '\0May-\3-\5';
 
    Date        Lines     Bytes    Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
+
+:Jun-25-2017  21,392    304,142      730
 
 : Dec-2-2016  21,201    301,163      721
 
