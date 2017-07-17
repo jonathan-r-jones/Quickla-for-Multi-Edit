@@ -4087,7 +4087,6 @@ void
 @lp_oj(str lc = parse_str('/1=', mparm_str))
 {
 str fp = "Load clipboard with remote object.";
-fp = "LPO.";
 
 @header;
 
@@ -6057,7 +6056,6 @@ left;
 left;
 left;
 left;
-left;
 @footer;
 }
 
@@ -6162,7 +6160,7 @@ str fp = "Run RDP.";
 @header;
 
 @run_clif_internally('rfrdp');
-@set_clipboard('mercury-jp.dreamhammer.com:21624');
+//@set_clipboard('mercury-jp.dreamhammer.com:21624');
 
 @footer;
 
