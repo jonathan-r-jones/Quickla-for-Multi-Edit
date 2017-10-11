@@ -118,7 +118,7 @@ switch(@filename_extension)
     return("^;");
     break;
   case 'bat':
-    return("^:_");
+    return("^:+_");
     break;
   case 'config':
     return("^ @<entity type");
@@ -400,7 +400,7 @@ str sc = 'No content area specified.';
 switch(@filename_extension)
 {
   case 'bat':
-    sc = '(^:$)||(^:[^_])';
+    sc = '(^:$)||(^:[^:_])';
     break;
   case 'asc':
     sc = '(^:$)||(^:[^:])';
@@ -456,7 +456,7 @@ str fp = 'Return the proper rubric search criterion for a particular file type.'
 switch(lower(get_extension(File_name)))
 {
   case 'bat':
-    return("^:__");
+    return("^::_");
     break;
   case 'asc':
     return("^;;");
@@ -1209,7 +1209,18 @@ str
 @subbullet()
 {
 str fp = "Subbullet.";
+
 str sc = '(^::$)||(^::)';
+
+switch(@filename_extension)
+{
+  case 'bat':
+    sc = '^::____';
+    break;
+  case 'asc':
+    break;
+}
+
 return(sc);
 }
 
@@ -1383,20 +1394,6 @@ return(sc);
 //;
 
 str
-@language_learner(str &regex_Description, str &rS)
-{
-str fp = "Language learner.";
-str sc = 'See ($^)@.@ ($^)@defined ($^)@for ($^)@English-language ($^)@learners'; //works
-rs = '';
-regex_Description = fp;
-return(sc);
-}
-
-
-
-//;
-
-str
 @defined_for_kids(str &regex_Description, str &rS)
 {
 str fp = "Defined for" + " kids.";
@@ -1512,6 +1509,36 @@ str sc;
 
 sc = '^:';
 
+return(sc);
+}
+
+
+
+//;
+
+str
+@language_learner(str &regex_Description, str &rS)
+{
+str fp = "Language learner.";
+str sc = 'See ($^)@.@ ($^)@defined ($^)@for ($^)@English-language ($^)@learners'; //works
+rs = '';
+regex_Description = fp;
+return(sc);
+}
+
+
+
+//;
+
+str
+@informal_followed_by_a_crowding(str &regex_Description, str &rS)
+{
+str fp = "Informal followed by a crowding character.";
+// fud: Aug-13-2017
+str sc = '(infor' + 'mal)([a-hjkm-zA-HJKM-Z])';
+rs = '\0 - \1';
+//original: str sc = 'infor' + 'mal[^ ilIL.):,]]';
+regex_Description = fp;
 return(sc);
 }
 

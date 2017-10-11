@@ -1083,6 +1083,16 @@ void
 //;;
 
 void
+@search_google_and_append_sencha(str sc = parse_str('/1=', mparm_str))
+{
+@search_google_main(0, 0, @get_sj + ' sencha');
+}
+
+
+
+//;;
+
+void
 @search_google_exactly_wth_expl()
 {
 str fp = 'Search Google exactly, using Internet Explorer.';

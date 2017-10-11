@@ -413,7 +413,7 @@ cr;
 text('str fp = "";');
 cr;
 cr;
-text('// fcd: ');
+text('// fud: ');
 @add_text_date;
 cr;
 cr;
@@ -503,7 +503,7 @@ text('   fp = "');
 text(@get_date_with_time);
 text('";');
 cr;
-text('// fcd: "');
+text('// fud: "');
 text(@get_date);
 cr;
 text("@header;");
@@ -563,7 +563,7 @@ text('  fp = "');
 text(@get_date_with_time);
 text('";');
 cr;
-text("// fcd: ");
+text("// lu: ");
 text(@get_date);
 cr;
 text("str rs;");
@@ -3255,9 +3255,9 @@ while(starting_line_lk_number >= current_line_lk_number)
 //;;
 
 void
-@find_next_lkc_higher
+@find_next_higher_lkc
 {
-str fp = "Find next lck higher.";
+str fp = "Find next higher lookup counter.";
 
 @header;
 
@@ -3308,11 +3308,11 @@ fp += ' Current L[]K# = ' + str(current_line_lk_number) + '.';
 void
 @find_next_lkc_equal_or_higher
 {
-str fp = "Find next lck equal or higher.";
+str fp = "Find next lookup counter equal or higher.";
 
 @header;
 
-// skw highest, greatest
+// skw highest, greatest, lookup, next_high, next high
 
 str so;
 int starting_line_lk_number;
@@ -4073,7 +4073,7 @@ str oj = @hc_object;
 
 @restore_location;
 text(oj);
-//@eol;
+text(' "');
 
 @footer;
 @say(fp + ' (' + oj + ')');
@@ -4730,36 +4730,6 @@ text(' (!): ');
 
 
 
-//;
-
-void
-@go_to_line(int line_number = parse_int('/1=', mparm_str))
-{
-str fp = "Go to line.";
-@header;
-
-// fcd: Aug-21-2015
-
-@bof;
-
-while(@current_line < line_number)
-{
-  down;
-  if(at_eof)
-  {
-    up;
-    break;
-  }
-}
-
-//rm('GotoLine');
-
-@footer;
-@say(fp);
-}
-
-
-
 //;+ LC Current Line
 
 
@@ -4771,7 +4741,7 @@ void
 {
 str fp = "Add launch code on current line and remove its remote occurrence.";
 
-//skw replace, new lc, new_lc, unique, lc, add_lc, add lc
+//skw replace, new lc, new_lc, unique, lc, add_lc, add lc, update lc, update_lc
 
 @save_location;
 
@@ -5475,7 +5445,7 @@ up;
 
 @delete_block;
 
-@seek('fcd');
+@seek('lu');
 @eol;
 text(' ');
 @add_text_date;
@@ -5488,6 +5458,8 @@ down;
 down;
 @bol;
 text('rem q' + 'q-1');
+cr;
+up;
 up;
 up;
 up;
@@ -6056,6 +6028,7 @@ left;
 left;
 left;
 left;
+left;
 @footer;
 }
 
@@ -6157,12 +6130,8 @@ void
 {
 str fp = "Run RDP.";
 
-@header;
-
 @run_clif_internally('rfrdp');
 //@set_clipboard('mercury-jp.dreamhammer.com:21624');
-
-@footer;
 
 @say(fp);
 }
@@ -6473,6 +6442,168 @@ str fp = "Copy and compile documentation.";
 @run_clif_internally('sfdoc');
 
 @footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
+@load_clipboard_then_run_rdp(str lc = parse_str('/1=', mparm_str))
+{
+str fp = "Load clipboard then run RDP.";
+
+int lc_is_found;
+
+str ip_address = '$Becharming2';
+
+if(lc != '')
+{
+  ip_address = @get_remote_oj_using_klc(lc, lc_Is_Found);
+}
+
+@set_clipboard(ip_address);
+
+@run_clif_internally('rfrdp');
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@replace_carriage_returns_w_semi()
+{
+str fp = "Replace all carriage returns with semicolons.";
+// fud: Aug-7-2017
+
+str rs;
+str sc;
+
+@tof;
+
+sc = '$^';
+rs = ';';
+@eol;
+
+@replace_all_occurrs_inf_no_tof(sc, rs);
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@test_harness_for_informal_foll
+{
+str fp = "Test harness for @informal_followed_by_a_crowding.";
+str fud = "Aug-13-2017";
+// fcd: Aug-13-2017
+str rs;
+str sc;
+str regex_description;
+
+sc = @informal_followed_by_a_crowding(regex_description, rs);
+
+@seek(sc);
+
+@say(fp);
+return();
+
+// The following versions should not trigger a match.
+
+// informal_followed
+
+// informally
+
+@replace_next_occurrence_only(sc, rs);
+@say(rs);
+@replace_all_occurrs_inf_no_tof(sc, rs);
+int is_found = @seek_in_all_files_2_arguments(sc, fp);
+
+@footer;
+rs = '\0';
+@say(found_str);
+}
+
+
+
+//;
+
+void
+@replace_everything_after_the_co
+{
+str fp = "Replace everything after the colon with nothing.";
+
+// lu: Aug-31-2017
+
+str rs;
+str sc;
+
+@header;
+
+sc = ':.+,$';
+rs = '';
+
+@eol;
+
+@replace_next_occurrence_only(sc, rs);
+
+@footer;
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@begin_each_line_with_this_path
+{
+str fp = "Begin each line with this path.";
+
+// lu: Aug-31-2017
+
+str rs;
+str sc;
+
+@header;
+sc = '^';
+rs = 'C:\\projects\\netbeans\\sencha\\HTML5Application\\public_html\\classic\\src\\view\\';
+
+right;
+
+@replace_next_occurrence_only(sc, rs);
+return();
+@seek(sc);
+@replace_all_occurrs_inf_no_tof(sc, rs);
+int is_found = @seek_in_all_files_2_arguments(sc, fp);
+
+@footer;
+@say(found_str);
+@say(fp);
+}
+
+
+
+//;
+
+void
+@rtm
+{
+str fp = "";
+fp = "Sep-13-2017 3:02 PM";
+
+// fcd: Sep-13-2017
+
+fp = @current_line_type;
+
 @say(fp);
 }
 

@@ -279,6 +279,7 @@ switch(lower(get_extension(File_name)))
 {
   case 'bat':
   case 'cs':
+  case 'js':
   case 'ps1':
   case 's':
   case 'sql':
@@ -991,6 +992,8 @@ int
 @switch_to_named_window(str name_of_Window = parse_str('/1=', mparm_str))
 {
 str fp = 'Switch to named window.';
+
+// skw: window_name, switch_to_n, switch_to_window, go_to_window
 
 int Window_Is_Found = 0;
 str Name_of_File;
@@ -2531,7 +2534,7 @@ return(underscore_filled_string);
 //;
 
 void
-@add_text_date()
+@add_text_date
 {
 str fp = 'Add text date.';
 
@@ -2540,8 +2543,8 @@ if(@text_is_selected)
   delete_block;
 }
 
-if((@previous_character != ' ') and (@previous_character != ':') and (@previous_character !=
-  ';'))
+//if((@previous_character != ' ') and (@previous_character != ':') and (@previous_character != ';'))
+if(@previous_character != ' ')
 {
   text(' ');
 }

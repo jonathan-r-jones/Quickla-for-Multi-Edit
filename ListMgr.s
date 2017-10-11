@@ -3012,9 +3012,13 @@ void
 void
 @import_and_format_innovation_da
 {
-str fp = "Import and format innovation data.";
+str fp = "Import and format innovation data to bor.";
 
 @header;
+
+@bobs;
+
+@save_location;
 
 @create_timestamped_file;
 
@@ -3025,11 +3029,16 @@ cr;
 
 @close_and_save_file_wo_prompt;
 
-rm("@open_file_with_writability /FN=" + get_environment('reach out') + "\\ne.asc");
+@recall_location;
 
-tof;
+//rm("@open_file_with_writability /FN=" + get_environment('reach out') + "\\ne.asc");
+
+@bobs;
+
 @paste_after;
-tof;
+
+@bor;
+
 @fix_fat_colon;
 @find_next_big_segment;
 @bol;
@@ -5106,6 +5115,7 @@ str replacement_description, rs;
 
 rm('Block^SelectAll');
 @copy;
+
 @close_and_save_file_wo_prompt;
 
 @restore_location;
@@ -6585,8 +6595,7 @@ if(Is_Last_Rubric_Element)
     up;
   }
 }
-else if((query_next_area == 'rubric') || (query_next_area == 'subrubric') and 
-(!is_last_rubric_element))
+else if((query_next_area == 'rubric') || (query_next_area == 'subrubric') and (!is_last_rubric_element))
 { 
   up;
   up;
@@ -11926,12 +11935,13 @@ switch(lower(get_extension(File_name)))
   case 'bat':
     @bor;
     @cut_rubric;
-    @eof;
+    eof;
     @bol;
     @paste;
     up;
     @bor;
     @footer;
+    @say(fp);
     return();
     break;
   case 's':

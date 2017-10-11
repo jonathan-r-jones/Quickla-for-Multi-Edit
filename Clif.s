@@ -648,68 +648,86 @@ str fp = 'Open folder.';
 
 str application = get_environment("windir") +  "\\explorer.exe /n, /e, ";
 
+
+// Case 1. As is.
+
 if(@folder_exists(path))
 {
   @run_application_3p(application, path, true);
-  fp += " (" + path + ")";
+  //fp += " (" + path + ")";
+  fp += " Case 1.";
   @say(fp);
   return(1);
 }
+
+
+// Case 2. Truncate colons.
 
 path = @trim_leading_colons_et_al(path);
 
 if(@folder_exists(path))
 {
   @run_application_3p(application, path, true);
-  fp += " (" + path + ")";
+  //fp += " (" + path + ")";
+  fp += " Case 2.";
   @say(fp);
   return(1);
 }
 
-if(@last_character(path) == '\')
-{
-  path = @trim_last_character(path);
-}
 
-if(@folder_exists(path))
-{
-  @run_application_3p(application, path, true);
-  fp += " (" + path + ")";
-  @say(fp);
-  return(1);
-}
-
-//path = get_path(path); // This breaks network locations. May-12-2015
-
-if(@folder_exists(path))
-{
-  @run_application_3p(application, path, true);
-  fp += " (" + path + ")";
-  @say(fp);
-  return(1);
-}
-
-if(@last_character(path) == '\')
-{
-  path = @trim_last_character(path);
-}
-
-if(@folder_exists(path))
-{
-  @run_application_3p(application, path, true);
-  fp += " (" + path + ")";
-  @say(fp);
-  return(1);
-}
+// Case 3. Resolve environment variable.
 
 path = @resolve_environment_variable(path);
+
 if(@folder_exists(path))
 {
   @run_application_3p(application, path, true);
-  fp += " (" + path + ")";
+  //fp += " (" + path + ")";
+  fp += " Case 3.";
   @say(fp);
   return(1);
 }
+
+
+// Next case.
+
+str edited_path = get_path(path);
+
+if(@last_character(edited_path) == '\')
+{
+  edited_path = @trim_last_character(edited_path);
+}
+
+//edited_path = 'c:\\';
+
+if(@folder_exists(edited_path))
+{
+  @run_application_3p(application, edited_path, true);
+  //  fp += " (" + path + ")";
+  fp += " Next case.";
+  @say(fp);
+  return(1);
+}
+
+
+// Case 4.
+
+if(@last_character(path) == '\')
+{
+  path = @trim_last_character(path);
+}
+
+if(@folder_exists(path))
+{
+  @run_application_3p(application, path, true);
+  //fp += " (" + path + ")";
+  fp += " Case 4.";
+  @say(fp);
+  return(1);
+}
+
+
+// Case 5.
 
 if(@fourth_to_last_character(path) == '.')
 {
@@ -717,21 +735,26 @@ if(@fourth_to_last_character(path) == '.')
   if(@folder_exists(path))
   {
     @run_application_3p(application, path, true);
-    fp += " (" + path + ")";
+    //    fp += " (" + path + ")";
+    fp += " Case 5.";
     @say(fp);
     return(1);
   }
 }
 
+
+// Case Default.
+
 if(!@folder_exists(path))
 {
   // Try it anyway because the above function is not always right.
   @run_application_3p(application, path, true);
-  fp += " (" + path + ")";
+  //fp += " (" + path + ")";
+  @say(fp + ' Try it anyway case.');
   return(1);
 
-  fp += " Folder doesn't exist. (" + path + ")";
-  @say(fp);
+  //fp += " Folder doesn't exist. (" + path + ")";
+  @say(fp + ' Default case.');
   return(0);
 }
 
@@ -1845,7 +1868,7 @@ return(current_line);
 
 
 
-//;; (!rese)
+//;; (!grw, !rese)
 
 str
 @get_reserved_word(str sc = parse_str('/1=', mparm_str))
@@ -1899,7 +1922,6 @@ switch(sc)
   case "oj":
     reserved_word_definition = @resolve_environment_variable(@get_object);
     break;
-  case "s":
   case "sj":
     reserved_word_definition = @get_subject;
     break;
@@ -3088,6 +3110,7 @@ if(@current_line_contains(',,,'))
 }
 
 // (skw double comma, double_comma)
+
 if(@current_line_contains(',,'))
 {
   @perform_indicated_action;
@@ -3156,6 +3179,62 @@ if(@contains(operation_outcome, 'not an executable'))
 
 //;;
 
+int
+@is_code_word_line()
+{
+str fp = 'Line under cursor is a code word line.';
+
+// lu: Aug-30-2017
+
+// (skw triple comma, triple_comma)
+if(@current_line_contains(',,,'))
+{
+  return(1);
+}
+
+// (skw double comma, double_comma)
+
+if(@current_line_contains(',,'))
+{
+  return(1);
+}
+
+if(@current_line_contains('^'))
+{
+  return(1);
+}
+
+if(@current_line_contains(' &'))
+{
+  return(1);
+}
+
+if(@current_line_contains_regex(@comma_lc))
+{
+  return(1);
+}
+
+str sc = @get_subject_or_selected_text;
+if(@contains(sc, 'MERDEV-'))
+{
+  return(1);
+}
+else if(@contains(sc, 'DATA-'))
+{
+  return(1);
+}
+else if(@contains(sc, 'TNG-'))
+{
+  return(1);
+}
+
+return(0);
+}
+
+
+
+//;;
+
 void
 @@execute_code_word_line
 {
@@ -3202,7 +3281,7 @@ str Operation_Outcome = '';
 //;; (skw special processing, special_processing)
 
 void
-@perform_custom_lc_process3(str lc = parse_str('/1=', mparm_str))
+@perform_custom_lc_process3(str lc = parse_str('/1=', mparm_str), int &return_Home)
 {
 str fp = "Perform custom processing per launch code.";
 
@@ -3254,7 +3333,16 @@ switch(lc) //qcq
     @paste_with_wikipedia_format;
     break;
   default:
-    @add_bullet_below;
+    if(@is_code_word_line)
+    {
+      @execute_code_word_line;
+      return_home = true;
+    }
+    else
+    {
+      @add_bullet_below;
+      return_home = false;
+    }
     break;
 }
 
@@ -3279,10 +3367,10 @@ if(!@find_lc_known(sm, lc))
 
 int rv = @run_clif_under_cursor(sm);
 
-if(rv ==6)
+if(rv == 6)
 {
-  return_Home = false;
-  @perform_custom_lc_process3(lc); //QCQ
+  return_home = false;
+  @perform_custom_lc_process3(lc, return_home); //QCQ
 }
 
 return(0);
@@ -3343,6 +3431,39 @@ fp = @trim_period(fp) + ' "' + Distilled_lc + '".';
 
 
 
+//;
+
+void
+@go_to_line(int line_number = parse_int('/1=', mparm_str))
+{
+str fp = "Go to line.";
+
+// skw: go to line, go to row, go_to_row
+
+@header;
+
+// fcd: Aug-21-2015
+
+@bof;
+
+while(@current_line < line_number)
+{
+  down;
+  if(at_eof)
+  {
+    up;
+    break;
+  }
+}
+
+//rm('GotoLine');
+
+@footer;
+@say(fp);
+}
+
+
+
 //;+ Quick Launcher Router
 
 
@@ -3385,7 +3506,10 @@ str sc = @get_sj;
 
 @find_lc(lc);
 
-sc = @equate_spaces_and_dashes_wcl(sc);
+// I commented this out on Aug-30-2017 because it couldn't search "and time" correctly.
+//sc = @equate_spaces_and_dashes_wcl(sc);
+sc = make_literal_x(sc);
+
 @seek_in_all_files_2_arguments(sc, fp);
 
 @say(fp + ' (' + sc + ')');
@@ -3465,8 +3589,8 @@ if(@first_character(application) == '@')
 
 if(postperiod_status_bar_arguments == '')
 {
-@line_is_a_codeword_candidate(application);
-return();
+  @line_is_a_codeword_candidate(application);
+  return();
 }
 
 }
@@ -3886,7 +4010,9 @@ else
   @clear_highlighted_text;
 }
 
-@save_location;
+str initial_window_name = truncate_path(file_name);
+int initial_row_number = @current_row_number;
+int initial_column_number = @current_column_number;
 str user_Input;
 
 if(is_repeater)
@@ -3962,7 +4088,9 @@ else
 
 if(return_home)
 {
-  @restore_location;
+  @switch_to_named_window(initial_window_name);
+  @go_to_line(initial_row_number);
+  @go_to_column(initial_column_number);
 }
 
 if(text_Is_Selected)

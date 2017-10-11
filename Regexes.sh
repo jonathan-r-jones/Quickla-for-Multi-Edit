@@ -33,6 +33,7 @@ prototype Regexes
   str  @fat_colon(str &regex_Description, str &rS);
   str  @fat_rubric(str &regex_Description, str &rS);
   str  @first_known_use(str &regex_Description, str &rS);
+  str  @informal_followed_by_a_crowding(str &regex_Description, str &rs);
   str  @language_learner(str &regex_Description, str &rs);
   str  @lc();
   str  @lc_ending_in_2_letters(str last_Two_Letters_of_lc);

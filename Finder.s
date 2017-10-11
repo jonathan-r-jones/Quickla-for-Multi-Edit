@@ -2794,10 +2794,9 @@ do
 
   if(length(em) == 0)
   {
-    sc = 'infor' + 'mal[^ ilIL.):,]]';
-    if(@seek_next(sc, so))
+    if(@seek_next(@informal_followed_by_a_crowding(regex_description, rs), so))
     {
-      em = 'Informal followed by a crowding character.';
+      em = Regex_Description;
     }
   }
 

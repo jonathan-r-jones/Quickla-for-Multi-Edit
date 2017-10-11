@@ -4,6 +4,7 @@ prototype Clif
   void @edit_file_remotely();
   void @edit_file_under_cursor();
   void @find_backwards(str args);
+  int  @folder_exists(str path);
   str  @get_line();
   str  @get_path_using_lw();
   str  @get_remote_oj_using_klc(str lc, int &lc_Is_Found);

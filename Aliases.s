@@ -183,6 +183,7 @@ return(@trim_leading_colons_et_al(string));
 str
 @trim_after_character(str string, str cutoff_character)
 {
+str fp = 'Trim after leftmost occurrence of character.';
 int Position_Of_Cutoff_Character = xpos(cutoff_Character, String, 1);
 String = str_del(String, Position_Of_Cutoff_Character, 999);
 return(String);

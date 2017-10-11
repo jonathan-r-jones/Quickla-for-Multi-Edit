@@ -735,6 +735,7 @@ str sc;
 @say(fp + fp2);
 // Insert code after this line. (!icx) Replacements are listed alphabetically by title.
 
+// Alphanumeric
 Number_of_Replacements += 
   @replace_string_in_file_int(@alphanumeric_space_period(Replacement_Description, rs), rs);
 
@@ -747,6 +748,7 @@ Number_of_Replacements +=
 number_of_replacements += 
   @replace_string_in_file_int(@close_parenthesis_number(Replacement_Description, rs), rs);
 
+// Crowded
 number_of_replacements += 
   @replace_string_in_file_int(@crowded_noun(replacement_description, rs), rs);
 
@@ -756,15 +758,23 @@ Number_of_Replacements +=
 number_of_replacements += 
   @replace_string_in_file_int('\[edit\]', '');
 
-Number_of_Replacements += 
-  @replace_string_in_file_int(@first_known_use(Replacement_Description, rs), rs);
+number_of_replacements += 
+  @replace_string_in_file_int('â-"', "'");
 
 number_of_replacements += 
-  @replace_string_in_file_int(@language_learner(Replacement_Description, rs), rs);
+  @replace_string_in_file_int(@first_known_use(replacement_description, rs), rs);
+
+// Informal
+number_of_replacements += 
+  @replace_string_in_file_int(@informal_followed_by_a_crowding(replacement_description, rs), rs);
+
+number_of_replacements += 
+  @replace_string_in_file_int(@language_learner(replacement_description, rs), rs);
 
 Number_of_Replacements += 
   @replace_string_in_file_int(@letter_space_close_parenthesis(Replacement_Description, rs), rs);
 
+// Open
 Number_of_Replacements += 
   @replace_string_in_file_int(@open_bracket_space(Replacement_Description, rs), rs);
 
@@ -781,6 +791,7 @@ Number_of_Replacements +=
 Number_of_Replacements += 
   @replace_string_in_file_int('/' + 'submit', '');
 
+// Space
 Number_of_Replacements += 
   @replace_string_in_file_cs(@space_eol_blank_line(Replacement_Description, rs), rs);
 
@@ -793,6 +804,7 @@ number_of_replacements +=
 Number_of_Replacements += 
   @replace_string_in_file_int(@space_space_eol(Replacement_Description, rs), rs);
 
+// Special (first)
 Number_of_Replacements += 
   @replace_string_in_file_int(@special_character(Replacement_Description, rs, char(6)), rs);
 
@@ -829,6 +841,7 @@ Number_of_Replacements +=
 Number_of_Replacements += 
   @replace_string_in_file_int(@special_character(Replacement_Description, rs, char(139)), rs);
 
+// Special
 Number_of_Replacements += 
   @replace_string_in_file_int(@special_character(Replacement_Description, rs, char(140)), rs);
 
@@ -871,6 +884,7 @@ Number_of_Replacements +=
 Number_of_Replacements += 
   @replace_string_in_file_int(@special_character(Replacement_Description, rs, char(171)), rs);
 
+// Special (last)
 Number_of_Replacements += 
   @replace_string_in_file_int(@special_character(Replacement_Description, rs, char(187)), rs);
 
@@ -886,6 +900,7 @@ number_of_replacements +=
 number_of_replacements += 
   @replace_string_in_file_int('v\.' + 'tr', 'v. tr');
 
+// Word
 number_of_replacements += 
   @replace_string_in_file_int(@word_history_space_space(replacement_description, rs), rs);
 
@@ -1470,6 +1485,7 @@ switch(lower(Get_Extension(File_name)))
     rv = '<!-- ';
     break;
   case 'cs':
+  case 'js':
   case 's':
   case 'sh':
     rv = '//';
@@ -1756,6 +1772,7 @@ goto_line(Block_Line2);
 
 int is_Already_Commented = false;
 char Comment_Character = @left(@comment_characters, 1);
+
 char Comment_Determinant = cur_char;
 
 if(@is_markup_file(@filename_extension))
