@@ -6478,7 +6478,8 @@ void
 @replace_carriage_returns_w_semi()
 {
 str fp = "Replace all carriage returns with semicolons.";
-// fud: Aug-7-2017
+
+// lu: Aug-7-2017
 
 str rs;
 str sc;
@@ -6602,7 +6603,8 @@ fp = "Sep-13-2017 3:02 PM";
 
 // fcd: Sep-13-2017
 
-fp = @current_line_type;
+fp = Get_Environment("Prompt") + "\\Mozilla Firefox\\firefox.exe";
+fp = Get_Environment("ProgramFiles") + "\\Mozilla Firefox\\firefox.exe";
 
 @say(fp);
 }

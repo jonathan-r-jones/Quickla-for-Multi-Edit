@@ -2334,7 +2334,7 @@ if(!@is_structured_line)
   @bobbs;
 }
 
-if(@first_4_characters(get_line) == ';Gen')
+if(@first_character(get_line) == ';')
 {
   @find_next_bullet;
 }
@@ -3010,11 +3010,9 @@ void
 //;;
 
 void
-@import_and_format_innovation_da
+@import_and_format_innovation_da()
 {
 str fp = "Import and format innovation data to bor.";
-
-@header;
 
 @bobs;
 
@@ -3044,8 +3042,20 @@ cr;
 @bol;
 @cursor_to_my_bof
 
-@footer;
 @say(fp);
+}
+
+
+
+//;
+
+void
+@import_and_format_innovation_l1
+{
+@header;
+@find_lc('rfnptl');
+@import_and_format_innovation_da;
+@footer;
 }
 
 

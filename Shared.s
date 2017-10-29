@@ -3693,18 +3693,18 @@ str Command_Line = '';
 // Assign the default browser here. (!sebr, !bro, !brows, !debr, !defa)
 int default_browser = 2;
 
-if(Browser_Number == 0)
+if(browser_number == 0)
 {
   browser_number = default_browser;
 }
 
-switch(Browser_Number) // This list is ordered by how much I like them.
+switch(browser_number) // This list is ordered by how much i like them.
 {
   case 1: // Chrome
     Command_Line = @get_chrome_path;
     break;
   case 2: // Firefox
-    Command_Line = Get_Environment("ProgramFiles") + "\\Mozilla Firefox\\firefox.exe";
+    Command_Line = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
     break;
   case 3: // Internet Explorer
     Command_Line = Get_Environment("ProgramFiles") + "\\Internet Explorer\\IEXPLORE.EXE";
