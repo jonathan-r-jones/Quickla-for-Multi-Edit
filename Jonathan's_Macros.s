@@ -6599,7 +6599,7 @@ void
 @rtm
 {
 str fp = "";
-fp = "Sep-13-2017 3:02 PM";
+fp = "Oct-31-2017";
 
 // fcd: Sep-13-2017
 
