@@ -830,13 +830,10 @@ void
 @header;
 if(lc == '')
 {
-  lc = 'ggch';
+  lc = 'ch';
 }
 switch(lc)
 {
-  case 'ch':
-    lc = 'ggch';
-    break;
   case 'ne':
     lc = 'ggne';
     break;
@@ -2800,7 +2797,7 @@ void
 @open_l_file_in_an_empty_state
 {
 str fp = "Open J File in an empty state.";
-str full_filename[128] = get_environment('userprofile') + '\Documents\Dropbox\l';
+str full_filename[128] = 'c:\a\l';
 @open_file(full_filename);
 @select_all;
 delete_block;
@@ -2815,7 +2812,7 @@ void
 @open_l_file_with_pasted_text()
 {
 str fp = "Open l File with pasted text.";
-str full_filename[128] = get_environment('userprofile') + '\Documents\Dropbox\l';
+str full_filename[128] = 'c:\a\l';
 @open_file(full_filename);
 @select_all;
 delete_block;
@@ -5785,6 +5782,28 @@ str fp = "Replace current definition with the clipboard definition.";
 
 
 
+//;;
+
+void
+@copy_and_paste_sj_for_text_fil()
+{
+str fp = "Copy and paste sj for text files.";
+str test = get_line;
+@eol;
+cr;
+@bol;
+text(test);
+goto_col(@get_sj_cutoff_column);
+str_block_begin;
+@eol;
+block_end;
+@delete_block;
+text('=');
+@say(fp);
+}
+
+
+
 //;; skw copy and paste subject
 
 void
@@ -5794,6 +5813,7 @@ str fp = "Copy and paste sj only and turn it into a child subbullet.";
 
 if(!@is_bullet_File)
 {
+  @copy_and_paste_sj_for_text_fil;
   return();
 }
 
@@ -10683,8 +10703,9 @@ text(' - JRJ ' + @get_formatted_date);
 void
 @add_text_global_search_string
 {
-str fp = 'Add text global search string, the cmac value, not THE value.';
-text("global_str('search_str')");
+str fp = 'Add text global search string value.';
+text(global_str('cmac_return_value'));
+//text(global_str('search_str'));
 @say(fp);
 }
 
@@ -10693,10 +10714,10 @@ text("global_str('search_str')");
 //;;
 
 void
-@add_text_global_search_string_v
+@add_text_global_search_str_lit
 {
-str fp = 'Add text global search string value.';
-text(global_str('search_str'));
+str fp = 'Add text global search string literally.';
+text("global_str('search_str')");
 @say(fp);
 }
 
@@ -12475,7 +12496,7 @@ if(arguments == "")
   }
 }
 
-@parse_aguments_4_parameters(arguments, ".", arg1, arg2, arg3, arg4);
+@parse_arguments_4_parameters(arguments, ".", arg1, arg2, arg3, arg4);
 
 //@say(fp + ' arg1: ' + arg1 + ', arg2: ' + arg2 + ' (Nov-28-2016 3:04 PM)');return();
 

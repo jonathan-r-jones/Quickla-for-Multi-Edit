@@ -2543,8 +2543,8 @@ if(@text_is_selected)
   delete_block;
 }
 
-//if((@previous_character != ' ') and (@previous_character != ':') and (@previous_character != ';'))
-if(@previous_character != ' ')
+//if(@previous_character != ' ')
+if((@previous_character != ' ') and (@previous_character != ':') and (@previous_character != ';'))
 {
   text(' ');
 }
@@ -2658,11 +2658,9 @@ void
 @copy_and_paste_line()
 {
 str fp = 'Copy and paste line.';
-//mark_pos;
 @copy;
 @bol;
 @paste;
-//goto_mark;
 @say(fp);
 }
 
@@ -3994,7 +3992,7 @@ return(sc);
 //;;
 
 void
-@parse_aguments(str arguments, str separating_character, str &argument_1, str &argument_2)
+@parse_arguments(str arguments, str separating_character, str &argument_1, str &argument_2)
 {
 str fp = "Parse arguments.";
 
@@ -4018,7 +4016,7 @@ if(!@contains(arguments, separating_character))
 //;;
 
 void
-@parse_aguments_4_parameters(str arguments, str separating_character, 
+@parse_arguments_4_parameters(str arguments, str separating_character, 
   str &arg_1, str &arg_2,
   str &arg_3, str &arg_4)
 {
@@ -4039,7 +4037,7 @@ if(!@contains(arguments, separating_character))
 if(@contains(arg_2, '.'))
 {
   arguments = arg_2;
-  @parse_aguments(arguments, ".", arg_2, arg_3);
+  @parse_arguments(arguments, ".", arg_2, arg_3);
   @say('arg 2: ' + arg_2 + ', arg 3: ' + arg_3);
   //  return();
 }
@@ -4047,7 +4045,7 @@ if(@contains(arg_2, '.'))
 if(@contains(arg_3, '.'))
 {
   arguments = arg_3;
-  @parse_aguments(arguments, ".", arg_3, arg_4);
+  @parse_arguments(arguments, ".", arg_3, arg_4);
   @say('contains');
   @say('arg 3: ' + arg_3 + ', arg 4: ' + arg_4);
   //  return();
@@ -4061,7 +4059,7 @@ if(@contains(arg_3, '.'))
 //;;
 
 void
-@parse_aguments_th()
+@parse_arguments_th()
 {
 str fp = "";
 
@@ -4076,12 +4074,12 @@ arguments = 'test.tube.baby.wow!';
 
 str argument_1, argument_2, argument_3, argument_4;
 
-@parse_aguments(arguments, ".", argument_1, argument_2);
+@parse_arguments(arguments, ".", argument_1, argument_2);
 
 if(@contains(argument_2, '.'))
 {
   arguments = argument_2;
-  @parse_aguments(arguments, ".", argument_2, argument_3);
+  @parse_arguments(arguments, ".", argument_2, argument_3);
   @say('contains');
   @say('arg 2: ' + argument_2 + ', arg 3: ' + argument_3);
 //  return();
@@ -4090,7 +4088,7 @@ if(@contains(argument_2, '.'))
 if(@contains(argument_3, '.'))
 {
   arguments = argument_3;
-  @parse_aguments(arguments, ".", argument_3, argument_4);
+  @parse_arguments(arguments, ".", argument_3, argument_4);
   @say('contains');
   @say('arg 3: ' + argument_3 + ', arg 4: ' + argument_4);
 //  return();

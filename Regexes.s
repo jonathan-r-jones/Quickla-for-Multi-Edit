@@ -159,6 +159,7 @@ str sc;
 switch(lower(get_extension(File_name)))
 {
   case 'asc':
+  case 'txt':
     sc = "^;"; // Problem: Finds subrubrics too.
     sc = "^;[^;]"; // Problem: Doesn't find empty rubrics and subrubrics.
     sc = "^;([^;]|$)"; // Ahh! Goldilocks.
@@ -402,6 +403,7 @@ switch(@filename_extension)
   case 'bat':
     sc = '(^:$)||(^:[^:_])';
     break;
+  case 'txt':
   case 'asc':
     sc = '(^:$)||(^:[^:])';
     break;
@@ -458,6 +460,7 @@ switch(lower(get_extension(File_name)))
   case 'bat':
     return("^::_");
     break;
+  case 'txt':
   case 'asc':
     return("^;;");
     break;

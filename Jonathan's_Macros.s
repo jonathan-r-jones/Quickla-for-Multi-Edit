@@ -26,6 +26,8 @@ Metadata: Track Size (!tsjo)
     Date       Lines    Bytes    Macros   Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+: Dec-5-2017   6,729     93,302      241
+
 :Jun-25-2017   6,456     89,494      231
 
 :Jun-21-2017   6,454     89,450      231
@@ -361,7 +363,7 @@ text(@get_date_with_time);
 text('";');
 cr;
 cr;
-text('// fcd: ');
+text('// lu: ');
 @add_text_date;
 cr;
 cr;
@@ -689,7 +691,7 @@ cr;
 text('str fp = "";');
 cr;
 cr;
-text('// fcd: ');
+text('// lu: ');
 @add_text_date;
 cr;
 cr;
@@ -1087,7 +1089,7 @@ void
 {
 str fp = "Archive big segment.";
 
-// fcd: Jan-16-2015
+// lu: Jan-16-2015
 
 if(!((@is_s_file) or (@is_bullet_file) or (@is_batch_file)))
 {
@@ -5208,7 +5210,7 @@ str fp = "Pass a url to a browser.";
 int is_found = 0;
 str url;
 
-url = @get_remote_oj_using_klc('rftech', is_found);
+url = @get_remote_oj_using_klc('rfmash', is_found);
 @surf(url, 1);
 
 url = @get_remote_oj_using_klc('rfbbc', is_found);
@@ -5455,12 +5457,8 @@ down;
 down;
 down;
 down;
-down;
 @bol;
 text('rem q' + 'q-1');
-cr;
-up;
-up;
 up;
 up;
 up;
@@ -5520,7 +5518,7 @@ str arg_1, arg_2, arg_3, arg_4;
 
 arguments = @lower(arguments);
 
-@parse_aguments_4_parameters(arguments, ".", arg_1, arg_2, arg_3, arg_4);
+@parse_arguments_4_parameters(arguments, ".", arg_1, arg_2, arg_3, arg_4);
 
 //@say(fp + ' arg_1: ' + arg_1 + ' (Jan-8-2017 11:06 PM)');return();
 //@say(fp + ' arg_2: ' + arg_2 + ' (Jan-8-2017 11:06 PM)');return();
@@ -6003,7 +6001,6 @@ text(': ');
 eol;
 text(' - Created on: ');
 @add_text_date;
-left;
 left;
 left;
 left;
@@ -6596,7 +6593,7 @@ int is_found = @seek_in_all_files_2_arguments(sc, fp);
 //;
 
 void
-@rtm
+@rm2
 {
 str fp = "";
 fp = "Oct-31-2017";
@@ -6606,6 +6603,208 @@ fp = "Oct-31-2017";
 fp = Get_Environment("Prompt") + "\\Mozilla Firefox\\firefox.exe";
 fp = Get_Environment("ProgramFiles") + "\\Mozilla Firefox\\firefox.exe";
 
+@say(fp);
+}
+
+
+
+//;
+
+void
+@rm3
+{
+str fp = "Remove extra echo statements.";
+
+// lu: Nov-14-2017
+
+str rs;
+str sc;
+
+@header;
+
+tof;
+
+sc = 'echo\.$echo';
+
+@eol;
+
+rs = 'echo';
+
+@replace_all_occurrs_inf_no_tof(sc, rs);
+return();
+@replace_next_occurrence_only(sc, rs);
+@seek(sc);
+int is_found = @seek_in_all_files_2_arguments(sc, fp);
+
+@footer;
+@say(found_str);
+@say(fp);
+}
+
+
+
+//;
+
+void
+@run_batch_file_with_parameter_2(str arguments = parse_str('/1=', mparm_str))
+{
+str fp = "Run batch file with parameter.";
+
+// fcd: Nov-15-2017
+
+str argument_1, argument_2;
+
+@parse_arguments(arguments, ".", argument_1, argument_2);
+
+@process_batx_clif_block(argument_1 + '.batx ' + argument_2);
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@rm5
+{
+str fp = "";
+  fp = "Nov-21-2017 3:14 PM";
+// lu: Nov-21-2017
+str rs;
+str sc;
+
+@header;
+sc = '^.# "';
+sc = '".+$';
+sc = '$^';
+sc = "'";
+sc = '$';
+rs = "$                    submission_string += '";
+rs = "'\\&";
+rs = "=' + myForm.down('#').getValue();";
+@eol;
+
+@replace_next_occurrence_only(sc, rs);
+down;
+return();
+@replace_all_occurrs_inf_no_tof(sc, rs);
+int is_found = @seek_in_all_files_2_arguments(sc, fp);
+@seek(sc);
+
+@footer;
+@say(found_str);
+@say(fp);
+}
+
+
+
+//;
+
+void
+@rm
+{
+str fp = "";
+fp = "Dec-4-2017 5:06 PM";
+
+// lu: Dec-4-2017
+
+str test = get_line;
+@eol;
+cr;
+@bol;
+text(test);
+goto_col(@get_sj_cutoff_column);
+str_block_begin;
+@eol;
+block_end;
+@delete_block;
+text('=');
+@paste;
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@rm
+{
+str fp = "";
+  fp = "Dec-5-2017 3:30 PM";
+// lu: Dec-5-2017
+str rs;
+str sc;
+
+@header;
+sc = '^.+form.down';
+@eol;
+rs = 'form.down';
+
+@replace_next_occurrence_only(sc, rs);
+return();
+@seek(sc);
+@replace_all_occurrs_inf_no_tof(sc, rs);
+int is_found = @seek_in_all_files_2_arguments(sc, fp);
+
+@footer;
+@say(found_str);
+@say(fp);
+}
+
+
+
+//;
+
+void
+@reformat_url_string
+{
+str fp = "Reformat URL string.";
+
+// lu: Dec-7-2017
+
+str rs;
+str sc;
+
+@header;
+
+sc = '&';
+rs = '$';
+
+@eol;
+
+@replace_all_occurrs_inf_no_tof(sc, rs);
+
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
+@reformat_url_string_2
+{
+str fp = "Reformat URL string 2.";
+
+// lu: Dec-7-2017
+
+str rs;
+str sc;
+
+@header;
+
+sc = ',';
+rs = '$';
+
+@eol;
+
+@replace_all_occurrs_inf_no_tof(sc, rs);
+
+@footer;
 @say(fp);
 }
 

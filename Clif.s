@@ -1040,11 +1040,12 @@ if(!@find_lc_known(fp, lc))
 
 str sj = @hc_subject;
 
-str rv = '// JRJ, ';
+str rv = '';
+rv += "console.log('// JRJ, ";
 rv += @get_date_with_time;
 rv += ', ';
 rv += sj;
-rv += '.';
+rv += ".');";
 
 @set_clipboard(rv);
 
@@ -1868,7 +1869,7 @@ return(current_line);
 
 
 
-//;; (!grw, !rese)
+//;; (!grw, !rese) (contextual awareness: skw)
 
 str
 @get_reserved_word(str sc = parse_str('/1=', mparm_str))
@@ -1999,7 +2000,6 @@ void
 str fp = "Process batx clif block.";
    fp = "Apr-6-2017 3:09 PM";
 // fcd: "Apr-6-2017
-@header;
 
 str application;
 str command_line = 'c:\windows\system32\cmd.exe /k';
@@ -2035,7 +2035,6 @@ execprog(
   _ep_flags_nobypass |
   _ep_flags_dontwait);
 
-@footer;
 @say(fp);
 }
 
@@ -2506,7 +2505,9 @@ void
 @open_folder_in_dos()
 {
 str fp = 'Open folder under cursor in a command prompt.';
+
 str Command_String = 'c:\windows\system32\cmd.exe /k ';
+
 str Set_My_Path = "%dropbox%\\it\\batch_files\\set my path 4.bat";
 
 set_my_path = char(34) + @resolve_environment_variable(set_my_path) + char(34);
@@ -2995,7 +2996,7 @@ if(is_print_mode)
 }
 else
 {
-  @surf(url, 1);
+  @surf(url, 0);
 }
 
 /* Use Case(s)
@@ -3742,7 +3743,7 @@ str fp = "Run command line style executable with remote full filename.";
 str em_rp;
 str sm;
 str first_parameter, second_parameter;
-@parse_aguments(arguments, "'", first_parameter, second_parameter);
+@parse_arguments(arguments, "'", first_parameter, second_parameter);
 
 if(length(em_rp) > 0)
 {
@@ -3798,7 +3799,7 @@ str fp = "Run context-style command line.";
 str em_rp;
 str sm;
 str first_parameter, second_parameter;
-@parse_aguments(arguments, "-", first_parameter, second_parameter);
+@parse_arguments(arguments, "-", first_parameter, second_parameter);
 
 if(length(em_rp) > 0)
 {
@@ -3857,7 +3858,7 @@ str fp = "Run lc pass style command line.";
 // This small function rewrites pretty much all of the passthrough god class.
 // CMAC function Verb pass-through.
 str argument_1, argument_2;
-@parse_aguments(arguments, ".", argument_1, argument_2);
+@parse_arguments(arguments, ".", argument_1, argument_2);
 int lc_is_found;
 str expanded_verb = @get_remote_oj_using_klc(argument_1, lc_Is_Found);
 if(!lc_Is_Found)
@@ -3888,7 +3889,7 @@ str fp = "Run CMAC that consumes a string.";
 
 str argument_1, argument_2;
 
-@parse_aguments(arguments, "=", argument_1, argument_2);
+@parse_arguments(arguments, "=", argument_1, argument_2);
 
 int lc_is_found;
 
@@ -4207,7 +4208,7 @@ str fp = "Paste with arguments.";
 
 str first_parameter, second_parameter;
 
-@parse_aguments(arguments, ".", first_parameter, second_parameter);
+@parse_arguments(arguments, ".", first_parameter, second_parameter);
 
 str lc = first_parameter; // location here below (default) versus remote
 
@@ -4251,7 +4252,7 @@ str fp = "Find backwards wost at lc.";
 
 str first_parameter, second_parameter;
 
-@parse_aguments(arguments, ".", first_parameter, second_parameter);
+@parse_arguments(arguments, ".", first_parameter, second_parameter);
 
 str lc = first_parameter; // location here (default) versus remote
 
@@ -4330,7 +4331,7 @@ str arg_1, arg_2, arg_3, arg_4;
 
 arguments = @lower(arguments);
 
-@parse_aguments_4_parameters(arguments, ".", arg_1, arg_2, arg_3, arg_4);
+@parse_arguments_4_parameters(arguments, ".", arg_1, arg_2, arg_3, arg_4);
 
 //@say(fp + ' arg_1: ' + arg_1 + ' (Jan-8-2017 11:06 PM)');return();
 

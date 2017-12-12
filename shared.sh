@@ -98,8 +98,8 @@ prototype Shared
   // (!sp)
   void @open_file(str filename);
   int  @open_file_with_writability();
-  void @parse_aguments(str arguments, str separating_character, str &argument_1, str &argument_2);
-  void @parse_aguments_4_parameters(str arguments, str separating_character, str &arg_1, str &arg_2, str &arg_3, str &arg_4);
+  void @parse_arguments(str arguments, str separating_character, str &argument_1, str &argument_2);
+  void @parse_arguments_4_parameters(str arguments, str separating_character, str &arg_1, str &arg_2, str &arg_3, str &arg_4);
   void @paste();
   void @paste_using_windows_clipboard();
   void @position_cursor_on_a_valid_word();
