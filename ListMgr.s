@@ -5491,7 +5491,7 @@ return(rv);
 ::DCCapsApril44 (zdel): oblique
 
 - 4. Use Case on Oct-22-2014:
-:Zeta Deltek Credentials
+:ZD Credentials
 
 - 3. Use Case on Oct-22-2014:
 ::Test!: hey

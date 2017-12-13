@@ -5440,7 +5440,15 @@ up;
 up;
 up;
 @paste;
+
 @find_bobs_or_previous_bs;
+
+@seek('x_marker');
+
+@hc_subject;
+
+@delete_block;
+
 @seek('x_marker');
 
 @hc_subject;
