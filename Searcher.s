@@ -21,6 +21,8 @@ Metadata: Track Size (!tsse)
     Date       Lines     Bytes    Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+: Jan-3-2018   2,138     32,477       69
+
 :Jun-25-2017   2,028     30,904       64
 
 :Mar-31-2017   1,943     28,774       62
@@ -1083,6 +1085,18 @@ void
 //;;
 
 void
+@search_google_and_append_cs(str sc = parse_str('/1=', mparm_str))
+{
+str fp = 'Search google and append C#.';
+@search_google_main(0, 0, @get_sj + ' c#');
+@say(fp);
+}
+
+
+
+//;;
+
+void
 @search_google_append_download(str sc = parse_str('/1=', mparm_str))
 {
 @search_google_main(0, 0, @get_sj + ' download');
@@ -2047,4 +2061,80 @@ Server Beacon
 
 
 
-//; EOF << (!sp, !efse)
+//;
+
+void
+@search_github(str parameter = parse_str('/1=', mparm_str))
+{
+
+str fp = 'Search Github.';
+
+// fcd: Dec-30-2017
+
+str URL = 'https://github.com/search?utf8=%E2%9C%93&q=';
+
+str sc = parameter;
+
+if(sc == '')
+{
+  sc = @get_subject_or_selected_text;
+}
+
+str Pretty_sc = sc;
+sc = @commute_character(sc, ' ', '+');
+
+URL += sc;
+URL += '&type=Repositories&ref=advsearch&l=&l=';
+
+@surf(URL, 0);
+
+/* Use Cases
+
+typewriter
+
+*/
+
+@say(@trim_period(fp) + ' for "' + pretty_sc + '".');
+}
+
+
+
+//;
+
+void
+@search_spanish(str parameter = parse_str('/1=', mparm_str))
+{
+
+str fp = 'Search Spanish translation.';
+
+// fcd: Jan-1-2018
+
+str URL = 'https://translate.google.com/#es/en/';
+
+str sc = parameter;
+
+if(sc == '')
+{
+  sc = @get_subject_or_selected_text;
+}
+
+str Pretty_sc = sc;
+sc = @commute_character(sc, ' ', '+');
+
+URL += sc;
+//URL += '&type=Repositories&ref=advsearch&l=&l=';
+
+@surf(URL, 0);
+
+/* Use Cases
+
+cerrado
+
+*/
+
+@say(@trim_period(fp) + ' for "' + pretty_sc + '".');
+}
+
+
+
+//; (!rfsp, !efse)

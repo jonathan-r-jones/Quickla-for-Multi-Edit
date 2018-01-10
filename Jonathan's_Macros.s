@@ -26,6 +26,8 @@ Metadata: Track Size (!tsjo)
     Date       Lines    Bytes    Macros   Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+: Jan-3-2018   6,821     94,186      244
+
 : Dec-5-2017   6,729     93,302      241
 
 :Jun-25-2017   6,456     89,494      231
@@ -5011,6 +5013,24 @@ str fp = "Find lc partner.";
 
 str lc;
 
+@save_location;
+
+if(@current_line_contains('^'))
+{
+  str lc = @get_indicated_lc_2;
+  @find_lc(lc);
+  @footer;
+  return();
+}
+
+if(@current_line_contains('&'))
+{
+  str lc = @get_indicated_lc_2;
+  @find_lc(lc);
+  @footer;
+  return();
+}
+
 if(!@current_line_has_an_lc_partner(lc))
 {
   @say(fp + ' Error: There is no lc partner on the current line. (' + lc + ')zxx');
@@ -6818,4 +6838,31 @@ rs = '$';
 
 
 
-//; EOF << (!efjo)
+//;
+
+void
+@add_text_if_statement
+{
+str fp = "Add text if statement.";
+
+// lu: Jan-8-2018
+
+@bol;
+text('if()');
+cr;
+text('{');
+cr;
+cr;
+text('}');
+up;
+up;
+up;
+@eol;
+left;
+
+@say(fp);
+}
+
+
+
+//; (!efjo)

@@ -21,6 +21,8 @@ Metadata: Track Size (!tsli, !tslm)
     Date       Lines     Bytes     Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+: Jan-3-2018  12,707    167,560      464
+
 :Jun-25-2017  12,664    167,158      462
 
 :Mar-31-2017  12,637    166,514      461
@@ -2584,7 +2586,7 @@ if(!@is_text_file)
 void
 @delete_carriage_returns()
 {
-str fp = "Delete text eof characters but NOT paragraph separating ones.";
+str fp = "Delete text characters but NOT paragraph separating ones.";
 
 if(!@is_text_file)
 {
@@ -9207,7 +9209,7 @@ void
 @add_rubric_near_eof(str lc = parse_str('/1=', mparm_str))
 {
 
-str fp = 'Add Rubric near EOF for launch code "' + lc + '".';
+str fp = 'Add Rubric near for launch code "' + lc + '".';
 
 @header;
 
@@ -9461,7 +9463,7 @@ switch(@filename)
     break;
   default:
     @bof;
-    str sc = '!s' + 'p';
+    str sc = '!rfs' + 'p';
     // I modified this from "seek_in_all_files" on Apr-18-2016.
     @seek(sc);
     if(@is_bullet_file)
@@ -12704,4 +12706,4 @@ if(!@is_dog_park_file)
 
 
 
-//; EOF << (!eflm)
+//; (!eflm)

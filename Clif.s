@@ -28,6 +28,8 @@ Metadata: Track Size (!tscl, !tscf)
     Date       Lines     Bytes    Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+: Jan-3-2018   4,428     81,532      111
+
 :Jun-25-2017   4,299     79,666      109
 
 :Mar-31-2017   4,228     78,179      108
@@ -4303,7 +4305,7 @@ if(find_text(sc, 0, _regexp | _backward))
 void
 @find_backwards_from_eof_w_ui
 {
-str fp = "Find backwards from EOF using user input.";
+str fp = "Find backwards from using user input.";
 @header;
 
 // fcd: Sep-22-2016
@@ -4424,4 +4426,4 @@ return('');
 
 
 
-//; EOF << (!efcf)
+//; (!efcf)

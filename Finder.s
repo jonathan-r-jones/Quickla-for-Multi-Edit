@@ -32,6 +32,8 @@ Metadata: Track Size (!tsfi)
      Date      Lines     Bytes    Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+: Jan-3-2018   3,777     61,262      109
+
 :Jun-25-2017   3,776     61,246      109
 
 :Mar-31-2017   3,774     61,201      109
@@ -800,14 +802,6 @@ if((@first_character(get_line) == ':') && (@is_batch_file))
 
 @save_location;
 
-if(@current_line_contains('^'))
-{
-  str lc = @get_indicated_lc_2;
-  @find_lc(lc);
-  @footer;
-  return();
-}
-
 str so = @get_lc_on_current_line(lc);
 
 if(length(lc) == 0)
@@ -1111,13 +1105,13 @@ return(rv);
 void
 @find_next_eof_marker
 {
-str fp = 'Find next eof marker.';
+str fp = 'Find next marker.';
 str rs;
 str sc;
 str so;
 @header;
 
-sc = 'EOF' + ' <<';
+sc = '!' + 'ef';
 
 right;
 int Is_Found = @seek_in_all_files_2_arguments(sc, fp);
@@ -3680,12 +3674,16 @@ str sc = @hc_word_uc();
 
 sc = make_literal_x(sc);
 
-sc = ':' + sc + '$';
+if(@first_character(sc) != ':')
+{
+  sc = '^:' + sc + '$';
+}
 
 //@say(fp + ' sc:' + sc + ' (Nov-28-2016 6:18 PM)');return(); //
 @seek_in_all_files_2_arguments(sc, fp);
 
 @footer;
+@say('sc: ' + sc);
 @say(fp);
 }
 
@@ -3774,4 +3772,4 @@ right;
 
 
 
-//; EOF << (!effi)
+//; (!effi)
