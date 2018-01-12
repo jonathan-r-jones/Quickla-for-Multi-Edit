@@ -1,3 +1,106 @@
+//;;
+
+void
+@move_to_lastp_old(int return_home = parse_int('/1=', mparm_str))
+{
+str fp = "Move context object to last position.";
+
+// fcd: Nov-18-2014
+
+@header;
+
+//qq-1
+switch(lower(get_extension(File_name)))
+{
+  case 'bat':
+    @bor;
+    @cut_rubric;
+    eof;
+    @bol;
+    @paste;
+    up;
+    @bor;
+    @footer;
+    @say(fp);
+    return();
+    break;
+  case 's':
+    @bor;
+    @cut_rubric;
+    @eof;
+    @bol;
+    @paste;
+    up;
+    @bor;
+    @footer;
+    return();
+    break;
+  default:
+    break;
+}
+
+if(!@is_bullet_file)
+{
+  if(return_home)
+  {
+    @move_line_to_lastp_alone;
+  }
+  else
+  {
+    @move_line_to_lastp_wme;
+  }
+}
+else
+{
+  switch(@current_line_type)
+  {
+    case 'subbullet':
+      if(return_home)
+      {
+        @move_subbullet_to_lastp_alone;
+      }
+      else
+      {
+        @move_subbullet_to_lastp_wme;
+      }
+      break;
+    case 'bullet':
+      if(return_home)
+      {
+        @@run_bullet_action_model('-4');
+      }
+      else
+      {
+        @@run_bullet_action_model('-4w');
+      }
+      break;
+    case 'subrubric':
+      if(return_home)
+      {
+        @move_subrubric_to_lastp_alone;
+      }
+      else
+      {
+        @move_subrubric_to_lastp_wme;
+      }
+      break;
+    case 'rubric':
+      if(return_home)
+      {
+        @move_rubric_to_lastp_alone;
+      }
+      else
+      {
+        @move_rubric_to_lastp_wme;
+      }
+      break;
+  }
+}
+@footer;
+}
+
+
+
 //;
 
 void
