@@ -1594,11 +1594,6 @@ if(source_lc_is_found)
 {
   lc = 'dest' + looked_up_rubrics_lc;
 }
-else if(@filename == 'ne.asc')
-{
-  // The destination-source convention should override the "if-I'm-in-the-NE" window convention.
-  lc = 'rfco';
-}
 
 @find_lc(lc);
 
@@ -2004,9 +1999,8 @@ str fp = "Process batx clif block.";
 // fcd: "Apr-6-2017
 
 str application;
-str command_line = 'c:\windows\system32\cmd.exe /k';
 
-//str batch_file_name = 'c:\projects\netbeans\batch_files\g.bat hlp';
+str command_line = 'c:\windows\system32\cmd.exe /k';
 
 int position_of_c_colon = xpos("c:", clif_block, 1);
 
@@ -2015,11 +2009,13 @@ str trimmed_clif_block = @trim_before_phrase(clif_block, 'c:');
 @log('trimmed_clif_block: ' + trimmed_clif_block);
 
 str bat_file_parameter = @trim_before_phrase(trimmed_clif_block, 'batx');
+
 bat_file_parameter = @trim_left(bat_file_parameter, 5);
 
 @log('bat_file_parameter: ' + bat_file_parameter);
 
 str batch_file_name = @trim_after_phrase(trimmed_clif_block, 'batx');
+
 batch_file_name = @trim_last_character(batch_file_name);
 
 str argument = char(34) + batch_file_name + ' ' + bat_file_parameter + ' ' + char(34);
