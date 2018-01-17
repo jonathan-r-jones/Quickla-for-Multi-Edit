@@ -2002,9 +2002,12 @@ str application;
 
 str command_line = 'c:\windows\system32\cmd.exe /k';
 
-int position_of_c_colon = xpos("c:", clif_block, 1);
+str trimmed_clif_block = @trim_before_phrase(clif_block, '):');
 
-str trimmed_clif_block = @trim_before_phrase(clif_block, 'c:');
+trimmed_clif_block = @trim_first_character(trimmed_clif_block);
+trimmed_clif_block = @trim_first_character(trimmed_clif_block);
+
+@say(trimmed_clif_block); return(); //qq
 
 @log('trimmed_clif_block: ' + trimmed_clif_block);
 
@@ -3171,7 +3174,8 @@ if(@contains(operation_outcome, 'not an executable'))
   return();
 }
 
-@say(fp + ' ' + Operation_Outcome);
+//@say(fp + ' ' + Operation_Outcome);
+//qjq-1
 }
 
 
