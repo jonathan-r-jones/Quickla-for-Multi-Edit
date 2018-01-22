@@ -2007,8 +2007,6 @@ str trimmed_clif_block = @trim_before_phrase(clif_block, '):');
 trimmed_clif_block = @trim_first_character(trimmed_clif_block);
 trimmed_clif_block = @trim_first_character(trimmed_clif_block);
 
-@say(trimmed_clif_block); return(); //qq
-
 @log('trimmed_clif_block: ' + trimmed_clif_block);
 
 str bat_file_parameter = @trim_before_phrase(trimmed_clif_block, 'batx');
