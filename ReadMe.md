@@ -9,7 +9,7 @@ language. The main features of the suite are:
 
 All the macros run from within Multi-Edit running on Windows 10 and older versions.
 
-For more information, email me at jonathan.r.jones.3@gmail.com.
+For more information, feel free to email me at jonathan.r.jones.3@gmail.com.
 
 
 
