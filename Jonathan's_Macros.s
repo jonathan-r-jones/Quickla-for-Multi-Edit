@@ -1630,7 +1630,7 @@ while(!at_eol)
 
 text(weekday);
 text(' (!');
-text(lower(@left(weekday, 3)));
+text(lower(@left(weekday, 2)));
 text(')');
 
 @find_lc('rfnow');
@@ -4874,10 +4874,6 @@ if(find_text(sc, 3, _regexp))
   distilled_lc = @trim_after_character(distilled_lc, ')');
   distilled_lc = str_del(distilled_lc, 1, 4);
   remote_lc_partner = 'dest' + distilled_lc;
-  if(remote_lc_partner == 'destcj')
-  {
-    remote_lc_partner = 'cj';
-  }
   if(remote_lc_partner == 'destjd')
   {
     remote_lc_partner = 'jd';
@@ -5033,7 +5029,7 @@ if(@current_line_contains('&'))
 
 if(!@current_line_has_an_lc_partner(lc))
 {
-  @say(fp + ' Error: There is no lc partner on the current line. (' + lc + ')zxx');
+  @say(fp + ' Error: There is no lc partner on the current line. (' + lc + ')');
   @footer;
   return();
 }
@@ -6029,6 +6025,7 @@ text(': ');
 eol;
 text(' - Created on: ');
 @add_text_date;
+left;
 left;
 left;
 left;

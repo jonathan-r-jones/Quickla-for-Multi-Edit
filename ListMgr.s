@@ -9463,7 +9463,7 @@ switch(@filename)
     break;
   default:
     @bof;
-    str sc = '!rfs' + 'p';
+    str sc = '!' + 'rfsp';
     // I modified this from "seek_in_all_files" on Apr-18-2016.
     @seek(sc);
     if(@is_bullet_file)

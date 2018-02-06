@@ -4212,7 +4212,7 @@ str first_parameter, second_parameter;
 
 str lc = first_parameter; // location here below (default) versus remote
 
-str wrapping_is_on = second_parameter; // wwrapping (default "") versus no wrapping "n"
+str wrapping_is_on = second_parameter; // wrapping (default "") versus no wrapping "n"
 
 if(lc != '')
 {
