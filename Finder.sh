@@ -22,7 +22,7 @@ prototype Finder
 //qq-1
   str  @replace(str original_String, str old_Characters, str new_Characters);
   str  @replace_all_occurrences_in_file(str character_to_Replace, str new_Character);
-  str  @replace_all_occurrs_inf_no_tof(str character_to_Replace, str new_Character);
+  str  @replace_all_occurrs_inf_one_tof(str character_to_Replace, str new_Character);
   str  @replace_next_occurrence_only(str sc, str replace_String_Regex);
   int  @replace_string_in_file_int(str old_String, str new_String);
   int  @replace_string_in_file_cs(str old_String, str new_String);

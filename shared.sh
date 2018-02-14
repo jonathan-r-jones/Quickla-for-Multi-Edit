@@ -46,6 +46,7 @@ prototype Shared
   str  @get_current_line();
   str  @get_date();
   str  @get_date_and_time();
+  str  @get_date_smas_format();
   str  @get_date_with_time();
   int  @get_eoc();
   str  @get_fixed_width_date();
@@ -65,9 +66,9 @@ prototype Shared
   str  @get_subject();
   str  @get_subject_or_selected_text();
   str  @get_selected_text();
+  str  @get_time();
   str  @get_user_input_raw(str introduction);
   str  @get_user_input_nonspace(str introduction);
-  str  @get_time();
   str  @get_uc();
   str  @get_wost();
   str  @highcopy_current_line();
@@ -76,6 +77,7 @@ prototype Shared
   void @highlight_current_line();
   void @home();
   int  @i_am_on_my_home_computer();
+  int  @int(str conversion_candidate);
   int  @is_batch_file();
   int  @is_blank_line();
   int  @is_bul_file();
@@ -95,7 +97,7 @@ prototype Shared
   str  @lower(str string);
   str  @lowercase(str string);
   void @multi_edit_paste();
-  // (!sp)
+  // (!sp) qq-1
   void @open_file(str filename);
   int  @open_file_with_writability();
   void @parse_arguments(str arguments, str separating_character, str &argument_1, str &argument_2);

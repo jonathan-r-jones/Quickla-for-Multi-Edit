@@ -1066,7 +1066,7 @@ block_off;
 rs = '$\0';
 
 tof;
-if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_one_tof(sc, rs); efbo = 0; }
 
 @footer;
 @say(fp);
@@ -1224,7 +1224,7 @@ rs = '$$';
 
 @eol;
 
-@replace_all_occurrs_inf_no_tof(sc, rs);
+@replace_all_occurrs_inf_one_tof(sc, rs);
 @say(fp);
 return();
 }
@@ -1253,7 +1253,7 @@ right;
 right;
 right;
 
-@replace_all_occurrs_inf_no_tof(sc, rs);
+@replace_all_occurrs_inf_one_tof(sc, rs);
 
 @footer;
 
@@ -2105,7 +2105,7 @@ right;
 
 @say(fp);
 
-so = @replace_all_occurrs_inf_no_tof(sc, rs);
+so = @replace_all_occurrs_inf_one_tof(sc, rs);
 
 @say(found_str);
 @say(so);
@@ -2176,7 +2176,7 @@ sc = '(<entity type)';
 rs = '$$\0';
 right;
 
-if(EFBO){ so = @replace_all_occurrs_inf_no_tof(sc, rs); EFBO = 0; }
+if(EFBO){ so = @replace_all_occurrs_inf_one_tof(sc, rs); EFBO = 0; }
 
 @say(found_str);
 @say(so);

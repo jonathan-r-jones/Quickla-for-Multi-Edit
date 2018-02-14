@@ -983,7 +983,7 @@ return("Replace '" + character_to_Replace + "' with '" + new_Character + "'. Num
 //;;
 
 str
-@replace_all_occurrs_inf_no_tof(str character_to_Replace, str new_Character)
+@replace_all_occurrs_inf_one_tof(str character_to_Replace, str new_Character)
 {
 str fp = 'Replace all occurrences in file without going to tof.';
 return("Replace '" + character_to_Replace + "' with '" + new_Character + "'. Number of 

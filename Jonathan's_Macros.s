@@ -357,11 +357,7 @@ text('@rt' + 'm');
 cr;
 text('{');
 cr;
-text('str fp = "');
-text('";');
-cr;
-text('fp = "');
-text(@get_date_with_time);
+text('str fp = "x');
 text('";');
 cr;
 cr;
@@ -500,15 +496,9 @@ text('@rt' + 'm');
 cr;
 text('{');
 cr;
-text('str fp = "');
+text('str fp = "x');
 text('";');
 cr;
-text('   fp = "');
-text(@get_date_with_time);
-text('";');
-cr;
-text('// fud: "');
-text(@get_date);
 cr;
 text("@header;");
 cr;
@@ -526,10 +516,9 @@ cr;
 cr;
 cr;
 cr;
-@seek_previous('r fp', so);
-eol;
-left;
-left;
+@seek_previous('q' + 'q', so);
+up;
+@bol;
 
 @footer;
 @say(fp);
@@ -560,15 +549,13 @@ text('@rt' + 'm');
 cr;
 text('{');
 cr;
-text('str fp = "');
+text('str fp = "x');
 text('";');
 cr;
-text('  fp = "');
-text(@get_date_with_time);
-text('";');
 cr;
 text("// lu: ");
 text(@get_date);
+cr;
 cr;
 text("str rs;");
 cr;
@@ -589,17 +576,16 @@ text("@seek(sc);");
 cr;
 text("return();");
 cr;
+text("rs = '\\0';");
+cr;
 text("@replace_next_occurrence_only(sc, rs);");
 cr;
-text("@replace_all_occurrs_inf_no_tof(sc, rs);");
+text("@replace_all_occurrs_inf_one_tof(sc, rs);");
 cr;
 text("int is_found = @seek_in_all_files_2_arguments(sc, fp);");
-
 cr;
 cr;
 text("@footer;");
-cr;
-text("rs = '\\0';");
 cr;
 text('@say(found_str);');
 cr;
@@ -3921,7 +3907,7 @@ down;
 down;
 if(efbo){ @seek_next(sc, so); efbo = false; }
 if(efbo){ so = @replace_next_occurrence_only(sc, rs); efbo = 0; }
-if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_one_tof(sc, rs); efbo = 0; }
 
 @footer;
 @say(found_str);
@@ -4077,7 +4063,10 @@ str oj = @hc_object;
 
 @restore_location;
 text(oj);
-text(' "');
+
+// The following addendum doesn't work well for a clif like "ato.wd", 
+// so that's why I commented it out. Feb-7-2018
+//text(' "');
 
 @footer;
 @say(fp + ' (' + oj + ')');
@@ -4297,7 +4286,7 @@ sc = '(<tr)';
 rs = '$$$$\0';
 @eol;
 
-if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_one_tof(sc, rs); efbo = 0; }
 
 @say(found_str);
 @say(so);
@@ -4321,7 +4310,7 @@ sc = '(<b)';
 rs = '$\0';
 @eol;
 
-if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_one_tof(sc, rs); efbo = 0; }
 
 @say(found_str);
 @say(so);
@@ -4345,7 +4334,7 @@ sc = '(</tr)';
 rs = '$\0';
 @eol;
 
-if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_one_tof(sc, rs); efbo = 0; }
 
 @say(found_str);
 @say(so);
@@ -4369,7 +4358,7 @@ sc = '(<td)';
 rs = '$\0';
 @eol;
 
-if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_one_tof(sc, rs); efbo = 0; }
 
 @say(found_str);
 @say(so);
@@ -4393,7 +4382,7 @@ sc = '(</td)';
 rs = '$\0';
 @eol;
 
-if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_one_tof(sc, rs); efbo = 0; }
 
 @say(found_str);
 @say(so);
@@ -4417,7 +4406,7 @@ sc = '(<table)';
 rs = '$\0';
 @eol;
 
-if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_one_tof(sc, rs); efbo = 0; }
 
 @say(found_str);
 @say(so);
@@ -4441,7 +4430,7 @@ sc = '(</table)';
 rs = '$\0';
 @eol;
 
-if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_one_tof(sc, rs); efbo = 0; }
 
 @say(found_str);
 @say(so);
@@ -4789,7 +4778,7 @@ rs = '\0';
 
 if(efbo){ @seek_next(sc, so); efbo = false; }
 if(efbo){ so = @replace_next_occurrence_only(sc, rs); efbo = 0; }
-if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_one_tof(sc, rs); efbo = 0; }
 if(efbo){ int is_found = @seek_in_all_files_2_arguments(sc, fp); efbo = 0; }
 
 @footer;
@@ -5075,7 +5064,7 @@ str fp = "Add bullet at c and paste without wrapping.";
 
 @header;
 
-@add_bullet_at_lc('rfc');
+@add_bullet_at_lc('rfwtl');
 @paste;
 
 @footer;
@@ -5310,7 +5299,7 @@ str sc = '\#';
 
 @bof;
 
-@replace_all_occurrs_inf_no_tof(sc, rs);
+@replace_all_occurrs_inf_one_tof(sc, rs);
 
 @eof;
 
@@ -5323,7 +5312,7 @@ cr;
 
 @close_and_save_file_wo_prompt;
 
-@find_lc('rfc');
+@find_lc('rfwtl');
 
 @find_next_bullet;
 
@@ -5377,7 +5366,7 @@ sc = '(c:)';
 rs = '$$\0';
 @eol;
 
-if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_one_tof(sc, rs); efbo = 0; }
 if(efbo){ so = @replace_next_occurrence_only(sc, rs); efbo = 0; }
 if(efbo){ @seek_next(sc, so); efbo = false; }
 if(efbo){ int is_found = @seek_in_all_files_2_arguments(sc, fp); efbo = 0; }
@@ -5962,7 +5951,7 @@ text(number_of_lines_in_file);
 
 @hc_bullet;
 
-@find_lc('rfc');
+@find_lc('rfwtl');
 
 @paste_after;
 
@@ -6077,7 +6066,7 @@ sc = ';';
 rs = '$';
 @eol;
 
-@replace_all_occurrs_inf_no_tof(sc, rs);
+@replace_all_occurrs_inf_one_tof(sc, rs);
 
 @say(fp);
 }
@@ -6430,7 +6419,7 @@ tof;
 sc = '$^';
 rs = ';';
 
-@replace_all_occurrs_inf_no_tof(sc, rs);
+@replace_all_occurrs_inf_one_tof(sc, rs);
 @footer;
 }
 
@@ -6512,7 +6501,7 @@ sc = '$^';
 rs = ';';
 @eol;
 
-@replace_all_occurrs_inf_no_tof(sc, rs);
+@replace_all_occurrs_inf_one_tof(sc, rs);
 
 @say(fp);
 }
@@ -6546,7 +6535,7 @@ return();
 
 @replace_next_occurrence_only(sc, rs);
 @say(rs);
-@replace_all_occurrs_inf_no_tof(sc, rs);
+@replace_all_occurrs_inf_one_tof(sc, rs);
 int is_found = @seek_in_all_files_2_arguments(sc, fp);
 
 @footer;
@@ -6605,7 +6594,7 @@ right;
 @replace_next_occurrence_only(sc, rs);
 return();
 @seek(sc);
-@replace_all_occurrs_inf_no_tof(sc, rs);
+@replace_all_occurrs_inf_one_tof(sc, rs);
 int is_found = @seek_in_all_files_2_arguments(sc, fp);
 
 @footer;
@@ -6655,7 +6644,7 @@ sc = 'echo\.$echo';
 
 rs = 'echo';
 
-@replace_all_occurrs_inf_no_tof(sc, rs);
+@replace_all_occurrs_inf_one_tof(sc, rs);
 return();
 @replace_next_occurrence_only(sc, rs);
 @seek(sc);
@@ -6713,7 +6702,7 @@ rs = "=' + myForm.down('#').getValue();";
 @replace_next_occurrence_only(sc, rs);
 down;
 return();
-@replace_all_occurrs_inf_no_tof(sc, rs);
+@replace_all_occurrs_inf_one_tof(sc, rs);
 int is_found = @seek_in_all_files_2_arguments(sc, fp);
 @seek(sc);
 
@@ -6771,7 +6760,7 @@ rs = 'form.down';
 @replace_next_occurrence_only(sc, rs);
 return();
 @seek(sc);
-@replace_all_occurrs_inf_no_tof(sc, rs);
+@replace_all_occurrs_inf_one_tof(sc, rs);
 int is_found = @seek_in_all_files_2_arguments(sc, fp);
 
 @footer;
@@ -6800,7 +6789,7 @@ rs = '$';
 
 @eol;
 
-@replace_all_occurrs_inf_no_tof(sc, rs);
+@replace_all_occurrs_inf_one_tof(sc, rs);
 
 @footer;
 @say(fp);
@@ -6827,7 +6816,7 @@ rs = '$';
 
 @eol;
 
-@replace_all_occurrs_inf_no_tof(sc, rs);
+@replace_all_occurrs_inf_one_tof(sc, rs);
 
 @footer;
 @say(fp);
@@ -6857,6 +6846,74 @@ up;
 @eol;
 left;
 
+@say(fp);
+}
+
+
+
+//;
+
+void
+@reverse_bullet_order
+{
+str fp = "Reverse bullet order.";
+@header;
+
+@save_location;
+@cut_bullet;
+@find_lc('sourgi');
+@paste_after;
+@recall_location;
+
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
+@add_blank_lines_after_ago()
+{
+str fp = "Add a blank line after for job postings.";
+
+// lu: Feb-13-2018
+
+str rs;
+str sc;
+
+sc = 'Ago$';
+rs = 'Ago$';
+
+@tof;
+
+@replace_all_occurrs_inf_one_tof(sc, rs);
+
+}
+
+
+
+//;
+
+void
+@add_colons_after_blank_lines()
+{
+str fp = "Add colons after blank lines.";
+
+// lu: Feb-13-2018
+
+str rs;
+str sc;
+
+sc = '$$^';
+rs = '$$:';
+
+@tof;
+
+@replace_all_occurrs_inf_one_tof(sc, rs);
+
+@say(found_str);
 @say(fp);
 }
 

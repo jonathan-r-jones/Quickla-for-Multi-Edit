@@ -2489,7 +2489,7 @@ sc = '} catch';
 rs = '}$catch';
 @eol;
 
-if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_one_tof(sc, rs); efbo = 0; }
 if(efbo){ so = @replace_next_occurrence_only(sc, rs); efbo = 0; }
 if(efbo){ @seek_next(sc, so); efbo = false; }
 if(efbo){ int is_found = @seek_in_all_files_2_arguments(sc, fp); efbo = 0; }
@@ -2516,7 +2516,7 @@ sc = '} else';
 rs = '}$else';
 @eol;
 
-if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_one_tof(sc, rs); efbo = 0; }
 if(efbo){ so = @replace_next_occurrence_only(sc, rs); efbo = 0; }
 if(efbo){ @seek_next(sc, so); efbo = false; }
 if(efbo){ int is_found = @seek_in_all_files_2_arguments(sc, fp); efbo = 0; }
@@ -2543,7 +2543,7 @@ sc = '(\)) ({)$';
 rs = '\0$  \1';
 @eol;
 
-if(efbo){ so = @replace_all_occurrs_inf_no_tof(sc, rs); efbo = 0; }
+if(efbo){ so = @replace_all_occurrs_inf_one_tof(sc, rs); efbo = 0; }
 if(efbo){ so = @replace_next_occurrence_only(sc, rs); efbo = 0; }
 if(efbo){ @seek_next(sc, so); efbo = false; }
 if(efbo){ int is_found = @seek_in_all_files_2_arguments(sc, fp); efbo = 0; }
@@ -2596,8 +2596,8 @@ if(!@is_text_file)
 str sc = '(.)$(.)';
 str rs = '\0 \1';
 
-str so = @replace_all_occurrs_inf_no_tof(sc, rs);
-str so = @replace_all_occurrs_inf_no_tof("  ", " ");
+str so = @replace_all_occurrs_inf_one_tof(sc, rs);
+str so = @replace_all_occurrs_inf_one_tof("  ", " ");
 
 @tof;
 
@@ -2670,7 +2670,7 @@ str replacement_description;
 @replace_string_in_file_cs('^i ', 'I ');
 
 @replace_all_occurrences_in_file('((^)||( ))(im)(( )||($))', '\0i' + char(39) + 'm\4');
-@replace_all_occurrs_inf_no_tof('\.\.', ":");
+@replace_all_occurrs_inf_one_tof('\.\.', ":");
 
 str sc = '(infor' + 'mal)([^ ilIL.):,]])';
 @replace_all_occurrences_in_file(sc, '\0 - \1');
@@ -10304,7 +10304,7 @@ rs = 'copy "';
 rs = 'move "';
 rs = 'del /f c:\\pcarss\\';
 
-@replace_all_occurrs_inf_no_tof(sc, rs);
+@replace_all_occurrs_inf_one_tof(sc, rs);
 
 //tof;
 
@@ -10314,7 +10314,7 @@ rs = 'del /f c:\\pcarss\\';
 // end line variable
 //rs = '" "c:\\!\\ by Pete Shop boys.mp3"$';
 
-//@replace_all_occurrs_inf_no_tof(sc, rs);
+//@replace_all_occurrs_inf_one_tof(sc, rs);
 
 @say(found_str);
 @say(fp);
@@ -10347,7 +10347,7 @@ sc = '$^';
 // End line variable.
 rs = '" ".\\Error Screen Shots"$';
 
-@replace_all_occurrs_inf_no_tof(sc, rs);
+@replace_all_occurrs_inf_one_tof(sc, rs);
 
 @footer;
 @say(found_str);

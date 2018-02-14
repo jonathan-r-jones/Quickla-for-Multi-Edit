@@ -3691,7 +3691,7 @@ str Command_Line = '';
 */
 
 // Assign the default browser here. (!sebr, !bro, !brows, !debr, !defa)
-int default_browser = 2;
+int default_browser = 1;
 
 if(browser_number == 0)
 {
@@ -4163,6 +4163,87 @@ int initial_row_number = @current_row_number;
 str return_value = str(initial_window_number) + '-' + str(@current_row_number);
 @say(fp + ' (' + return_value + ')');
 return(return_value);
+}
+
+
+
+//;
+
+int
+@int(str conversion_candidate = parse_str('/1=', mparm_str))
+{
+str fp = "Convert string to integer type variable.";
+
+// fcd: Jun-19-2017
+
+// skw: convert to integer
+
+int destination_integer;
+int first_digit;
+
+if (val(destination_integer, conversion_candidate) == 0)
+{
+  first_digit = destination_integer;
+}
+
+return(first_digit);
+}
+
+
+
+//;
+
+str
+@get_date_smas_format()
+{
+str fp = 'Get formatted date for the SMAS website.';
+
+int Position_of_First_Slash = xpos("/", date, 1);
+int Position_of_Second_Slash = xpos("/", date, Position_of_First_Slash+1);
+
+str Month = str_del(date, Position_of_First_Slash, 14);
+str Day = str_del(date, Position_of_Second_Slash, 14);
+Day = str_del(Day, 1, Position_of_First_Slash);
+str Year = str_del(Date, 1, Position_of_Second_Slash);
+
+// An alternative to doing it this way would be to run a batch file that runs a custom C#
+// program that sets an environment variable to the date format that we could then read
+// with the CMAC Get_Environment command.
+
+// Strip leading zeros from the month field.
+if(str_char(Month, 1) == '0')
+{
+  // Delete the first character because it is a zero.
+  Month = str_del(Month, 1, 1);
+}
+
+// Strip leading zeros from the day field.
+if(str_char(Day, 1) == '0')
+{
+  // Delete the first character because it is a zero.
+  Day = str_del(Day, 1, 1);
+}
+
+str fully_constructed_date;
+str fully_constructed_display_date;
+
+int one_week_later_day = @int(day) + 7;
+int one_month_later_month = @int(month) + 1;
+
+if(one_week_later_day > 28)
+{
+  one_week_later_day = 3;
+  fully_constructed_date = str(one_month_later_month) + "/" + str(one_week_later_day) + "/" + year;
+}
+else
+{
+  fully_constructed_date = month + "/" + str(one_week_later_day) + "/" + year;
+  fully_constructed_display_date = month + "//" + str(one_week_later_day) + "//" + year;
+}
+
+set_global_str('cmac_return_value', fully_constructed_display_date);
+
+return(fully_constructed_date);
 }
 
 
