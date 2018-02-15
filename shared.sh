@@ -29,6 +29,7 @@ prototype Shared
   void @create_work_documents_file(str filename);
   void @cursor_up_1_line();
   void @cut();
+  void @delete_all();
   void @delete_word_conservatively();
   str  @equate_spaces_and_dashes(str sc);
   str  @equate_spaces_and_dashes_wcl(str sc);
@@ -97,7 +98,7 @@ prototype Shared
   str  @lower(str string);
   str  @lowercase(str string);
   void @multi_edit_paste();
-  // (!sp) qq-1
+  // (!rfsp) qq-1
   void @open_file(str filename);
   int  @open_file_with_writability();
   void @parse_arguments(str arguments, str separating_character, str &argument_1, str &argument_2);

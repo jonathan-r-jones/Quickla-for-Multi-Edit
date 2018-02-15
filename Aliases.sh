@@ -19,6 +19,7 @@ prototype Aliases
   void @delete_current_character();
   void @delete_line();
   void @clear_markers();
+  void @delete();
   void @delete_next_blank_line();
   void @delete_previous_character();
   void @delete_previous_line();
@@ -30,7 +31,7 @@ prototype Aliases
   str  @first_2_characters(str parameter);
   str  @first_3_characters(str parameter);
   str  @first_4_characters(str parameter);
-  // (!sp)
+  // (!rfsp)
   str  @first_5_characters(str parameter);
   str  @fourth_to_last_character(str parameter);
   str  @get_character_at_position(str string_to_analyze, int position);

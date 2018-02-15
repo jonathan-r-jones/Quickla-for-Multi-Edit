@@ -7726,13 +7726,11 @@ rm('CenterLn');
 //;; (skw export, purposes)
 
 void
-@delete_carriage_returns_for_sms
+@delete_carriage_returns_for_pst()
 {
 str fp = "Delete carriage returns for small segment for external pasting.";
 
 // fcd: May-15-2015
-
-@header;
 
 @save_location;
 
@@ -7750,9 +7748,19 @@ str fp = "Delete carriage returns for small segment for external pasting.";
 
 @restore_location;
 
-@footer;
-
 @say(fp);
+}
+
+
+
+//;;
+
+void
+@@delete_carriage_rets_for_sms
+{
+@header;
+@delete_carriage_returns_for_pst;
+@footer;
 }
 
 

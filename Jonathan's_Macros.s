@@ -4946,16 +4946,6 @@ if(@perform_next_test('2m', remote_lc_partner))
   return(1);
 }
 
-if(@perform_next_test('1r', remote_lc_partner))
-{
-  return(1);
-}
-
-if(@perform_next_test('2r', remote_lc_partner))
-{
-  return(1);
-}
-
 if(@perform_next_test('1s', remote_lc_partner))
 {
   return(1);
@@ -4972,6 +4962,19 @@ if(@perform_next_test('1z', remote_lc_partner))
 }
 
 if(@perform_next_test('2z', remote_lc_partner))
+{
+  return(1);
+}
+
+// I moved this to the last position because I wanted them to be a lower precedence
+// than 1z and 2z. Feb-14-2018
+
+if(@perform_next_test('1r', remote_lc_partner))
+{
+  return(1);
+}
+
+if(@perform_next_test('2r', remote_lc_partner))
 {
   return(1);
 }
@@ -6914,6 +6917,35 @@ rs = '$$:';
 @replace_all_occurrs_inf_one_tof(sc, rs);
 
 @say(found_str);
+@say(fp);
+}
+
+
+
+//;
+
+void
+@prepare_and_copy_to_mtp
+{
+str fp = "Prepare small segment and copy to MTP.";
+
+// lu: Feb-15-2018
+
+@header;
+
+@delete_carriage_returns_for_pst;
+
+@save_location;
+
+@open_file(get_environment('reach out') + '\message to phone.mtp');
+
+@delete_all;
+
+@paste;
+
+@close_and_save_file_wo_prompt();
+
+@footer;
 @say(fp);
 }
 

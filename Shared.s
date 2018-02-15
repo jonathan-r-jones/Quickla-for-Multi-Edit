@@ -129,6 +129,7 @@ switch(lower(get_extension(File_name)))
   case 'llf':
   case 'log':
   case 'nww':
+  case 'mtp':
   case 'txt':
   case 'xml':
   case 'xsl':
@@ -4244,6 +4245,27 @@ else
 set_global_str('cmac_return_value', fully_constructed_display_date);
 
 return(fully_constructed_date);
+}
+
+
+
+//;
+
+void
+@delete_all()
+{
+str fp = "Delete all file content.";
+
+if(!@is_text_file)
+{
+  return();
+}
+
+@select_all;
+
+@delete;
+
+@say(fp);
 }
 
 

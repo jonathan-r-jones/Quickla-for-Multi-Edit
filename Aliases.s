@@ -924,4 +924,20 @@ goto_col(1);
 
 
 
+//;
+
+void
+@delete
+{
+str fp = "Delete block.";
+
+// lu: Feb-15-2018
+
+delete_block;
+
+@say(fp);
+}
+
+
+
 //; (!efal)

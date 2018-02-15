@@ -47,6 +47,7 @@ prototype ListMgr
   void @cut_rubric();
   void @cut_subbullet();
   str  @delete_bullet();
+  void @delete_carriage_returns_for_pst();
   void @delete_next_rubric_header();
   str  @delete_rubric();
   void @delete_text_lc_on_cl();
@@ -59,7 +60,7 @@ prototype ListMgr
   int  @find_next_big_segment();
   str  @find_next_bobs();
   str  @find_next_bsr();
-  // (!sp)
+  // (!rfsp)
   void @find_next_content_area();
   int  @find_next_rubric();
   str  @find_next_small_segment();
