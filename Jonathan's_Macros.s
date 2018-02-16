@@ -5936,6 +5936,8 @@ str fp = "Create last updated entry.";
 
 // fcd: Dec-2-2016
 
+@open_file(get_environment('reach out') + '\last updated.asc');
+
 @find_lc('rflu');
 @add_bullet_below;
 @add_text_date_and_time_fixed_w;
@@ -5950,13 +5952,13 @@ str number_of_lines_in_file = str(c_line);
 goto_mark;
 text(number_of_lines_in_file);
 
-@bob;
+//@bob;
 
-@hc_bullet;
+//@hc_bullet;
 
-@find_lc('rfwtl');
+//@find_lc('rfwtl');
 
-@paste_after;
+//@paste_after;
 
 @footer;
 @say(fp);
