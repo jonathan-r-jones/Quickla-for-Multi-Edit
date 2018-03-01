@@ -10,6 +10,7 @@ prototype Shared
   void @center_line();
   void @clear_highlighted_text();
   void @close_and_save_file_wo_prompt();
+  void @close_file();
   void @close_window();
   str  @commute_character(str string, str old_character, str new_character);
   str  @commute_common_characters(str sc);

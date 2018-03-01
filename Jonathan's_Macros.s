@@ -1,5 +1,7 @@
 macro_file Jonathan's_Macros; // (!jo, !bfjo)
 
+// Miscellaneous macros.
+
 #include Aliases.sh  // One of my guys.
 #include Clif.sh     // One of my guys.
 #include Finder.sh   // One of my guys.

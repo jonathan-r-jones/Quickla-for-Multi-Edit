@@ -1,4 +1,6 @@
-macro_file Shared; // (!sh, !bfsh) Shared Utilities.
+macro_file Shared; // (!sh, !bfsh)
+
+// Shared utilities.
 
 #include Aliases.sh
 #include WinExec.sh // Used by 'Execprog'.
@@ -3452,6 +3454,17 @@ delete_window;
 //;;
 
 void
+@close_file()
+{
+str fp = "Close file.";
+delete_window;
+}
+
+
+
+//;;
+
+void
 @close_and_save_file_wo_prompt()
 {
 str fp = "Close and save the file without prompting the user.";
@@ -3692,7 +3705,7 @@ str Command_Line = '';
 */
 
 // Assign the default browser here. (!sebr, !bro, !brows, !debr, !defa)
-int default_browser = 1;
+int default_browser = 2;
 
 if(browser_number == 0)
 {
@@ -3701,17 +3714,17 @@ if(browser_number == 0)
 
 switch(browser_number) // This list is ordered by how much i like them.
 {
-  case 1: // Chrome
+  case 1: // Chrome (Opens in a new tab.)
     Command_Line = @get_chrome_path;
     break;
-  case 2: // Firefox
+  case 2: // Firefox (Opens in a new windwo.)
     Command_Line = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
     break;
-  case 3: // Internet Explorer
+  case 3: // Internet Explorer (Opens in a new window.)
     Command_Line = Get_Environment("ProgramFiles") + "\\Internet Explorer\\IEXPLORE.EXE";
     break;
-  case 4: // Opera
-    Command_Line = Get_Environment("ProgramFiles") + "\\Opera\\launcher.exe";
+  case 4: // Opera (Opens in a new tab.)
+    command_line = "c:\\program files\\opera\\launcher.exe";
     break;
   case 5: // Safari
     Command_Line = Get_Environment("ProgramFiles") + "\\Safari\\Safari.exe";

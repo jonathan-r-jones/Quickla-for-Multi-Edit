@@ -1,7 +1,8 @@
-macro_file Aliases; // (!rfal, !al, !bfal) Aliases.
+macro_file Aliases; // (!rfal, !al, !bfal)
 
-// No calls to any at functions. The order of the functions in this file should not matter 
-// for compilation success.
+// A wrapper around Multi-Edit commands.
+// Contains no calls to any "@" (my macros) functions. The order of the functions in this file 
+// should not matter for compilation success.
 
 
 

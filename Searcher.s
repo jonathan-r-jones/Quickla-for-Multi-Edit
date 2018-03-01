@@ -1,5 +1,6 @@
 macro_file Searcher; // (!se)
 
+// Internet search helper.
 // Used for searching on the internet instead of finding thing on your local machine.
 
 #include Aliases.sh
@@ -1055,7 +1056,7 @@ if(lc != '')
   @find_lc(lc);
 }
 
-@search_google_main(0, 0, @get_sj);
+@search_google_main(0, 1, @get_sj);
 
 @restore_location;
 }
@@ -1223,7 +1224,7 @@ else
 URL += sc;
 URL += '&search_type=&aq=f';
 
-@surf(url, 1);
+@surf(url, 0);
 
 /*  Use Case(s)
 

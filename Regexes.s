@@ -1,4 +1,6 @@
-macro_file Regexes; // Regular Expressions (!rx)
+macro_file Regexes; // (!rx)
+
+// Regular Expressions.
 
 #include Aliases.sh
 #include Shared.sh

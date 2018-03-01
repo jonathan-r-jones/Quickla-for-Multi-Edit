@@ -1,5 +1,7 @@
 macro_file ListMgr; // (!lm)
 
+// List manager.
+
 #include Aliases.sh
 #include Finder.sh
 #include Format.sh
@@ -12678,6 +12680,79 @@ if(!@is_dog_park_file)
 
 @work_with_current_rubric;
 
+
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
+@scrub_externally_copied_data()
+{
+str fp = "Scrub externally copied data.";
+
+@save_location;
+
+@create_timestamped_file;
+
+@paste;
+
+@replace_all_special_characters;
+
+@select_all;
+
+@copy;
+
+@close_file;
+
+@restore_location;
+
+@say(fp);
+}
+
+
+
+//; (!2mum1)
+
+void
+@paste_with_arguments(str arguments = parse_str('/1=', mparm_str))
+{
+str fp = "Paste with arguments.";
+
+@header;
+
+// Last Updated: Sep-21-2016
+
+str first_parameter, second_parameter;
+
+@parse_arguments(arguments, ".", first_parameter, second_parameter);
+
+str lc = first_parameter; // location here below (default) versus remote
+
+str wrapping_is_on = second_parameter; // wrapping (default "") versus no wrapping "n"
+
+if(lc != '')
+{
+  @find_lc(lc);
+}
+@add_bullet_below;
+
+// Enforce the default.
+if(wrapping_is_on == 'y')
+{
+  @paste_with_wikipedia_format;
+}
+else
+{
+  @scrub_externally_copied_data;
+  @paste;
+  down;
+  @backspace;
+}
+@bob;
 
 @footer;
 @say(fp);

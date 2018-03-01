@@ -1,6 +1,6 @@
-macro_file Finder; // (!fi)
+macro_file Finder; // (!fi) 
 
-// Used for finding stuff locally as opposed to searching on the internet.
+// Find stuff locally as opposed to searching on the internet.
 
 #include Aliases.sh
 #include Regexes.sh

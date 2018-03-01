@@ -1,5 +1,7 @@
 macro_file Format; // (!bffo, !fo)
 
+// Format text.
+
 #include Aliases.sh
 #include Finder.sh
 #include Regexes.sh

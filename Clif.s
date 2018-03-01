@@ -1,5 +1,7 @@
 macro_file Clif; // (!cf)
 
+// Manipulation of Command Line Facades.
+
 #include Aliases.sh  // One of my guys.
 #include Finder.sh   // One of my guys.
 #include ListMgr.sh  // One of my guys. (skw qcq) Remove from production Clif.
@@ -3173,7 +3175,6 @@ if(@contains(operation_outcome, 'not an executable'))
 }
 
 //@say(fp + ' ' + Operation_Outcome);
-//qjq-1
 }
 
 
@@ -4191,50 +4192,6 @@ if(!@i_am_on_my_tablet)
 
 @quick_launcher_router('', 0);
 
-}
-
-
-
-//; (!2mum1)
-
-void
-@paste_with_arguments(str arguments = parse_str('/1=', mparm_str))
-{
-str fp = "Paste with arguments.";
-
-@header;
-
-// Last Updated: Sep-21-2016
-
-str first_parameter, second_parameter;
-
-@parse_arguments(arguments, ".", first_parameter, second_parameter);
-
-str lc = first_parameter; // location here below (default) versus remote
-
-str wrapping_is_on = second_parameter; // wrapping (default "") versus no wrapping "n"
-
-if(lc != '')
-{
-  @find_lc(lc);
-}
-@add_bullet_below;
-
-// Enforce the default.
-if(wrapping_is_on == 'y')
-{
-  @paste_with_wikipedia_format;
-}
-else
-{
-  @paste;
-  down;
-  @backspace;
-}
-@bob;
-
-@footer;
-@say(fp);
 }
 
 
