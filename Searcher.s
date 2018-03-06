@@ -1076,48 +1076,6 @@ void
 //;;
 
 void
-@search_google_and_append_java(str sc = parse_str('/1=', mparm_str))
-{
-@search_google_main(0, 0, @get_sj + ' java');
-}
-
-
-
-//;;
-
-void
-@search_google_and_append_cs(str sc = parse_str('/1=', mparm_str))
-{
-str fp = 'Search google and append C#.';
-@search_google_main(0, 0, @get_sj + ' c#');
-@say(fp);
-}
-
-
-
-//;;
-
-void
-@search_google_append_download(str sc = parse_str('/1=', mparm_str))
-{
-@search_google_main(0, 0, @get_sj + ' download');
-}
-
-
-
-//;;
-
-void
-@search_google_and_append_sencha(str sc = parse_str('/1=', mparm_str))
-{
-@search_google_main(0, 0, @get_sj + ' sencha');
-}
-
-
-
-//;;
-
-void
 @search_google_exactly_wth_expl()
 {
 str fp = 'Search Google exactly, using Internet Explorer.';
@@ -2060,6 +2018,17 @@ https://github.com/search?utf8=%E2%9C%93&q=RichardCampbell&type=Users&ref=search
 */
 
 @say(@trim_period(fp) + ' for "' + pretty_sc + '".');
+}
+
+
+
+//;
+
+void
+@search_google_with_appendage(str sc = parse_str('/1=', mparm_str))
+{
+// lu: Mar-5-2018
+@search_google_main(0, 0, @get_sj + " " + sc);
 }
 
 

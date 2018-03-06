@@ -1,6 +1,48 @@
 //;;
 
 void
+@search_google_and_append_cs(str sc = parse_str('/1=', mparm_str))
+{
+str fp = 'Search google and append C#.';
+@search_google_main(0, 0, @get_sj + ' c#');
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@search_google_and_append_java(str sc = parse_str('/1=', mparm_str))
+{
+@search_google_main(0, 0, @get_sj + ' java');
+}
+
+
+
+//;;
+
+void
+@search_google_and_append_sencha(str sc = parse_str('/1=', mparm_str))
+{
+@search_google_main(0, 0, @get_sj + ' sencha');
+}
+
+
+
+//;;
+
+void
+@search_google_append_download(str sc = parse_str('/1=', mparm_str))
+{
+@search_google_main(0, 0, @get_sj + ' download');
+}
+
+
+
+//;;
+
+void
 @move_to_lastp_old(int return_home = parse_int('/1=', mparm_str))
 {
 str fp = "Move context object to last position.";
