@@ -1,6 +1,26 @@
 //;;
 
 void
+@format_carriage_returnless_file()
+{
+str fp = 'Format a file to remove carriage returns.";
+';
+
+if(@current_character == ':')
+{
+  @delete_character;
+}
+
+@delete_carriage_returns;
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
 @search_google_and_append_cs(str sc = parse_str('/1=', mparm_str))
 {
 str fp = 'Search google and append C#.';

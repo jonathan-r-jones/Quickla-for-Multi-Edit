@@ -2608,30 +2608,6 @@ str so = @replace_all_occurrs_inf_one_tof("  ", " ");
 
 
 
-//;;
-
-void
-@format_carriage_returnless_file()
-{
-str fp = 'Format a file to remove carriage returns.";
-';
-
-if(@current_character == ':')
-{
-  @delete_character;
-}
-
-@delete_carriage_returns;
-
-@select_all;
-
-@copy;
-
-@say(fp);
-}
-
-
-
 //;+ Formatting Pasted Text Family
 
 
@@ -7728,11 +7704,13 @@ rm('CenterLn');
 //;; (skw export, purposes)
 
 void
-@delete_carriage_returns_for_pst()
+@prepare_small_segment_for_pstng()
 {
-str fp = "Delete carriage returns for small segment for external pasting.";
+str fp = "Prepare small segment for external pasting.";
 
 // fcd: May-15-2015
+
+// lu: Mar-8-2018
 
 @save_location;
 
@@ -7744,7 +7722,11 @@ str fp = "Delete carriage returns for small segment for external pasting.";
 
 @bof;
 
-@format_carriage_returnless_file;
+@delete_carriage_returns;
+
+@select_all;
+
+@copy;
 
 @close_and_save_file_wo_prompt;
 
@@ -7758,10 +7740,10 @@ str fp = "Delete carriage returns for small segment for external pasting.";
 //;;
 
 void
-@@delete_carriage_rets_for_sms
+@@prepare_small_segment_for_pstn
 {
 @header;
-@delete_carriage_returns_for_pst;
+@prepare_small_segment_for_pstng;
 @footer;
 }
 

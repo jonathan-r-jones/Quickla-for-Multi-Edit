@@ -6929,15 +6929,13 @@ rs = '$$:';
 //;
 
 void
-@prepare_and_copy_to_mtp
+@prepare_message_to_phone_file
 {
-str fp = "Prepare small segment and copy to MTP.";
+str fp = "Prepare message to phone file.";
 
-// lu: Feb-15-2018
+// lu: Mar-8-2018
 
 @header;
-
-@delete_carriage_returns_for_pst;
 
 @save_location;
 
@@ -6947,7 +6945,9 @@ str fp = "Prepare small segment and copy to MTP.";
 
 @paste;
 
-@close_and_save_file_wo_prompt();
+@delete_carriage_returns;
+
+@format_file;
 
 @footer;
 @say(fp);

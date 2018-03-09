@@ -47,7 +47,8 @@ prototype ListMgr
   void @cut_rubric();
   void @cut_subbullet();
   str  @delete_bullet();
-  void @delete_carriage_returns_for_pst();
+  void @delete_carriage_returns();
+  void @prepare_small_segment_for_pstng();
   void @delete_next_rubric_header();
   str  @delete_rubric();
   void @delete_text_lc_on_cl();
