@@ -1986,7 +1986,6 @@ typewriter
 void
 @search_github_users(str parameter = parse_str('/1=', mparm_str))
 {
-
 str fp = 'Search GitHub users.';
 
 // fcd: Oct-20-2016
@@ -2027,8 +2026,21 @@ https://github.com/search?utf8=%E2%9C%93&q=RichardCampbell&type=Users&ref=search
 void
 @search_google_with_appendage(str sc = parse_str('/1=', mparm_str))
 {
+str fp = "Search Google with an appended word.";
 // lu: Mar-5-2018
-@search_google_main(0, 0, @get_sj + " " + sc);
+@search_google_main(0, 0, @get_sj + ' ' + @lower(sc));
+}
+
+
+
+//;
+
+void
+@search_google_with_appended_dfw
+{
+str fp = "Search Google with appended words.";
+// lu: Mar-5-2018
+@search_google_main(0, 0, @get_sj + ' download for windows');
 }
 
 

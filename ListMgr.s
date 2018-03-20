@@ -3006,8 +3006,6 @@ cr;
 
 @recall_location;
 
-//rm("@open_file_with_writability /FN=" + get_environment('reach out') + "\\ne.asc");
-
 @bobs;
 
 @paste_after;
