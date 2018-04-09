@@ -2814,8 +2814,6 @@ int is_repeat_call = 0;
 
 int return_home = true;
 
-//@run_location_passthrough(user_Input, fp, show_outer_status_message, 0, return_home);
-//qq-1
 @run_clif_compositionally(user_Input, fp, show_outer_status_message, 0);
 
 @say(fp);

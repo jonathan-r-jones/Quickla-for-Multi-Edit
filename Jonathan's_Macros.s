@@ -223,8 +223,7 @@ Metadata: Track Size (!tsjo)
 
 - Mar-27-2008 10,204   164,276 Moved CMAC Code Keeperes rubric to its own file.
 
-- Mar-10-2008  9,933   163,333 Performed a lot of cleanup while writing 
-_List_Jonathans_Macros.
+- Mar-10-2008  9,933   163,333 Performed a lot of cleanup while writing _List_Jonathans_Macros.
 
 - Feb-4-2008   8,814   148,536 At 65 lines per page, this equals 136 pages.
 
@@ -2144,6 +2143,17 @@ while(cur_window <= (window_count / 2))
 
 
 
+//;
+
+int
+@constant_open_windows()
+{
+// lu: Apr-9-2018
+return(12);
+}
+
+
+
 //;+ Window Operations
 
 
@@ -2243,9 +2253,8 @@ str fp = "Close excess windows.";
 @header_bloff;
 @save_location;
 @switch_to_first_window;
-int default_number_of_windows_open = 13;
 int open_window_counter = @count_open_windows;
-while(open_window_counter > default_number_of_windows_open)
+while(open_window_counter > @constant_open_windows)
 {
   @close_last_window;
   @switch_to_first_window;
@@ -2268,9 +2277,9 @@ str fp = "Binary window opening and closing.";
 
 @header;
 
-// fcd: Aug-6-2015
+// lu: Apr-9-2018
 
-if(@window_count > 13)
+if(@window_count > @constant_open_windows)
 {
   fp += " Excess files are open, so close them.";
   @close_excess_windows;
