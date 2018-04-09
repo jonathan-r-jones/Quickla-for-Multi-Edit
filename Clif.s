@@ -30,6 +30,8 @@ Metadata: Track Size (!tscl, !tscf)
     Date       Lines     Bytes    Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+: Apr-3-2018   4,410     81,008      111
+
 : Jan-3-2018   4,428     81,532      111
 
 :Jun-25-2017   4,299     79,666      109
@@ -2813,7 +2815,33 @@ int is_repeat_call = 0;
 int return_home = true;
 
 //@run_location_passthrough(user_Input, fp, show_outer_status_message, 0, return_home);
+//qq-1
 @run_clif_compositionally(user_Input, fp, show_outer_status_message, 0);
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@add_text_blank_url()
+{
+str fp = 'Add blank browser text here.';
+
+if(@text_is_selected)
+{
+  delete_block;
+}
+
+text('http://www.');
+@eol;
+text('.com');
+left;
+left;
+left;
+left;
 
 @say(fp);
 }
@@ -3115,6 +3143,7 @@ if(@current_line_contains(',,,'))
 
 if(@current_line_contains(',,'))
 {
+  @say('Apr-8');
   @perform_indicated_action;
   return();
 }
@@ -3309,7 +3338,7 @@ switch(lc) //qcq
   case 'aspl':
   case 'lk':
     @add_bullet_below;
-    @add_text_blank_url_here;
+    @add_text_blank_url;
     break;
   // Unique. ****
   case 'ers':

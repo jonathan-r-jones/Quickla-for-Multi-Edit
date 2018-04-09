@@ -23,6 +23,8 @@ Metadata: Track Size (!tsli, !tslm)
     Date       Lines     Bytes     Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+: Apr-3-2018  12,718    167,749      465
+
 : Jan-3-2018  12,707    167,560      464
 
 :Jun-25-2017  12,664    167,158      462
@@ -7702,7 +7704,7 @@ rm('CenterLn');
 //;; (skw export, purposes)
 
 void
-@prepare_small_segment_for_pstng()
+@prepare_small_segment_for_expst()
 {
 str fp = "Prepare small segment for external pasting.";
 
@@ -7741,7 +7743,7 @@ void
 @@prepare_small_segment_for_pstn
 {
 @header;
-@prepare_small_segment_for_pstng;
+@prepare_small_segment_for_expst;
 @footer;
 }
 
@@ -10627,31 +10629,6 @@ test [blank] a
 //;;
 
 void
-@add_text_blank_url_here()
-{
-str fp = 'Add blank browser text here.';
-
-if(@text_is_selected)
-{
-  delete_block;
-}
-
-text('http://www.');
-@eol;
-text('.com');
-left;
-left;
-left;
-left;
-
-@say(fp);
-}
-
-
-
-//;;
-
-void
 @add_text_last_updated()
 {
 str fp = 'Add text last updated.';
@@ -12672,7 +12649,7 @@ if(!@is_dog_park_file)
 void
 @scrub_externally_copied_data()
 {
-str fp = "Scrub externally copied data.";
+str fp = "Scrub externally copied content for internal pasting.";
 
 @save_location;
 

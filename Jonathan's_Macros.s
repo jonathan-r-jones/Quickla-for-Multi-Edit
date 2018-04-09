@@ -28,6 +28,8 @@ Metadata: Track Size (!tsjo)
     Date       Lines    Bytes    Macros   Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+: Apr-3-2018   6,961     95,847      249
+
 : Jan-3-2018   6,821     94,186      244
 
 : Dec-5-2017   6,729     93,302      241
@@ -5220,7 +5222,7 @@ str fp = "Pass a url to a browser.";
 int is_found = 0;
 str url;
 
-url = @get_remote_oj_using_klc('rfmash', is_found);
+url = @get_remote_oj_using_klc('rfcnet', is_found);
 @surf(url, 1);
 
 url = @get_remote_oj_using_klc('rfbbc', is_found);
@@ -5239,6 +5241,9 @@ url = @get_remote_oj_using_klc('rffox', is_found);
 @surf(url, 1);
 
 url = @get_remote_oj_using_klc('rfwash', is_found);
+@surf(url, 1);
+
+url = @get_remote_oj_using_klc('rfreas', is_found);
 @surf(url, 1);
 
 @footer;
@@ -6945,9 +6950,9 @@ str fp = "Prepare message to phone file.";
 
 @paste;
 
-@delete_carriage_returns;
+@bof;
 
-@format_file;
+@delete_carriage_returns;
 
 @footer;
 @say(fp);

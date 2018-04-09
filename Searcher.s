@@ -22,6 +22,8 @@ Metadata: Track Size (!tsse)
     Date       Lines     Bytes    Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+: Apr-3-2018   2,068     30,729       68
+
 : Jan-3-2018   2,138     32,477       69
 
 :Jun-25-2017   2,028     30,904       64
@@ -911,10 +913,6 @@ switch(search_type)
   case 2:
     is_definition_lookup = true;
     break;
-  case 3:
-    is_exact_search = true;
-    is_definition_lookup = true;
-    break;
   case 4:
     is_wiki_search = true;
     break;
@@ -1007,7 +1005,7 @@ str fp = "Search google using a definition search.";
 
 // skw: define
 
-@search_google_main(3, 0, '');
+@search_google_main(2, 0, '');
 
 @say(fp);
 }
@@ -2041,6 +2039,30 @@ void
 str fp = "Search Google with appended words.";
 // lu: Mar-5-2018
 @search_google_main(0, 0, @get_sj + ' download for windows');
+}
+
+
+
+//;
+
+void
+@search_google_with_appended_pn
+{
+str fp = "Search Google with appended words.";
+// lu: Mar-5-2018
+@search_google_main(0, 0, @get_sj + ' phone number');
+}
+
+
+
+//;
+
+void
+@search_google_with_appended_td
+{
+str fp = "Search Google with appended words.";
+// lu: Apr-3-2018
+@search_google_main(0, 0, @get_sj + ' tour dates');
 }
 
 
