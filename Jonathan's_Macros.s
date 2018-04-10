@@ -6969,4 +6969,21 @@ str fp = "Prepare message to phone file.";
 
 
 
+//;
+
+void
+@rtm
+{
+str fp = "x";
+
+// lu: Apr-10-2018
+
+
+//qq-1
+
+@say(fp);
+}
+
+
+
 //; (!efjo)
