@@ -342,7 +342,7 @@ str so;
 if(sc == '')
 {
   rm("@open_file_with_writability /FN=" + Get_Environment('savannah') +
-    "\\cmac\\source code\\Jonathan's_Macros.s");
+    "\\cmac\\Quickla-for-Multi-Edit\\\Jonathan's_Macros.s");
   eof;
 }
 else
@@ -485,7 +485,7 @@ str so;
 @header;
 
 rm("@open_file_with_writability /FN=" + Get_Environment('savannah') +
-  "\\cmac\\source code\\Jonathan's_Macros.s");
+  "\\cmac\\Quickla-for-Multi-Edit\\\Jonathan's_Macros.s");
 
 eof;
 push_undo;
@@ -539,7 +539,7 @@ str so;
 @header;
 
 rm("@open_file_with_writability /FN=" + Get_Environment('savannah') +
-  "\\cmac\\source code\\Jonathan's_Macros.s");
+  "\\cmac\\Quickla-for-Multi-Edit\\\Jonathan's_Macros.s");
 
 @eof;
 @bol;
@@ -1099,7 +1099,7 @@ if(!((@is_s_file) or (@is_bullet_file) or (@is_batch_file)))
 if(@is_s_file)
 {
   rm("@open_file_with_writability /FN=" + Get_Environment('savannah') +
-    "\\cmac\\source code\\cmac code graveyard.s");
+    "\\cmac\\Quickla-for-Multi-Edit\\\cmac code graveyard.s");
 }
 else if(@is_bullet_file)
 {
@@ -1157,9 +1157,9 @@ str fp = "Compile Joma.";
 
 int Initial_Window = @current_window;
 rm("@open_file_parameter_way /FN=" + Get_Environment('savannah') 
-  + "\\cmac\\source code\\Jonathan's_Macros.s");
+  + "\\cmac\\Quickla-for-Multi-Edit\\\Jonathan's_Macros.s");
 rm("Compile /F=" + Get_Environment('savannah') +
-   "\\cmac\\source code\\Jonathan's_Macros.s /C=C:\\Program Files\\Multi-Edit 2008\\CmacWin.exe");
+   "\\cmac\\Quickla-for-Multi-Edit\\\Jonathan's_Macros.s /C=C:\\Program Files\\Multi-Edit 2008\\CmacWin.exe");
 
 @load_my_macros_into_memory_1;
 
@@ -2293,20 +2293,6 @@ else
 @footer;
 
 @say(fp);
-}
-
-
-
-//;;
-
-void
-@@open_cmac_files
-{
-@header;
-@save_location;
-@open_cmac_files;
-@restore_location;
-@footer;
 }
 
 
@@ -6964,23 +6950,6 @@ str fp = "Prepare message to phone file.";
 @delete_carriage_returns;
 
 @footer;
-@say(fp);
-}
-
-
-
-//;
-
-void
-@rtm
-{
-str fp = "x";
-
-// lu: Apr-10-2018
-
-
-//qq-1
-
 @say(fp);
 }
 

@@ -203,14 +203,14 @@ switch(lower(get_extension(name_of_file)))
   default:
     int Initial_Window = @current_window;
     rm("@open_file_parameter_way /FN=" + Get_Environment('savannah') 
-      + "\\cmac\\source code\\Jonathan's_Macros.s");
+      + "\\cmac\\Quickla-for-Multi-Edit\\\Jonathan's_Macros.s");
     rm("Compile /F=" + Get_Environment('savannah') +
-      "\\cmac\\source code\\Jonathan's_Macros.s /C=C:\\Program " + 
+      "\\cmac\\Quickla-for-Multi-Edit\\\Jonathan's_Macros.s /C=C:\\Program " + 
       "Files\\Multi-Edit 2008\\CmacWin.exe");
     rm("@open_file_parameter_way /FN=" + Get_Environment('savannah') 
-      + "\\cmac\\source code\\ListMgr.s");
+      + "\\cmac\\Quickla-for-Multi-Edit\\\ListMgr.s");
     rm("Compile /F=" + Get_Environment('savannah') +
-       "\\cmac\\source code\\ListMgr.s /C=C:\\Program Files\\Multi-Edit 2008\\CmacWin.exe");
+       "\\cmac\\Quickla-for-Multi-Edit\\\ListMgr.s /C=C:\\Program Files\\Multi-Edit 2008\\CmacWin.exe");
     switch_window(Initial_Window);
     @say(fp + ' Compile.');
     return();

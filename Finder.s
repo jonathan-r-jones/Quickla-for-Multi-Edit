@@ -1775,7 +1775,7 @@ void
 
 
 
-//;
+//;+
 
 void
 @open_cmac_files()
@@ -1783,33 +1783,47 @@ void
 str fp = "Open CMAC files.";
 
 rm("@open_file_parameter_way /FN=" + Get_Environment('savannah') +
-  "\\cmac\\source code\\Aliases.s");
+  "\\cmac\\Quickla-for-Multi-Edit\\\Aliases.s");
 
 rm("@open_file_parameter_way /FN=" + Get_Environment('savannah') +
-  "\\cmac\\source code\\Shared.s");
+  "\\cmac\\Quickla-for-Multi-Edit\\\Shared.s");
 
 rm("@open_file_parameter_way /FN=" + Get_Environment('savannah') +
-  "\\cmac\\source code\\Regexes.s");
+  "\\cmac\\Quickla-for-Multi-Edit\\\Regexes.s");
 
 rm("@open_file_parameter_way /FN=" + Get_Environment('savannah') +
-  "\\cmac\\source code\\Finder.s");
+  "\\cmac\\Quickla-for-Multi-Edit\\\Finder.s");
 
 rm("@open_file_parameter_way /FN=" + Get_Environment('savannah') +
-  "\\cmac\\source code\\Format.s");
+  "\\cmac\\Quickla-for-Multi-Edit\\\Format.s");
 
 rm("@open_file_parameter_way /FN=" + Get_Environment('savannah') +
-  "\\cmac\\source code\\ListMgr.s");
+  "\\cmac\\Quickla-for-Multi-Edit\\\ListMgr.s");
 
 rm("@open_file_parameter_way /FN=" + Get_Environment('savannah') +
-  "\\cmac\\source code\\Searcher.s");
+  "\\cmac\\Quickla-for-Multi-Edit\\\Searcher.s");
 
 rm("@open_file_parameter_way /FN=" + Get_Environment('savannah') +
-  "\\cmac\\source code\\Clif.s");
+  "\\cmac\\Quickla-for-Multi-Edit\\\Clif.s");
 
 rm("@open_file_parameter_way /FN=" + Get_Environment('savannah') +
-  "\\cmac\\source code\\Jonathan's_Macros.s");
+  "\\cmac\\Quickla-for-Multi-Edit\\\Jonathan's_Macros.s");
 
 @say(fp);
+}
+
+
+
+//;;
+
+void
+@@open_cmac_files
+{
+@header;
+@save_location;
+@open_cmac_files;
+@restore_location;
+@footer;
 }
 
 
@@ -1886,8 +1900,6 @@ str fp = 'Find in template definition.';
 str so;
 
 @save_location;
-
-//@open_cmac_files;
 
 tof;
 
