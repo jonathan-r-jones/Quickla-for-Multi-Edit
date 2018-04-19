@@ -1000,7 +1000,7 @@ int
 {
 str fp = 'Switch to named window.';
 
-// skw: window_name, switch_to_n, switch_to_window, go_to_window
+// skw: window_name, switch_to_n, switch_to_window, go_to_window, find_window
 
 int Window_Is_Found = 0;
 str Name_of_File;

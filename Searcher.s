@@ -1493,6 +1493,16 @@ URL += sc;
 
 /* Use Cases
 
+:Correct Search: 
+https://www.google.com/maps/place/University+of+California,+Davis/@38.5382322,-121.7639012,17z
+/data=!3m1!4b1!4m5!3m4!1s0x80ead37f7489fa3f:0xecbfbb24087e8334!8m2!3d38.5382322!4d-121.7617125
+
+::My CMAC Search:
+https://www.google.com/maps/place/University+of+California,+Davis/@38.8978498,-77.1889393,15z/
+data=!3m1!4b1
+
+::University of California, Davis
+
 Austin
 
 */

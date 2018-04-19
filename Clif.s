@@ -4408,4 +4408,25 @@ return('');
 
 
 
+//;
+
+void
+@synchronize_with_dropbox
+{
+str fp = "Synchronize with Dropbox.";
+
+// lu: Apr-19-2018
+
+if(@switch_to_named_window('mz.asc'))
+{
+  @close_window;
+}
+
+@quick_launcher_router('rff8', 0);
+
+@say(fp);
+}
+
+
+
 //; (!efcf)
