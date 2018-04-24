@@ -6660,9 +6660,9 @@ if(@is_bullet_file)
 }
 else
 {
-  down;
-  @move_line_down;
   up;
+  @move_line_down;
+  down;
 }
 
 @footer;

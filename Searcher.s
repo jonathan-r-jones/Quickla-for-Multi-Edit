@@ -2077,4 +2077,54 @@ str fp = "Search Google with appended words.";
 
 
 
+//;
+
+void
+@search_npm_for_packages
+{
+str fp = 'Search NPM for packages.';
+
+str URL = 'https://www.npmjs.com/package/';
+
+str sc = @get_subject_or_selected_text;
+
+URL += sc;
+
+@surf(url, 0);
+
+/*  Use Cases
+
+underscore
+
+*/
+
+}
+
+
+
+//;
+
+void
+@search_npm_for_packages_json
+{
+str fp = "Search NPM for a package's JSON information.";
+
+str URL = 'registry.npmjs.org/';
+
+str sc = @get_subject_or_selected_text;
+
+URL += sc;
+
+@surf(url, 0);
+
+/*  Use Cases
+
+underscore
+
+*/
+
+}
+
+
+
 //; (!rfsp, !efse)
