@@ -1661,7 +1661,7 @@ void
 
 str fp = 'Search Learning Tree.';
 
-str URL = 'https://www.learningtree.com/search/search.aspx?q=';
+str URL = 'https://www.learningtree.com/search-results/?q=';
 
 str sc = parameter;
 
