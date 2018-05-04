@@ -1068,9 +1068,11 @@ goto_col(Global_int('initial column number 2'));
 void
 @@restore_location
 {
+str fp = 'Restore location.';
 @header;
 @restore_location;
 @footer;
+@say(fp);
 }
 
 

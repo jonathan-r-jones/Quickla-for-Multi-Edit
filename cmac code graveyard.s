@@ -1,3 +1,149 @@
+//;
+
+void
+@rm2
+{
+str fp = "";
+fp = "Oct-31-2017";
+
+// fcd: Sep-13-2017
+
+fp = Get_Environment("Prompt") + "\\Mozilla Firefox\\firefox.exe";
+fp = Get_Environment("ProgramFiles") + "\\Mozilla Firefox\\firefox.exe";
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@rm3
+{
+str fp = "Remove extra echo statements.";
+
+// lu: Nov-14-2017
+
+str rs;
+str sc;
+
+@header;
+
+tof;
+
+sc = 'echo\.$echo';
+
+@eol;
+
+rs = 'echo';
+
+@replace_all_occurrs_inf_one_tof(sc, rs);
+return();
+@replace_next_occurrence_only(sc, rs);
+@seek(sc);
+int is_found = @seek_in_all_files_2_arguments(sc, fp);
+
+@footer;
+@say(found_str);
+@say(fp);
+}
+
+
+
+//;
+
+void
+@rm
+{
+str fp = "";
+  fp = "Dec-5-2017 3:30 PM";
+// lu: Dec-5-2017
+str rs;
+str sc;
+
+@header;
+sc = '^.+form.down';
+@eol;
+rs = 'form.down';
+
+@replace_next_occurrence_only(sc, rs);
+return();
+@seek(sc);
+@replace_all_occurrs_inf_one_tof(sc, rs);
+int is_found = @seek_in_all_files_2_arguments(sc, fp);
+
+@footer;
+@say(found_str);
+@say(fp);
+}
+
+
+
+//;
+
+void
+@rm
+{
+str fp = "";
+fp = "Dec-4-2017 5:06 PM";
+
+// lu: Dec-4-2017
+
+str test = get_line;
+@eol;
+cr;
+@bol;
+text(test);
+goto_col(@get_sj_cutoff_column);
+str_block_begin;
+@eol;
+block_end;
+@delete_block;
+text('=');
+@paste;
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@rm5
+{
+str fp = "";
+  fp = "Nov-21-2017 3:14 PM";
+// lu: Nov-21-2017
+str rs;
+str sc;
+
+@header;
+sc = '^.# "';
+sc = '".+$';
+sc = '$^';
+sc = "'";
+sc = '$';
+rs = "$                    submission_string += '";
+rs = "'\\&";
+rs = "=' + myForm.down('#').getValue();";
+@eol;
+
+@replace_next_occurrence_only(sc, rs);
+down;
+return();
+@replace_all_occurrs_inf_one_tof(sc, rs);
+int is_found = @seek_in_all_files_2_arguments(sc, fp);
+@seek(sc);
+
+@footer;
+@say(found_str);
+@say(fp);
+}
+
+
+
 //;;
 
 void

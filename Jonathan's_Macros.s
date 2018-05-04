@@ -466,7 +466,7 @@ void
 //;;
 
 void
-@@add_cmac_stub_1
+@add_cmac_stub_1_l1
 {
 @header;
 @add_cmac_stub_1('');
@@ -4840,7 +4840,7 @@ int
 
 str fp = "Determine whether the current line has an lc partner.";
 
-@save_location;
+//@save_location; Commented on Apr-30-2018.
 
 int rv = 0;
 
@@ -4988,19 +4988,16 @@ return(0);
 
 
 
-//;;
+//;
 
 void
-@find_lc_partner
+@find_lc_partner()
 {
 str fp = "Find lc partner.";
-@header;
 
 // fcd: Dec-7-2015
 
 str lc;
-
-@save_location;
 
 if(@current_line_contains('^'))
 {
@@ -5027,8 +5024,20 @@ if(!@current_line_has_an_lc_partner(lc))
 
 @find_lc(lc);
 
-@footer;
 @say(fp + ' (' + lc + ')');
+}
+
+
+
+//;
+
+void
+@@find_lc_partner
+{
+@header;
+@save_location;
+@find_lc_partner;
+@footer;
 }
 
 
@@ -6617,59 +6626,6 @@ int is_found = @seek_in_all_files_2_arguments(sc, fp);
 //;
 
 void
-@rm2
-{
-str fp = "";
-fp = "Oct-31-2017";
-
-// fcd: Sep-13-2017
-
-fp = Get_Environment("Prompt") + "\\Mozilla Firefox\\firefox.exe";
-fp = Get_Environment("ProgramFiles") + "\\Mozilla Firefox\\firefox.exe";
-
-@say(fp);
-}
-
-
-
-//;
-
-void
-@rm3
-{
-str fp = "Remove extra echo statements.";
-
-// lu: Nov-14-2017
-
-str rs;
-str sc;
-
-@header;
-
-tof;
-
-sc = 'echo\.$echo';
-
-@eol;
-
-rs = 'echo';
-
-@replace_all_occurrs_inf_one_tof(sc, rs);
-return();
-@replace_next_occurrence_only(sc, rs);
-@seek(sc);
-int is_found = @seek_in_all_files_2_arguments(sc, fp);
-
-@footer;
-@say(found_str);
-@say(fp);
-}
-
-
-
-//;
-
-void
 @run_batch_file_with_parameter_2(str arguments = parse_str('/1=', mparm_str))
 {
 str fp = "Run batch file with parameter.";
@@ -6682,99 +6638,6 @@ str argument_1, argument_2;
 
 @process_batx_clif_block(argument_1 + '.batx ' + argument_2);
 
-@say(fp);
-}
-
-
-
-//;
-
-void
-@rm5
-{
-str fp = "";
-  fp = "Nov-21-2017 3:14 PM";
-// lu: Nov-21-2017
-str rs;
-str sc;
-
-@header;
-sc = '^.# "';
-sc = '".+$';
-sc = '$^';
-sc = "'";
-sc = '$';
-rs = "$                    submission_string += '";
-rs = "'\\&";
-rs = "=' + myForm.down('#').getValue();";
-@eol;
-
-@replace_next_occurrence_only(sc, rs);
-down;
-return();
-@replace_all_occurrs_inf_one_tof(sc, rs);
-int is_found = @seek_in_all_files_2_arguments(sc, fp);
-@seek(sc);
-
-@footer;
-@say(found_str);
-@say(fp);
-}
-
-
-
-//;
-
-void
-@rm
-{
-str fp = "";
-fp = "Dec-4-2017 5:06 PM";
-
-// lu: Dec-4-2017
-
-str test = get_line;
-@eol;
-cr;
-@bol;
-text(test);
-goto_col(@get_sj_cutoff_column);
-str_block_begin;
-@eol;
-block_end;
-@delete_block;
-text('=');
-@paste;
-
-@say(fp);
-}
-
-
-
-//;
-
-void
-@rm
-{
-str fp = "";
-  fp = "Dec-5-2017 3:30 PM";
-// lu: Dec-5-2017
-str rs;
-str sc;
-
-@header;
-sc = '^.+form.down';
-@eol;
-rs = 'form.down';
-
-@replace_next_occurrence_only(sc, rs);
-return();
-@seek(sc);
-@replace_all_occurrs_inf_one_tof(sc, rs);
-int is_found = @seek_in_all_files_2_arguments(sc, fp);
-
-@footer;
-@say(found_str);
 @say(fp);
 }
 
@@ -6951,6 +6814,26 @@ str fp = "Prepare message to phone file.";
 @bof;
 
 @delete_carriage_returns;
+
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
+@find_lc_partner_listed_in_bsh
+{
+str fp = "Find lc partner listed in big segment header.";
+
+@save_location;
+
+@header;
+
+@bobs;
+@find_lc_partner;
 
 @footer;
 @say(fp);

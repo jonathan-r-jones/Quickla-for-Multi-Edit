@@ -7355,6 +7355,8 @@ void
 {
 str fp = 'Sort bullets in current rubric. Only sorts by the first character.';
 
+// skw: alphabetize
+
 if(!@is_bullet_file)
 {
   return();
