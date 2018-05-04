@@ -2068,6 +2068,18 @@ str fp = "Search Google with appended words.";
 //;
 
 void
+@search_google_with_appended_rd
+{
+str fp = "Search Google with appended words.";
+// lu: May-4-2018
+@search_google_main(0, 0, @get_sj + ' release date');
+}
+
+
+
+//;
+
+void
 @search_google_with_appended_td
 {
 str fp = "Search Google with appended words.";
