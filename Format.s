@@ -1,4 +1,4 @@
-macro_file Format; // (!bffo, !fo)
+macro_file Format; // (!fm)
 
 // Format text.
 
@@ -17,10 +17,12 @@ macro_file Format; // (!bffo, !fo)
 
 /*
 
-Metadata: Track Size (!tsfo)
+Metadata: Track Size (!tsfm)
 
     Date       Lines     Bytes    Macros   Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
+
+: May-7-2018   2,225     35,267       74
 
 : Apr-3-2018   2,223     35,230       74
 

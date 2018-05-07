@@ -1,4 +1,4 @@
-macro_file Jonathan's_Macros; // (!jo, !bfjo)
+macro_file Jonathan's_Macros; // (!jm)
 
 // Miscellaneous macros.
 
@@ -23,10 +23,12 @@ macro_file Jonathan's_Macros; // (!jo, !bfjo)
 
 /*
 
-Metadata: Track Size (!tsjo)
+Metadata: Track Size (!tsjm)
 
     Date       Lines    Bytes    Macros   Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
+
+: May-7-2018   6,844     94,447      246
 
 : Apr-3-2018   6,961     95,847      249
 
@@ -6841,4 +6843,4 @@ str fp = "Find lc partner listed in big segment header.";
 
 
 
-//; (!efjo)
+//; (!efjm)

@@ -1,4 +1,4 @@
-macro_file Shared; // (!sh, !bfsh)
+macro_file Shared; // (!sh)
 
 // Shared utilities.
 
@@ -641,7 +641,7 @@ goto_col(1);
 int
 @current_line_contains_regex(str parameter)
 {
-str fp = "Current line contains passed in string.";
+str fp = "Current line contains the passed in string.";
 // fcd: Jun-2-2014
 @bol;
 return (find_text(parameter, 1, _regexp));
@@ -4287,4 +4287,4 @@ if(!@is_text_file)
 
 
 
-//; (!efah)
+//; (!efsh)

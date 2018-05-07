@@ -1539,6 +1539,95 @@ return(0);
 
 
 
+//;
+
+int
+@rubric_contains_1way_string()
+{
+str fp = "Does rubric contain '1way' string?";
+
+// lu: May-7-2018
+
+mark_pos;
+
+@bobs;
+
+if(find_text('1way', 3, _regexp))
+{
+  goto_mark;
+  return(1);
+}
+
+goto_mark;
+return(0);
+
+@say(fp);
+}
+
+
+
+//;
+
+str
+@look_up_rubrics_1way_lc()
+{
+str fp = "Get rubric's 1way launch code.";
+
+// lu: May-7-2018
+
+str Distilled_lc;
+str sc = '!1way.+';
+str so;
+
+mark_pos;
+@bobs;
+
+if(find_text(sc, 3, _regexp))
+{
+  Distilled_lc = @distill_lc(found_str);;
+  Distilled_lc = @trim_after_character(Distilled_lc, ')');
+  Distilled_lc = str_del(distilled_lc, 1, 4);
+}
+
+goto_mark;
+
+@say(distilled_lc);
+return(distilled_lc);
+}
+
+
+
+//;
+
+void
+@move_bullet_to_1way_lc()
+{
+str fp = "Move bullet to one way lc. This enables me to have to sprinkle 'dest' at the destination lc.";
+
+// lu: May-7-2018
+
+mark_pos;
+
+@cut_bullet;
+
+@bobs;
+
+str lc = @look_up_rubrics_1way_lc;
+
+if(!@find_lc("!" + lc))
+{
+  fp += ' LC NOT found!';
+}
+
+@paste_after;
+
+goto_mark;
+
+@say(fp);
+}
+
+
+
 //; (skw the gun, bullet gun)
 
 void
@@ -1561,6 +1650,7 @@ if(!@is_bullet_or_subbullet)
 int initial_column = @current_column;
 
 @bob;
+
 @save_location;
 
 // I moved this check above the others because of monthly itinerary items that also
@@ -1574,6 +1664,13 @@ if(@first_5_characters_is_month)
 if(@current_line_contains_regex(@comma_lc))
 {
   @move_bullet_to_appropriate_lc(return_home);
+  return();
+}
+
+if(@rubric_contains_1way_string)
+{
+  @move_bullet_to_1way_lc;
+  @restore_location; 
   return();
 }
 

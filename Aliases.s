@@ -1,4 +1,4 @@
-macro_file Aliases; // (!rfal, !al, !bfal)
+macro_file Aliases; // (!rfal, !al)
 
 // A wrapper around Multi-Edit commands.
 // Contains no calls to any "@" (my macros) functions. The order of the functions in this file 
