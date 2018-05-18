@@ -2760,8 +2760,8 @@ str fp = "Increment ticket number counter.";
 
 int result;
 
-str filename = '%savannah%\cmac\source code\ticket_number_counter.txt';
-//qq-1
+str filename = '%savannah%\cmac\quickla-for-multi-edit\ticket_number_counter.txt';
+             
 filename = @resolve_environment_variable(filename);
 @open_file(filename);
 
@@ -6030,7 +6030,6 @@ fp = "Start new Jira ticket.";
 @add_subrubric_below('');
 text('TK');
 int ticket_number_counter = @increment_ticket_number_counter;
-//qq-1
 text(str(ticket_number_counter));
 text(': ');
 @add_text_lc_on_current_line('tk' + str(ticket_number_counter));

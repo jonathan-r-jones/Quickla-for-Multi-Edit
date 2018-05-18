@@ -1600,7 +1600,9 @@ return(distilled_lc);
 void
 @move_bullet_to_1way_lc()
 {
-str fp = "Move bullet to one way lc. This enables me to have to sprinkle 'dest' at the destination lc.";
+str fp = "Move bullet to one way lc.";
+
+// This enables me to have to sprinkle 'dest' at the destination lc.
 
 // lu: May-7-2018
 
@@ -1612,7 +1614,9 @@ mark_pos;
 
 str lc = @look_up_rubrics_1way_lc;
 
-if(!@find_lc("!" + lc))
+lc = @transform_a_string_into_an_lc(lc);
+
+if(!@find_lc(lc))
 {
   fp += ' LC NOT found!';
 }
@@ -1621,7 +1625,7 @@ if(!@find_lc("!" + lc))
 
 goto_mark;
 
-@say(fp);
+@say(fp + ' (' + @distill_lc(lc) + ')');
 }
 
 

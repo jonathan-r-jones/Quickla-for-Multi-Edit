@@ -3496,7 +3496,9 @@ switch(find_Precision)
     sc = @equate_spaces_and_dashes(sc);
     //Last Updated: Sep-26-2016
     sc = '^((:#)||(;#)||(:\+ @)||(;\+ @))' + sc;
-    sc += '((:)||($)||(!)||(\.)||(\?)||( \()||(,))';
+    sc += '((:)||($)||(!)||(\.)||(\?)||( \())';
+      // sc += '((:)||($)||(!)||(\.)||(\?)||( \()||(,))'; Prior to May-18-2018. I removed
+      // the comma option.
     break;
   case 2:
     sc = @equate_spaces_and_dashes(sc);

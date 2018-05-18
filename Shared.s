@@ -4285,4 +4285,20 @@ if(!@is_text_file)
 
 
 
+//;
+
+str
+@transform_a_string_into_an_lc(str lc = parse_str('/1=', mparm_str))
+{
+str fp = "Transform a passed in string into a searchable lc.";
+
+// lu: May-18-2018
+
+@say(fp);
+
+return('!' + lc + ',||\)');
+}
+
+
+
 //; (!efsh)

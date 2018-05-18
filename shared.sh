@@ -129,6 +129,7 @@ prototype Shared
   void @surf(str uRL, int browser_Number);
   int  @switch_to_named_window(str name_of_Window);
   void @tof();
+  str  @transform_a_string_into_an_lc(str string);
   str  @trim(str string);
   str  @trim_colon_et_al(str string);
   str  @trim_preobject_phrase(str string);
