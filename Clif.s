@@ -17,18 +17,16 @@ macro_file Clif; // (!cf)
 
 
 
-//; Macro File Glass Ceiling
-
-
-
 //;
 
 /*
 
-Metadata: Track Size (!tscl, !tscf)
+Metadata: Track Size (!tscf)
 
     Date       Lines     Bytes    Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
+
+:May-17-2018   4,526     82,386      114
 
 : Apr-3-2018   4,410     81,008      111
 

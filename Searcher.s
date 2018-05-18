@@ -9,10 +9,6 @@ macro_file Searcher; // (!se)
 
 
 
-//; Macro File Glass Ceiling
-
-
-
 //;
 
 /*
@@ -21,6 +17,8 @@ Metadata: Track Size (!tsse)
 
     Date       Lines     Bytes    Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
+
+:May-17-2018   2,138     31,803       70
 
 : Apr-3-2018   2,068     30,729       68
 

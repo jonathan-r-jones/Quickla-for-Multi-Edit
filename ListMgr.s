@@ -10,10 +10,6 @@ macro_file ListMgr; // (!lm)
 
 
 
-//; Macro File Glass Ceiling
-
-
-
 //;
 
 /*
@@ -22,6 +18,8 @@ Metadata: Track Size (!tsli, !tslm)
 
     Date       Lines     Bytes     Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
+
+:May-17-2018  12,720    167,860      464
 
 : Apr-3-2018  12,718    167,749      465
 
@@ -840,8 +838,10 @@ if(lc == '')
 }
 switch(lc)
 {
-  case 'ne':
-    lc = 'ggne';
+  // So this is a glass ceiling registry of sorts. May-17-2018
+  case 'wk':
+  case 'tr':
+    lc = 'gg' + lc;
     break;
   default:
 }
@@ -12700,7 +12700,7 @@ if(lc != '')
 @add_bullet_below;
 
 // Enforce the default.
-if(wrapping_is_on == 'y')
+if(wrapping_is_on != '')
 {
   @paste_with_wikipedia_format;
 }

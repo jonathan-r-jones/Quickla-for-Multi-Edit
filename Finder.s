@@ -19,10 +19,6 @@ macro_file Finder; // (!fi)
 
 
 
-//; Macro File Glass Ceiling
-
-
-
 //;
 
 /*
@@ -31,6 +27,8 @@ Metadata: Track Size (!tsfi)
 
      Date      Lines     Bytes    Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
+
+:May-17-2018   3,785     61,457      109
 
 : Apr-3-2018   3,775     61,242      109
 

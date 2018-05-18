@@ -7,10 +7,6 @@ macro_file Regexes; // (!rx)
 
 
 
-//; Macro File Glass Ceiling
-
-
-
 //;
 
 /*
@@ -19,6 +15,8 @@ Metadata: Track Size (!tsre)
 
      Date      Lines    Bytes     Macros  Notes
  -----------  ------  ---------  -------  ---------------------------------------------------
+
+:May-17-2018   1,552     22,646       82
 
 : Apr-3-2018   1,554     22,638       83
 

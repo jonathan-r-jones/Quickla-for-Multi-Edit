@@ -6,10 +6,6 @@ macro_file Aliases; // (!rfal, !al)
 
 
 
-//; Macro File Glass Ceiling
-
-
-
 //;
 
 /*
@@ -18,6 +14,8 @@ Metadata: Track Size (!tsal)
 
      Date      Lines    Bytes     Macros  Notes
  -----------  ------  ---------  -------  ---------------------------------------------------
+
+:May-17-2018     944     11,892       71
 
 : Apr-3-2018     944     11,847       72
 

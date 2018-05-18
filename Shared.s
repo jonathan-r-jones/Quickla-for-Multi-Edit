@@ -7,10 +7,6 @@ macro_file Shared; // (!sh)
 
 
 
-//; Macro File Glass Ceiling
-
-
-
 //;
 
 /*
@@ -19,6 +15,8 @@ Metadata: Track Size (!tssh)
 
     Date       Lines    Bytes     Macros  Notes
  -----------  ------  ---------  -------  ---------------------------------------------------
+
+:May-17-2018   4,286     71,353      194
 
 : Apr-3-2018   4,286     71,293      195
 
