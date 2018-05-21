@@ -1,7 +1,7 @@
 # Quickla 
 
-Quickla is a productivity in the form of a collection of macros written in Multi-Edit's CMAC 
-C-style macro programming language. Multi-Edit is a commercial text editor for Microsoft 
+Quickla is a productivity tool in the form of a collection of macros written in Multi-Edit's 
+CMAC C-style macro programming language. Multi-Edit is a commercial text editor for Microsoft 
 Windows. The main features of the suite are:
 
 1. quick access to links, folders, files and applications,
