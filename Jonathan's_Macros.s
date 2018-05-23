@@ -2761,7 +2761,7 @@ str fp = "Increment ticket number counter.";
 int result;
 
 str filename = '%savannah%\cmac\quickla-for-multi-edit\ticket_number_counter.txt';
-             
+
 filename = @resolve_environment_variable(filename);
 @open_file(filename);
 
