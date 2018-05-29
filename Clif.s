@@ -2913,9 +2913,10 @@ int is_repeat_call = 0;
 
 int return_home = true;
 
-@run_clif_compositionally(user_Input, fp, show_outer_status_message, 0);
+@run_clif_compositionally(user_input, fp, show_outer_status_message, 0);
 
 @say(fp);
+//@say('User input: ' + user_input);
 }
 
 
@@ -3240,7 +3241,7 @@ if(@current_line_contains(',,,'))
 
 if(@current_line_contains(',,'))
 {
-  @say('Apr-8');
+  @say('May-29-2018');
   @perform_indicated_action;
   return();
 }

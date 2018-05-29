@@ -440,12 +440,12 @@ if(@current_line_number == current_line_number)
   }
   else
   {
-    fp += ' It is NOT.';
+    fp += ' It is NOT 1.';
   }
 }
 else
 {
-  fp += ' It is NOT.';
+  fp += ' It is NOT 2.';
 }
 
 @say(fp);
