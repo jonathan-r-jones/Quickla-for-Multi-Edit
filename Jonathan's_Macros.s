@@ -1108,8 +1108,8 @@ else if(@is_bullet_file)
 }
 else if(@is_batch_file)
 {
-  rm("@open_file_with_writability /FN=" + Get_Environment('savannah') +
-    "\\miscellany\\batch file code archive.bat");
+  rm("@open_file_with_writability /FN=" + Get_Environment('dropbox') +
+    "\\IT\\Composable-Batch-Files\\batch file code archive.txt");
 }
 
 @bof;

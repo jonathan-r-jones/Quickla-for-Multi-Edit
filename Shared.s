@@ -2849,7 +2849,7 @@ str full_filename[128] = get_environment('savannah') + '\work documents\' + file
 if(file_exists(full_filename))
 {
   filename = filename + '_' + @get_formatted_date_as_fct_name;
-  full_filename = get_environment('savannah') + '\work documents\' + filename;
+  full_filename = get_environment('dropbox') + '\work\wk\documents\' + filename;
 }
 
 int handle;
