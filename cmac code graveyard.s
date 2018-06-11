@@ -1,6 +1,26 @@
 //;
 
 void
+@rtm
+{
+str fp = "Run last updated and close window.";
+
+// This doesn't work but I can't figure out why not.
+
+// lu: Jun-10-2018
+
+@run_clif_internally('lu');
+@switch_to_named_window('last updated.asc');
+@close_and_save_file_wo_prompt;
+
+@say(fp);
+}
+
+
+
+//;
+
+void
 @rm2
 {
 str fp = "";

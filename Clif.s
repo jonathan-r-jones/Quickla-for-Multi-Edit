@@ -4515,7 +4515,7 @@ void
 {
 str fp = "Synchronize with Dropbox.";
 
-// lu: Apr-19-2018
+// lu: Jun-10-2018
 
 if(@switch_to_named_window('mz.asc'))
 {

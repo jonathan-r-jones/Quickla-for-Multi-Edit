@@ -4301,4 +4301,19 @@ return('!' + lc + ',||\)');
 
 
 
+//;
+
+void
+@lp_current_filename
+{
+str fp = "Copy current filename to clipboard.";
+// skw: Load clipboard with current filename.
+str full_filename = @full_filename;
+@set_clipboard(full_filename);
+fp += ' (' + full_filename + ')';
+@say(fp);
+}
+
+
+
 //; (!efsh)

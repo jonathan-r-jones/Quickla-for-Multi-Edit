@@ -2060,21 +2060,6 @@ Save_File;
 
 
 
-//;
-
-void
-@lp_current_filename
-{
-str fp = "Copy current filename to clipboard.";
-// skw: Load clipboard with current filename.
-str full_filename = @full_filename;
-@set_clipboard(full_filename);
-fp += ' (' + full_filename + ')';
-@say(fp);
-}
-
-
-
 //;+ Switch Windows
 
 
@@ -6817,6 +6802,18 @@ str fp = "Find lc partner listed in big segment header.";
 
 @footer;
 @say(fp);
+}
+
+
+
+//;
+
+void
+@say_this_filename
+{
+str fp = "Say this filename.";
+// lu: Jun-10-2018
+@say(fp + ' (' + @full_filename + ')');
 }
 
 
