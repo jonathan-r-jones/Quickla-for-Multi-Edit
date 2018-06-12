@@ -1990,6 +1990,44 @@ typewriter
 //;;
 
 void
+@search_github_xa(str parameter = parse_str('/1=', mparm_str))
+{
+
+str fp = 'Search Github and append Xamarin Forms.';
+
+// fcd: Dec-30-2017
+
+str URL = 'https://github.com/search?utf8=%E2%9C%93&q=';
+
+str sc = parameter;
+
+if(sc == '')
+{
+  sc = @get_subject_or_selected_text;
+}
+
+str Pretty_sc = sc;
+sc = @commute_character(sc, ' ', '+');
+
+URL += sc + ' Xamarin Forms';
+URL += '&type=Repositories&ref=advsearch&l=&l=';
+
+@surf(URL, 0);
+
+/* Use Cases
+
+typewriter
+
+*/
+
+@say(@trim_period(fp) + ' for "' + pretty_sc + '".');
+}
+
+
+
+//;;
+
+void
 @search_github_users(str parameter = parse_str('/1=', mparm_str))
 {
 str fp = 'Search GitHub users.';

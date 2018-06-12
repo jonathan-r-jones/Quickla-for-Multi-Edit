@@ -5417,7 +5417,11 @@ if(@seek_from_bof('!rf' + 'cea') != 1)
 
 
 
-//;
+//;+ Batch File Stubs
+
+
+
+//;;
 
 void
 @add_batch_file_stub()
@@ -5487,6 +5491,90 @@ up;
 up;
 @eol;
 text(' ');
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@add_batch_file_stub_for_n_bat()
+{
+str fp = "Add batch file new stub for n.bat.";
+
+// fcd: Jun-12-2018
+
+if(!@is_batch_file)
+{
+  return();
+}
+
+@header;
+
+@move_dog_park_to_eof;
+
+@save_location;
+
+str sc = '!' + 'rftnew';
+int is_found = @seek_in_all_files_2_arguments(sc, fp);
+
+@hc_small_segment_content_dinc();
+
+@restore_location;
+
+@eof;
+@bol;
+cr;
+cr;
+cr;
+up;
+up;
+up;
+@paste;
+
+@find_bobs_or_previous_bs;
+
+@seek('x_marker');
+
+@hc_subject;
+
+@delete_block;
+
+@seek('x_marker');
+
+@hc_subject;
+
+@delete_block;
+
+@seek('lu');
+@eol;
+text(' ');
+@add_text_date;
+
+down;
+down;
+down;
+down;
+down;
+@bol;
+text('rem q' + 'q-1');
+cr;
+cr;
+up;
+up;
+up;
+up;
+up;
+up;
+up;
+up;
+up;
+@eol;
+text(' ');
+
+@footer;
 
 @say(fp);
 }
