@@ -5558,10 +5558,11 @@ down;
 down;
 down;
 down;
+down;
+down;
 @bol;
 text('rem q' + 'q-1');
-cr;
-cr;
+//qq-1
 up;
 up;
 up;
