@@ -6906,4 +6906,26 @@ str fp = "Say this filename.";
 
 
 
+//;
+
+void
+@copy_bullet_to_lc_together
+{
+str fp = "Copy bullet to lc together.";
+
+@header;
+
+@hc_bullet;
+
+if(@find_lc(@get_user_input_nonspace(fp)))
+{
+  @paste_after;
+}
+
+@footer;
+@say(fp);
+}
+
+
+
 //; (!efjm)
