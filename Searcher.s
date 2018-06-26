@@ -2116,6 +2116,18 @@ str fp = "Search Google with appended words.";
 //;
 
 void
+@search_google_with_appended_xa
+{
+str fp = "Search Google with Xamarin Forms.";
+// lu: Jun-26-2018
+@search_google_main(0, 0, @get_sj + ' Xamarin Forms');
+}
+
+
+
+//;
+
+void
 @search_google_with_appended_td
 {
 str fp = "Search Google with appended words.";

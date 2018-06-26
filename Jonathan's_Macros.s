@@ -5439,8 +5439,9 @@ if(!@is_batch_file)
 
 @save_location;
 
-str sc = '!' + 'rftnew';
-int is_found = @seek_in_all_files_2_arguments(sc, fp);
+str sc = 'rftnew';
+//int is_found = @seek_in_all_files_2_arguments(sc, fp);
+@find_lc(sc);
 
 @hc_small_segment_content_dinc();
 
@@ -5562,7 +5563,6 @@ down;
 down;
 @bol;
 text('rem q' + 'q-1');
-//qq-1
 up;
 up;
 up;
