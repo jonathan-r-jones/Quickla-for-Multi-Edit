@@ -16,6 +16,8 @@ Metadata: Track Size (!tssh)
     Date       Lines    Bytes     Macros  Notes
  -----------  ------  ---------  -------  ---------------------------------------------------
 
+: Jul-1-2018   4,320     71,897      196
+
 :May-17-2018   4,286     71,353      194
 
 : Apr-3-2018   4,286     71,293      195
@@ -208,6 +210,7 @@ switch(filename_Extension)
 {
   case "config":
   case "htm":
+  case "xaml":
   case "xml":
   case "xsl":
   case "xslt":

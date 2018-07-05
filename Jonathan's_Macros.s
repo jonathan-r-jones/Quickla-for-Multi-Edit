@@ -24,6 +24,8 @@ Metadata: Track Size (!tsjm)
     Date       Lines    Bytes    Macros   Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+: Jul-1-2018   6,959     95,708      249
+
 :May-17-2018   6,845     94,525      245
 
 : May-7-2018   6,844     94,447      246
@@ -5213,7 +5215,7 @@ int is_found = 0;
 str url;
 
 url = @get_remote_oj_using_klc('rfcnet', is_found);
-@surf(url, 1);
+//@surf(url, 1);
 
 url = @get_remote_oj_using_klc('rfbbc', is_found);
 @surf(url, 1);
@@ -5234,13 +5236,13 @@ url = @get_remote_oj_using_klc('rfwash', is_found);
 @surf(url, 1);
 
 url = @get_remote_oj_using_klc('rfreas', is_found);
-@surf(url, 1);
+//@surf(url, 1);
 
 url = @get_remote_oj_using_klc('rfgotr', is_found);
-@surf(url, 1);
+//@surf(url, 1);
 
 url = @get_remote_oj_using_klc('rfght', is_found);
-@surf(url, 1);
+//@surf(url, 1);
 
 @footer;
 @say(fp);
@@ -5562,7 +5564,7 @@ down;
 down;
 down;
 @bol;
-text('rem q' + 'q-1');
+text('rem       q' + 'q-1');
 up;
 up;
 up;
@@ -6922,6 +6924,33 @@ if(@find_lc(@get_user_input_nonspace(fp)))
 {
   @paste_after;
 }
+
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
+@copy_ph_contents_to_nptl
+{
+str fp = "Open ph and copy it's contents to nptl.";
+
+@header;
+
+str filename[128] = Get_Environment('dropbox') + '\!savannah\reach out\p.txt';
+
+@open_file(filename);
+
+rm('block^selectall');
+
+@copy;
+
+@close_file;
+
+@import_and_format_innovation_l1;
 
 @footer;
 @say(fp);

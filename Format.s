@@ -18,6 +18,8 @@ Metadata: Track Size (!tsfm)
     Date       Lines     Bytes    Macros   Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+: Jul-1-2018   2,226     35,335       73
+
 :May-17-2018   2,223     35,275       73
 
 : May-7-2018   2,225     35,267       74
@@ -1485,6 +1487,7 @@ switch(lower(Get_Extension(File_name)))
     break;
   case 'config':
   case 'htm':
+  case 'xaml':
   case 'xml':
   case 'xsl':
   case 'xslt':

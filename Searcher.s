@@ -18,6 +18,8 @@ Metadata: Track Size (!tsse)
     Date       Lines     Bytes    Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+: Jul-1-2018   2,202     32,788       73
+
 :May-17-2018   2,138     31,803       70
 
 : Apr-3-2018   2,068     30,729       68
@@ -1298,37 +1300,6 @@ str fp = "Searcher.s v. Mar-9-2010.";
 //;
 
 void
-@search_google_play(str sc = parse_str('/1=', mparm_str))
-{
-
-str fp = 'Search Google Play.';
-
-str URL = "https://play.google.com/store/search?q=";
-
-if(sc == '')
-{
-  sc = @get_subject_or_selected_text;
-}
-
-str Pretty_sc = sc;
-
-URL += sc;
-URL += "&c=apps&hl=en";
-
-sc = @commute_character(sc, ' ', '+');
-
-@surf(url, 0);
-
-str status_Message = @trim_period(fp) + ' for "' + Pretty_sc + '".';
-Set_Global_Str('inner_status_message', status_Message);
-@say(status_Message);
-}
-
-
-
-//;
-
-void
 @search_duck_duck_go(str parameter = parse_str('/1=', mparm_str))
 {
 
@@ -2116,11 +2087,23 @@ str fp = "Search Google with appended words.";
 //;
 
 void
-@search_google_with_appended_xa
+@search_google_with_appended_xf
 {
 str fp = "Search Google with Xamarin Forms.";
 // lu: Jun-26-2018
 @search_google_main(0, 0, @get_sj + ' Xamarin Forms');
+}
+
+
+
+//;
+
+void
+@search_google_with_appended_xa
+{
+str fp = "Search Google with Xamarin Forms Xaml.";
+// lu: Jun-26-2018
+@search_google_main(0, 0, @get_sj + ' Xamarin Forms Xaml');
 }
 
 
@@ -2180,6 +2163,54 @@ URL += sc;
 /*  Use Cases
 
 underscore
+
+*/
+
+}
+
+
+
+//;
+
+void
+@search_earth_model_l1(str fpp = parse_str('/1=', mparm_str), str url = parse_str('/2=', mparm_str))
+{
+
+str fp = 'Search earth model, level 1.';
+
+str sc = @get_subject_or_selected_text;
+
+str Pretty_sc = sc;
+
+url += sc;
+
+sc = @commute_character(sc, ' ', '+');
+
+@surf(url, 0);
+
+str status_Message = @trim_period(fp) + ' for "' + Pretty_sc + '".';
+
+@say(status_Message);
+}
+
+
+
+//;
+
+void
+@search_google_play
+{
+str fp = "Search Google Play.";
+
+str url = 'https://play.google.com/store/search?q=';
+
+@search_earth_model_l1(fp, url);
+
+/*  Use Cases
+
+century spice road
+
+century spice roads
 
 */
 

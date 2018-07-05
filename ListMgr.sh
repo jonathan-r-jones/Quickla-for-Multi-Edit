@@ -60,8 +60,8 @@ prototype ListMgr
   void @find_from_lc_known(str lc);
   int  @find_next_big_segment();
   str  @find_next_bobs();
-  str  @find_next_bsr();
   // (!rfsp)
+  str  @find_next_bsr();
   void @find_next_content_area();
   int  @find_next_rubric();
   str  @find_next_small_segment();
@@ -86,6 +86,7 @@ prototype ListMgr
   void @hc_small_segment_content_dinc();
   str  @hc_subject();
   str  @hc_word_uc();
+  void @import_and_format_innovation_l1();
   int  @is_big_segment();
   int  @is_bs();
   int  @is_bullet();
