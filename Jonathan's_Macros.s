@@ -505,6 +505,10 @@ text('str fp = "x');
 text('";');
 cr;
 cr;
+text('// lu: ');
+@add_text_date;
+cr;
+cr;
 text("@header;");
 cr;
 cr;
@@ -6916,6 +6920,8 @@ void
 {
 str fp = "Copy bullet to lc together.";
 
+// lu: Jul-3-2018
+
 @header;
 
 @hc_bullet;
@@ -6937,6 +6943,8 @@ void
 @copy_ph_contents_to_nptl
 {
 str fp = "Open ph and copy it's contents to nptl.";
+
+// lu: Jul-6-2018
 
 @header;
 
