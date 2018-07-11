@@ -6966,4 +6966,32 @@ rm('block^selectall');
 
 
 
+//;
+
+void
+@find_next_long_line_then_hwwi
+{
+str fp = "Find next long line then hard word wrap it.";
+
+// lu: Jul-11-2018
+
+@header;
+
+if(@find_next_long_line)
+{
+  goto_col(95);
+  cr;
+  up;
+}
+else
+{
+  fp += ' No long lines found.';
+}
+
+@footer;
+@say(fp);
+}
+
+
+
 //; (!efjm)

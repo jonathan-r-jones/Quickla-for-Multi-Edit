@@ -2575,17 +2575,18 @@ return(em);
 int
 @find_next_long_line()
 {
-str fp = 'Find lines that exceed the right margin. Returns an integer.';
+str fp = 'Find next line that exceeds the right margin.';
 
 mark_pos;
 
 while(!at_eof)
 {
     eol;
-    if(c_col > 95)
+    if(c_col > 95 && (@previous_character != ' '))
     {
       goto_col(1);
-      @say('Found long line.');
+      fp += ' Found long line.';
+      @say(fp);
       pop_mark;
       return(true);
     }
@@ -2594,9 +2595,21 @@ while(!at_eof)
 
 goto_mark;
 
-fp = 'Long line NOT found.';
+fp += ' Long line NOT found.';
 @say(fp);
 return(false);
+}
+
+
+
+//;;
+
+void
+@@find_next_long_line
+{
+@header;
+@find_next_long_line;
+@footer;
 }
 
 

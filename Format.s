@@ -106,71 +106,6 @@ rm('Reformat');
 
 
 
-//;; (format_long_line)
-
-int
-@force_word_wrap_of_current_line()
-{
-str fp = 'Force the current line to word wrap.';
-
-int Number_of_Replacements;
-
-// Try a simple single line format, to see if that fixes the problem.
-mark_pos;
-down;
-@bol;
-cr;
-up;
-up;
-rm('reformat');
-goto_mark;
-
-@delete_next_blank_line;
-
-int Current_Line_Length = length(get_line);
-if(Current_Line_Length < 95)
-{
-  fp = 'Either the reformat code above worked or this is a short line, so there is nothing to 
-  format.';
-  @say(fp);
-  down;
-  return(0);
-}
-
-while(Current_Line_Length >= 95)
-{
-  goto_col(95);
-  cr;
-  Current_Line_Length = length(get_line);
-}
-
-/* Use Case(s)
-
-- Crime Reports Dot Com:
-http://www.crimereports.com/map?search=22042&searchButton.x=32&searchButton.y=7&searchButton=S
-EARCH
-
-*/
-
-@bol;
-@say(fp);
-return(Number_of_Replacements);
-}
-
-
-
-//;;
-
-void
-@@force_word_wrap_of_current_lin
-{
-@header;
-@force_word_wrap_of_current_line;
-@footer;
-}
-
-
-
 //;; (skw @comply_with_right_margin, obey right margin, wordwrap, obey_right_margin)
 
 void
@@ -317,6 +252,71 @@ str fp = "Find long line and wrap.";
 
 @footer;
 @say(fp);
+}
+
+
+
+//;; (format_long_line)
+
+int
+@force_word_wrap_of_current_line()
+{
+str fp = 'Force the current line to word wrap.';
+
+int Number_of_Replacements;
+
+// Try a simple single line format, to see if that fixes the problem.
+mark_pos;
+down;
+@bol;
+cr;
+up;
+up;
+rm('reformat');
+goto_mark;
+
+@delete_next_blank_line;
+
+int Current_Line_Length = length(get_line);
+if(Current_Line_Length < 95)
+{
+  fp = 'Either the reformat code above worked or this is a short line, so there is nothing to 
+  format.';
+  @say(fp);
+  down;
+  return(0);
+}
+
+while(Current_Line_Length >= 95)
+{
+  goto_col(95);
+  cr;
+  Current_Line_Length = length(get_line);
+}
+
+/* Use Case(s)
+
+- Crime Reports Dot Com:
+http://www.crimereports.com/map?search=22042&searchButton.x=32&searchButton.y=7&searchButton=S
+EARCH
+
+*/
+
+@bol;
+@say(fp);
+return(Number_of_Replacements);
+}
+
+
+
+//;;
+
+void
+@@force_word_wrap_of_current_lin
+{
+@header;
+@force_word_wrap_of_current_line;
+@footer;
 }
 
 

@@ -4376,6 +4376,10 @@ if(find_text(sc, 0, _regexp | _backward))
   fp += ' Found: ' + found_str + '.';
   right;
 }
+else
+{
+   fp += ' "' + sc + '"' + ' NOT found in this file. ';
+}
 
 @footer;
 
