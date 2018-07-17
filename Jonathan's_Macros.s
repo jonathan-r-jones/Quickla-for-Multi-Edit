@@ -6977,6 +6977,8 @@ str fp = "Find next long line then hard word wrap it.";
 
 @header;
 
+up;
+
 if(@find_next_long_line)
 {
   goto_col(95);
@@ -6986,6 +6988,7 @@ if(@find_next_long_line)
 else
 {
   fp += ' No long lines found.';
+  down;
 }
 
 @footer;

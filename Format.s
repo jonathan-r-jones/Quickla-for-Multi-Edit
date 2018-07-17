@@ -1483,7 +1483,7 @@ str rv;
 switch(lower(Get_Extension(File_name)))
 {
   case 'bat':
-    rv = 'rem ';
+    rv = ':';
     break;
   case 'config':
   case 'htm':
