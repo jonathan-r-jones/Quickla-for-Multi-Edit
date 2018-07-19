@@ -1516,15 +1516,66 @@ return(rv);
 //;;
 
 void
+@add_colon()
+{
+str fp = "Add colon.";
+
+// lu: Jul-18-2018
+
+mark_pos;
+
+@bol;
+
+if(@first_2_characters(get_line) == '::')
+{
+  fp += ' Cannot add more than 2 colons.';
+  goto_mark;
+}
+else
+{
+  text(':');
+  goto_mark;
+  right;
+}
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
 @drag_right()
 {
 str fp = 'Drag right.';
-int Is_Bullet = false;
 
+// lu: Jul-19-2018
+
+if(@first_character(get_line) == ':')
+{
+  @add_colon;
+  return();
+}
+
+if(@first_3_characters(get_line) == '//;')
+{
+  if(@first_4_characters(get_line) == '//;;')
+  {
+    @say(fp += ' Invalid sequence.');
+    return();
+  }
+  mark_pos;
+  @eol;
+  text(';');
+  goto_mark;
+  @say(fp += ' Semicolon added.');
+  return();
+}
+
+int Is_Bullet = false;
 int Have_Added_Character = false;
 str Character_to_Add;
-
-mark_pos;
 
 @bol;
 
@@ -1906,9 +1957,59 @@ else
 //;;
 
 void
+@delete_colon()
+{
+str fp = "Subtract colon.";
+
+// lu: Jul-18-2018
+
+mark_pos;
+
+@bol;
+
+if(@first_2_characters(get_line) == '::')
+{
+  @delete_character;
+  goto_mark;
+  if(@current_column != 1)
+  {
+    left;
+  }
+}
+else
+{
+  fp += ' Cannot delete the sole remaining colon.';
+  goto_mark;
+}
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
 @drag_left()
 {
 str fp = 'Drag left.';
+
+if(@first_character(get_line) == ':')
+{
+  @delete_colon;
+  return();
+}
+
+if(@first_4_characters(get_line) == '//;;')
+{
+  mark_pos;
+  @eol;
+  @backspace;
+  goto_mark;
+  @say(fp += ' Semicolon deleted.');
+  return();
+}
+
 str Character_to_Delete = '';
 
 mark_pos;
