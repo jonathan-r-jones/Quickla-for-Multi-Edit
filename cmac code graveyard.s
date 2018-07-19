@@ -1,6 +1,59 @@
 //;
 
 void
+@cursor_left_quickly
+{
+str fp = "Cursor left quickly.";
+@header;
+
+int i = 0;
+
+while(i < 47)
+{
+  if(@current_column == 1)
+  {
+    break;
+  }
+  left;
+  i++;
+}
+
+@footer;
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@cursor_right_quickly
+{
+str fp = "Cursor right quickly.";
+@header;
+
+int i = 0;
+
+while(i < 47)
+{
+  right;
+  i++;
+}
+
+if(at_eol)
+{
+  eol;
+}
+
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
 @rtm
 {
 str fp = "Run last updated and close window.";

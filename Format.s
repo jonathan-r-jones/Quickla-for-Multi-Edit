@@ -1483,7 +1483,7 @@ str rv;
 switch(lower(Get_Extension(File_name)))
 {
   case 'bat':
-    rv = 'rem';
+    rv = 'rem ';
     break;
   case 'config':
   case 'htm':
@@ -1606,7 +1606,7 @@ else
 //;;
 
 void
-@add_comments_markers()
+@add_comment_characters()
 {
 
 str fp = 'Add or delete comment slashes just like CodeRush does.';
@@ -1615,6 +1615,8 @@ if(!@is_code_file)
 {
   return();
 }
+
+mark_pos;
 
 if(!@text_is_selected)
 {
@@ -1672,9 +1674,13 @@ else
 
 //nonindented block
 
-//indented block
+//indented block;
 
 */
+
+goto_mark;
+right;
+right;
 
 @say(fp);
 }
@@ -1684,7 +1690,7 @@ else
 //;;
 
 void
-@delete_comments_markers()
+@delete_comment_characters()
 {
 
 str fp = 'Add or delete comment slashes just like CodeRush does.';
@@ -1693,6 +1699,8 @@ if(!@is_code_file)
 {
   return();
 }
+
+mark_pos;
 
 if(!@text_is_selected)
 {
@@ -1750,6 +1758,10 @@ nonindented block
       indented block
 
 */
+
+goto_mark;
+left;
+left;
 
 @say(fp);
 }
@@ -1885,7 +1897,7 @@ if(@is_bullet_file)
 }
 else
 {
-  @add_comments_markers; 
+  @add_comment_characters; 
 }
 }
 
@@ -2005,7 +2017,7 @@ if(@is_bullet_file)
 }
 else
 {
-  @delete_comments_markers; 
+  @delete_comment_characters; 
 }
 
 /* Use Case
