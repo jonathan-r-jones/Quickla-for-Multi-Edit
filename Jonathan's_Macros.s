@@ -6067,6 +6067,31 @@ text(number_of_lines_in_file);
 //;
 
 void
+@create_last_updated_entry_fres
+{
+str fp = "Create last updated entry for Fresnel.";
+@header;
+
+// fcd: Dec-2-2016
+
+@open_file(get_environment('dropbox') + '\it\fresnel\fresnel\views\AboutPage.xaml');
+@find_lc('rfsp');
+@delete_line;
+@bol;
+cr;
+up;
+text('                    Text="');
+@add_text_date_and_time_fixed_w;
+text('"');
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
 @find_new_dates(str lc = parse_str('/1=', mparm_str))
 {
 str fp = "Find new dates";
@@ -6990,6 +7015,29 @@ else
   fp += ' No long lines found.';
   down;
 }
+
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
+@open_cbf_dictionary_and_add_new
+{
+str fp = "Open the CBF dictionary and add a new definition.";
+
+// lu: Jul-20-2018
+
+@header;
+
+str filename[128] = get_environment('dropbox') + '\it\composable-batch-files\n.bat';
+
+@open_file(filename);
+
+@add_batch_file_stub_for_n_bat;
 
 @footer;
 @say(fp);

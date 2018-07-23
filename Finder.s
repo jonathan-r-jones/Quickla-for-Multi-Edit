@@ -2582,7 +2582,7 @@ mark_pos;
 while(!at_eof)
 {
     eol;
-    if(c_col > 95 && (@previous_character != ' '))
+    if(c_col >= 97)
     {
       goto_col(1);
       fp += ' Found long line.';

@@ -1573,33 +1573,14 @@ if(@first_3_characters(get_line) == '//;')
   return();
 }
 
-int Is_Bullet = false;
-int Have_Added_Character = false;
-str Character_to_Add;
-
-@bol;
-
 switch(lower(get_extension(File_name)))
 {
-  case 'bat':
-    if(@next_character != ':')
-    {
-      Have_Added_Character = true;
-      text('::');
-    }
-    break;
   case 'asc':
-  case 'jpg':
-    Character_to_Add = ':';
-    if(@first_character_in_line == ';')
-    {
-      Character_to_Add = ';';
-    }
-      have_added_character = true;
-      text(character_to_add);
-      if(@next_character != Character_to_Add)
-      {
-      }
+  case 'bat':
+    mark_pos;
+    @bol;
+    text(@comment_characters);
+    goto_mark;
     break;
   case 'ps1':
     text('#');
@@ -1608,7 +1589,6 @@ switch(lower(get_extension(File_name)))
   case 'sh':
     if(@next_character != '/')
     {
-      Have_Added_Character = true;
       @eos;
       text('//');
     }
@@ -1621,32 +1601,9 @@ switch(lower(get_extension(File_name)))
   case 'sql':
     if(@next_character != '-')
     {
-      have_added_character = true;
       text('--');
     }
     break;
-  default:
-    have_added_character = true;
-    text(' ');
-}
-
-goto_mark;
-
-if(have_added_character)
-{
-  @eol;
-  if(@current_column > 95)
-  {
-    @word_wrap;
-  }
-  while(@current_column > 95)
-  {
-    left;
-  }
-}
-else
-{
-  fp += ' Third characters are disallowed due to my desire to keep a flattened hierarchy.';
 }
 
 @say(fp);
@@ -2010,33 +1967,21 @@ if(@first_4_characters(get_line) == '//;;')
   return();
 }
 
-str Character_to_Delete = '';
-
-mark_pos;
-@bol;
-
 switch(lower(get_extension(File_name)))
 {
   case 'bat':
-    @eos;
-    if(@current_character == ':')
+    if(@first_4_characters(get_line) == @comment_characters)
     {
+      mark_pos;
+      @bol;
       del_char;
-    }
-    if(@current_character == ':')
-    {
       del_char;
+      del_char;
+      del_char;
+      goto_mark;
     }
     break;
   case 'asc':
-  case 'jpg':
-    // In bullet files, I usually don't delete all the colons.
-    character_to_delete = @first_character_in_line;
-    del_char; // I removed this line out of the if block. Sep-17-2015
-    if(@next_character == character_to_delete)
-    {
-    }
-    break;
   case 's':
     @eos;
     int character_Was_Deleted = false;
@@ -2087,17 +2032,6 @@ switch(lower(get_extension(File_name)))
     {
       del_char;
     }
-}
-
-goto_mark;
-if(@current_column != 1)
-{
-  left;
-}
-
-if(@current_column != 1)
-{
-  left;
 }
 
 @say(fp);
