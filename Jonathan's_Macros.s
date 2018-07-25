@@ -6081,7 +6081,7 @@ str fp = "Create last updated entry for Fresnel.";
 cr;
 up;
 text('                    Text="');
-@add_text_date_and_time_fixed_w;
+@add_text_date_and_time;
 text('"');
 @footer;
 @say(fp);

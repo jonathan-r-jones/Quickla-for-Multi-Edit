@@ -18,7 +18,7 @@ Metadata: Track Size (!tsse)
     Date       Lines     Bytes    Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
-: Jul-1-2018   2,202     32,788       73
+:Jul-25-2018   2,213     32,776       74
 
 :May-17-2018   2,138     31,803       70
 
@@ -93,8 +93,7 @@ void
 {
 str fp = 'Search Abbreviations.com.';
 
-str URL = 'http://www.abbreviations.com/bs.asp?st=';
-str URL = 'http://www.abbreviations.com/';
+str url = 'http://www.abbreviations.com/';
 
 str sc = parameter;
 
@@ -468,8 +467,7 @@ void
 {
 str fp = 'Search Merriam-Webster dictionary.';
 
-str URL =
-'http://www.merriam-webster.com/dictionary/';
+str URL = 'http://www.merriam-webster.com/dictionary/';
 
 str sc = parameter;
 
@@ -653,8 +651,7 @@ void
 {
 str fp = "Search the MSDN website.";
 
-str URL =
-  "http://social.msdn.microsoft.com/Search/en-us?query=";
+str URL =  "http://social.msdn.microsoft.com/Search/en-us?query=";
 
 str sc = @get_subject_or_selected_text;
 
@@ -699,8 +696,7 @@ void
 {
 str fp = "Search Bing.";
 
-str URL =
-  "http://www.bing.com/search?q=";
+str URL = "http://www.bing.com/search?q=";
 
 str sc = @get_subject_or_selected_text;
 
@@ -751,7 +747,6 @@ void
 
 str fp = 'Search Audible.com.';
 
-//str URL = "http://www.audible.com/search/adv";
 str URL = "http://www.audible.com/search?adv";
 
 /*
@@ -1307,7 +1302,6 @@ str fp = 'Search Duck Duck Go.';
 
 str URL = "http://duckduckgo.com/?q=";
 
-
 str sc = parameter;
 
 if(sc == '')
@@ -1736,8 +1730,6 @@ void
 {
 str fp = 'Check the SMAS schedule for the week.';
 
-
-         //https://smithsonianassociates.org/ticketing/calendar/?Week=6/19/2017
 str url = 'https://smithsonianassociates.org/ticketing/calendar/?Week=';
 
 str sc;

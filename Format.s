@@ -2272,4 +2272,25 @@ str sc = @read_more_answers_dot_com(description, rs);
 
 
 
+//;
+
+void
+@add_blank_lines_and_colons
+{
+str fp = "Add blank lines and colons.";
+
+// lu: Jul-23-2018
+
+@header;
+
+@add_blank_lines;
+
+@add_colons;
+
+@footer;
+@say(fp);
+}
+
+
+
 //; (!effm)
