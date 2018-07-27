@@ -3050,11 +3050,13 @@ if(!@find_lc('q' + 'q'))
 //;
 
 void
-@find_next_launch_code
+@find_next_lc()
 {
 str fp = "Find next launch code.";
 
 // fcd: Oct-7-2014
+
+// find_next_launch_codec: skw
 
 @header;
 
@@ -7038,6 +7040,46 @@ str filename[128] = get_environment('dropbox') + '\it\composable-batch-files\n.b
 @open_file(filename);
 
 @add_batch_file_stub_for_n_bat;
+
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
+@add_text_bookmark
+{
+str fp = "Add text bookmark.";
+
+// lu: Jul-27-2018
+
+@header;
+
+mark_pos;
+
+@bobs;
+
+@find_next_lc;
+
+right;
+right;
+
+@hc_word_uc;
+
+goto_mark;
+
+@eol;
+cr;
+cr;
+text(":   _/)    _/)    (!");
+@paste;
+text('bm)');
+cr;
+text("  ~~~~~~~~~~~~~~");
+up;
 
 @footer;
 @say(fp);
