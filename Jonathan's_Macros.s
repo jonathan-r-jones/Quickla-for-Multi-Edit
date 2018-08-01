@@ -7152,19 +7152,85 @@ return(sc);
 
 //;
 
+int
+@find_continuum_2(str sc = parse_str('/1=', mparm_str),
+                  str find_precision = parse_str('/1=', mparm_str))
+{
+str fp = 'Find continuum 2.';
+
+str Pretty_sc = sc;
+
+set_global_str('pretty_sc', sc);
+
+sc = make_literal_x(sc);
+
+sc = @decorate_sc_with_precision(sc, find_precision);
+
+str so;
+
+int rv;
+
+rv = @seek_in_all_files_2_arguments(sc, so);
+
+if(rv == 2)
+{
+  //@restore_location;
+}
+
+@say(fp += ' ' + so + ' (' + Pretty_sc + ')');
+
+return(rv);
+}
+
+
+
+//;
+
+void
+@cascade_search_2(str sc = parse_str('/1=', mparm_str))
+{
+str fp = "Cascade search 2.";
+
+// lu: Aug-1-2018
+
+int find_result = @find_continuum_2(sc, 'most_precise');
+
+if((find_result == 0) or (find_result == 2))
+{
+  find_result = @find_continuum_2(sc, 'medium_precise');
+}
+
+if((find_result == 0) or (find_result == 2))
+{
+  find_result = @find_continuum_2(sc, 'least_precise');
+}
+
+if((find_result == 0) or (find_result == 2))
+{
+  @say('Sui generis.');
+}
+
+//@say(fp);
+}
+
+
+
+//;
+
 void
 @find_fr_lc_with_cascade_search(str lc = parse_str('/1=', mparm_str))
 {
-str fp = 'Search from lc with cascade search.';
+str fp = 'Find from lc with cascade search 2.';
 
 // lu: Aug-1-2018
 
 str sc = @get_sj;
-sc = make_literal_x(sc);
 
 @find_lc(lc);
 
-@say(fp);
+@cascade_search_2(sc);
+
+//@say(fp);
 }
 
 

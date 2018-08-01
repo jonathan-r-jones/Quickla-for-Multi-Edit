@@ -3499,6 +3499,7 @@ else if(find_Precision <= 3)
 {
   sc = @get_subject_or_selected_text;
 }
+
 str Pretty_sc = sc;
 set_global_str('pretty_sc', sc);
 
