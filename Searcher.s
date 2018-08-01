@@ -2210,4 +2210,29 @@ century spice roads
 
 
 
-//; (!efse)
+//;
+
+void
+@search_google_trends
+{
+str fp = "Search Google Trends.";
+
+str url = 'https://trends.google.com/trends/explore?q=';
+
+//JavaScript&geo=US
+
+@search_earth_model_l1(fp, url);
+
+/*  Use Cases
+
+German Helmets
+
+Brazil World Cup
+
+*/
+
+}
+
+
+
+//; (!rfsp, !efse)

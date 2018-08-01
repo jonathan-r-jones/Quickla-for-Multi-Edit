@@ -6077,7 +6077,32 @@ str fp = "Create last updated entry for Fresnel.";
 // fcd: Dec-2-2016
 
 @open_file(get_environment('dropbox') + '\it\fresnel\fresnel\views\AboutPage.xaml');
-@find_lc('rfsp');
+@find_lc('rf' + 'spfr');
+@delete_line;
+@bol;
+cr;
+up;
+text('                    Text="');
+@add_text_date_and_time;
+text('"');
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
+@create_last_updated_entry_bust
+{
+str fp = "Create last updated entry for Buster.";
+@header;
+
+// fcd: Jul-31-2018
+
+@open_file(get_environment('dropbox') + '\it\buster\buster\buster\views\Page1.xaml');
+@find_lc('rf' + 'spbr');
 @delete_line;
 @bol;
 cr;
@@ -6892,7 +6917,7 @@ str fp = "Prepare message to phone file.";
 
 @save_location;
 
-@open_file(get_environment('reach out') + '\message to phone.mtp');
+@open_file(get_environment('dropbox') + '\!savannah\reach out\message to phone.mtp');
 
 @delete_all;
 
@@ -7082,6 +7107,63 @@ text("  ~~~~~~~~~~~~~~");
 up;
 
 @footer;
+@say(fp);
+}
+
+
+
+//;
+
+str
+@decorate_sc_with_precision(str sc = parse_str('/1=', mparm_str),
+                            str find_precision = parse_str('/2=', mparm_str))
+{
+str fp = "Decorate sc.";
+
+// lu: Aug-1-2018
+
+// This enforces the idea that 3 will ALWAYS return at least as many as 2 which will ALWAYS
+// return at least as many results as 1.
+
+switch(find_precision)
+{
+  case 'most_precise':
+    sc = @equate_spaces_and_dashes(sc);
+    //Last Updated: Sep-26-2016
+    sc = '^((:#)||(;#)||(:\+ @)||(;\+ @))' + sc;
+    sc += '((:)||($)||(!)||(\.)||(\?)||( \())';
+      // sc += '((:)||($)||(!)||(\.)||(\?)||( \()||(,))'; Prior to May-18-2018. I removed
+      // the comma option.
+    break;
+  case 'medium_precise':
+    sc = @equate_spaces_and_dashes(sc);
+    sc = '^((:#)||(;#))' + sc;
+    break;
+  case 'least_precise':
+    sc = @equate_spaces_and_dashes_wcl(sc);
+    break;
+}
+
+@say(fp);
+return(sc);
+}
+
+
+
+//;
+
+void
+@find_fr_lc_with_cascade_search(str lc = parse_str('/1=', mparm_str))
+{
+str fp = 'Search from lc with cascade search.';
+
+// lu: Aug-1-2018
+
+str sc = @get_sj;
+sc = make_literal_x(sc);
+
+@find_lc(lc);
+
 @say(fp);
 }
 

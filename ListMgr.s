@@ -4697,16 +4697,14 @@ return(rv);
 
 
 
-//; (skw cascade search) Thinking as opposed to acting.
+//; (skw cascade search, hiearchical search)
 
 void
-@cascade_search
+@cascade_search()
 {
 str fp = "Cascade search.";
 
 // fcd: Jan-3-2016
-
-@header;
 
 int find_result = @find_continuum(1, "");
 
@@ -4720,13 +4718,23 @@ if((find_result == 0) or (find_result == 2))
   find_result = @find_continuum(3, "");
 }
 
-@footer;
-
 if((find_result == 0) or (find_result == 2))
 {
   @say('Sui generis.');
 }
 
+}
+
+
+
+//;
+
+void
+@@cascade_search
+{
+@header;
+@cascade_search;
+@footer;
 }
 
 

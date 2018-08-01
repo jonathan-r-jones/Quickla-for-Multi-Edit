@@ -1632,7 +1632,7 @@ goto_mark;
 
 
 
-//; (skw the gun, bullet gun)
+//;+ (skw the gun, bullet gun)
 
 void
 @gun(int return_home = parse_int('/1=', mparm_str))

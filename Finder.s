@@ -3418,6 +3418,7 @@ switch(starting_Position_of_Search)
     fp += ' Begin at BOR.';
     break;
   case '':
+    fp += ' Begin at current position.';
     break;
   default:
     fp += ' Begin at "' + starting_Position_of_Search + '".';
@@ -3505,6 +3506,7 @@ sc = make_literal_x(sc);
 
 // This enforces the idea that 3 will ALWAYS return at least as many as 2 which will ALWAYS
 // return at least as many results as 1.
+
 switch(find_Precision)
 {
   case 1:
