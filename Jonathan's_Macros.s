@@ -24,6 +24,8 @@ Metadata: Track Size (!tsjm)
     Date       Lines    Bytes    Macros   Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+: Aug-2-2018   7,215     99,571      257
+
 : Jul-1-2018   6,959     95,708      249
 
 :May-17-2018   6,845     94,525      245
@@ -7127,7 +7129,7 @@ str fp = "Decorate sc.";
 
 switch(find_precision)
 {
-  case 'most_precise':
+  case '1': // most precise
     sc = @equate_spaces_and_dashes(sc);
     //Last Updated: Sep-26-2016
     sc = '^((:#)||(;#)||(:\+ @)||(;\+ @))' + sc;
@@ -7135,11 +7137,12 @@ switch(find_precision)
       // sc += '((:)||($)||(!)||(\.)||(\?)||( \()||(,))'; Prior to May-18-2018. I removed
       // the comma option.
     break;
-  case 'medium_precise':
+  case '2': // intermediate
     sc = @equate_spaces_and_dashes(sc);
     sc = '^((:#)||(;#))' + sc;
     break;
-  case 'least_precise':
+  case '3': // least precise
+  case '':
     sc = @equate_spaces_and_dashes_wcl(sc);
     break;
 }
@@ -7157,6 +7160,8 @@ int
                   str find_precision = parse_str('/1=', mparm_str))
 {
 str fp = 'Find continuum 2.';
+
+// lu: Aug-1-2018
 
 str Pretty_sc = sc;
 
@@ -7187,50 +7192,24 @@ return(rv);
 //;
 
 void
-@cascade_search_2(str sc = parse_str('/1=', mparm_str))
+@find_fr_lc_with_precision(str lc = parse_str('/1=', mparm_str))
 {
-str fp = "Cascade search 2.";
+str fp = 'Find from lc with precision.';
 
 // lu: Aug-1-2018
 
-int find_result = @find_continuum_2(sc, 'most_precise');
-
-if((find_result == 0) or (find_result == 2))
-{
-  find_result = @find_continuum_2(sc, 'medium_precise');
-}
-
-if((find_result == 0) or (find_result == 2))
-{
-  find_result = @find_continuum_2(sc, 'least_precise');
-}
-
-if((find_result == 0) or (find_result == 2))
-{
-  @say('Sui generis.');
-}
-
-//@say(fp);
-}
-
-
-
-//;
-
-void
-@find_fr_lc_with_cascade_search(str lc = parse_str('/1=', mparm_str))
-{
-str fp = 'Find from lc with cascade search 2.';
-
-// lu: Aug-1-2018
+str first_parameter, second_parameter;
+@parse_arguments(lc, ".", first_parameter, second_parameter);
+str lc = first_parameter;
+str find_precision = second_parameter;
 
 str sc = @get_sj;
 
 @find_lc(lc);
 
-@cascade_search_2(sc);
+@find_continuum_2(sc, find_precision);
 
-//@say(fp);
+//@say(fp + ' LC: ' + lc + ', Find Precision: ' + find_precision);
 }
 
 

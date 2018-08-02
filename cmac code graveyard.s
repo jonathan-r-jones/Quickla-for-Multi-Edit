@@ -1,6 +1,57 @@
 //;
 
 void
+@cascade_search_2(str sc = parse_str('/1=', mparm_str))
+{
+str fp = "Cascade search 2.";
+
+// lu: Aug-1-2018
+
+int find_result = @find_continuum_2(sc, 'most_precise');
+
+if((find_result == 0) or (find_result == 2))
+{
+  find_result = @find_continuum_2(sc, 'medium_precise');
+}
+
+if((find_result == 0) or (find_result == 2))
+{
+  find_result = @find_continuum_2(sc, 'least_precise');
+}
+
+if((find_result == 0) or (find_result == 2))
+{
+  @say('Sui generis.');
+}
+
+//@say(fp);
+}
+
+
+
+//;
+
+void
+@find_fr_lc_with_cascade_search(str lc = parse_str('/1=', mparm_str))
+{
+str fp = 'Find from lc with cascade search 2.';
+
+// lu: Aug-1-2018
+
+str sc = @get_sj;
+
+@find_lc(lc);
+
+@cascade_search_2(sc);
+
+//@say(fp);
+}
+
+
+
+//;
+
+void
 @cursor_left_quickly
 {
 str fp = "Cursor left quickly.";

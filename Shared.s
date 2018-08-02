@@ -3964,6 +3964,8 @@ str fp = "Parse arguments.";
 
 // fcd: Aug-3-2015
 
+// parse_parameters: skw
+
 argument_1 = @trim_after_character(arguments, separating_character);
 argument_2 = @trim_before_character(arguments, separating_character);
 
@@ -4025,7 +4027,7 @@ if(@contains(arg_3, '.'))
 void
 @parse_arguments_th()
 {
-str fp = "";
+str fp = "Parse arguments test harness.";
 
 // fcd: Aug-3-2015
 str arguments = 'hello';
