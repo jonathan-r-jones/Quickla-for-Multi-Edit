@@ -1278,6 +1278,19 @@ void
 
 
 
+//;;
+
+void
+@find_from_bof_wost
+{
+str fp = 'Find from BOF with wost.';
+@header;
+@find_from_bof(fp);
+@footer;
+}
+
+
+
 //;+ More Find
 
 
@@ -2582,7 +2595,7 @@ mark_pos;
 while(!at_eof)
 {
     eol;
-    if(c_col >= 97)
+    if(c_col >= 96 && (@previous_character != ' '))
     {
       goto_col(1);
       fp += ' Found long line.';
