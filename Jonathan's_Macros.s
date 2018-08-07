@@ -7214,4 +7214,27 @@ str sc = @get_sj;
 
 
 
+//;
+
+void
+@add_bullet_with_datestamp(str lc = parse_str('/1=', mparm_str))
+{
+str fp = "Add bullet with datestamp.";
+
+// lu: Aug-7-2018
+
+@header;
+
+@find_lc(lc);
+
+@add_bullet_below;
+
+@add_text_date;
+
+@footer;
+@say(fp);
+}
+
+
+
 //; (!efjm)
