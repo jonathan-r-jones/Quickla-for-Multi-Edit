@@ -484,7 +484,7 @@ return(0);
 str
 @replace(str original_String, str old_Characters, str new_Characters)
 {
-str fp = 'Pass in a string and get back a shiny new one with ALL occurrences of old characers
+str fp = 'Pass in a string and get back a new one with ALL occurrences of old characers 
   replaced with new ones.';
 
 str rv = original_String;
@@ -498,6 +498,28 @@ while(xpos(old_Characters, rv, 1))
   rv = str_del(rv, Position_of_Old_Characters, Length_of_Old_Characters);
   rv = str_ins(new_Characters, rv, Position_of_Old_Characters);
 }
+
+return(rv);
+}
+
+
+
+//;;
+
+str
+@replace_once(str original_string, str old_characters, str new_characters)
+{
+str fp = 'Pass in a string and get back a new one with ALL occurrences of old characers 
+  replaced with new ones.';
+
+str rv = original_string;
+int position_of_old_characters = 0;
+
+int length_of_old_characters = @length(old_characters);
+
+position_of_old_characters = xpos(old_characters, rv, 1);
+rv = str_del(rv, position_of_old_characters, length_of_old_characters);
+rv = str_ins(new_characters, rv, position_of_old_characters);
 
 return(rv);
 }
@@ -2129,6 +2151,16 @@ return(rv);
 //;;
 
 str
+@get_oj()
+{
+return(@get_multiline_object);
+}
+
+
+
+//;;
+
+str
 @get_object()
 {
 str fp = 'Get object, that is, post colon phrase.';
@@ -3641,8 +3673,6 @@ str Command_Line = '';
 
 - Safari Download
 
-- Firefox Download
-
 - Internet Explorer Download
 - Chrome Download
 
@@ -4228,37 +4258,6 @@ if(!@is_text_file)
 
 @delete;
 
-@say(fp);
-}
-
-
-
-//;
-
-str
-@transform_a_string_into_an_lc(str lc = parse_str('/1=', mparm_str))
-{
-str fp = "Transform a passed in string into a searchable lc.";
-
-// lu: May-18-2018
-
-@say(fp);
-
-return('!' + lc + ',||\)');
-}
-
-
-
-//;
-
-void
-@lp_current_filename
-{
-str fp = "Copy current filename to clipboard.";
-// skw: Load clipboard with current filename.
-str full_filename = @full_filename;
-@set_clipboard(full_filename);
-fp += ' (' + full_filename + ')';
 @say(fp);
 }
 

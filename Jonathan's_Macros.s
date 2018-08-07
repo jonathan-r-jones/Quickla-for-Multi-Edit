@@ -6841,6 +6841,33 @@ left;
 //;
 
 void
+@add_text_else_statement
+{
+str fp = "Add text else statement.";
+
+// lu: Aug-7-2018
+
+@bol;
+text('else');
+cr;
+text('{');
+cr;
+cr;
+text('}');
+up;
+up;
+up;
+@eol;
+left;
+
+@say(fp);
+}
+
+
+
+//;
+
+void
 @reverse_bullet_order
 {
 str fp = "Reverse bullet order.";
@@ -7233,6 +7260,66 @@ str fp = "Add bullet with datestamp.";
 
 @footer;
 @say(fp);
+}
+
+
+
+//;
+
+void
+@use_firefox_and_gen
+{
+str fp = "Use Firefox and gen.";
+
+// lu: Aug-7-2018
+
+str current_line = @get_line;
+str url;
+
+current_line = @trim_leading_colons_et_al(current_line);
+
+if(@first_4_characters(current_line) == 'http')
+{
+  url = current_line;
+}
+else
+{
+  url = @get_oj;
+}
+
+url = @replace_once(url, 'youtube', 'genyoutube');
+
+@surf(url, 2); 
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@rtm
+{
+str fp = "x";
+
+// lu: Aug-7-2018
+
+str current_line = @get_line;
+str url;
+
+current_line = @trim_leading_colons_et_al(current_line);
+
+if(@first_4_characters(current_line) == 'http')
+{
+  url = current_line;
+}
+else
+{
+  url = @get_oj;
+}
+
+@say(url);
 }
 
 

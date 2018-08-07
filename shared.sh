@@ -60,6 +60,7 @@ prototype Shared
   str  @get_formatted_full_time();
   str  @get_multiline_object();
   str  @get_object();
+  str  @get_oj();
   str  @get_postcomma_string(str string, str &em_rp);
   str  @get_precomma_string(str string, str &em_rp);
   str  @get_sj();
@@ -115,6 +116,7 @@ prototype Shared
   void @restore_location();
   str  @remove_nonmeaningful_term_chars(str parameter);
   str  @replace(str original_String, str old_Characters, str new_Characters);
+  str  @replace_once(str original_string, str old_characters, str new_characters);
   str  @resolve_environment_variable(str command_line);
   void @run_application_1p(str application);
   void @run_application_2p(str application, str parameter);
