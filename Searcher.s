@@ -1085,7 +1085,7 @@ void
 {
 str fp = 'Search Google Images.';
 
-str URL = 'http://images.google.com/images?';
+str URL = 'https://www.google.com/search?as_st=y&tbm=isch&hl=en&as_q=&as_epq=';
 
 str sc = @get_subject_or_selected_text;
 
@@ -1095,9 +1095,8 @@ sc = @commute_character(sc, ' ', '+');
 if(is_Exact_Search)
 {
   make_message(@trim_period(fp) + ' exactly for "' + Pretty_sc + '".');
-  URL += 'as_q=&hl=en&btnG=Google+Search&as_epq=' + sc;
-  URL +=
-  '&as_oq=&as_eq=&imgtype=&imgsz=&as_filetype=&imgc=&as_sitesearch=&safe=images&as_st=y';
+  URL += sc;
+  URL += '&as_oq=&as_eq=&cr=&as_sitesearch=&safe=images&tbs=isz:lt,islt:4mp';
 }
 else
 {
@@ -1114,7 +1113,9 @@ else
 
 /*  Use Cases
 
-- Bundy Al
+Al Bundy
+
+Present at the creation
 
 */
 
