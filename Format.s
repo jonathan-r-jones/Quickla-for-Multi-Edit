@@ -1482,6 +1482,9 @@ str rv;
 
 switch(lower(Get_Extension(File_name)))
 {
+  case 'asc':
+    rv = ':';
+    break;
   case 'bat':
     rv = 'rem ';
     break;
@@ -1546,6 +1549,36 @@ else
 //;;
 
 void
+@add_semicolon()
+{
+str fp = "Add semicolon.";
+
+// lu: Aug-14-2018
+
+mark_pos;
+
+@bol;
+
+if(@first_2_characters(get_line) == ';;')
+{
+  fp += ' Cannot add more than 2 semicolons.';
+  goto_mark;
+}
+else
+{
+  text(';');
+  goto_mark;
+  right;
+}
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
 @drag_right()
 {
 str fp = 'Drag right.';
@@ -1555,6 +1588,12 @@ str fp = 'Drag right.';
 if(@first_character(get_line) == ':')
 {
   @add_colon;
+  return();
+}
+
+if(@first_character(get_line) == ';')
+{
+  @add_semicolon;
   return();
 }
 
@@ -1576,11 +1615,16 @@ if(@first_3_characters(get_line) == '//;')
 switch(lower(get_extension(File_name)))
 {
   case 'asc':
-  case 'bat':
-    mark_pos;
     @bol;
     text(@comment_characters);
-    goto_mark;
+    break;
+  case 'bat':
+    @bol;
+    if(@current_character == ' ')
+    {
+      word_right;
+    }
+    text(@comment_characters);
     break;
   case 'ps1':
     text('#');

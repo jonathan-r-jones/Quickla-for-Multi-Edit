@@ -108,6 +108,7 @@ prototype ListMgr
   void @move_bullet_to_bor();
   void @move_bullet_to_calendar(int return_home);
   void @move_bullet_to_eor_alone();
+  void @move_bullet_to_lc_alone(str lc);
   void @move_bullet_to_lc_wme(str lc, str fp);
   void @paste_after();
   void @paste_after_with_subbullet();

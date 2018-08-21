@@ -1568,6 +1568,33 @@ return(0);
 
 //;
 
+int
+@rubric_contains_source_string()
+{
+str fp = "Rubric contains 'sour' (source) string?";
+
+// lu: Aug-19-2018
+
+mark_pos;
+
+@bobs;
+
+if(find_text('sour', 3, _regexp))
+{
+  goto_mark;
+  return(1);
+}
+
+goto_mark;
+return(0);
+
+@say(fp);
+}
+
+
+
+//;
+
 str
 @look_up_rubrics_1way_lc()
 {
@@ -1604,8 +1631,6 @@ void
 {
 str fp = "Move bullet to one way lc.";
 
-// This enables me to have to sprinkle 'dest' at the destination lc.
-
 // lu: May-7-2018
 
 mark_pos;
@@ -1632,14 +1657,95 @@ goto_mark;
 
 
 
+//;
+
+void
+@move_bullet_to_dest_lc()
+{
+str fp = "Move bullet to one 'dest' (destination) lc.";
+
+// lu: Aug-19-2018
+
+mark_pos;
+
+@cut_bullet;
+
+@bobs;
+
+int source_lc_is_found;
+
+str lc = @look_up_rubrics_source_lc(source_lc_is_found);
+
+if(source_lc_is_found)
+{
+  lc = 'dest' + lc;
+}
+
+lc = @transform_a_string_into_an_lc(lc);
+
+if(!@find_lc(lc))
+{
+  fp += ' LC NOT found!';
+}
+
+@paste_after;
+
+goto_mark;
+
+@say(fp + ' (' + @distill_lc(lc) + ')');
+}
+
+
+
+//;
+
+int
+@determine_which_action_to_do()
+{
+str fp = 'Determine which action to do.';
+
+// lu = Aug-21-2018
+
+// I moved this check above the others because of monthly itinerary items that also
+// have launch codes on their line. Jun-2-2014
+if(@first_5_characters_is_month)
+{
+  return(1);
+}
+
+if(@current_line_contains_regex(@comma_lc))
+{
+  return(2);
+}
+
+if(@rubric_contains_1way_string)
+{
+  return(3);
+}
+
+if(@rubric_contains_source_string)
+{
+  return(4);
+}
+
+if(@filename == 'wk.asc')
+{
+  return(5);
+}
+
+return(0);
+}
+
+
+
 //;+ (skw the gun, bullet gun)
 
 void
 @gun(int return_home = parse_int('/1=', mparm_str))
 {
-str fp = "If something shoots bullets, then it's a gun. Get it?";
+str fp = 'Evaluate and move a bullet, a.k.a. the gun.';
 
-fp = 'Move bullet to lc.';
+// lu: Aug-21-2018
 
 if(!@is_bullet_File)
 {
@@ -1657,82 +1763,33 @@ int initial_column = @current_column;
 
 @save_location;
 
-// I moved this check above the others because of monthly itinerary items that also
-// have launch codes on their line. Jun-2-2014
-if(@first_5_characters_is_month)
+int action_to_do = @determine_which_action_to_do;
+
+switch(action_to_do)
 {
-  @move_bullet_to_calendar(return_home);
-  return();
+  case 1:
+    @move_bullet_to_calendar(return_home);
+    break;
+  case 2:
+    @move_bullet_to_appropriate_lc(return_home);
+    break;
+  case 3:
+    @move_bullet_to_1way_lc;
+    break;
+  case 4:
+    @move_bullet_to_dest_lc;
+    break;
+  case 5:
+    @move_bullet_to_lc_alone('co');
+    break;
+  default:
+    @move_bullet_to_lc_alone('jd');
 }
 
-if(@current_line_contains_regex(@comma_lc))
-{
-  @move_bullet_to_appropriate_lc(return_home);
-  return();
-}
+@restore_location; 
+@put_cursor_somewhere_useful
 
-if(@rubric_contains_1way_string)
-{
-  @move_bullet_to_1way_lc;
-  @restore_location; 
-  return();
-}
-
-int initial_window = cur_window;
-int search_criterion_was_found;
-str lc = 'jd';
-
-int source_lc_is_found = false;
-
-str looked_up_rubrics_lc = @look_up_rubrics_source_lc(source_lc_is_found);
-
-int current_line_number = 0;
-
-if(return_home == 1)
-{
-  mark_pos;
-}
-
-@cut_bullet;
-
-if(source_lc_is_found)
-{
-  lc = 'dest' + looked_up_rubrics_lc;
-}
-
-@find_lc(lc);
-
-if(!@find_lc_known(fp, lc))
-{
-  switch_window(Initial_Window);
-  rm('paste');
-  fp += ' Error: Lc NOT found. (' + lc + ')';
-  @say(fp);
-  return();
-}
-
-@paste_after;
-
-if(return_home == 1)
-{
-  if(@is_paste_before_in_same_window)
-  {
-    @restore_location_2;
-  }
-  else
-  {
-    @restore_location;
-  }
-  goto_col(initial_column);
-}
-
-if(@is_blank_line)
-{
-  @put_cursor_somewhere_useful;
-}
-
-fp += ' (' + lc + ')';
-@say(fp);
+@say(fp + ' Action done: ' + str(action_to_do) + '.');
 }
 
 

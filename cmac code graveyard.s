@@ -1,6 +1,57 @@
 //;
 
 void
+@move_bullet_to_comp_items()
+{
+str fp = "Move bullet to completed items.";
+
+// lu: Aug-19-2018
+
+mark_pos;
+
+@cut_bullet;
+
+str lc = 'co';
+lc = @transform_a_string_into_an_lc(lc);
+
+if(!@find_lc(lc))
+{
+  fp += ' LC NOT found!';
+}
+
+@paste_after;
+
+goto_mark;
+
+@say(fp + ' (' + @distill_lc(lc) + ')');
+}
+
+
+
+//;
+
+void
+@add_bullet_below_and_paste_ww
+{
+str fp = "Add bullet below and paste without wrapping.";
+
+@header;
+
+@add_bullet_below;
+@paste;
+@delete_line;
+@bob;
+
+@footer;
+
+@say(fp);
+}
+
+
+
+//;
+
+void
 @cascade_search_2(str sc = parse_str('/1=', mparm_str))
 {
 str fp = "Cascade search 2.";

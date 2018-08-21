@@ -5084,27 +5084,6 @@ str fp = "Add bullet at c and paste without wrapping.";
 //;
 
 void
-@add_bullet_below_and_paste_ww
-{
-str fp = "Add bullet below and paste without wrapping.";
-
-@header;
-
-@add_bullet_below;
-@paste;
-@delete_line;
-@bob;
-
-@footer;
-
-@say(fp);
-}
-
-
-
-//;
-
-void
 @bam_2
 {
 str fp = "BAM 2.";
@@ -7289,37 +7268,9 @@ else
 
 url = @replace_once(url, 'youtube', 'genyoutube');
 
-@surf(url, 2); 
+@surf(url, 2);
 
 @say(fp);
-}
-
-
-
-//;
-
-void
-@rtm
-{
-str fp = "x";
-
-// lu: Aug-7-2018
-
-str current_line = @get_line;
-str url;
-
-current_line = @trim_leading_colons_et_al(current_line);
-
-if(@first_4_characters(current_line) == 'http')
-{
-  url = current_line;
-}
-else
-{
-  url = @get_oj;
-}
-
-@say(url);
 }
 
 
