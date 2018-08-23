@@ -2458,8 +2458,7 @@ if(is_exe_or_bat_file)
       Flag);
   }
 }
-// I added a colon after the "http" on the following line. Aug-23-2018
-else If(xpos('http:', Lowercased_clif_Block, 1)) // Open Link Using Default application ******
+else If(xpos('http', Lowercased_clif_Block, 1)) // Open Link Using Default application ******
 {
   int Position_of_HTTP = xpos('http', clif_Block, 1) - 1;
   uRL = str_del(clif_Block, 1, Position_of_HTTP);
