@@ -1745,7 +1745,7 @@ void
 {
 str fp = 'Evaluate and move a bullet, a.k.a. the gun.';
 
-// lu: Aug-21-2018
+// lu: Aug-22-2018
 
 if(!@is_bullet_File)
 {
@@ -1764,32 +1764,43 @@ int initial_column = @current_column;
 @save_location;
 
 int action_to_do = @determine_which_action_to_do;
+str destination = '';
 
 switch(action_to_do)
 {
   case 1:
+    destination = 'Calender';
     @move_bullet_to_calendar(return_home);
     break;
   case 2:
+    destination = 'Specified LC';
     @move_bullet_to_appropriate_lc(return_home);
     break;
   case 3:
+    destination = '1 Way';
     @move_bullet_to_1way_lc;
     break;
   case 4:
+    destination = 'Destination LC';
     @move_bullet_to_dest_lc;
     break;
   case 5:
+    destination = 'CO';
     @move_bullet_to_lc_alone('co');
     break;
   default:
+    destination = 'JD';
     @move_bullet_to_lc_alone('jd');
 }
 
-@restore_location; 
+if(return_home)
+{
+  @restore_location; 
+}
+
 @put_cursor_somewhere_useful
 
-@say(fp + ' Action done: ' + str(action_to_do) + '.');
+@say(fp + ' (' + destination + ')');
 }
 
 
@@ -2447,7 +2458,8 @@ if(is_exe_or_bat_file)
       Flag);
   }
 }
-else If(xpos('http', Lowercased_clif_Block, 1)) // Open Link Using Default application ******
+// I added a colon after the "http" on the following line. Aug-23-2018
+else If(xpos('http:', Lowercased_clif_Block, 1)) // Open Link Using Default application ******
 {
   int Position_of_HTTP = xpos('http', clif_Block, 1) - 1;
   uRL = str_del(clif_Block, 1, Position_of_HTTP);

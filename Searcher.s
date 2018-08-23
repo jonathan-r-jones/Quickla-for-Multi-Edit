@@ -1322,6 +1322,8 @@ URL += sc;
 
 MT-4436
 
+Base64 user:password
+
 */
 
 @say(@trim_period(fp) + ' for "' + Pretty_sc + '".');
