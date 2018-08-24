@@ -7275,4 +7275,22 @@ url = @replace_once(url, 'youtube', 'genyoutube');
 
 
 
+//;
+
+void
+@paste_and_format_link
+{
+str fp = "Paste and format link.";
+
+// lu: Aug-24-2018
+
+@paste_with_wikipedia_format;
+
+@apply_2_line_format;
+
+@say(fp);
+}
+
+
+
 //; (!efjm)
