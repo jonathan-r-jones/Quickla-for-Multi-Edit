@@ -7286,8 +7286,37 @@ str fp = "Paste and format link.";
 
 @paste_with_wikipedia_format;
 
-@apply_2_line_format;
+//@apply_2_line_format;
 
+@say(fp);
+}
+
+
+
+//;
+
+void
+@replace_colons_with_asterisks
+{
+str fp = "Replace colons with asterisks.";
+
+// lu: Aug-28-2018
+
+@header;
+
+str rs;
+str sc;
+
+@header;
+sc = '^:';
+
+@eol;
+
+@seek(sc);
+rs = '* ';
+@replace_all_occurrs_inf_one_tof(sc, rs);
+
+@footer;
 @say(fp);
 }
 

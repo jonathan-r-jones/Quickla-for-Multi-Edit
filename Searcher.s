@@ -1533,14 +1533,14 @@ if(sc == '')
 str Pretty_sc = sc;
 sc = @commute_character(sc, ' ', '+');
 
-//URL += "/Find?highlight=true&searchTerm=";
 URL += sc;
+URL += "&categories=course";
 
 @surf(URL, 0);
 
 /* Use Cases
 
-Austin
+Azure CLI
 
 */
 
