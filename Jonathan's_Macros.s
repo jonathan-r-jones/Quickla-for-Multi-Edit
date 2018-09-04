@@ -7281,4 +7281,18 @@ rs = '* ';
 
 
 
+//;
+
+void
+@say_current_line_type
+{
+str fp = "Say current line type.";
+
+// lu: Sep-4-2018
+
+@say(fp + ' (' + @current_line_type + ')');
+}
+
+
+
 //; (!efjm)

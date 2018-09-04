@@ -402,14 +402,11 @@ str
 @bullet()
 {
 str fp = "Bullet.";
+
 str sc = 'No content area specified.';
 
 switch(@filename_extension)
 {
-  case 'bat':
-    sc = '(^:$)||(^:[^:_])';
-    break;
-  case 'txt':
   case 'asc':
     sc = '(^:$)||(^:[^:])';
     break;
