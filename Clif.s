@@ -1633,8 +1633,6 @@ str fp = "Move bullet to one way lc.";
 
 // lu: May-7-2018
 
-mark_pos;
-
 @cut_bullet;
 
 @bobs;
@@ -1650,8 +1648,6 @@ if(!@find_lc(lc))
 
 @paste_after;
 
-goto_mark;
-
 @say(fp + ' (' + @distill_lc(lc) + ')');
 }
 
@@ -1665,8 +1661,6 @@ void
 str fp = "Move bullet to one 'dest' (destination) lc.";
 
 // lu: Aug-19-2018
-
-mark_pos;
 
 @cut_bullet;
 
@@ -1689,8 +1683,6 @@ if(!@find_lc(lc))
 }
 
 @paste_after;
-
-goto_mark;
 
 @say(fp + ' (' + @distill_lc(lc) + ')');
 }
@@ -1786,7 +1778,7 @@ switch(action_to_do)
     break;
   case 5:
     destination = 'CO';
-    @move_bullet_to_lc_alone('co');
+    @move_bullet_to_lc_wme('co');
     break;
   default:
     destination = 'JD';
@@ -1799,6 +1791,8 @@ if(return_home)
 }
 
 @put_cursor_somewhere_useful
+
+pop_mark;
 
 @say(fp + ' (' + destination + ')');
 }

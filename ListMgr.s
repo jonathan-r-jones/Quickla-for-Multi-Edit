@@ -7177,8 +7177,6 @@ switch(@trim(location_refiner))
 }
 
 @paste_after;
-//left;
-//@bob;
 del_line;
 cr;
 up;
