@@ -4639,47 +4639,6 @@ void
 
 
 
-//;+ apply_2_line_format
-
-
-
-//;;
-
-void
-@apply_2_line_format()
-{
-str fp = "Apply 2 line format.";
-
-// fcd: Aug-3-2015
-str sc = ': ';
-str so;
-
-@save_location;
-@bol;
-@seek_next(sc, so);
-@delete_character;
-cr;
-//@convert_line_to_lower_case;
-@word_wrap;
-@restore_location;
-
-@say(fp);
-}
-
-
-
-//;;
-
-void
-@@apply_2_line_format
-{
-@header;
-@apply_2_line_format;
-@footer;
-}
-
-
-
 //;
 
 void

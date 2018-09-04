@@ -17,6 +17,7 @@ prototype ListMgr
   void @add_text_date_and_time();
   void @add_text_date_and_time_fixed_w();
   void @add_text_multiedit();
+  void @apply_2_line_format();
   void @bob();
   void @bobbs();
   str  @bobsr();

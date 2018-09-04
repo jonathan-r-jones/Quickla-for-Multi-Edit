@@ -5167,6 +5167,111 @@ void
 
 
 
+//;+ apply_2_line_format
+
+
+
+//;;
+
+void
+@apply_2_line_format()
+{
+str fp = "Apply 2 line format.";
+
+// fcd: Aug-3-2015
+str sc = ': ';
+str so;
+
+@save_location;
+@bol;
+@seek_next(sc, so);
+@delete_character;
+cr;
+//@convert_line_to_lower_case;
+@word_wrap;
+@restore_location;
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@@apply_2_line_format
+{
+@header;
+@apply_2_line_format;
+@footer;
+}
+
+
+
+//;
+
+int
+@small_segment_size()
+{
+str fp = "Get bullet size in number of lines.";
+
+// lu: Aug-29-2018
+
+if(!@is_bullet_file)
+{
+  return(0);
+}
+
+mark_pos;
+
+int current_line_number = @current_line_number;
+
+@find_next_bsr;
+
+int rubric_offset = 0;
+
+if((@current_line_type == 'rubric') || (@current_line_type == 'subrubric'))
+{
+  rubric_offset = 2;
+}
+
+int next_small_segments_line_number = @current_line_number;
+
+int small_segment_size = next_small_segments_line_number - current_line_number - 1;
+
+goto_mark;
+
+return(small_segment_size - rubric_offset);
+
+@say(fp + ' Size: ' + str(small_segment_size));
+}
+
+
+
+//;
+
+void
+@perform_paste_process
+{
+str fp = "Perform paste process.";
+
+// lu: Aug-29-2018
+
+@header;
+
+@paste_with_wikipedia_format;
+
+if(@small_segment_size == 1 && (@current_line_contains('http')))
+{
+  @apply_2_line_format;
+}
+
+@footer;
+@say(fp);
+}
+
+
+
 //;+ Big Segment Stuff
 
 
