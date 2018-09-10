@@ -2141,8 +2141,16 @@ while(cur_window <= (window_count / 2))
 int
 @constant_open_windows()
 {
-// lu: Apr-9-2018
-return(13);
+// lu: Sep-9-2018
+
+switch(@lower(Get_Environment("ComputerName")))
+{
+  case "xps":
+    return(12);
+    break;
+  default:
+    return(13);
+}
 }
 
 
