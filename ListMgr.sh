@@ -63,12 +63,13 @@ prototype ListMgr
   str  @find_next_bobs();
   // (!rfsp)
   str  @find_next_bsr();
-  void @find_next_content_area();
+  str  @find_next_content_area();
   int  @find_next_rubric();
   str  @find_next_small_segment();
   str  @find_previous_big_segment();
   str  @find_previous_bullet();
   str  @find_previous_content_area();
+  str  @find_previous_small_segment();
   int  @first_5_characters_is_month();
   void @fix_fat_colon();
   void @fix_fat_rubric();

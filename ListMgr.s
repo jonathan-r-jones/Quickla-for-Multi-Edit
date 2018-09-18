@@ -495,9 +495,9 @@ return(rv);
 //;;
 
 str
-@find_previous_bullet_or_subbull()
+@find_previous_small_segment()
 {
-str fp = 'Find previous bullet or subbullet.';
+str fp = 'Find previous small segment.';
 
 @bobsr;
 up;
@@ -1177,13 +1177,19 @@ return(return_string);
 
 //;
 
-void
+str
 @find_next_content_area()
 {
 str fp = "Find next content area.";
 down;
 find_text(@content_area, 0, _regexp);
+
+str rv = @current_line_type;
+
+@eoc;
+
 @say(fp);
+return(rv);
 }
 
 
@@ -2272,11 +2278,17 @@ void
 @copy_and_paste_bullet()
 {
 str fp = "Copy and paste bullet.";
+
+int current_column = @current_column;
+
 @hc_bullet;
 @copy;
 @paste;
 up;
 @bob;
+
+goto_col(current_column);
+
 @say(fp);
 }
 
@@ -3268,7 +3280,7 @@ block_begin;
 void
 @cut_subbullet()
 {
-str fp = 'Cut BS to buffer.';
+str fp = 'Cut subbullet to buffer.';
 
 @hc_small_segment;
 @cut;
@@ -4241,7 +4253,7 @@ if(!search_criterion_was_found)
 }
 
 @find_next_big_segment;
-@find_previous_bullet_or_subbull;
+@find_previous_small_segment;
 
 @footer;
 @say(fp);
@@ -6461,45 +6473,17 @@ void
 {
 str fp = "Move subbulet up.";
 
-// fcd: Jul-1-2016
+// fcd: Sep-18-2018
 
-int is_last_small_segment = false;
-
-if(@is_last_small_segment)
-{
-  is_last_small_segment = true;
-}
+int initial_column = @current_column;
 
 @cut_subbullet;
 
-if(is_last_small_segment)
-{
-  @boca;
-}
-else
-{
-  @find_previous_bullet_or_subbull; 
-}
-
-int initial_column = @current_column;
-str current_area_type = @current_area_type;
+@find_previous_small_segment;
 
 @paste;
 
-if((current_area_type == 'subrubric') or (current_area_type == 'rubric'))
-{
-  @bob;
-}
-
-if(current_area_type == 'bullet') 
-{
-  @find_previous_subbullet;
-}
-
-if(current_area_type == 'subbullet') 
-{
-  @find_previous_subbullet;
-}
+@find_previous_small_segment;
 
 goto_col(initial_column);
 
@@ -6513,7 +6497,7 @@ goto_col(initial_column);
 void
 @move_up()
 {
-str fp = 'Move bullet or line up.';
+str fp = 'Move up.';
 
 if(!@is_structured_line)
 {
@@ -6522,11 +6506,6 @@ if(!@is_structured_line)
 }
 
 int initial_column = @current_column;
-
-if(@is_bullet_file)
-{
-  @boca;
-}
 
 switch(@current_area_type)
 {
@@ -6657,6 +6636,90 @@ str fp = "Move rubric down.";
 //;;
 
 void
+@move_bullet_down()
+{
+str fp = "Move bullet down.";
+@header;
+
+// lu: Sep-17-2018
+
+int current_column_number = @current_column_number;
+
+int is_last_bullet = 0;
+
+if(@is_last_bullet)
+{
+  is_last_bullet = 1;
+}
+
+@cut_bullet;
+right;
+
+if(is_last_bullet)
+{
+  @find_next_bullet;
+}
+else
+{
+  if(@find_next_bobs != 'bullet')
+  {
+    up;
+    up;
+  }
+}
+@bol;
+@paste;
+left;
+@bob;
+
+goto_col(current_column_number);
+
+@footer;
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@move_subbullet_down()
+{
+str fp = "Move bullet down.";
+@header;
+
+// lu: Sep-17-2018
+
+int current_column_number = @current_column_number;
+
+@cut_subbullet;
+right;
+
+str find_next_content_area = @find_next_content_area;
+
+if((find_next_content_area == 'rubric') || (find_next_content_area == 'subrubric'))
+{
+  up;
+  up;
+}
+
+@bol;
+@paste;
+left;
+
+@boca;
+
+goto_col(current_column_number);
+
+@footer;
+@say(fp);
+}
+
+
+
+//;;
+
+void
 @move_down()
 {
 str fp = 'Move down.';
@@ -6669,86 +6732,22 @@ if(!@is_structured_line)
   return();
 }
 
-if(@is_bullet_file)
-{
-  @boca;
-}
-
-int is_last_rubric_element = false;
-str query_next_area;
-
-str initial_area_type = @current_area_type;
-
-switch(initial_area_type)
+switch(@current_area_type)
 {
   case 'bullet':
-    fp = 'Move bullet down.';
-    if(@query_next_br == 'rubric')
-    {
-      is_last_rubric_element = true;
-    }
-    @cut_bullet;
+    @move_bullet_down;
     break;
   case 'subbullet':
-    fp = 'Move subbullet down.';
-    if(@Query_Next_BSR == 'rubric')
-    {
-      is_last_rubric_element = true;
-    }
-    @cut_subbullet;
+    @move_subbullet_down;
     break;
   case 'rubric':
     @move_rubric_down;
-    return();
+    break;
   case 'subrubric':
     @move_subrubric_down;
-    return();
+    break;
   default:
-    @say('This macro only works with bullets or subbullets.');
-    @footer;
-    return();
-}
-
-switch(initial_area_type)
-{
-  case 'bullet':
-    query_next_area = @find_next_bobs;
-    break;
-  case 'subbullet':
-    query_next_area = @find_next_bsr;
-    break;
-}
-
-if(Is_Last_Rubric_Element)
-{
-  // Don't cross the rubric because you're not the last element, that is,
-  // you are the penultimate element. This if/else block handle crossing rubrics.
-  query_next_area = @find_next_bsr;
-  // This accounts for empty rubrics.
-  if((query_next_area == 'rubric') || (query_next_area == 'subrubric'))
-  {
-    up;
-    up;
-  }
-}
-else if((query_next_area == 'rubric') || (query_next_area == 'subrubric') and (!is_last_rubric_element))
-{ 
-  up;
-  up;
-}
-
-@bol;
-@paste;
-
-switch(initial_area_type)
-{
-  case 'bullet':
-    up;
-    @bob;
-    break;
-  case 'subbullet':
-    @find_previous_subbullet;
-    break;
+    @say(fp + " This macro doesn't work with all category types.");
 }
 
 goto_col(initial_column);
@@ -8204,7 +8203,6 @@ switch(current_line_type)
     break;
   case 'bullet':
     @copy_and_paste_bullet;
-    eol;
     break;
   case 'subbullet':
     @copy_and_paste_subbullet;
@@ -8212,8 +8210,6 @@ switch(current_line_type)
   default:
     @copy_and_paste_line;
 }
-
-eol;
 
 @footer;
 

@@ -1,3 +1,102 @@
+//;;
+
+void
+@move_down_old()
+{
+str fp = 'Move down.';
+
+int initial_column = @current_column;
+
+if(!@is_structured_line)
+{
+  @move_line_down;
+  return();
+}
+
+int is_last_rubric_element = false;
+str query_next_area;
+
+str initial_area_type = @current_area_type;
+
+switch(initial_area_type)
+{
+  case 'bullet':
+    fp = 'Move bullet down.';
+    if(@query_next_br == 'rubric')
+    {
+      is_last_rubric_element = true;
+    }
+    @cut_bullet;
+    break;
+  case 'subbullet':
+    fp = 'Move subbullet down.';
+    if(@Query_Next_BSR == 'rubric')
+    {
+      is_last_rubric_element = true;
+    }
+    @cut_subbullet;
+    break;
+  case 'rubric':
+    @move_rubric_down;
+    return();
+  case 'subrubric':
+    @move_subrubric_down;
+    return();
+  default:
+    @say('This macro only works with bullets or subbullets.');
+    @footer;
+    return();
+}
+
+switch(initial_area_type)
+{
+  case 'bullet':
+    query_next_area = @find_next_bobs;
+    break;
+  case 'subbullet':
+    query_next_area = @find_next_bsr;
+    break;
+}
+
+if(Is_Last_Rubric_Element)
+{
+  // Don't cross the rubric because you're not the last element, that is,
+  // you are the penultimate element. This if/else block handle crossing rubrics.
+  query_next_area = @find_next_bsr;
+  // This accounts for empty rubrics.
+  if((query_next_area == 'rubric') || (query_next_area == 'subrubric'))
+  {
+    up;
+    up;
+  }
+}
+else if((query_next_area == 'rubric') || (query_next_area == 'subrubric') and (!is_last_rubric_element))
+{ 
+  up;
+  up;
+}
+
+@bol;
+@paste;
+
+switch(initial_area_type)
+{
+  case 'bullet':
+    up;
+    @bob;
+    break;
+  case 'subbullet':
+    @find_previous_subbullet;
+    break;
+}
+
+goto_col(initial_column);
+
+@say(fp);
+}
+
+
+
 //;
 
 void
@@ -392,7 +491,6 @@ str fp = "Move context object to last position.";
 
 @header;
 
-//qq-1
 switch(lower(get_extension(File_name)))
 {
   case 'bat':
@@ -10161,11 +10259,14 @@ void
 {
 str fp = 'Move subbullet up.';
 
+// lu: Sep-18-2018
+
 int is_first_subbullet = @is_first_subbullet;
 
-int Current_Line_Number = @current_line_number;
+int current_line_number = @current_line_number;
 
 @cut_bs;
+
 @bobsr;
 
 if (@current_line_number == current_Line_Number)
