@@ -286,7 +286,7 @@ find_text(@bullet, 0, _regexp | _backward);
 
 
 
-//;; Note: What you may want is: "@find_bobs_or_previous_bs".
+//;;
 
 str
 @boca()
