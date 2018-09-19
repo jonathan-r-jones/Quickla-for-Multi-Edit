@@ -286,85 +286,6 @@ find_text(@bullet, 0, _regexp | _backward);
 
 
 
-//;; Deprecated: Please use "@find_previous_bobs" or "@boca" going forward.
-
-str
-@bobsr()
-{
-str fp = 'Go to the beginning of the current bullet, subbullet or rubric.';
-
-str Current_BSR_Type = '';
-
-while(Current_BSR_Type == '')
-{
-  switch(@first_character(get_line))
-  {
-    case ';':
-      Current_BSR_Type = 'rubric';
-      break;
-    case '/':
-      if(@is_bullet_file)
-      {
-        break;
-      }
-      @bol;
-      right;
-      right;
-      if(@current_character == ';')
-      {
-        Current_BSR_Type = 'rubric';
-      }
-      break;
-    case '-':
-      @bol;
-      right;
-      right;
-      if(@current_character == ';')
-      {
-        Current_BSR_Type = 'rubric';
-      }
-      break;
-    case ':':
-      Current_BSR_Type = 'bullet';
-      if(@second_character(get_line) == ':')
-      {
-        Current_BSR_Type = 'subbullet';
-      }
-      // For batch file rubrics.
-      if(@second_character(get_line) == '_')
-      {
-        switch(lower(Get_Extension(File_name)))
-        {
-          case 'bat':
-            Current_BSR_Type = 'rubric';
-        }
-      }
-      break;
-  }
-  if(Current_BSR_Type == '')
-  {
-    up;
-  }
-}
-@bol;
-
-return(Current_BSR_Type);
-}
-
-
-
-//;;
-
-void
-@@bobsr
-{
-@header;
-@bobsr;
-@footer;
-}
-
-
-
 //;; Note: What you may want is: "@find_bobs_or_previous_bs".
 
 str
@@ -499,15 +420,21 @@ str
 {
 str fp = 'Find previous small segment.';
 
-@bobsr;
+// lu: Sep-19-2018
+
+@boca;
 up;
-str rv = @bobsr;
+@boca;
+str rv = @current_line_type;
+//qq-1
 
 if(rv == 'rubric')
 {
   up;
-  rv = @bobsr;
+  @boca;
 }
+
+rv = @current_line_type;
 
 @say(fp + ' (' + rv + ' found.)');
 return(rv);
@@ -993,7 +920,7 @@ str
 str fp = 'Look at previous bullet, subbullet or rubric.';
 
 mark_pos;
-@bobsr;
+@boca;
 str rv = @find_previous_content_area;
 goto_mark;
 
@@ -1040,7 +967,7 @@ str
 str fp = 'Look at next bullet, subbullet or rubric.';
 
 mark_pos;
-@bobsr;
+@boca;
 str rv = @find_next_bsr;
 goto_mark;
 
@@ -1566,9 +1493,10 @@ rm('CenterLn');
 void
 @hc_small_segment()
 {
-str fp = 'Highlight small segment.';
+str fp = 'Highcopy small segment.';
 
-@bobsr;
+@boca;
+//qq-1
 block_begin;
 right;
 
@@ -2981,7 +2909,7 @@ if((found_string == 'rubric') or (found_string == 'subrubric'))
 }
 @bol;
 rm('paste');
-@bobsr;
+@boca;
 
 @say(fp);
 }
@@ -3403,7 +3331,7 @@ if(search_criterion_was_found)
     @paste_as_bullet_below_here;
     switch_window(Initial_Window);
     goto_mark;
-    @bobsr;
+    @boca;
     fp += ' ' + so;
   }
 }
@@ -4292,7 +4220,7 @@ if(!@is_bullet_file)
 
 @restore_location;
 
-@bobsr;
+@boca;
 
 @footer;
 @say(fp);
@@ -4325,7 +4253,7 @@ if(!@is_bullet_file)
 
 @restore_location;
 
-@bobsr;
+@boca;
 
 @footer;
 @say(fp);
@@ -4354,7 +4282,7 @@ if(!@is_bullet_file)
 
 @paste_after_with_subbullet;
 
-@bobsr;
+@boca;
 
 @footer;
 @say(fp);
@@ -4398,7 +4326,7 @@ int
 {
 str fp = 'Get ASCII value of first non-colon character of current bullet.';
 
-@bobsr; // We know we are on a bullet.
+@boca; // We know we are on a bullet.
 @eoc;
 int rv = ascii(@current_character);
 fp += ' Value: ' + str(rv) + '.';
@@ -5791,7 +5719,7 @@ str so;
 
 block_off;
 
-@bobsr;
+@boca;
 
 if(find_text(@lookup_counter, 1, _regexp))
 {
@@ -5848,7 +5776,7 @@ void
 str fp = "Delete the definition portion of a word's definition.";
 
 block_off;
-@bobsr;
+@boca;
 @eoc;
 goto_col(@get_sj_termination_column);
 
@@ -6421,7 +6349,6 @@ str fp = 'Move subrubric up.';
 @paste;
 @find_previous_big_segment;
 
-
 @say(fp);
 }
 
@@ -6483,6 +6410,7 @@ int initial_column = @current_column;
 
 @paste;
 
+//qq-1
 @find_previous_small_segment;
 
 goto_col(initial_column);
@@ -6513,6 +6441,7 @@ switch(@current_area_type)
     @move_bullet_up;
     break;
   case 'subbullet':
+//qq-1
     @move_subbullet_up;
     break;
   case 'rubric':
@@ -6594,7 +6523,6 @@ void
 @move_subrubric_down()
 {
 str fp = "Move subrubric down.";
-@header;
 
 @cut_big_segment;
 @find_next_big_segment;
@@ -6602,7 +6530,6 @@ str fp = "Move subrubric down.";
 @paste;
 @find_previous_big_segment;
 
-@footer;
 @say(fp);
 }
 
@@ -6615,15 +6542,12 @@ void
 {
 str fp = "Move rubric down.";
 
-@header;
-
 @cut_rubric;
 @find_next_rubric;
 @bol;
 @paste;
 @find_bor_or_previous_rubric;
 
-@footer;
 @say(fp);
 }
 
@@ -6639,7 +6563,6 @@ void
 @move_bullet_down()
 {
 str fp = "Move bullet down.";
-@header;
 
 // lu: Sep-17-2018
 
@@ -6674,7 +6597,6 @@ left;
 
 goto_col(current_column_number);
 
-@footer;
 @say(fp);
 }
 
@@ -6686,7 +6608,6 @@ void
 @move_subbullet_down()
 {
 str fp = "Move bullet down.";
-@header;
 
 // lu: Sep-17-2018
 
@@ -6711,7 +6632,6 @@ left;
 
 goto_col(current_column_number);
 
-@footer;
 @say(fp);
 }
 
@@ -6736,6 +6656,7 @@ switch(@current_area_type)
 {
   case 'bullet':
     @move_bullet_down;
+//qq-1
     break;
   case 'subbullet':
     @move_subbullet_down;
@@ -6821,7 +6742,7 @@ if(@is_subbullet)
     return();
   }
   mark_pos;
-  @bobsr;
+  @boca;
   up;
   @delete_subbullet;
 
@@ -6842,7 +6763,7 @@ if(@query_previous_bsr == 'rubric')
 
 mark_pos;
 
-@bobsr;
+@boca;
 up;
 @delete_bullet;
 goto_mark;
@@ -7813,7 +7734,7 @@ if(@find_next_bsr == 'rubric')
 left;
 
 str_block_begin;
-@bobsr;
+@boca;
 @eoc;
 
 rm('CenterLn');
@@ -7932,7 +7853,7 @@ if(@is_last_small_segment)
 
 mark_pos;
 
-@bobsr;
+@boca;
 
 @find_next_small_segment;
 
@@ -8611,7 +8532,7 @@ if(@is_bullet_File())
     case 'subrubric':
       @hc_big_segment_content;
       delete_block;
-      @bobsr;
+      @boca;
       fp += ' Delete rubric content.';
       break;
     default:

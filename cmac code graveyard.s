@@ -1,6 +1,85 @@
 //;;
 
 void
+@@bobsr
+{
+@header;
+@bobsr;
+@footer;
+}
+
+
+
+//;; Deprecated: Please use "@find_previous_bobs" or "@boca" going forward.
+
+str
+@bobsr()
+{
+str fp = 'Go to the beginning of the current bullet, subbullet or rubric.';
+
+str current_bsr_type = '';
+
+while(current_bsr_type == '')
+{
+  switch(@first_character(get_line))
+  {
+    case ';':
+      current_bsr_type = 'rubric';
+      break;
+    case '/':
+      if(@is_bullet_file)
+      {
+        break;
+      }
+      @bol;
+      right;
+      right;
+      if(@current_character == ';')
+      {
+        current_bsr_type = 'rubric';
+      }
+      break;
+    case '-':
+      @bol;
+      right;
+      right;
+      if(@current_character == ';')
+      {
+        current_bsr_type = 'rubric';
+      }
+      break;
+    case ':':
+      current_bsr_type = 'bullet';
+      if(@second_character(get_line) == ':')
+      {
+        current_bsr_type = 'subbullet';
+      }
+      // For batch file rubrics.
+      if(@second_character(get_line) == '_')
+      {
+        switch(lower(get_extension(file_name)))
+        {
+          case 'bat':
+            current_bsr_type = 'rubric';
+        }
+      }
+      break;
+  }
+  if(current_bsr_type == '')
+  {
+    up;
+  }
+}
+@bol;
+
+return(Current_BSR_Type);
+}
+
+
+
+//;;
+
+void
 @move_down_old()
 {
 str fp = 'Move down.';
