@@ -1766,7 +1766,7 @@ switch(action_to_do)
     break;
   case 2:
     destination = 'Specified LC';
-    @move_bullet_to_appropriate_lc(return_home);
+    @move_bullet_to_specified_lc(return_home);
     break;
   case 3:
     destination = '1 Way';
@@ -1794,7 +1794,7 @@ if(return_home)
 
 pop_mark;
 
-@say(fp + ' (' + destination + ')');
+//@say(fp + ' (' + destination + ')');
 }
 
 
@@ -3327,7 +3327,7 @@ if(@current_line_contains(' &'))
 
 if(@current_line_contains_regex(@comma_lc))
 {
-  @move_bullet_to_appropriate_lc(true);
+  @move_bullet_to_specified_lc(true);
   return();
 }
 

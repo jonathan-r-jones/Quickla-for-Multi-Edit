@@ -426,7 +426,6 @@ str fp = 'Find previous small segment.';
 up;
 @boca;
 str rv = @current_line_type;
-//qq-1
 
 if(rv == 'rubric')
 {
@@ -1496,7 +1495,6 @@ void
 str fp = 'Highcopy small segment.';
 
 @boca;
-//qq-1
 block_begin;
 right;
 
@@ -6410,7 +6408,6 @@ int initial_column = @current_column;
 
 @paste;
 
-//qq-1
 @find_previous_small_segment;
 
 goto_col(initial_column);
@@ -6441,7 +6438,6 @@ switch(@current_area_type)
     @move_bullet_up;
     break;
   case 'subbullet':
-//qq-1
     @move_subbullet_up;
     break;
   case 'rubric':
@@ -6656,7 +6652,6 @@ switch(@current_area_type)
 {
   case 'bullet':
     @move_bullet_down;
-//qq-1
     break;
   case 'subbullet':
     @move_subbullet_down;
@@ -7038,9 +7033,9 @@ return(location_refiner);
 //;;
 
 void
-@move_bullet_to_appropriate_lc(int return_home = parse_int('/1=', mparm_str))
+@move_bullet_to_specified_lc(int return_home = parse_int('/1=', mparm_str))
 {
-str fp = "Move bullet to appropriate lc.";
+str fp = "Move bullet to specified lc.";
 
 // fcd: Apr-7-2014
 
@@ -7119,10 +7114,10 @@ if(return_home)
 //;;
 
 void
-@@move_bullet_to_appropriate_lc
+@@move_bullet_to_specified_lc
 {
 @header;
-@move_bullet_to_appropriate_lc(true);
+@move_bullet_to_specified_lc(true);
 @footer;
 }
 
