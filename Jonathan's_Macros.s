@@ -958,93 +958,6 @@ if(!@find_lc_known(fp, 'wc'))
 
 
 
-//;+ Programming Exercises
-
-
-
-//;;
-
-void
-@fuzz_biz_interview_test
-{
-str fp = "Fuzz biz interview test.";
-
-@header;
-int Counter = 1;
-
-str Text_to_Write = '';
-
-while(Counter <= 100)
-{
-  Text_to_Write = '';
-  if(!(Counter % 5))
-  {
-    Text_to_Write = 'Fiz';
-  }
-  if(!(Counter % 3))
-  {
-    Text_to_Write += 'Buzz';
-  }
-  if(length(Text_to_Write))
-  {
-    text(str(Counter) + ': ');
-    text(Text_to_Write);
-    cr;
-  }
-  Counter++;
-}
-
-@footer;
-@say(fp);
-}
-
-
-
-//;;
-
-void
-@reverse_string(str subject_String)
-{
-str fp = "Reverse string.";
-
-str reversed_string = '';
-
-while(length(subject_string) > 0)
-{
-  reversed_string += @last_character(subject_string);
-  subject_string = @trim_last_character(subject_string);
-}
-
-@say(reversed_string);
-
-/*
-public static bool IsPrimeNumber(int numberToTest)
-{
-    for (int i = 2; i < numberToTest; i++)
-    {
-        if (numberToTest % i == 0)
-        {
-            return (false);
-        }
-    }
-    return true;
-}
-*/
-
-}
-
-
-
-//;;
-
-void
-@reverse_string_tn
-{
-@reverse_string('hey now');
-}
-
-
-
 //;
 
 void
@@ -7328,6 +7241,93 @@ str fp = "x";
 // lu: Sep-18-2018
 
 @say(@find_next_content_area);
+}
+
+
+
+//;+ Programming Exercises
+
+
+
+//;;
+
+void
+@fuzz_biz_interview_test
+{
+str fp = "Fuzz biz interview test.";
+
+@header;
+int Counter = 1;
+
+str Text_to_Write = '';
+
+while(Counter <= 100)
+{
+  Text_to_Write = '';
+  if(!(Counter % 5))
+  {
+    Text_to_Write = 'Fiz';
+  }
+  if(!(Counter % 3))
+  {
+    Text_to_Write += 'Buzz';
+  }
+  if(length(Text_to_Write))
+  {
+    text(str(Counter) + ': ');
+    text(Text_to_Write);
+    cr;
+  }
+  Counter++;
+}
+
+@footer;
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@reverse_string(str subject_String)
+{
+str fp = "Reverse string.";
+
+str reversed_string = '';
+
+while(length(subject_string) > 0)
+{
+  reversed_string += @last_character(subject_string);
+  subject_string = @trim_last_character(subject_string);
+}
+
+@say(reversed_string);
+
+/*
+public static bool IsPrimeNumber(int numberToTest)
+{
+    for (int i = 2; i < numberToTest; i++)
+    {
+        if (numberToTest % i == 0)
+        {
+            return (false);
+        }
+    }
+    return true;
+}
+*/
+
+}
+
+
+
+//;;
+
+void
+@reverse_string_tn
+{
+@reverse_string('hey now');
 }
 
 
