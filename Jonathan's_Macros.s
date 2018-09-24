@@ -1016,6 +1016,21 @@ while(length(subject_string) > 0)
 }
 
 @say(reversed_string);
+
+/*
+public static bool IsPrimeNumber(int numberToTest)
+{
+    for (int i = 2; i < numberToTest; i++)
+    {
+        if (numberToTest % i == 0)
+        {
+            return (false);
+        }
+    }
+    return true;
+}
+*/
+
 }
 
 
