@@ -6560,38 +6560,20 @@ void
 {
 str fp = "Move bullet down.";
 
-// lu: Sep-17-2018
+// lu: Sep-26-2018
 
-int current_column_number = @current_column_number;
-
-int is_last_bullet = 0;
-
-if(@is_last_bullet)
-{
-  is_last_bullet = 1;
-}
+@save_column;
 
 @cut_bullet;
-right;
 
-if(is_last_bullet)
+if(@current_line_type == '')
 {
-  @find_next_bullet;
+  @find_next_content_area;
 }
-else
-{
-  if(@find_next_bobs != 'bullet')
-  {
-    up;
-    up;
-  }
-}
-@bol;
-@paste;
-left;
-@bob;
 
-goto_col(current_column_number);
+@paste_after;
+
+@restore_column;
 
 @say(fp);
 }

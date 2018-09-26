@@ -5504,8 +5504,6 @@ if(!@is_bullet)
   return(@constant_not_a_bullet);
 }
 
-int initial_column = @current_column;
-
 str arg_1, arg_2, arg_3, arg_4;
 
 arguments = @lower(arguments);
@@ -5624,6 +5622,7 @@ switch(arg_4)
     break;
 }
 
+
 // Set the defaults.
 if(location_modifier == '')
 {
@@ -5675,7 +5674,7 @@ else if(lc != '')
     if(bullet_was_cut)
     {
       @paste;
-      @bob;
+      @find_previous_bullet;
     }
     @restore_column;
     return(@constant_lc_not_found);
@@ -5728,7 +5727,7 @@ if(@is_blank_line)
   @put_cursor_somewhere_useful;
 }
 
-goto_col(initial_column);
+@restore_column;
 
 fp += " (Args: '" + arguments + "')";
 @say(fp);
