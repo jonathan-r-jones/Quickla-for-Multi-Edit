@@ -3312,8 +3312,10 @@ if(@current_line_contains(',,'))
 
 if(@current_line_contains('^'))
 {
+  @save_column;
   str lc = @get_indicated_lc_2;
   @run_clif_internally(lc);
+  @restore_column;
   return();
 }
 

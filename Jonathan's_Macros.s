@@ -1937,10 +1937,9 @@ void
 str fp = "Open OWA with r8 also.";
 
 str url = 'https://outlook.office365.com/owa/?realm=nesassociates.com&exsvurl=1&ll-cc=1033&modurl=0&path=/mail/inbox';
-@surf(URL, 3);
 
-url = 'https://mail.google.com';
-@surf(URL, 1);
+url = 'https://outlook.office.com/owa/';
+@surf(URL, 3);
 
 @say(fp);
 }
@@ -2456,37 +2455,6 @@ text(oj);
 @hc_object
 delete_block;
 text(precolon_Phrase);
-
-@say(fp);
-}
-
-
-
-//;
-
-void
-@open_text_message_to_phone
-{
-str fp = "Run message to phone macro.";
-
-str filename[128] = Get_Environment('savannah') + '\reach out\text message to phone.txt';
-
-@open_file(filename);
-
-rm('block^selectall');
-
-delete_block;
-
-@paste;
-
-@bof;
-
-while(@current_character == ':')
-{
-  @delete_character;
-}
-
-@delete_carriage_return_char_su;
 
 @say(fp);
 }

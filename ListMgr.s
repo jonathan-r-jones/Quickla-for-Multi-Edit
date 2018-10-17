@@ -9384,10 +9384,7 @@ if(@seek_in_all_files_2_arguments(sc, so))
   // This is the default behavior.
   if(@is_bullet_file)
   {
-    if(!@is_last_bullet)
-    {
-      @find_next_small_segment;
-    }
+    @find_next_small_segment;
     @restore_column;
   }
   else
@@ -11512,6 +11509,7 @@ if(@query_previous_bsr == 'bullet')
 }
 
 @cut_subbullet;
+
 up;
 @bob;
 @find_next_content_area;
@@ -11657,7 +11655,7 @@ void
 {
 str fp = "Move context object to first position.";
 
-// fcd: Nov-18-2014
+// fcd: Sep-27-2018
 
 @header;
 

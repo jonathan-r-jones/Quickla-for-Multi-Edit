@@ -1,3 +1,34 @@
+//;
+
+void
+@open_text_message_to_phone
+{
+str fp = "Run message to phone macro.";
+
+str filename[128] = Get_Environment('savannah') + '\reach out\text message to phone.txt';
+
+@open_file(filename);
+
+rm('block^selectall');
+
+delete_block;
+
+@paste;
+
+@bof;
+
+while(@current_character == ':')
+{
+  @delete_character;
+}
+
+@delete_carriage_return_char_su;
+
+@say(fp);
+}
+
+
+
 //;;
 
 void
