@@ -1792,9 +1792,9 @@ if(return_home)
 
 @put_cursor_somewhere_useful
 
-pop_mark;
+//pop_mark;
 
-//@say(fp + ' (' + destination + ')');
+@say(fp + ' (' + destination + ')');
 }
 
 
@@ -2334,6 +2334,7 @@ if(xpos('.exe', lowercased_clif_block, 1)) // Application **********************
 {
   is_exe_or_bat_file = true;
 }
+
 if(xpos('.cmd', lowercased_clif_block, 1)) // Visual Studio Code *************************
 {
   is_exe_or_bat_file = true;

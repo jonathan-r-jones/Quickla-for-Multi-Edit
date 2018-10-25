@@ -3651,6 +3651,32 @@ return(return_string);
 
 
 
+//;
+
+str
+@get_opera_path()
+{
+str fp = "Get opera path.";
+
+// fcd: Oct-25-2018
+
+str return_string = "c:\\program files\\opera\\launcher.exe";
+
+switch(@lower(Get_Environment("ComputerName")))
+{
+  case "buzz":
+    return_string = 
+      "c:\\program files (x86)\\opera\\launcher.exe";
+  break;
+}
+
+return(return_string);
+
+@say(fp);
+}
+
+
+
 //; (!surf)
 
 void
@@ -3693,7 +3719,7 @@ if(browser_number == 0)
 switch(browser_number) // This list is ordered by how much i like them.
 {
   case 1: // Chrome (Opens in a new tab.)
-    Command_Line = @get_chrome_path;
+    command_line = @get_chrome_path;
     break;
   case 2: // Firefox (Opens in a new windwo.)
     Command_Line = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
@@ -3702,7 +3728,7 @@ switch(browser_number) // This list is ordered by how much i like them.
     Command_Line = Get_Environment("ProgramFiles") + "\\Internet Explorer\\IEXPLORE.EXE";
     break;
   case 4: // Opera (Opens in a new tab.)
-    command_line = "c:\\program files\\opera\\launcher.exe";
+    command_line = @get_opera_path;
     break;
   case 5: // Safari
     Command_Line = Get_Environment("ProgramFiles") + "\\Safari\\Safari.exe";
