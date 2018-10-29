@@ -4676,7 +4676,7 @@ else if(@first_character(original_sc) == '2')
 
 @bol;
 
-if(find_text(sc, 3, _regexp))
+if(find_text(sc, 2, _regexp))
 {
   distilled_lc = @distill_lc(found_str);;
   distilled_lc = @trim_after_character(distilled_lc, ')');
@@ -4715,7 +4715,7 @@ sc = '!sour.+';
 
 @bol;
 
-if(find_text(sc, 3, _regexp))
+if(find_text(sc, 2, _regexp))
 {
   distilled_lc = @distill_lc(found_str);;
   distilled_lc = @trim_after_character(distilled_lc, ')');
@@ -4739,7 +4739,7 @@ sc = '!dest.+';
 
 @bol;
 
-if(find_text(sc, 3, _regexp))
+if(find_text(sc, 2, _regexp))
 {
   distilled_lc = @distill_lc(found_str);;
   distilled_lc = @trim_after_character(distilled_lc, ')');
