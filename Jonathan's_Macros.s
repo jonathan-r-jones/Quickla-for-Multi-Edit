@@ -5276,7 +5276,7 @@ if(@seek_from_bof('!rf' + 'cea') != 1)
 //;;
 
 void
-@add_batch_file_stub()
+@add_batch_file_stub_generic()
 {
 str fp = "Add batch file new stub.";
 
@@ -5364,8 +5364,6 @@ if(!@is_batch_file)
   return();
 }
 
-@header;
-
 @move_dog_park_to_eof;
 
 @save_location;
@@ -5427,8 +5425,6 @@ up;
 @eol;
 text(' ');
 
-@footer;
-
 @say(fp);
 }
 
@@ -5437,10 +5433,53 @@ text(' ');
 //;
 
 void
-@@add_batch_file_stub
+@@add_batch_file_stub_for_n_bat
 {
 @header;
-@add_batch_file_stub;
+@add_batch_file_stub_for_n_bat;
+@footer;
+}
+
+
+
+//;;
+
+void
+@@add_batch_file_stub_generic
+{
+@header;
+@add_batch_file_stub_generic;
+@footer;
+}
+
+
+
+//;;
+
+void
+@add_batch_file_stub_router
+{
+str fp = "Add batch file stub router.";
+
+// lu: Nov-2-2018
+
+if(!@is_batch_file)
+{
+  @say(fp + ' Error: This macro only works in batch files.');
+  return();
+}
+
+@header;
+
+if(@filename == 'n.bat')
+{
+  @add_batch_file_stub_for_n_bat;
+}
+else
+{
+  @add_batch_file_stub_generic;
+}
+
 @footer;
 }
 
@@ -6407,7 +6446,7 @@ void
 str fp = 'Open t.bat file with a new function added.';
 @header;
 @open_file(get_environment('savannah') + '\belfry\t.bat');
-@add_batch_file_stub;
+@add_batch_file_stub_generic;
 @footer;
 }
 
