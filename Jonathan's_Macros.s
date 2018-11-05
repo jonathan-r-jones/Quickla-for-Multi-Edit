@@ -7243,20 +7243,6 @@ str fp = "Say current line type.";
 
 
 
-//;
-
-void
-@rtm
-{
-str fp = "x";
-
-// lu: Sep-18-2018
-
-@say(@find_next_content_area);
-}
-
-
-
 //;+ Programming Exercises
 
 

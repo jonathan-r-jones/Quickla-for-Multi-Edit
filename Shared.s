@@ -1281,7 +1281,7 @@ int Handle;
 
 str Name_of_File = 'c:\a\j3.txt';
 
-if(!File_Exists(Name_of_File))
+if(!file_exists(name_of_file))
 {
   S_Create_File(Name_of_File, Handle);
 }
@@ -3654,23 +3654,32 @@ return(return_string);
 //;
 
 str
-@get_opera_path()
+@get_path_opera()
 {
-str fp = "Get opera path.";
+str fp = "Get file path for opera executable.";
 
-// fcd: Oct-25-2018
+// lu: Nov-5-2018
 
-str return_string = "c:\\program files\\opera\\launcher.exe";
+str possible_file_path = "";
 
-switch(@lower(Get_Environment("ComputerName")))
+// Program files path.
+possible_file_path = "c:\\program files\\opera\\launcher.exe";
+if(file_exists(possible_file_path))
 {
-  case "buzz":
-    return_string = 
-      "c:\\program files (x86)\\opera\\launcher.exe";
-  break;
+  fp += ' Program files file exists.';
+  return(possible_file_path);
 }
 
-return(return_string);
+// Program files (x86) path.
+possible_file_path = "c:\\program files (x86)\\opera\\launcher.exe";
+if(file_exists(possible_file_path))
+{
+  fp += ' Program files (x86) file exists.';
+  return(possible_file_path);
+}
+
+fp += ' Path NOT found.';
+return("");
 
 @say(fp);
 }
@@ -3728,7 +3737,7 @@ switch(browser_number) // This list is ordered by how much i like them.
     Command_Line = Get_Environment("ProgramFiles") + "\\Internet Explorer\\IEXPLORE.EXE";
     break;
   case 4: // Opera (Opens in a new tab.)
-    command_line = @get_opera_path;
+    command_line = @get_path_opera;
     break;
   case 5: // Safari
     Command_Line = Get_Environment("ProgramFiles") + "\\Safari\\Safari.exe";

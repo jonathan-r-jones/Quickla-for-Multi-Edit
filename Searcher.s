@@ -1026,6 +1026,22 @@ str fp = "Run chrome.";
 //;;
 
 void
+@run_opera
+{
+str fp = "Run chrome.";
+
+// lu: Nov-5-2018
+
+@surf("http://www.google.com/advanced_search?hl=en&safe=active", 4);
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
 @search_google_exactly
 {
 @search_google_main(1, 0, '');
