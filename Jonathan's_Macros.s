@@ -5336,7 +5336,6 @@ down;
 down;
 down;
 @bol;
-//qq-1
 text('rem q' + 'q-1');
 cr;
 up;
