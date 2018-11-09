@@ -7330,4 +7330,23 @@ void
 
 
 
+//;
+
+void
+@move_bullet_to_same_lc_as_prev
+{
+str fp = "Move bullet to same lc as last time.";
+
+// lu: Nov-9-2018
+
+@header;
+
+@run_bullet_action_model_2(global_str('lc'));
+
+@footer;
+@say(fp + ' (' + @distill_lc(global_str('lc')) + ')');
+}
+
+
+
 //; (!efjm)

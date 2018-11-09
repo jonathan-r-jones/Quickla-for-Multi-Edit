@@ -2596,12 +2596,12 @@ text(@get_formatted_date);
 
 
 
-//;
+//; (prettify skw)
 
 str
 @distill_lc(str lc)
 {
-str fp = 'Distill launch code to the maximum by removing all regex characters.';
+str fp = 'Distill launch code to the minimum by removing all regex characters.';
 
 lc = @trim_after_character(lc, ",");
 
