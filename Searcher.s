@@ -1552,7 +1552,8 @@ sc = @commute_character(sc, ' ', '+');
 URL += sc;
 URL += "&categories=course";
 
-@surf(URL, 0);
+// I noticed that Firefox doesn't give you the sort options dropdown lsit. Weird. Nov-9-2018
+@surf(URL, 1);
 
 /* Use Cases
 
