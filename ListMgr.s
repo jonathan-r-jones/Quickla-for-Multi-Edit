@@ -3250,6 +3250,11 @@ else
   @cut_bullet;
 }
 
+if(lc == '')
+{
+  lc = @get_user_input_nonspace('Enter LC:');
+}
+
 str so = @find_lc_core(lc, search_criterion_was_found, fp);
 
 if(search_criterion_was_found)
@@ -3355,20 +3360,25 @@ else
 str
 @move_bullet_to_lc_alone(str lc = parse_str('/1=', mparm_str))
 {
-str fp = 'Move bullet to lc alone. (' + lc + ')';
+str fp = 'Move bullet to lc alone.';
+
+@save_location;
 
 mark_pos;
 
 int initial_column_number = @current_column_number;
 
-@move_bullet_to_lc_wme(lc);
+str return_string = @move_bullet_to_lc_wme(lc);
+
+@restore_location;
 
 goto_mark;
 
 goto_col(initial_column_number);
 
-@say(fp);
+fp += ' ' + return_string;
 
+@say(fp);
 return(fp);
 }
 
