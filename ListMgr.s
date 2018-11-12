@@ -3222,7 +3222,7 @@ str fp = 'Cut subbullet to buffer.';
 
 //;;
 
-void
+str
 @move_bullet_to_lc_wme(str lc = parse_str('/1=', mparm_str))
 {
 str fp = 'Move bullet to lc with me.';
@@ -3233,12 +3233,12 @@ int initial_column = @current_column;
 
 if(!@is_bullet_file)
 {
-  return();
+  return('');
 }
 
 if(!@is_bullet_or_subbullet)
 {
-  return();
+  return('');
 }
 
 if(@text_is_selected)
@@ -3258,11 +3258,12 @@ if(search_criterion_was_found)
   {
     switch_window(Initial_Window);
     @paste;
+    fp += ' File is read-only.';
   }
   else
   {
     @paste_as_bullet_below_here;
-    fp += ' ' + so;
+    fp += ' (' + @distill_lc(lc) + ')';
   }
 }
 else
@@ -3277,6 +3278,7 @@ else
 goto_col(initial_column);
 
 @say(fp);
+return(fp);
 }
 
 
@@ -3350,7 +3352,7 @@ else
 
 //;;
 
-void
+str
 @move_bullet_to_lc_alone(str lc = parse_str('/1=', mparm_str))
 {
 str fp = 'Move bullet to lc alone. (' + lc + ')';
@@ -3367,6 +3369,7 @@ if(!@is_structured_line)
 }
 
 @say(fp);
+return(fp);
 }
 
 
@@ -7014,7 +7017,7 @@ return(location_refiner);
 
 //;;
 
-void
+str
 @move_bullet_to_specified_lc(int return_home = parse_int('/1=', mparm_str))
 {
 str fp = "Move bullet to specified lc.";
@@ -7047,7 +7050,7 @@ if(!@find_lc_known(fp, lc))
 {
   @paste;
   @find_previous_bullet;
-  return();
+  return('');
 }
 
 switch(@trim(location_refiner))
@@ -7089,6 +7092,7 @@ if(return_home)
 }
 
 @say(fp + modifier);
+return(fp + modifier);
 }
 
 
@@ -7163,7 +7167,7 @@ text(@upper(current_character));
 
 //;;
 
-void
+str
 @move_bullet_to_calendar(int return_home)
 {
 str fp = "Move bullet to calendar.";
@@ -7261,6 +7265,7 @@ if(@current_line_type != 'bullet')
 @eoc;
 
 @say(fp);
+return(fp);
 }
 
 

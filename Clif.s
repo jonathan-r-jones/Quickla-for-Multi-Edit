@@ -1626,7 +1626,7 @@ return(distilled_lc);
 
 //;
 
-void
+str
 @move_bullet_to_1way_lc()
 {
 str fp = "Move bullet to one way lc.";
@@ -1649,16 +1649,17 @@ if(!@find_lc(lc))
 @paste_after;
 
 @say(fp + ' (' + @distill_lc(lc) + ')');
+return(fp + ' (' + @distill_lc(lc) + ')');
 }
 
 
 
 //;
 
-void
+str
 @move_bullet_to_dest_lc()
 {
-str fp = "Move bullet to one 'dest' (destination) lc.";
+str fp = "Move bullet to destination lc.";
 
 // lu: Aug-19-2018
 
@@ -1685,6 +1686,7 @@ if(!@find_lc(lc))
 @paste_after;
 
 @say(fp + ' (' + @distill_lc(lc) + ')');
+return(fp + ' (' + @distill_lc(lc) + ')');
 }
 
 
@@ -1735,7 +1737,9 @@ return(0);
 void
 @gun(int return_home = parse_int('/1=', mparm_str))
 {
-str fp = 'Evaluate and move a bullet, a.k.a. the gun.';
+// Evaluate and move a bullet, a.k.a. the gun.
+str fp = 'Shoot bullet.';
+str returned_description = '';
 
 // lu: Aug-22-2018
 
@@ -1762,27 +1766,27 @@ switch(action_to_do)
 {
   case 1:
     destination = 'Calender';
-    @move_bullet_to_calendar(return_home);
+    returned_description = @move_bullet_to_calendar(return_home);
     break;
   case 2:
     destination = 'Specified LC';
-    @move_bullet_to_specified_lc(return_home);
+    returned_description = @move_bullet_to_specified_lc(return_home);
     break;
   case 3:
     destination = '1 Way';
-    @move_bullet_to_1way_lc;
+    returned_description = @move_bullet_to_1way_lc;
     break;
   case 4:
     destination = 'Destination LC';
-    @move_bullet_to_dest_lc;
+    returned_description = @move_bullet_to_dest_lc;
     break;
   case 5:
     destination = 'CO';
-    @move_bullet_to_lc_wme('co');
+    returned_description = @move_bullet_to_lc_wme('co');
     break;
   default:
     destination = 'JD';
-    @move_bullet_to_lc_alone('jd');
+    returned_description = @move_bullet_to_lc_alone('jd');
 }
 
 if(return_home)
@@ -1792,9 +1796,8 @@ if(return_home)
 
 @put_cursor_somewhere_useful
 
-//pop_mark;
-
-@say(fp + ' (' + destination + ')');
+@say(fp + ' ' + destination);
+@say(fp + ' ' + returned_description);
 }
 
 

@@ -106,12 +106,12 @@ prototype ListMgr
   str  @look_up_rubrics_source_lc(int &lc_is_found);
   str  @look_up_rubrics_asap_lc(int &lc_is_found);
   void @mor();
-  void @move_bullet_to_specified_lc(int return_home);
+  str  @move_bullet_to_specified_lc(int return_home);
   void @move_bullet_to_bor();
-  void @move_bullet_to_calendar(int return_home);
+  str  @move_bullet_to_calendar(int return_home);
   void @move_bullet_to_eor_alone();
-  void @move_bullet_to_lc_alone(str lc);
-  void @move_bullet_to_lc_wme(str lc);
+  str  @move_bullet_to_lc_alone(str lc);
+  str  @move_bullet_to_lc_wme(str lc);
   void @paste_after();
   void @paste_after_with_subbullet();
   void @paste_before_with_subbullet();
