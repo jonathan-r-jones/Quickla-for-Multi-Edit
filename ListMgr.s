@@ -3357,18 +3357,18 @@ str
 {
 str fp = 'Move bullet to lc alone. (' + lc + ')';
 
-@save_location;
+mark_pos;
+
+int initial_column_number = @current_column_number;
 
 @move_bullet_to_lc_wme(lc);
 
-@restore_location;
+goto_mark;
 
-if(!@is_structured_line)
-{
-  @boca;
-}
+goto_col(initial_column_number);
 
 @say(fp);
+
 return(fp);
 }
 
@@ -6678,6 +6678,9 @@ void
 str fp = 'Move bookmark down. To make my life easier, bookmarks should always be subbullets.';
 
 @header;
+
+int initial_column_number = @current_column_number;
+
 if(@is_bullet_file)
 {
   @find_previous_content_area;
@@ -6690,6 +6693,8 @@ else
   @move_line_down;
   down;
 }
+
+goto_col(initial_column_number);
 
 @footer;
 @say(fp);

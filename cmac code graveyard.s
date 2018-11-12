@@ -1,6 +1,32 @@
 //;
 
 void
+@move_bullet_to_lc
+{
+str fp = "Move bullet to lc.";
+@header;
+
+// lu: Nov-12-2018
+
+str user_input = @get_user_input_nonspace(fp);
+
+if((user_input == "Function aborted."))
+{
+  @say(user_input);
+  return();
+}
+
+@run_bullet_action_model_2(user_input);
+
+@footer;
+@say(fp + ' (' + user_input + ')');
+}
+
+
+
+//;
+
+void
 @open_text_message_to_phone
 {
 str fp = "Run message to phone macro.";

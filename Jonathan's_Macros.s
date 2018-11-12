@@ -5782,32 +5782,6 @@ fp += ', iw: ' + str(global_int('initial window number'));
 //;
 
 void
-@move_bullet_to_lc
-{
-str fp = "Move bullet to lc.";
-@header;
-
-// fcd: Oct-27-2016
-
-str user_input = @get_user_input_nonspace(fp);
-
-if((user_input == "Function aborted."))
-{
-  @say(user_input);
-  return();
-}
-
-@run_bullet_action_model_2(user_input);
-
-@footer;
-@say(fp + ' (' + user_input + ')');
-}
-
-
-
-//;
-
-void
 @bam_2_with_caller
 {
 str fp = "Move bullet to lc (together).";
@@ -7341,7 +7315,7 @@ str fp = "Move bullet to same lc as last time.";
 
 @header;
 
-@run_bullet_action_model_2(global_str('lc'));
+@move_bullet_to_lc_alone(global_str('lc'));
 
 @footer;
 @say(fp + ' (' + @distill_lc(global_str('lc')) + ')');

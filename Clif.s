@@ -1782,7 +1782,7 @@ switch(action_to_do)
     break;
   case 5:
     destination = 'CO';
-    returned_description = @move_bullet_to_lc_wme('co');
+    returned_description = @move_bullet_to_lc_alone('co');
     break;
   default:
     destination = 'JD';
@@ -1795,6 +1795,8 @@ if(return_home)
 }
 
 @put_cursor_somewhere_useful
+
+goto_col(initial_column);
 
 @say(fp + ' ' + destination);
 @say(fp + ' ' + returned_description);
@@ -4180,6 +4182,7 @@ void
 @quick_launcher_router(str status_bar_text, int is_repeater)
 {
 str fp = "Quick launcher router.";
+
 fp = "LC.";
 
 str sm;
