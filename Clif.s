@@ -1794,7 +1794,7 @@ if(return_home)
   @restore_location; 
 }
 
-@put_cursor_somewhere_useful
+@put_cursor_somewhere_useful;
 
 goto_col(initial_column);
 

@@ -3374,9 +3374,14 @@ str return_string = @move_bullet_to_lc_wme(lc);
 
 goto_mark;
 
-goto_col(initial_column_number);
-
 fp += ' ' + return_string;
+
+if(@is_blank_line)
+{
+  @put_cursor_somewhere_useful;
+}
+
+goto_col(initial_column_number);
 
 @say(fp);
 return(fp);
