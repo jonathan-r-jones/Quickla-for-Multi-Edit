@@ -3366,7 +3366,7 @@ str fp = 'Move bullet to lc alone.';
 
 mark_pos;
 
-int initial_column_number = @current_column_number;
+@save_column;
 
 str return_string = @move_bullet_to_lc_wme(lc);
 
@@ -3381,7 +3381,7 @@ if(@is_blank_line)
   @put_cursor_somewhere_useful;
 }
 
-goto_col(initial_column_number);
+@restore_column;
 
 @say(fp);
 return(fp);
