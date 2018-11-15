@@ -3730,7 +3730,7 @@ switch(browser_number) // This list is ordered by how much i like them.
   case 1: // Chrome (Opens in a new tab.)
     command_line = @get_chrome_path;
     break;
-  case 2: // Firefox (Opens in a new windwo.)
+  case 2: // Firefox (Opens in a new window.)
     Command_Line = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
     break;
   case 3: // Internet Explorer (Opens in a new window.)

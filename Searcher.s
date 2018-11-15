@@ -1550,10 +1550,13 @@ str Pretty_sc = sc;
 sc = @commute_character(sc, ' ', '+');
 
 URL += sc;
-URL += "&categories=course";
+URL += "&categories=course&sort=displayDate";
 
-// I noticed that Firefox doesn't give you the sort options dropdown lsit. Weird. Nov-9-2018
-@surf(URL, 1);
+// I noticed that Firefox doesn't give you the sort options dropdown list. Weird. Nov-9-2018
+// I noticed that Firefox gives you the sort options dropdown list, but Chrome does not. 
+// Weirder. Nov-15-2018
+
+@surf(URL, 0);
 
 /* Use Cases
 
