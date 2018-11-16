@@ -1055,7 +1055,7 @@ void
 {
 // Used in conjuction with "@save_location".
 str fp = "Load previously saved location.";
-@next_window;
+//@next_window;
 
 @switch_to_named_window(Global_Str('Filename'));
 goto_col(global_int('initial column number'));

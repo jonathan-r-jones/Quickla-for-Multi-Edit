@@ -3364,21 +3364,26 @@ str fp = 'Move bullet to lc alone.';
 
 @save_location;
 
-mark_pos;
+int initial_window = @current_window;
+int initial_row = @current_row;
 
 @save_column;
 
 str return_string = @move_bullet_to_lc_wme(lc);
+int destination_window = @current_window;
 
 @restore_location;
 
-goto_mark;
-
 fp += ' ' + return_string;
+
+if((destination_window == initial_window) && (@current_row >= initial_row))
+{
+  @find_next_bullet;
+}
 
 if(@is_blank_line)
 {
-  @put_cursor_somewhere_useful;
+  //@put_cursor_somewhere_useful;
 }
 
 @restore_column;
