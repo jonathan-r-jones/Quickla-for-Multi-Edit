@@ -3410,7 +3410,7 @@ if((destination_window == initial_window) && (@current_row >= destination_row))
 
 if(@is_blank_line)
 {
-  //@put_cursor_somewhere_useful;
+  @put_cursor_somewhere_useful;
 }
 
 @restore_column;

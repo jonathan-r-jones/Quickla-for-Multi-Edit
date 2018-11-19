@@ -1772,6 +1772,11 @@ switch(action_to_do)
     break;
 }
 
+if(@is_blank_line)
+{
+  @put_cursor_somewhere_useful;
+}
+
 goto_col(initial_column);
 
 @footer;

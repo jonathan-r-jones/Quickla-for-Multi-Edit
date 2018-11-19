@@ -374,7 +374,7 @@ str fp = 'Return the proper rubric text for a particular file type.';
 switch(lower(get_extension(File_name)))
 {
   case 'bat':
-    return(":_");
+    return("::_");
     break;
   case 'asc':
   case 'jpg':
