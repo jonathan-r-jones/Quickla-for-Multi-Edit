@@ -3216,6 +3216,26 @@ str fp = 'Cut subbullet to buffer.';
 
 
 
+//; (has_children skw)
+
+int
+@has_subbullets(str &sm)
+{
+str fp = 'Has subbullets.';
+
+// Returns true if current bullet has subbullets. False otherwise.
+
+if(!@count_subbullets_int)
+{
+  sm = 'This bullet has no subbullets';
+  return(false);
+}
+
+return(true);
+}
+
+
+
 //;+ Move bullets (!movebullets)
 
 
@@ -3365,20 +3385,27 @@ str fp = 'Move bullet to lc alone.';
 @save_location;
 
 int initial_window = @current_window;
-int initial_row = @current_row;
 
 @save_column;
 
+int has_subbullets = @has_subbullets(fp);
+
 str return_string = @move_bullet_to_lc_wme(lc);
+
+int destination_row = @current_row;
 int destination_window = @current_window;
 
 @restore_location;
 
 fp += ' ' + return_string;
 
-if((destination_window == initial_window) && (@current_row >= initial_row))
+if((destination_window == initial_window) && (@current_row >= destination_row))
 {
   @find_next_bullet;
+  if(has_subbullets)
+  {
+    @find_next_bullet;
+  }  
 }
 
 if(@is_blank_line)
@@ -5997,26 +6024,6 @@ void
 @header;
 @copy_and_paste_oj;
 @footer;
-}
-
-
-
-//;
-
-int
-@has_subbullets(str &sm)
-{
-str fp = 'Has subbullets.';
-
-// Returns true if current bullet has subbullets. False otherwise.
-
-if(!@count_subbullets_int)
-{
-  sm = 'This bullet has no subbullets';
-  return(false);
-}
-
-return(true);
 }
 
 

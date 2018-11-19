@@ -1631,22 +1631,11 @@ str
 {
 str fp = "Move bullet to one way lc.";
 
-// lu: May-7-2018
-
-@cut_bullet;
-
-@bobs;
+// lu: Nov-19-2018
 
 str lc = @look_up_rubrics_1way_lc;
 
-lc = @transform_a_string_into_an_lc(lc);
-
-if(!@find_lc(lc))
-{
-  fp += ' LC NOT found!';
-}
-
-@paste_after;
+@move_bullet_to_lc_alone(lc);
 
 @say(fp + ' (' + @distill_lc(lc) + ')');
 return(fp + ' (' + @distill_lc(lc) + ')');
@@ -1661,11 +1650,7 @@ str
 {
 str fp = "Move bullet to destination lc.";
 
-// lu: Aug-19-2018
-
-@cut_bullet;
-
-@bobs;
+// lu: Nov-19-2018
 
 int source_lc_is_found;
 
@@ -1676,14 +1661,7 @@ if(source_lc_is_found)
   lc = 'dest' + lc;
 }
 
-lc = @transform_a_string_into_an_lc(lc);
-
-if(!@find_lc(lc))
-{
-  fp += ' LC NOT found!';
-}
-
-@paste_after;
+@move_bullet_to_lc_alone(lc);
 
 @say(fp + ' (' + @distill_lc(lc) + ')');
 return(fp + ' (' + @distill_lc(lc) + ')');
@@ -1735,13 +1713,15 @@ return(0);
 //;+ (skw the gun, bullet gun)
 
 void
-@gun(int return_home = parse_int('/1=', mparm_str))
+@gun()
 {
 // Evaluate and move a bullet, a.k.a. the gun.
 str fp = 'Shoot bullet.';
 str returned_description = '';
 
-// lu: Aug-22-2018
+// lu: Nov-19-2018
+
+@header;
 
 if(!@is_bullet_File)
 {
@@ -1755,63 +1735,48 @@ if(!@is_bullet_or_subbullet)
 
 int initial_column = @current_column;
 
-@bob;
-
-@save_location;
-
 int action_to_do = @determine_which_action_to_do;
 str destination = '';
 
 switch(action_to_do)
 {
   case 1:
+    // Works on Nov-19-2018.
     destination = 'Calender';
-    returned_description = @move_bullet_to_calendar(return_home);
+    returned_description = @move_bullet_to_calendar(true);
     break;
   case 2:
+    // Works on Nov-19-2018.
     destination = 'Specified LC';
-    returned_description = @move_bullet_to_specified_lc(return_home);
+    returned_description = @move_bullet_to_specified_lc(true);
     break;
   case 3:
+    // Works on Nov-19-2018.
     destination = '1 Way';
     returned_description = @move_bullet_to_1way_lc;
     break;
   case 4:
+    // Works on Nov-19-2018.
     destination = 'Destination LC';
     returned_description = @move_bullet_to_dest_lc;
     break;
   case 5:
+    // Works on Nov-19-2018.
     destination = 'CO';
     returned_description = @move_bullet_to_lc_alone('co');
     break;
   default:
+    // Works on Nov-19-2018.
     destination = 'JD';
     returned_description = @move_bullet_to_lc_alone('jd');
+    break;
 }
-
-if(return_home)
-{
-  @restore_location; 
-}
-
-@put_cursor_somewhere_useful;
 
 goto_col(initial_column);
 
-@say(fp + ' ' + destination);
-@say(fp + ' ' + returned_description);
-}
-
-
-
-//;;
-
-void
-@@gun(int return_home = parse_int('/1=', mparm_str))
-{
-@header;
-@gun(return_home);
 @footer;
+//@say(fp + ' ' + destination + '.'); // Debugging line.
+//@say(fp + ' ' + returned_description); // Debugging line.
 }
 
 
