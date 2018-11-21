@@ -1626,8 +1626,32 @@ return(distilled_lc);
 
 //;
 
+void
+@move_bullet_and_return_home(int return_home = parse_int('/1=', mparm_str), str lc = parse_str('/1=', mparm_str))
+{
+
+str fp = "Move bullet and return home.";
+
+// lu: Nov-20-2018
+
+if(return_home == 1)
+{
+  @move_bullet_to_lc_alone(lc);
+}
+else
+{
+  @move_bullet_to_lc_wme(lc);
+}
+
+@say(fp);
+}
+
+
+
+//;
+
 str
-@move_bullet_to_1way_lc()
+@move_bullet_to_1way_lc(int return_home = parse_int('/1=', mparm_str))
 {
 str fp = "Move bullet to one way lc.";
 
@@ -1635,7 +1659,7 @@ str fp = "Move bullet to one way lc.";
 
 str lc = @look_up_rubrics_1way_lc;
 
-@move_bullet_to_lc_alone(lc);
+@move_bullet_and_return_home(return_home, lc);
 
 @say(fp + ' (' + @distill_lc(lc) + ')');
 return(fp + ' (' + @distill_lc(lc) + ')');
@@ -1646,7 +1670,7 @@ return(fp + ' (' + @distill_lc(lc) + ')');
 //;
 
 str
-@move_bullet_to_dest_lc()
+@move_bullet_to_dest_lc(int return_home = parse_int('/1=', mparm_str))
 {
 str fp = "Move bullet to destination lc.";
 
@@ -1661,7 +1685,7 @@ if(source_lc_is_found)
   lc = 'dest' + lc;
 }
 
-@move_bullet_to_lc_alone(lc);
+@move_bullet_and_return_home(return_home, lc);
 
 @say(fp + ' (' + @distill_lc(lc) + ')');
 return(fp + ' (' + @distill_lc(lc) + ')');
@@ -1713,7 +1737,7 @@ return(0);
 //;+ (skw the gun, bullet gun)
 
 void
-@gun()
+@gun(int return_home = parse_int('/1=', mparm_str))
 {
 // Evaluate and move a bullet, a.k.a. the gun.
 str fp = 'Shoot bullet.';
@@ -1743,32 +1767,30 @@ switch(action_to_do)
   case 1:
     // Works on Nov-19-2018.
     destination = 'Calender';
-    returned_description = @move_bullet_to_calendar(true);
+    returned_description = @move_bullet_to_calendar(return_home);
     break;
   case 2:
     // Works on Nov-19-2018.
     destination = 'Specified LC';
-    returned_description = @move_bullet_to_specified_lc(true);
+    returned_description = @move_bullet_to_specified_lc(return_home);
     break;
   case 3:
     // Works on Nov-19-2018.
     destination = '1 Way';
-    returned_description = @move_bullet_to_1way_lc;
+    returned_description = @move_bullet_to_1way_lc(return_home);
     break;
   case 4:
     // Works on Nov-19-2018.
     destination = 'Destination LC';
-    returned_description = @move_bullet_to_dest_lc;
+    returned_description = @move_bullet_to_dest_lc(return_home);
     break;
   case 5:
     // Works on Nov-19-2018.
-    destination = 'CO';
-    returned_description = @move_bullet_to_lc_alone('co');
+    @move_bullet_and_return_home(return_home, 'co');
     break;
   default:
     // Works on Nov-19-2018.
-    destination = 'JD';
-    returned_description = @move_bullet_to_lc_alone('jd');
+    @move_bullet_and_return_home(return_home, 'jd');
     break;
 }
 

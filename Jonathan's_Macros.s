@@ -6674,7 +6674,7 @@ rs = '$';
 //;
 
 void
-@add_text_if_statement
+@add_text_if_statement()
 {
 str fp = "Add text if statement.";
 
@@ -6701,7 +6701,7 @@ left;
 //;
 
 void
-@add_text_else_statement
+@add_text_else_statement()
 {
 str fp = "Add text else statement.";
 
@@ -6720,6 +6720,25 @@ up;
 @eol;
 left;
 
+@say(fp);
+}
+
+
+
+//;
+
+void
+@add_text_if_else_statement
+{
+str fp = "Add text if and else statement.";
+
+// lu: Nov-20-2018
+
+@add_text_else_statement;
+@bol;
+cr;
+up;
+@add_text_if_statement;
 @say(fp);
 }
 
