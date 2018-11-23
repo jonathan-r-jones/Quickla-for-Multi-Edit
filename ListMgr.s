@@ -12742,9 +12742,9 @@ str first_parameter, second_parameter;
 
 @parse_arguments(arguments, ".", first_parameter, second_parameter);
 
-str lc = first_parameter; // location here below (default) versus remote
+str lc = first_parameter; // Default location is below here versus a remote lc.
 
-str wrapping_is_on = second_parameter; // wrapping (default "") versus no wrapping "n"
+str wrapping_is_on = second_parameter; // Wrapping is on by default ("") versus no wrapping "n".
 
 if(lc != '')
 {
@@ -12753,7 +12753,7 @@ if(lc != '')
 @add_bullet_below;
 
 // Enforce the default.
-if(wrapping_is_on != '')
+if(wrapping_is_on == '')
 {
   @paste_with_wikipedia_format;
 }
