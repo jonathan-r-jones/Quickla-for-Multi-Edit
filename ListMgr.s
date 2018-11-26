@@ -3405,7 +3405,7 @@ if((destination_window == initial_window) && (@current_row >= destination_row))
   if(has_subbullets)
   {
     @find_next_bullet;
-  }  
+  }
 }
 
 if(@is_blank_line)
