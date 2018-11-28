@@ -3401,33 +3401,6 @@ text(str(total_cash_amount_int));
 //;
 
 void
-@move_bullet_down_3_bullets
-{
-str fp = "Move bullet down 3 bullets.";
-@header;
-
-// fcd: Feb-11-2015
-
-@save_location;
-
-@cut_bullet;
-@find_next_bullet;
-@find_next_bullet;
-@find_next_bullet;
-@bol;
-@paste;
-
-@restore_location;
-
-@footer;
-@say(fp);
-}
-
-
-
-//;
-
-void
 @add_new_piton
 {
 str fp = "Add new piton.";
@@ -5065,7 +5038,7 @@ int is_found = 0;
 str url;
 
 url = @get_remote_oj_using_klc('rfcnet', is_found);
-//@surf(url, 1);
+@surf(url, 1);
 
 url = @get_remote_oj_using_klc('rfbbc', is_found);
 @surf(url, 1);
@@ -5086,13 +5059,13 @@ url = @get_remote_oj_using_klc('rfwash', is_found);
 @surf(url, 1);
 
 url = @get_remote_oj_using_klc('rfreas', is_found);
-//@surf(url, 1);
+@surf(url, 1);
 
 url = @get_remote_oj_using_klc('rfgotr', is_found);
-//@surf(url, 1);
+@surf(url, 1);
 
 url = @get_remote_oj_using_klc('rfght', is_found);
-//@surf(url, 1);
+@surf(url, 1);
 
 @footer;
 @say(fp);
@@ -6025,7 +5998,7 @@ fp = "Start new Jira ticket.";
 //text('TK');
 int ticket_number_counter = @increment_ticket_number_counter;
 //text(str(ticket_number_counter));
-text(' - Created on - ');
+text(' - Created on ');
 eol;
 @add_text_date;
 @add_text_lc_on_current_line('tk' + str(ticket_number_counter));

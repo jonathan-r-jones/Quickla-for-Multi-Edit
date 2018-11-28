@@ -1503,6 +1503,7 @@ if(@find_next_bsr == 'rubric')
   up;
   up;
 }
+
 @bol;
 left;
 @center_line;
@@ -2274,7 +2275,7 @@ int current_column = @current_column;
 
 if(!@is_structured_line)
 {
-  @bobbs;
+  @boca;
 }
 
 if(@first_character(get_line) == ';')
@@ -5693,7 +5694,9 @@ blah blah: black_dwarf
 */
 
 str rv = @get_selected_text;
-rv = @resolve_environment_variable(rv);
+
+// Commented this on Nov-28-2018.
+//rv = @resolve_environment_variable(rv);
 
 set_global_str('cmac_return_value', rv);
 
@@ -6428,13 +6431,15 @@ void
 {
 str fp = "Move subbulet up.";
 
-// fcd: Sep-18-2018
+// fcd: Nov-28-2018
 
 int initial_column = @current_column;
 
 @cut_subbullet;
 
-@find_previous_small_segment;
+up;
+
+@boca;
 
 @paste;
 
@@ -6588,6 +6593,7 @@ str fp = "Move rubric down.";
 void
 @move_bullet_down()
 {
+ 
 str fp = "Move bullet down.";
 
 // lu: Sep-26-2018
@@ -6604,6 +6610,30 @@ if(@current_line_type == '')
 @paste_after;
 
 @restore_column;
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@move_bullet_down_xnot(int number_of_times = parse_int('/1=', mparm_str))
+{
+str fp = "Move bullet down x number of times.";
+
+// lu: Nov-28-2018
+
+@save_location;
+
+while(number_of_times > 0)
+{
+  @move_bullet_down;
+  number_of_times--;  
+}
+
+@restore_location;
 
 @say(fp);
 }

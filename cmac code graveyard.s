@@ -1,6 +1,33 @@
 //;
 
 void
+@move_bullet_down_3_bullets
+{
+str fp = "Move bullet down 3 bullets.";
+@header;
+
+// fcd: Feb-11-2015
+
+@save_location;
+
+@cut_bullet;
+@find_next_bullet;
+@find_next_bullet;
+@find_next_bullet;
+@bol;
+@paste;
+
+@restore_location;
+
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
 @move_bullet_to_lc
 {
 str fp = "Move bullet to lc.";

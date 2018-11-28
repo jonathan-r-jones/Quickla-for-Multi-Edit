@@ -1630,7 +1630,7 @@ void
 @move_bullet_and_return_home(int return_home = parse_int('/1=', mparm_str), str lc = parse_str('/1=', mparm_str))
 {
 
-str fp = "Move bullet and return home.";
+str fp = "Move bullet to '" + lc + "' and return home.";
 
 // lu: Nov-20-2018
 
