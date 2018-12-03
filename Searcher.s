@@ -1748,26 +1748,76 @@ heiress
 
 //;
 
-void
-@check_smas_schedule_for_week
+str
+@get_month()
 {
-str fp = 'Check the SMAS schedule for the week.';
+str fp = "Get month.";
 
-str url = 'https://smithsonianassociates.org/ticketing/calendar/?Week=';
+// lu: Dec-3-2018
+
+int position_of_first_slash = xpos("/", date, 1);
+int position_of_second_slash = xpos("/", date, position_of_first_slash+1);
+
+str month = str_del(date, position_of_first_slash, 14);
+
+// Strip leading zeros from the month field.
+if(str_char(month, 1) == '0')
+{
+  // Delete the first character because it is a zero.
+  month = str_del(month, 1, 1);
+}
+
+@say(fp + ' Month (' + month + ')');
+return(month);
+}
+
+
+
+//;
+
+str
+@get_year()
+{
+str fp = "Get year.";
+
+// lu: Dec-3-2018
+
+int position_of_first_slash = xpos("/", date, 1);
+int position_of_second_slash = xpos("/", date, position_of_first_slash+1);
+
+str year = str_del(date, 1, position_of_second_slash);
+
+@say(fp + ' Year (' + year + ')');
+return(year);
+}
+
+
+
+//;
+
+void
+@check_smas_schedule
+{
+str fp = 'Check the SMAS schedule.';
+
+str url = 'https://smithsonianassociates.org/ticketing/calendar/';
 
 str sc;
 
-sc = @get_date_smas_format;
+// The old date format needs to be like this: 01/25/2016
 
-str pretty_sc = sc;
+// https://smithsonianassociates.org/ticketing/calendar/2018/12
 
-// The date format needs to be like this: 01/25/2016
+str month = @get_month;
+str year = @get_year;
 
-//sc = @commute_character(sc, " ", "-");
+sc = @get_year + '/' + @get_month;
 
 url += sc;
 
 @surf(url, 0);
+
+str pretty_sc = sc;
 
 @say(@trim_period(fp) + ' for "' + Pretty_sc + '".');
 
