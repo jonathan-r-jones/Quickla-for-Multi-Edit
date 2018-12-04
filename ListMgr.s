@@ -3382,6 +3382,7 @@ str
 @move_bullet_to_lc_alone(str lc = parse_str('/1=', mparm_str))
 {
 str fp = 'Move bullet to lc alone.';
+str fp2 = '';
 
 @save_location;
 
@@ -3389,7 +3390,7 @@ int initial_window = @current_window;
 
 @save_column;
 
-int has_subbullets = @has_subbullets(fp);
+int has_subbullets = @has_subbullets(fp2);
 
 str return_string = @move_bullet_to_lc_wme(lc);
 
@@ -3397,6 +3398,12 @@ int destination_row = @current_row;
 int destination_window = @current_window;
 
 @restore_location;
+
+if (@contains(return_string, @constant_function_aborted))
+{
+  @say(fp + ' ' + @constant_function_aborted);
+  return('');
+}
 
 fp += ' ' + return_string;
 
@@ -6593,7 +6600,7 @@ str fp = "Move rubric down.";
 void
 @move_bullet_down()
 {
- 
+
 str fp = "Move bullet down.";
 
 // lu: Sep-26-2018
@@ -6630,7 +6637,7 @@ str fp = "Move bullet down x number of times.";
 while(number_of_times > 0)
 {
   @move_bullet_down;
-  number_of_times--;  
+  number_of_times--;
 }
 
 @restore_location;

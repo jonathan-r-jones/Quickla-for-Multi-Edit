@@ -273,6 +273,17 @@ return(1);
 
 
 
+//;
+
+str
+@constant_function_aborted()
+{
+// fcd: Dec-2-2016
+return("Function aborted.");
+}
+
+
+
 //;+ Is Code
 
 
@@ -2344,7 +2355,7 @@ while(Countdown <= 155)
 
   if(key1 == 27) // Escape Key
   {
-    return("Function aborted.");
+    return(@constant_function_aborted);
     break;
   }
   else if(key1 == 112) // F1 key (You accidentally hit it again.)
@@ -4127,17 +4138,6 @@ if(@contains(argument_3, '.'))
 
 @say(fp);
 @say('a1: ' + argument_1 + ', a2: ' + argument_2 + ', a3: ' + argument_3 + ', a4: ' + argument_4);
-}
-
-
-
-//;
-
-str
-@constant_function_aborted()
-{
-// fcd: Dec-2-2016
-return("Function aborted.");
 }
 
 
