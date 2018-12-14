@@ -11965,9 +11965,9 @@ if(!@is_structured_line)
 void
 @move_rubric_to_lastp_wme()
 {
-str fp = "Move rubric to the last position with me.";
+str fp = "Move rubric to the last position with me qq.";
 
-// fcd: Oct-21-2014
+// lu: Dec-13-2018
 
 @bor;
 @cut_rubric;
