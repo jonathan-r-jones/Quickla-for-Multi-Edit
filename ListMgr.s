@@ -11965,7 +11965,7 @@ if(!@is_structured_line)
 void
 @move_rubric_to_lastp_wme()
 {
-str fp = "Move rubric to the last position with me qq.";
+str fp = "Move rubric to the last position with me.";
 
 // lu: Dec-13-2018
 
