@@ -1,6 +1,169 @@
 //;
 
 void
+@delete_file_remotely
+{
+str fp = 'Delete file remotely.';
+@header;
+
+@save_location;
+
+if(!@find_lc_ui(fp))
+{
+  @footer;
+  return();
+}
+
+@delete_file;
+
+@restore_location;
+
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
+@open_t_bat_with_new_function
+{
+str fp = 'Open t.bat file with a new function added.';
+@header;
+@open_file(get_environment('savannah') + '\belfry\t.bat');
+@add_batch_file_stub_generic;
+@footer;
+}
+
+
+
+//;
+
+void
+@go_to_a_specific_path_in_a_cpw(str initial_folder = parse_str('/1=', mparm_str))
+{
+str fp = 'Go to a specific path in a command prompt window.';
+
+str Command_String = 'c:\windows\system32\cmd.exe /k ';
+str Set_My_Path = "%savannah%\\belfry\\set_my_path_2.bat";
+Set_My_Path = char(34) + @resolve_environment_variable(Set_My_Path) + char(34);
+Command_String += Set_My_Path;
+
+ExecProg(
+  Command_String, 
+  initial_folder, 
+  '', 
+  '', 
+  _EP_FLAGS_EXEWIN | 
+  _EP_Flags_NoBypass);
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@delete_file()
+{
+
+str fp = 'Open folder under cursor in a command prompt.';
+str Command_String = 'c:\windows\system32\cmd.exe /k ';
+str Set_My_Path = "%savannah%\\belfry\\set_my_path_2.bat";
+Set_My_Path = char(34) + @resolve_environment_variable(Set_My_Path) + char(34);
+
+Command_String += Set_My_Path; //qcq
+
+str Clif_Block = @concatenate_multiple_lines;
+Clif_Block = @trim_leading_colons_et_al(Clif_Block);
+
+If(!xpos('http', Clif_Block, 1))
+{
+  Clif_Block = @resolve_environment_variable(Clif_Block);
+}
+
+if(!xpos(char(92), Clif_Block, 1))
+{
+  @say("No folder seems to be present, so let's go look for one.");
+  @save_location;
+  if(@find_lc_ui(fp))
+  {
+    Clif_Block = @concatenate_multiple_lines;
+    Clif_Block = @trim_leading_colons_et_al(Clif_Block);
+    If(!xpos('http', Clif_Block, 1))
+    {
+      Clif_Block = @resolve_environment_variable(Clif_Block);
+    }
+    @restore_location;
+  }
+  else
+  {
+    return();
+  }
+}
+
+// Character 92 is the backslash.
+fp = 'Open a folder in the file system.';
+
+// Now we need to strip out the filename, if it is there.
+if(@fourth_to_last_character(Clif_Block) == '.')
+{
+  int Column_Number = length(Clif_Block);
+
+  while(Column_Number)
+  {
+    if(str_char(Clif_Block, Column_Number) == '\')
+    {
+      Clif_Block = str_del(Clif_Block, Column_Number, length(Clif_Block));
+      break;
+    }
+    Column_Number--;
+  }
+}
+
+int Position_of_Last_Colon = 0;
+
+if(xpos(char(92) + char(92), Clif_Block, 1)) // Network Locations ************************
+{
+  Position_of_Last_Colon = @position_of_last_occurrence(Clif_Block, ':') + 1;
+  fp += ' Network folder.';
+  Clif_Block = str_del(Clif_Block, 1, Position_of_Last_Colon);
+}
+else // Local File Locations, e.g. C and E drives. ****************************************
+{
+  Position_of_Last_Colon = @position_of_last_occurrence(Clif_Block, ':');
+  Clif_Block = str_del(Clif_Block, 1, Position_of_Last_Colon - 2);
+  fp += ' Local folder.';
+}
+
+Change_Dir(Clif_Block);
+
+if (Error_Level != 0)
+{
+  fp += ' NOT found (Site 5).';
+  Error_Level = 0;
+  @say(fp + ' - ' + Clif_Block);
+  @footer;
+  return();
+}
+
+fp += ' ' + Clif_Block;
+
+ExecProg(Command_String,
+  Clif_Block,
+  Get_Environment("TEMP") + '\\multi-edit output.txt',
+  Get_Environment("TEMP") + '\\multi-edit error.txt',
+  _EP_FLAGS_DONTWAIT | _EP_FLAGS_EXEWIN);
+
+}
+
+
+
+//;
+
+void
 @move_bullet_down_3_bullets
 {
 str fp = "Move bullet down 3 bullets.";

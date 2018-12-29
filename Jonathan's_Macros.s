@@ -907,7 +907,7 @@ else
 void
 @jump
 {
-str fp = 'How high?';
+str fp = 'How high? Dec-27-2018';
 @say(fp);
 }
 
@@ -1034,17 +1034,17 @@ if(!((@is_s_file) or (@is_bullet_file) or (@is_batch_file)))
 
 if(@is_s_file)
 {
-  rm("@open_file_with_writability /FN=" + Get_Environment('savannah') +
+  rm("@open_file_with_writability /fn=" + get_environment('savannah') +
     "\\cmac\\Quickla-for-Multi-Edit\\\cmac code graveyard.s");
 }
 else if(@is_bullet_file)
 {
-  rm("@open_file_with_writability /FN=" + Get_Environment('savannah') +
+  rm("@open_file_with_writability /fn=" + get_environment('savannah') +
     "\\miscellany\\historical rubrics.asc");
 }
 else if(@is_batch_file)
 {
-  rm("@open_file_with_writability /FN=" + Get_Environment('dropbox') +
+  rm("@open_file_with_writability /fn=" + get_environment('dropbox') +
     "\\IT\\Composable-Batch-Files\\batch file code archive.txt");
 }
 
@@ -5257,9 +5257,9 @@ if(!@is_batch_file)
   return();
 }
 
-@move_dog_park_to_eof;
-
 @save_location;
+
+@move_dog_park_to_eof;
 
 str sc = 'rftnew';
 //int is_found = @seek_in_all_files_2_arguments(sc, fp);
@@ -5269,7 +5269,8 @@ str sc = 'rftnew';
 
 @restore_location;
 
-@eof;
+@find_next_rubric;
+
 @bol;
 cr;
 cr;
@@ -5340,9 +5341,11 @@ if(!@is_batch_file)
   return();
 }
 
-@move_dog_park_to_eof;
-
 @save_location;
+
+int original_line_number = @current_line_number;
+
+@move_dog_park_to_eof;
 
 str sc = '!' + 'rftnew';
 int is_found = @seek_in_all_files_2_arguments(sc, fp);
@@ -5351,7 +5354,10 @@ int is_found = @seek_in_all_files_2_arguments(sc, fp);
 
 @restore_location;
 
-@eof;
+goto_line(original_line_number);
+
+@find_next_rubric;
+
 @bol;
 cr;
 cr;
@@ -5433,7 +5439,7 @@ void
 //;;
 
 void
-@add_batch_file_stub_router
+@add_batch_file_stub_router(str starting_position = parse_str('/1=', mparm_str))
 {
 str fp = "Add batch file stub router.";
 
@@ -5446,6 +5452,11 @@ if(!@is_batch_file)
 }
 
 @header;
+
+if(starting_position == 'e')
+{
+  @eof;
+}
 
 if(@filename == 'n.bat')
 {
@@ -6383,20 +6394,6 @@ sc = '$^';
 rs = ';';
 
 @replace_all_occurrs_inf_one_tof(sc, rs);
-@footer;
-}
-
-
-
-//;
-
-void
-@open_t_bat_with_new_function
-{
-str fp = 'Open t.bat file with a new function added.';
-@header;
-@open_file(get_environment('savannah') + '\belfry\t.bat');
-@add_batch_file_stub_generic;
 @footer;
 }
 

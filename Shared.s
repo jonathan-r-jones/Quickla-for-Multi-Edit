@@ -2872,7 +2872,7 @@ str_time = str_del(str_time, xpos(":", str_time, 1), 1);
 str_date = str_del(str_date, xpos("/", str_date, 1), 1);
 str_date = str_del(str_date, xpos("/", str_date, 1), 1);
 
-str filename[128] = 'c:\Timestamped Files' + '\JRJ_' + str_Date + '_' + str_Time + '.txt';
+str filename[128] = get_environment('temp') + '\JRJ_' + str_Date + '_' + str_Time + '.txt';
 
 int handle;
 s_create_file(filename, handle);
@@ -3554,7 +3554,7 @@ if(!is_windows_explorer)
 }
 
 ExecProg(application + char(32) + parameter,
-  Get_Environment("userprofile") + '\my documents\!savannah\belfry',
+  Get_Environment("temp"),
   Get_Environment("TEMP") + '\\multi-edit output.txt',
   Get_Environment("TEMP") + '\\multi-edit error.txt',
   _ep_flags_dontwait | _ep_flags_exewin);
