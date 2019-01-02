@@ -19,6 +19,8 @@ Metadata: Track Size (!tsli, !tslm)
     Date       Lines     Bytes     Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+: Jan-1-2019  12,840    168,765      473
+
 : Jul-1-2018  12,733    168,025      465
 
 :May-17-2018  12,720    167,860      464
@@ -3704,7 +3706,7 @@ str fp = 'Find first bullet in rubric.';
 //;
 
 void
-@find_duplicate_bullets_in_sr
+@find_duplicate_bullets_in_a_sr
 {
 str fp = 'Find duplicate bullets in a sorted rubric.';
 
@@ -9319,6 +9321,28 @@ eof;
 
 //;
 
+str
+@modify_lc_based_on_computername(str lc = parse_str('/1=', mparm_str))
+{
+str fp = "Modify lc based on what computer you are working on.";
+
+// lu: Dec-30-2018
+
+switch(@first_4_characters(get_environment("computername")))
+{
+  case "LIPT":
+    lc = "gfe" + lc;
+    break;
+}
+
+@say(fp);
+return(lc);
+}
+
+
+
+//;
+
 void
 @go_to_first_bullet_at_lc(str lc = parse_str('/1=', mparm_str))
 {
@@ -9334,6 +9358,8 @@ go to jd, go_to_jd, junk_drawer
 str fp = 'Go to the first bullet at lc "' + lc + '".';
 
 @header;
+
+lc = @modify_lc_based_on_computername(lc);
 
 if(!@find_lc_known(fp, lc))
 {
@@ -9785,6 +9811,8 @@ void
 str fp = 'Add bullet at launch code.';
 
 @header;
+
+lc = @modify_lc_based_on_computername(lc);
 
 if(@find_lc(lc))
 {
@@ -12785,8 +12813,10 @@ str wrapping_is_on = second_parameter; // Wrapping is on by default ("") versus 
 
 if(lc != '')
 {
+  lc = @modify_lc_based_on_computername(lc);
   @find_lc(lc);
 }
+
 @add_bullet_below;
 
 // Enforce the default.

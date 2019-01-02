@@ -26,6 +26,8 @@ Metadata: Track Size (!tscf)
     Date       Lines     Bytes    Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+: Jan-1-2019   4,442     80,622      113
+
 : Jul-1-2018   4,533     82,542      114
 
 :May-17-2018   4,526     82,386      114
@@ -1608,17 +1610,21 @@ str returned_description = '';
 
 @header;
 
+// Guard Clause 1
 if(!@is_bullet_File)
 {
   return();
 }
 
+// Guard Clause 2
 if(!@is_bullet_or_subbullet)
 {
   return();
 }
 
 int initial_column = @current_column;
+
+@bob;
 
 int action_to_do = @determine_which_action_to_do;
 str destination = '';

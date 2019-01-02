@@ -28,6 +28,8 @@ Metadata: Track Size (!tsfi)
      Date      Lines     Bytes    Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+: Jan-1-2019   3,820     61,964      111
+
 : Jul-1-2018   3,789     61,619      109
 
 :May-17-2018   3,785     61,457      109
@@ -2510,7 +2512,7 @@ while(!at_eof)
 //;;
 
 void
-@find_duplicate_lines
+@find_duplicate_line
 {
 str fp = 'Find duplicate line.';
 @header;

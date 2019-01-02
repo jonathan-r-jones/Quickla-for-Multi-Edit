@@ -16,6 +16,8 @@ Metadata: Track Size (!tssh)
     Date       Lines    Bytes     Macros  Notes
  -----------  ------  ---------  -------  ---------------------------------------------------
 
+: Jan-1-2019   4,301     72,254      194
+
 : Jul-1-2018   4,320     71,897      196
 
 :May-17-2018   4,286     71,353      194
@@ -1668,7 +1670,7 @@ str Year = str_del(Date, 1, Position_of_Second_Slash);
 // program that sets an environment variable to the date format that we could then read
 // with the CMAC Get_Environment command.
 
-switch(Get_Environment("ComputerName"))
+switch(get_environment("computername"))
 {
   case "JONATHAN":
   case "JONATHANS-HP":
@@ -2296,11 +2298,12 @@ while(Countdown <= 155)
     sc = '';
     Countdown = 0;
   }
-  else if((key1 == 86) && (key2 == 9)) // Alt+V
+  else if((key2 == 5) && (key1 == 86)) // ctrl+v
   {
-    sc += Global_Str('SEARCH_STR');
+    //sc += 'test Jan-1-2019';
+    sc += global_str('search_str');
   }
-  else if((key1 == 86) && (key2 == 5)) // Ctrl+V, the paste command
+  else if((key2 == 9) && (key1 == 86)) // alt+v, alternative paste command
   {
     // This is a hack.
     cr;
@@ -2417,11 +2420,11 @@ while(Countdown <= 155)
     rv = '';
     Countdown = 0;
   }
-  else if((key1 == 86) && (key2 == 9)) // Alt+V
+  else if((key2 == 5) && (key1 == 86)) // ctrl+v
   {
-    rv += Global_Str('SEARCH_STR');
+    rv += global_str('search_str');
   }
-  else if((key1 == 86) && (key2 == 5)) // Ctrl+V, the paste command
+  else if((key2 == 9) && (key1 == 86)) // alt+v, alternative paste command
   {
     // This is a hack.
     cr;
