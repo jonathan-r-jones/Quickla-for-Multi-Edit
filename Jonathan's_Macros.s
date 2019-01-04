@@ -2070,10 +2070,16 @@ while(cur_window <= (window_count / 2))
 int
 @constant_open_windows()
 {
-// lu: Sep-9-2018
 
-switch(@lower(Get_Environment("ComputerName")))
+str fp = 'The number of windows to keep open, by default.';
+
+// lu: Jan-3-2019
+
+switch(@first_3_characters(@lower(get_environment("computername"))))
 {
+  case "lip":
+    return(2);
+    break;
   case "xps":
     return(12);
     break;
@@ -6072,7 +6078,7 @@ str fp = "Synchronize my Savannah files in the background.";
 
 str command_string = 'c:\windows\system32\cmd.exe /k ';
 
-str parameter = get_environment("savannah") + '\belfry\show_set_3.bat';
+str parameter = get_environment("composable_batch_files") + '\show_set_3.bat';
 
 command_string += parameter;
 
@@ -6094,9 +6100,7 @@ execprog(
 void
 @open_pretty_sett_file_l1
 {
-@header;
 @open_pretty_sett_file;
-
 @open_file('c:\a\j');
 @tof;
 @replace_semicolons_with_crs;
@@ -6105,7 +6109,6 @@ void
 @bol;
 cr;
 @tof;
-@footer;
 }
 
 
