@@ -5401,8 +5401,20 @@ down;
 down;
 down;
 down;
+
+down;
+down;
+down;
+down;
+down;
+down;
+down;
+down;
+down;
+
 @bol;
 text('rem       q' + 'q-1');
+
 up;
 up;
 up;
@@ -5412,6 +5424,17 @@ up;
 up;
 up;
 up;
+up;
+
+up;
+up;
+up;
+up;
+up;
+up;
+up;
+up;
+
 @eol;
 text(' ');
 
@@ -5466,14 +5489,15 @@ if(starting_position == 'e')
   @eof;
 }
 
-if(@filename == 'n.bat')
-{
-  @add_batch_file_stub_for_n_bat;
-}
-else
-{
-  @add_batch_file_stub_generic;
-}
+@add_batch_file_stub_for_n_bat;
+
+//if(@filename == 'n.bat')
+//{
+//}
+//else
+//{
+//  @add_batch_file_stub_generic;
+//}
 
 @footer;
 }
