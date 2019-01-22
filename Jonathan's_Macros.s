@@ -909,7 +909,7 @@ else
 void
 @jump
 {
-str fp = 'How high? Dec-27-2018';
+str fp = 'How high? Jan-17-2019 12:21';
 @say(fp);
 }
 
@@ -5390,6 +5390,7 @@ up;
 @delete_block;
 
 @seek('lu');
+
 @eol;
 text(' ');
 @add_text_date;
@@ -5489,15 +5490,15 @@ if(starting_position == 'e')
   @eof;
 }
 
-@add_batch_file_stub_for_n_bat;
 
-//if(@filename == 'n.bat')
-//{
-//}
-//else
-//{
-//  @add_batch_file_stub_generic;
-//}
+if((@filename == 'n.bat') or (@filename == 'ni.bat'))
+{
+  @add_batch_file_stub_for_n_bat;
+}
+else
+{
+  @add_batch_file_stub_generic;
+}
 
 @footer;
 }
@@ -7334,6 +7335,53 @@ str fp = "Move bullet to same lc as last time.";
 
 @footer;
 @say(fp + ' (' + @distill_lc(global_str('lc')) + ')');
+}
+
+
+
+//;
+
+void
+@add_echo_line
+{
+str fp = "Add echo blank line in batch files.";
+
+// lu: Jan-9-2019
+
+str rs;
+str sc;
+
+@header;
+sc = 'echo \%fp';
+
+@eol;
+
+@seek(sc);
+rs = 'echo\.$echo \%fp';
+@replace_all_occurrs_inf_one_tof(sc, rs);
+return();
+@replace_next_occurrence_only(sc, rs);
+int is_found = @seek_in_all_files_2_arguments(sc, fp);
+
+@footer;
+@say(found_str);
+@say(fp);
+}
+
+
+
+//;
+
+void
+@convert_slashes_to_backslashes
+{
+str fp = "Convert slashes to backslashes.";
+
+// lu: Jan-17-2019 12:21 PM
+
+put_line(@replace(get_line, '/', '\'));
+
+@say(fp);
 }
 
 

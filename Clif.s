@@ -1592,6 +1592,11 @@ if(@filename == 'wk.asc')
   return(5);
 }
 
+if(@filename == 'gfe.asc')
+{
+  return(6);
+}
+
 return(0);
 }
 
@@ -1627,6 +1632,7 @@ int initial_column = @current_column;
 @bob;
 
 int action_to_do = @determine_which_action_to_do;
+
 str destination = '';
 
 switch(action_to_do)
@@ -1654,6 +1660,9 @@ switch(action_to_do)
   case 5:
     // Works on Nov-19-2018.
     @move_bullet_and_return_home(return_home, 'co');
+    break;
+  case 6:
+    @move_bullet_and_return_home(return_home, 'destgfe');
     break;
   default:
     // Works on Nov-19-2018.
@@ -2856,6 +2865,28 @@ left;
 
 //;;
 
+str
+@get_core_url()
+{
+str fp = "Get core url.";
+
+// lu: Jan-16-2019
+
+return_str = 'jira.rollthedice.donuths.government';
+
+return_str = @replace(return_str, 'rollthedice', 'ice');
+return_str = @replace(return_str, 'government', 'gov');
+return_str = @replace(return_str, 'donut', 'd');
+
+return(return_str);
+
+@say(fp);
+}
+
+
+
+//;;
+
 int
 @run_clif_under_cursor(str &operation_Outcome)
 {
@@ -2977,12 +3008,12 @@ return(1);
 //;;
 
 void
-@search_jira(str sc = parse_str('/1=', mparm_str), int is_print_mode = parse_int('/2=', mparm_str)) 
+@search_jira(str sc = parse_str('/1=', mparm_str), int is_print_mode = parse_int('/2=', mparm_str))
 {
 
 str fp = 'Search Jira.';
 
-str url = "https://mercuryproject.atlassian.net/browse/";
+str url = "https://" + @get_core_url + "/browse/";
 
 str reserved_word_definition = '';
 
@@ -2999,24 +3030,25 @@ if(sc == '')
 
 str Pretty_sc = sc;
 
-if(@contains(sc, 'MERDEV-'))
-{
-  URL += sc;
-}
-else if(@contains(sc, 'DATA-'))
-{
-  URL += sc;
-}
-else if(@contains(sc, 'TNG-'))
-{
-  URL += sc;
-}
-else
-{
-  Pretty_sc = "All Tickets Sorted By Newest First";
-  @set_clipboard('MERDEV-12');
-  URL = "https://mercuryproject.atlassian.net/projects/MERDEV/issues/MERDEV-36?filter=allopenissues";
-}
+URL += sc;
+
+//if(@contains(sc, 'MERDEV-'))
+//{
+//}
+//else if(@contains(sc, 'DATA-'))
+//{
+//  URL += sc;
+//}
+//else if(@contains(sc, 'TNG-'))
+//{
+//  URL += sc;
+//}
+//else
+//{
+//  Pretty_sc = "All Tickets Sorted By Newest First";
+//  @set_clipboard('MERDEV-12');
+//  URL = "https://mercuryproject.atlassian.net/projects/MERDEV/issues/MERDEV-36?filter=allopenissues";
+//}
 
 sc = @commute_character(sc, ' ', '+');
 
@@ -3174,7 +3206,7 @@ if(@current_line_contains_regex(@comma_lc))
 }
 
 str sc = @get_subject_or_selected_text;
-if(@contains(sc, 'MERDEV-'))
+if(@contains(sc, 'cart-'))
 {
   @search_jira('', 0);
   return();

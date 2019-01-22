@@ -495,7 +495,7 @@ return(0);
 //;;
 
 str
-@replace(str original_String, str old_Characters, str new_Characters)
+@replace(str original_string, str old_characters, str new_characters)
 {
 str fp = 'Pass in a string and get back a new one with ALL occurrences of old characers 
   replaced with new ones.';
@@ -3732,7 +3732,7 @@ str Command_Line = '';
 */
 
 // Assign the default browser here. (!sebr, !bro, !brows, !debr, !defa)
-int default_browser = 2;
+int default_browser = 1;
 
 if(browser_number == 0)
 {
