@@ -2080,6 +2080,7 @@ switch(@first_3_characters(@lower(get_environment("computername"))))
   case "lip":
     return(2);
     break;
+  case "asu":
   case "xps":
     return(12);
     break;
