@@ -159,6 +159,7 @@ str fp = 'Verify that the user is in a file type that supports content areas.';
 
 switch(@filename_extension)
 {
+  case '':
   case 'asc':
   case 'bat':
   case 'htm':
@@ -492,6 +493,37 @@ return(0);
 
 
 
+//;; On Aug-23-2012 this worked better than @replace.
+
+str
+@commute_character(str original_string, str old_character, str new_character)
+{
+str fp = 'You pass in the string, the character portion you wish to discard and
+the new character you wish to replace it with. Then, the fixed-up string is returned to you.';
+
+/* skw old_character, old_string, swap, in_string, replace_in_string, replace_string, 
+replace_character */
+
+int Countdown = length(original_String);
+str Current_Character;
+str Fixed_Up_String;
+
+while(Countdown)
+{
+  Current_Character = str_char(original_String, Countdown);
+  if(str_char(original_String, Countdown) == old_Character)
+  {
+    Current_Character = new_Character;
+  }
+  Fixed_Up_String = Current_Character + Fixed_Up_String;
+  Countdown--;
+}
+
+return(remove_space(Fixed_Up_String));
+}
+
+
+
 //;;
 
 str
@@ -535,37 +567,6 @@ rv = str_del(rv, position_of_old_characters, length_of_old_characters);
 rv = str_ins(new_characters, rv, position_of_old_characters);
 
 return(rv);
-}
-
-
-
-//;; On Aug-23-2012 this worked better than @replace.
-
-str
-@commute_character(str original_string, str old_character, str new_character)
-{
-str fp = 'You pass in the string, the character portion you wish to discard and
-the new character you wish to replace it with. Then, the fixed-up string is returned to you.';
-
-/* skw old_character, old_string, swap, in_string, replace_in_string, replace_string, 
-replace_character */
-
-int Countdown = length(original_String);
-str Current_Character;
-str Fixed_Up_String;
-
-while(Countdown)
-{
-  Current_Character = str_char(original_String, Countdown);
-  if(str_char(original_String, Countdown) == old_Character)
-  {
-    Current_Character = new_Character;
-  }
-  Fixed_Up_String = Current_Character + Fixed_Up_String;
-  Countdown--;
-}
-
-return(remove_space(Fixed_Up_String));
 }
 
 
@@ -4286,6 +4287,8 @@ void
 @delete_all()
 {
 str fp = "Delete all file content.";
+
+// lu: Jan-31-2019
 
 if(!@is_text_file)
 {

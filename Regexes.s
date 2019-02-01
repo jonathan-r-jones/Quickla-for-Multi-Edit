@@ -134,6 +134,7 @@ switch(@filename_extension)
   case 'ps1':
     return("^;");
     break;
+  case '':
   case 's':
   case 'sh':
     return("^//;");
@@ -182,6 +183,7 @@ switch(lower(get_extension(File_name)))
   case 'ps1':
     return(@big_segment);
     break;
+  case '':
   case 's':
   case 'sh':
     return('^/' + '/;([^;]||$)');
@@ -469,6 +471,7 @@ switch(lower(get_extension(File_name)))
   case 'asc':
     return("^;;");
     break;
+  case '':
   case 's':
   case 'sh':
     return("^//;;");

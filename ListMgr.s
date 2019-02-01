@@ -130,7 +130,7 @@ else // No more rubrics.
   rv = 0;
 }
 
-switch(lower(Get_Extension(File_Name)))
+switch(lower(get_extension(file_name)))
 {
   case 'config':
     break;

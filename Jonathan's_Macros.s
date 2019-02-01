@@ -909,7 +909,7 @@ else
 void
 @jump
 {
-str fp = 'How high? Jan-17-2019 12:21';
+str fp = 'How high? Jan-31-2019 2:15';
 @say(fp);
 }
 
@@ -2666,7 +2666,7 @@ str fp = "Increment ticket number counter.";
 
 int result;
 
-str filename = '%savannah%\cmac\quickla-for-multi-edit\ticket_number_counter.txt';
+str filename = '%composable_batch_files%\ticket_number_counter.txt';
 
 filename = @resolve_environment_variable(filename);
 @open_file(filename);
@@ -7381,6 +7381,22 @@ str fp = "Convert slashes to backslashes.";
 // lu: Jan-17-2019 12:21 PM
 
 put_line(@replace(get_line, '/', '\'));
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@convert_line_to_double_percents
+{
+str fp = "Convert line to double percents.";
+
+// lu: Jan-28-2019
+
+put_line(@commute_character(get_line, '%', '%%'));
 
 @say(fp);
 }

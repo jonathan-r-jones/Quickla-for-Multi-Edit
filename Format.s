@@ -1498,6 +1498,7 @@ switch(lower(Get_Extension(File_name)))
   case 'xslt':
     rv = '<!-- ';
     break;
+  case '':
   case 'cs':
   case 'js':
   case 's':
