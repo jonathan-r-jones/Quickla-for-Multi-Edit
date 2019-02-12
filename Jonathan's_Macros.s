@@ -5409,10 +5409,6 @@ down;
 down;
 down;
 down;
-down;
-down;
-down;
-down;
 
 @bol;
 text('rem       q' + 'q-1');
@@ -6906,7 +6902,7 @@ str fp = "Open ph and copy it's contents to nptl.";
 
 @header;
 
-str filename[128] = Get_Environment('dropbox') + '\!savannah\reach out\p.txt';
+str filename[128] = Get_Environment('dropbox') + '\!savannah\reach out\myfile.txt';
 
 @open_file(filename);
 
@@ -7398,6 +7394,35 @@ str fp = "Convert line to double percents.";
 
 put_line(@commute_character(get_line, '%', '%%'));
 
+@say(fp);
+}
+
+
+
+//;
+
+void
+@add_a_new_label_at_passthrough
+{
+str fp = 'Add a new label at pass-through.';
+
+// lu: Feb-1-2019
+
+str rs;
+str sc;
+
+@header;
+sc = ':pass-through$';
+
+int is_found = @seek_in_all_files_2_arguments(sc, fp);
+@bol;
+cr;
+cr;
+up;
+up;
+text(':');
+
+@footer;
 @say(fp);
 }
 

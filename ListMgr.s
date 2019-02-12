@@ -5119,6 +5119,10 @@ if(@current_character == ' ')
 str replacement_description, rs;
 @replace_string_in_file_int(@space_eol_blank_line(replacement_description, rs), rs);
 
+rs = "";
+@replace_string_in_file_int("Dictionary result for", rs);
+
+// Select all.
 rm('Block^SelectAll');
 @copy;
 
