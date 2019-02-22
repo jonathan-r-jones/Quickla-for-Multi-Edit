@@ -909,7 +909,7 @@ else
 void
 @jump
 {
-str fp = 'How high? Jan-31-2019 2:15';
+str fp = 'How high? Feb-19-2019 8:09 PM';
 @say(fp);
 }
 
@@ -2080,12 +2080,8 @@ switch(@first_3_characters(@lower(get_environment("computername"))))
   case "lip":
     return(2);
     break;
-  case "asu":
-  case "xps":
-    return(12);
-    break;
   default:
-    return(13);
+    return(12);
 }
 }
 
@@ -5424,10 +5420,6 @@ up;
 up;
 up;
 
-up;
-up;
-up;
-up;
 up;
 up;
 up;

@@ -1340,7 +1340,7 @@ mark_pos;
 up;
 eol;
 
-sc = @equate_spaces_and_dashes_wcl(sc);
+//sc = @equate_spaces_and_dashes_wcl(sc);
 sc = make_literal_x(sc);
 
 set_global_str('search_str', sc);
