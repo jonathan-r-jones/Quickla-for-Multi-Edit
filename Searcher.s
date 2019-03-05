@@ -2313,4 +2313,32 @@ Brazil World Cup
 
 
 
+//;
+
+void
+@search_filext
+{
+str fp = "Search FilExt.";
+
+str url = 'https://filext.com/file-extension/';
+//qq-1
+
+str sc = @get_subject_or_selected_text;
+
+str Pretty_sc = sc;
+
+url += sc;
+
+sc = @commute_character(sc, ' ', '+');
+
+@surf(url, 0);
+
+str status_Message = @trim_period(fp) + ' for "' + Pretty_sc + '".';
+
+@say(status_Message);
+
+}
+
+
+
 //; (!rfsp, !efse)
