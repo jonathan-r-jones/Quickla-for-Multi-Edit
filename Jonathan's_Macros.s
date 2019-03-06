@@ -2150,14 +2150,14 @@ void
 {
 str fp = 'Close last window.';
 
-@save_location;
+//qq-1
 @switch_to_last_window;
 if(!@file_is_read_only(fp))
 {
   save_file;
 }
 delete_window;
-@restore_location;
+@switch_to_first_window;
 
 @say(fp);
 }
