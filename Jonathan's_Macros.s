@@ -2150,14 +2150,8 @@ void
 {
 str fp = 'Close last window.';
 
-//qq-1
 @switch_to_last_window;
-if(!@file_is_read_only(fp))
-{
-  save_file;
-}
-delete_window;
-@switch_to_first_window;
+@close_and_save_file_wo_prompt;
 
 @say(fp);
 }

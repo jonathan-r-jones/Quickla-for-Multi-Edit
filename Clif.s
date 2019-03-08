@@ -1442,7 +1442,7 @@ mark_pos;
 
 @bobs;
 
-if(find_text('sour', 3, _regexp))
+if(find_text('!sour', 3, _regexp))
 {
   goto_mark;
   return(1);
@@ -1450,6 +1450,25 @@ if(find_text('sour', 3, _regexp))
 
 goto_mark;
 return(0);
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@rtm
+{
+str fp = "x";
+
+// lu: Mar-8-2019
+
+if(@rubric_contains_source_string)
+{
+  fp = 'yea contains.';
+}
 
 @say(fp);
 }

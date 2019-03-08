@@ -2321,7 +2321,6 @@ void
 str fp = "Search FilExt.";
 
 str url = 'https://filext.com/file-extension/';
-//qq-1
 
 str sc = @get_subject_or_selected_text;
 
