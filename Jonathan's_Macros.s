@@ -2178,7 +2178,6 @@ void
 str fp = "Close excess windows.";
 
 @header_bloff;
-@save_location;
 @switch_to_first_window;
 int open_window_counter = @count_open_windows;
 while(open_window_counter > @constant_open_windows)
@@ -2187,7 +2186,8 @@ while(open_window_counter > @constant_open_windows)
   @switch_to_first_window;
   open_window_counter--;
 }
-@restore_location;
+
+@find_bookmark_primary;
 @footer;
 
 @say(fp);
@@ -7410,6 +7410,20 @@ text(':');
 
 @footer;
 @say(fp);
+}
+
+
+
+//;
+
+void
+@debug_say_current_area_type
+{
+str fp = "Debug say current_area_type.";
+
+// lu: Mar-11-2019
+
+@say(@current_area_type);
 }
 
 

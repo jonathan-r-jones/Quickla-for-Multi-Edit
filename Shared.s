@@ -187,6 +187,7 @@ str fp = 'Is rubric file.';
 
 switch(@filename_extension)
 {
+  case "": // Jenkinsfile
   case "asc":
   case "bat":
   case "ps1":
@@ -299,6 +300,7 @@ int
 str fp = 'Verify that the user is in a file with a code file.';
 switch(lower(get_extension(File_name)))
 {
+  case '':
   case 'bat':
   case 'cs':
   case 'js':

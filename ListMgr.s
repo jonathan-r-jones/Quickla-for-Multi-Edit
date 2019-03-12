@@ -6206,15 +6206,8 @@ str so = @find_lc_core(lc, search_criterion_was_found, fp);
 
 if(search_criterion_was_found)
 {
-  if(@file_is_read_only(fp))
-  {
-    there_was_a_problem = true;
-  }
-  else
-  {
     @mor;
-    @paste;
-  }
+    @paste_after;
 }
 else
 {
@@ -11954,7 +11947,7 @@ str fp = "Move subrubric to the last position with me.";
 
 @cut_big_segment;
 @find_next_rubric;
-@bol;
+@eol;
 @paste;
 @find_previous_big_segment;
 
@@ -12824,7 +12817,7 @@ if(lc != '')
 @add_bullet_below;
 
 // Enforce the default.
-if(wrapping_is_on == '')
+if((wrapping_is_on == '') || (wrapping_is_on == 'y') || (wrapping_is_on == 'w'))
 {
   @paste_with_wikipedia_format;
 }
