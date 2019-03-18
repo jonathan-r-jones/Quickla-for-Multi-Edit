@@ -1177,7 +1177,7 @@ return(em);
 //;;
 
 void
-@find_from_here_ui()
+@ff_here_ui()
 {
 str fp = 'Find beginning here and only search this file: ';
 
@@ -1211,10 +1211,10 @@ else
 //;;
 
 void
-@@find_from_here_ui
+@@ff_here_ui
 {
 @header;
-@find_from_here_ui;
+@ff_here_ui;
 @footer;
 }
 
@@ -1223,28 +1223,13 @@ void
 //;;
 
 void
-@find_from_bof(str introduction)
+@ff_top(str sc)
 {
-str fp = 'Find beginning at BOF and only search this file.';
+str fp = 'Find from top. Start at BOF and only search this file.';
+
+// lu: Mar-18-2019
+
 str so;
-
-fp += introduction;
-
-str sc;
-
-if(length(introduction) > 0)
-{
-  sc = @get_wost;
-}
-else
-{
-  sc = @get_user_input_raw(fp); 
-  if(sc == 'Function aborted.')
-  {
-    @say(sc);
-    return();
-  }
-}
 
 mark_pos;
 tof;
@@ -1271,11 +1256,21 @@ else
 //;;
 
 void
-@@find_from_bof
+@ff_top_ui
 {
+str fp = 'Find from top using ui.';
+
+// lu: Mar-18-2019
+
 @header;
-@find_from_bof('');
+
+str sc = @get_user_input_raw(fp);
+
+@ff_top(sc);
+
 @footer;
+
+@say(fp + ' (' + sc + ')');
 }
 
 
@@ -1283,12 +1278,19 @@ void
 //;;
 
 void
-@find_from_bof_wost
+@ff_top_wost
 {
-str fp = 'Find from BOF with wost.';
+str fp = 'Find from top using wost.';
+
+// lu: Mar-18-2019
+
 @header;
-@find_from_bof(fp);
+
+@ff_top(@get_wost);
+
 @footer;
+
+@say(fp);
 }
 
 
@@ -1303,7 +1305,9 @@ void
 @find_again
 {
 str fp = 'Find again.';
+
 str so = '';
+
 @header;
 
 @seek_in_all_files_2_arguments(global_str('search_str'), so);
@@ -1314,6 +1318,7 @@ if(@current_column == 2)
 }
 
 @footer;
+
 @say(fp + ' ' + so);
 }
 
@@ -1322,25 +1327,15 @@ if(@current_column == 2)
 //;;
 
 void
-@find_backwards_from_here_uc
+@find_backwards(str sc = parse_str('/1=', mparm_str))
 {
-str fp = 'Search BACKWARDS from here using word or block under cursor in this file only: ';
-@header;
-
-str sc = @get_wost;
-
-if((sc == "Function aborted."))
-{
-  @say(sc);
-  return();
-}
+str fp = 'Find backwards.';
 
 mark_pos;
 
 up;
 eol;
 
-//sc = @equate_spaces_and_dashes_wcl(sc);
 sc = make_literal_x(sc);
 
 set_global_str('search_str', sc);
@@ -1356,46 +1351,46 @@ else
   fp = "NOT found in this file.";
 }
 
-@footer;
 @say(fp);
 }
 
 
 
-//;; (skw find_from_here_backwards) This functions seems to work. - JJ Sep-19-2008
+//;;
 
 void
-@find_backwards_from_here_ui
+@ff_here_backwards_ui
 {
-str fp = 'Search BACKWARDS from here using user input in this file only.';
+
+str fp = 'Find from here backwards using ui.';
+
 @header;
 
 str sc = @get_user_input_raw(fp);
 
-if((sc == "Function aborted."))
-{
-  @say(sc);
-  return();
-}
-
-mark_pos;
-
-sc = @equate_spaces_and_dashes_wcl(sc);
-
-set_global_str('search_str', sc);
-
-if(find_text(sc, 0, _regexp | _backward))
-{
-  pop_mark;
-  fp = 'Found in this file.';
-}
-else
-{
-  goto_mark;
-  fp = "NOT found in this file.";
-}
+@find_backwards(sc);
 
 @footer;
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@ff_here_backwards_wost
+{
+
+str fp = 'Find from here backwards using wost.';
+
+@header;
+
+@find_backwards(@get_wost);
+
+@footer;
+
 @say(fp);
 }
 
@@ -1407,6 +1402,7 @@ void
 @find_again_backwards
 {
 str fp = 'Find again backwards.';
+
 @header;
 
 up;
@@ -1417,27 +1413,7 @@ if(!find_text(global_str('search_str'), 0, _regexp | _backward))
 }
 
 @footer;
-@say(fp);
-}
 
-
-
-//;;
-
-void
-@find_again_backwards_from_eof
-{
-str fp = 'Find again backwards from eof.';
-@header;
-
-@eof;
-if(!find_text(global_str('search_str'), 0, _regexp | _backward))
-{
-  fp += ' NOT found. May be first occurrence in file. (' + global_str('search_str') + ')';
-  down;
-}
-
-@footer;
 @say(fp);
 }
 
@@ -1466,7 +1442,7 @@ with_highlight
 
 rm('MStrBlck');
 down;
-@find_from_here_ui;
+@ff_here_ui;
 
 @say(fp);
 }

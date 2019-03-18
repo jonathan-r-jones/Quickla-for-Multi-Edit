@@ -277,6 +277,23 @@ return(1);
 
 
 
+//;;
+
+int
+@is_jenkinsfile()
+{
+str fp = 'Verify that the user is in a jenkinsfile.';
+if(@filename != 'jenkinsfile')
+{
+  @say('This macro only works on jenkinsfiles.');
+  return(0);
+}
+@say(fp + ' True.');
+return(1);
+}
+
+
+
 //;
 
 str

@@ -142,6 +142,7 @@ load_macro_file('Regexes');
 load_macro_file('Finder');
 
 @say(fp)
+
 }
 
 
@@ -1450,25 +1451,6 @@ if(find_text('!sour', 3, _regexp))
 
 goto_mark;
 return(0);
-
-@say(fp);
-}
-
-
-
-//;
-
-void
-@rtm
-{
-str fp = "x";
-
-// lu: Mar-8-2019
-
-if(@rubric_contains_source_string)
-{
-  fp = 'yea contains.';
-}
 
 @say(fp);
 }
@@ -3260,7 +3242,6 @@ if(@current_line_contains(',,'))
   @say('May-29-2018');
   @perform_indicated_action;
   return();
-//qjq-1
 }
 
 if(@current_line_contains('^'))
@@ -3648,7 +3629,7 @@ return(postperiod_string);
 //;;
 
 void
-@find_from_lc_arguments(str lc = parse_str('/1=', mparm_str))
+@ff_lc_arguments(str lc = parse_str('/1=', mparm_str))
 {
 str fp = 'Search from lc with reserved word sc.';
 
@@ -4348,49 +4329,23 @@ if(!@i_am_on_my_tablet)
 
 
 
-//; (!2mum2)
+//;+ Find From Bottom
+
+
+
+//;;
 
 void
-@find_backwards(str arguments = parse_str('/1=', mparm_str))
+@ff_bottom(str sc = parse_str('/1=', mparm_str))
 {
-str fp = "Find backwards wost at lc.";
+str fp = "Find from bottom.";
 
-@header;
+// lu: Mar-18-2019
 
-// fcd: Sep-21-2016
+mark_pos;
+@eof;
 
-str first_parameter, second_parameter;
-
-@parse_arguments(arguments, ".", first_parameter, second_parameter);
-
-str lc = first_parameter; // location here (default) versus remote
-
-str sc;
-
-str option = second_parameter;
-
-if(option == 'u')
-{
-  sc = @get_user_input_raw(fp);
-}
-else
-{
-  sc = second_parameter;
-  //  sc = @get_wost; // default, a. k. a. nothing
-}
-
-if(lc == '')
-{
-  up;  // default, a. k. a. from here
-}
-else if (lc == 'rfeof')
-{
-  @eof;
-}
-else
-{
-  @find_lc(lc);
-}
+sc = make_literal_x(sc);
 
 set_global_str('search_str', sc);
 
@@ -4398,10 +4353,12 @@ if(find_text(sc, 0, _regexp | _backward))
 {
   fp += ' Found: ' + found_str + '.';
   right;
+  pop_mark;
 }
 else
 {
-   fp += ' "' + sc + '"' + ' NOT found in this file. ';
+  fp += ' "' + sc + '"' + ' NOT found in this file. ';
+  goto_mark;
 }
 
 @footer;
@@ -4411,17 +4368,36 @@ else
 
 
 
-//;
+//;;
 
 void
-@find_backwards_from_eof_w_ui
+@ff_bottom_ui
 {
-str fp = "Find backwards from using user input.";
+str fp = "Find from bottom using user input.";
+
 @header;
 
-// fcd: Sep-22-2016
+// lu: Mar-18-2019
 
-@find_backwards('rfeof.u');
+@ff_bottom(@get_user_input_raw(fp));
+
+@footer;
+}
+
+
+
+//;;
+
+void
+@ff_bottom_wost
+{
+str fp = "Find from bottom using wost.";
+
+@header;
+
+// lu: Mar-18-2019
+
+@ff_bottom(@get_wost);
 
 @footer;
 }

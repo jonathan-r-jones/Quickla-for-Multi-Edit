@@ -4565,7 +4565,7 @@ return(sc);
 //;;
 
 void
-@find_from_lc_known(str lc = parse_str('/1=', mparm_str), 
+@ff_lc_known(str lc = parse_str('/1=', mparm_str), 
   str sc = parse_str('/2=', mparm_str))
 {
 str fp = 'Find from known launch code.';
@@ -4591,7 +4591,7 @@ int rv = @seek_in_all_files_2_arguments(sc, so);
 //;;
 
 void
-@find_from_lc_ui
+@ff_lc_ui
 {
 str fp = 'Begin a search from a particular user inputted launch code.';
 @header;
@@ -4623,7 +4623,7 @@ if(search_criterion_was_found)
 //;;
 
 void
-@find_from_lc_uc
+@ff_lc_uc
 {
 str fp = 'Begin a search on the word under cursor from a particular user inputted launch code.';
 @header;
@@ -4658,7 +4658,7 @@ if(search_criterion_was_found)
 //;;
 
 void
-@find_from_lc_sj(str lc = parse_str('/1=', mparm_str))
+@ff_lc_sj(str lc = parse_str('/1=', mparm_str))
 {
 str fp = 'Begin a search on the sj from a particular user inputted launch code.';
 
@@ -4799,7 +4799,7 @@ switch(lower(get_extension(File_name)))
 //;;
 
 void
-@find_from_bobs_ui
+@ff_bobs_ui
 {
 str fp = 'Find from beginning of big segment and only search this big segment.';
 str so;
@@ -4840,7 +4840,7 @@ else
 //;;
 
 void
-@find_from_bor_ui
+@ff_bor_ui
 {
 str fp = 'Find from BOR.';
 str so;
@@ -4881,7 +4881,7 @@ else
 //;;
 
 void
-@find_from_bor_uc
+@ff_bor_uc
 {
 str fp = 'Starting at the beginning of this big segment, find word or block under cursor.';
 str so;
@@ -10672,6 +10672,30 @@ text(@get_formatted_date + " " + @get_time);
 //;;
 
 void
+@add_text_date_time_no_spaces()
+{
+str fp = 'Add text date and time no spaces.';
+
+if(@text_is_selected)
+{
+  delete_block;
+}
+
+str date_time = @get_formatted_date + " " + @get_time;
+
+date_time = @replace(date_time, ':', '_');
+date_time = @replace(date_time, ' ', '_');
+
+text(date_time);
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
 @add_text_date_plus_full_time()
 {
 str fp = 'Add text date plus full time.';
@@ -11947,7 +11971,8 @@ str fp = "Move subrubric to the last position with me.";
 
 @cut_big_segment;
 @find_next_rubric;
-@eol;
+@eof;
+@bol;
 @paste;
 @find_previous_big_segment;
 

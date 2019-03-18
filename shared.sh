@@ -88,6 +88,7 @@ prototype Shared
   int  @is_code_file();
   int  @is_code_indentation();
   int  @is_content_area_file();
+  int  @is_jenkinsfile();
   int  @is_number(str character);
   int  @is_rubric_file();
   int  @is_s_file();

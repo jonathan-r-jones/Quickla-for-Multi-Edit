@@ -1632,6 +1632,7 @@ switch(lower(get_extension(File_name)))
   case 'ps1':
     text('#');
     break;
+  case '':
   case 's':
   case 'sh':
     if(@next_character != '/')
@@ -2028,6 +2029,7 @@ switch(lower(get_extension(File_name)))
       goto_mark;
     }
     break;
+  case '':
   case 'asc':
   case 's':
     @eos;

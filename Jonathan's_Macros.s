@@ -1020,7 +1020,7 @@ str fp = "Archive big segment.";
 
 // lu: Jan-16-2015
 
-if(!((@is_s_file) or (@is_bullet_file) or (@is_batch_file)))
+if(!((@is_s_file) or (@is_bullet_file) or (@is_batch_file) or (@is_jenkinsfile)))
 {
   @say(fp + " Error: This macro doesn't work with the current file type.");
   return();
@@ -1036,18 +1036,22 @@ if(!((@is_s_file) or (@is_bullet_file) or (@is_batch_file)))
 
 if(@is_s_file)
 {
-  rm("@open_file_with_writability /fn=" + get_environment('savannah') +
+  @open_file(get_environment('savannah') + 
     "\\cmac\\Quickla-for-Multi-Edit\\\cmac code graveyard.s");
 }
 else if(@is_bullet_file)
 {
-  rm("@open_file_with_writability /fn=" + get_environment('savannah') +
+  @open_file(get_environment('savannah') + 
     "\\miscellany\\historical rubrics.asc");
 }
 else if(@is_batch_file)
 {
-  rm("@open_file_with_writability /fn=" + get_environment('dropbox') +
-    "\\IT\\Composable-Batch-Files\\batch file code archive.txt");
+  @open_file(get_environment('composable_batch_files') + 
+    "\\batch file code archive.txt");
+}
+else if(@is_jenkinsfile)
+{
+  @open_file(get_environment('share-zone') + '\\Jenkinsfile_Code_Keepers')
 }
 
 @bof;
@@ -6016,7 +6020,6 @@ str fp = "";
 fp = "Start new Jira ticket.";
 
 @header;
-@find_lc('cj');
 @find_lc('rftk');
 @add_subrubric_below('');
 //text('TK');
@@ -7424,6 +7427,29 @@ str fp = "Debug say current_area_type.";
 // lu: Mar-11-2019
 
 @say(@current_area_type);
+}
+
+
+
+//;
+
+void
+@debug_say_is_jenkinsfile
+{
+str fp = "Test whether file is a Jenkinsfile.";
+
+// lu: Mar-12-2019
+
+if(@is_jenkinsfile)
+{
+  fp += ' This is a Jenkinsfile.';
+}
+else
+{
+  fp += ' This is a not Jenkinsfile.';
+}
+
+@say(fp);
 }
 
 

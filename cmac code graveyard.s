@@ -1,3 +1,143 @@
+//;; (skw find_from_here_backwards) This functions seems to work. - JJ Sep-19-2008
+
+void
+@find_backwards_from_here_ui
+{
+
+str fp = 'Search BACKWARDS from here using user input in this file only.';
+@header;
+
+str sc = @get_user_input_raw(fp);
+
+if((sc == "Function aborted."))
+{
+  @say(sc);
+  return();
+}
+
+mark_pos;
+
+sc = @equate_spaces_and_dashes_wcl(sc);
+
+set_global_str('search_str', sc);
+
+if(find_text(sc, 0, _regexp | _backward))
+{
+  pop_mark;
+  fp = 'Found in this file.';
+}
+else
+{
+  goto_mark;
+  fp = "NOT found in this file.";
+}
+
+@footer;
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@find_again_backwards_from_eof
+{
+//qjq-1
+str fp = 'Find again backwards from eof.';
+@header;
+
+@eof;
+if(!find_text(global_str('search_str'), 0, _regexp | _backward))
+{
+  fp += ' NOT found. May be first occurrence in file. (' + global_str('search_str') + ')';
+  down;
+}
+
+@footer;
+@say(fp);
+}
+
+
+
+//; (!2mum2)
+
+void
+@find_backwards(str arguments = parse_str('/1=', mparm_str))
+{
+//qjq-1
+str fp = "Find backwards wost at lc.";
+
+@header;
+
+// fcd: Sep-21-2016
+
+str first_parameter, second_parameter;
+
+@parse_arguments(arguments, ".", first_parameter, second_parameter);
+
+str lc = first_parameter; // location here (default) versus remote
+
+str sc;
+
+str option = second_parameter;
+
+if(option == 'u')
+{
+  sc = @get_user_input_raw(fp);
+}
+else
+{
+  sc = second_parameter;
+  //  sc = @get_wost; // default, a. k. a. nothing
+}
+
+if(lc == '')
+{
+  up;  // default, a. k. a. from here
+}
+else if (lc == 'rfeof')
+{
+  @eof;
+}
+else
+{
+  @find_lc(lc);
+}
+
+set_global_str('search_str', sc);
+
+if(find_text(sc, 0, _regexp | _backward))
+{
+  fp += ' Found: ' + found_str + '.';
+  right;
+}
+else
+{
+   fp += ' "' + sc + '"' + ' NOT found in this file. ';
+}
+
+@footer;
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@rtm
+{
+str fp = "x";
+
+// lu: Mar-12-2019
+
+@say(fp);
+}
+
+
+
 //;
 
 void
