@@ -1,3 +1,144 @@
+//;;
+
+void
+@@ff_here_ui
+{
+@header;
+@ff_here_ui;
+@footer;
+}
+
+
+
+//;;
+
+void
+@ff_lc_ui
+{
+str fp = 'Begin a search from a particular user inputted launch code.';
+@header;
+
+str lc = @get_user_input_nonspace('Search from launch code.');
+
+if((lc == 'Function aborted.'))
+{
+  @say(lc);
+  return();
+}
+
+@header;
+
+int search_criterion_was_found;
+str so = @find_lc_core(lc, search_criterion_was_found, fp);
+
+if(search_criterion_was_found)
+{
+  @find_continuum(9, '');
+}
+
+@footer;
+@say(fp + ' ' + so);
+}
+
+
+
+//;;
+
+void
+@ff_lc_known(str lc = parse_str('/1=', mparm_str), 
+  str sc = parse_str('/2=', mparm_str))
+{
+str fp = 'Find from known launch code.';
+
+if(!@find_lc_known(fp, lc)) 
+{
+  return();
+}
+
+if(sc == '')
+{
+  sc = @craft_search_string(9);
+}
+
+str so;
+int rv = @seek_in_all_files_2_arguments(sc, so);
+
+@say(fp + ' ' + so);
+}
+
+
+
+//;;
+
+void
+@ff_lc_sj(str lc = parse_str('/1=', mparm_str))
+{
+str fp = 'Begin a search on the sj from a particular user inputted launch code.';
+
+str sc = @get_subject;
+
+set_global_str('search_str', sc);
+
+@header;
+
+int search_criterion_was_found;
+str so = @find_lc_core(lc, search_criterion_was_found, fp);
+
+if(search_criterion_was_found)
+{
+  @find_continuum(12, '');
+}
+
+@say(fp + ' ' + so);
+}
+
+
+
+//;;
+
+void
+@ff_lc_arguments(str lc = parse_str('/1=', mparm_str))
+{
+str fp = 'Search from lc with reserved word sc.';
+
+// Sample Usage: f.al.sj
+// If the second parameter is left blank, the subject is used by default.
+
+str sc = @get_sj;
+
+@find_lc(lc);
+
+// I commented this out on Aug-30-2017 because it couldn't search "and time" correctly.
+//sc = @equate_spaces_and_dashes_wcl(sc);
+sc = make_literal_x(sc);
+
+@seek_in_all_files_2_arguments(sc, fp);
+
+@say(fp + ' (' + sc + ')');
+}
+
+
+
+//;
+
+void
+@ff_lc_with_cascade_search(str lc = parse_str('/1=', mparm_str))
+{
+str fp = 'Find from lc with cascade search 2.';
+
+// lu: Aug-1-2018
+
+str sc = @get_sj;
+
+@find_lc(lc);
+
+@cascade_search_2(sc);
+
+//@say(fp);
+}
+
+
+
 //;; (skw find_from_here_backwards) This functions seems to work. - JJ Sep-19-2008
 
 void
@@ -639,26 +780,6 @@ if((find_result == 0) or (find_result == 2))
 {
   @say('Sui generis.');
 }
-
-//@say(fp);
-}
-
-
-
-//;
-
-void
-@find_fr_lc_with_cascade_search(str lc = parse_str('/1=', mparm_str))
-{
-str fp = 'Find from lc with cascade search 2.';
-
-// lu: Aug-1-2018
-
-str sc = @get_sj;
-
-@find_lc(lc);
-
-@cascade_search_2(sc);
 
 //@say(fp);
 }

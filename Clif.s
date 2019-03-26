@@ -3094,24 +3094,6 @@ str Pretty_sc = sc;
 
 URL += sc;
 
-//if(@contains(sc, 'MERDEV-'))
-//{
-//}
-//else if(@contains(sc, 'DATA-'))
-//{
-//  URL += sc;
-//}
-//else if(@contains(sc, 'TNG-'))
-//{
-//  URL += sc;
-//}
-//else
-//{
-//  Pretty_sc = "All Tickets Sorted By Newest First";
-//  @set_clipboard('MERDEV-12');
-//  URL = "https://mercuryproject.atlassian.net/projects/MERDEV/issues/MERDEV-36?filter=allopenissues";
-//}
-
 sc = @commute_character(sc, ' ', '+');
 
 if(is_print_mode)
@@ -3353,6 +3335,10 @@ else if(@contains(sc, 'DATA-'))
   return(1);
 }
 else if(@contains(sc, 'TNG-'))
+{
+  return(1);
+}
+else if(@contains(sc, 'Cart-'))
 {
   return(1);
 }
@@ -3622,31 +3608,6 @@ while(loop_counter <= length_of_string)
 }
 
 return(postperiod_string);
-}
-
-
-
-//;;
-
-void
-@ff_lc_arguments(str lc = parse_str('/1=', mparm_str))
-{
-str fp = 'Search from lc with reserved word sc.';
-
-// Sample Usage: f.al.sj
-// If the second parameter is left blank, the subject is used by default.
-
-str sc = @get_sj;
-
-@find_lc(lc);
-
-// I commented this out on Aug-30-2017 because it couldn't search "and time" correctly.
-//sc = @equate_spaces_and_dashes_wcl(sc);
-sc = make_literal_x(sc);
-
-@seek_in_all_files_2_arguments(sc, fp);
-
-@say(fp + ' (' + sc + ')');
 }
 
 

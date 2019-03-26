@@ -909,7 +909,7 @@ else
 void
 @jump
 {
-str fp = 'How high? Feb-19-2019 8:09 PM';
+str fp = 'How high? Mar-22-2019 1:07 PM';
 @say(fp);
 }
 
@@ -7081,7 +7081,7 @@ return(rv);
 //;
 
 void
-@find_fr_lc_with_precision(str lc = parse_str('/1=', mparm_str))
+@ff_lc_with_precision(str lc = parse_str('/1=', mparm_str))
 {
 str fp = 'Find from lc with precision.';
 

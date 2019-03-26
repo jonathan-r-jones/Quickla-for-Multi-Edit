@@ -1177,52 +1177,6 @@ return(em);
 //;;
 
 void
-@ff_here_ui()
-{
-str fp = 'Find beginning here and only search this file: ';
-
-str sc = @get_user_input_raw(fp);
-if(sc == 'Function aborted.')
-{
-  @say(sc);
-  return();
-}
-
-mark_pos;
-
-set_global_str('search_str', sc);
-
-if(find_text(sc, 0, _regexp))
-{
-  fp = 'Found in this file.';
-  pop_mark;
-}
-else
-{
-  fp = 'Not found in this file.';
-  goto_mark;
-}
-
-@say(fp);
-}
-
-
-
-//;;
-
-void
-@@ff_here_ui
-{
-@header;
-@ff_here_ui;
-@footer;
-}
-
-
-
-//;;
-
-void
 @ff_top(str sc)
 {
 str fp = 'Find from top. Start at BOF and only search this file.';
@@ -1413,6 +1367,40 @@ if(!find_text(global_str('search_str'), 0, _regexp | _backward))
 }
 
 @footer;
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@ff_here_ui()
+{
+str fp = 'Find beginning here and only search this file: ';
+
+str sc = @get_user_input_raw(fp);
+if(sc == 'Function aborted.')
+{
+  @say(sc);
+  return();
+}
+
+mark_pos;
+
+set_global_str('search_str', sc);
+
+if(find_text(sc, 0, _regexp))
+{
+  fp = 'Found in this file.';
+  pop_mark;
+}
+else
+{
+  fp = 'Not found in this file.';
+  goto_mark;
+}
 
 @say(fp);
 }
@@ -3390,6 +3378,9 @@ str fp = '';
 
 // I realize that there is no @restore_location in this method. The @restore_location is
 // actually called manually after this method. - JRJ Feb-9-2011
+
+// What about search direction, i.e. forwards or backwards? Mar-18-2019
+
 @save_location;
 
 int text_is_selected = false;
@@ -3686,7 +3677,7 @@ void
 void
 @find_batch_file_label()
 {
-str fp = "Find batch file label";
+str fp = "Find batch file label.";
 @header;
 
 // fcd: Nov-28-2016
@@ -3703,6 +3694,33 @@ if(@first_character(sc) != ':')
 }
 
 //@say(fp + ' sc:' + sc + ' (Nov-28-2016 6:18 PM)');return(); //
+@seek_in_all_files_2_arguments(sc, fp);
+
+@footer;
+@say('sc: ' + sc);
+@say(fp);
+}
+
+
+
+//;
+
+void
+@find_jenkinsfile_function()
+{
+str fp = "Find Jenkinsfile function.";
+@header;
+
+// lu: Mar-22-2019
+
+str sc = @hc_word_uc();
+
+@bof;
+
+sc = make_literal_x(sc);
+
+sc = '^def ' + sc;
+
 @seek_in_all_files_2_arguments(sc, fp);
 
 @footer;
@@ -3746,6 +3764,9 @@ if(@first_character(@get_wost) == '@')
 
 switch(@filename_extension)
 {
+  case '':
+    @find_jenkinsfile_function;
+    break;
   case 'bat':
     @find_batch_file_label;
     break;

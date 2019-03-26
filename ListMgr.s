@@ -4565,65 +4565,7 @@ return(sc);
 //;;
 
 void
-@ff_lc_known(str lc = parse_str('/1=', mparm_str), 
-  str sc = parse_str('/2=', mparm_str))
-{
-str fp = 'Find from known launch code.';
-
-if(!@find_lc_known(fp, lc)) 
-{
-  return();
-}
-
-if(sc == '')
-{
-  sc = @craft_search_string(9);
-}
-
-str so;
-int rv = @seek_in_all_files_2_arguments(sc, so);
-
-@say(fp + ' ' + so);
-}
-
-
-
-//;;
-
-void
-@ff_lc_ui
-{
-str fp = 'Begin a search from a particular user inputted launch code.';
-@header;
-
-str lc = @get_user_input_nonspace('Search from launch code.');
-
-if((lc == 'Function aborted.'))
-{
-  @say(lc);
-  return();
-}
-
-@header;
-
-int search_criterion_was_found;
-str so = @find_lc_core(lc, search_criterion_was_found, fp);
-
-if(search_criterion_was_found)
-{
-  @find_continuum(9, '');
-}
-
-@footer;
-@say(fp + ' ' + so);
-}
-
-
-
-//;;
-
-void
-@ff_lc_uc
+@ff_lc_wost
 {
 str fp = 'Begin a search on the word under cursor from a particular user inputted launch code.';
 @header;
@@ -4650,32 +4592,6 @@ if(search_criterion_was_found)
 }
 
 @footer;
-@say(fp + ' ' + so);
-}
-
-
-
-//;;
-
-void
-@ff_lc_sj(str lc = parse_str('/1=', mparm_str))
-{
-str fp = 'Begin a search on the sj from a particular user inputted launch code.';
-
-str sc = @get_subject;
-
-set_global_str('search_str', sc);
-
-@header;
-
-int search_criterion_was_found;
-str so = @find_lc_core(lc, search_criterion_was_found, fp);
-
-if(search_criterion_was_found)
-{
-  @find_continuum(12, '');
-}
-
 @say(fp + ' ' + so);
 }
 
@@ -4807,6 +4723,47 @@ str so;
 @header;
 
 str sc = @get_user_input_raw(fp);
+if(sc == 'Function aborted.')
+{
+  @say(sc);
+  return();
+}
+
+set_global_str('search_str', sc);
+
+int Number_of_Lines_in_bs = @count_lines_in_bs;
+
+mark_pos;
+@bobs;
+
+if(find_text(sc, Number_of_Lines_in_bs, _regexp))
+{
+  so = 'FOUND in this bs.';
+  pop_mark;
+}
+else
+{
+  so = 'NOT found in this bs.';
+  goto_mark;
+}
+
+@footer;
+@say(fp + ' ' + so);
+}
+
+
+
+//;;
+
+void
+@ff_bobs_wost
+{
+str fp = 'Find from beginning of big segment using wost and only search this big segment.';
+str so;
+
+@header;
+
+str sc = @get_wost;
 if(sc == 'Function aborted.')
 {
   @say(sc);
@@ -9466,22 +9423,22 @@ str so = '';
 down;
 down;
 
-if(@seek_in_all_files_2_arguments('1' + sc, so))
-{
-  @say(fp + ' Primary case.');
-  return();
-}
-
 if(@seek_in_all_files_2_arguments(sc, so))
 {
   fp += ' Double q found.';
   @save_column;
   right;
   @make_double_q_adjustment;
-  // This is the default behavior.
   if(@is_bullet_file)
   {
-    @find_next_small_segment;
+    if(@first_character_in_line == ':')
+    {
+      @find_next_small_segment;
+    }
+    else
+    {
+      down;
+    }
     @restore_column;
   }
   else
