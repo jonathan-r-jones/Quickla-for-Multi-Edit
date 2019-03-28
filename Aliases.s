@@ -486,7 +486,7 @@ str rv = '';
 
 rv += 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 rv += '0123456789';
-rv += '$-@_.?';
+rv += '%$-@_.?';
 rv += 'ִÚÜÝאבגהוזחטיךכםןסףפצרשתü‎';
 
 return(rv);

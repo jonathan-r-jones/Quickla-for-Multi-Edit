@@ -5445,6 +5445,8 @@ void
 {
 str fp = 'Copy and paste subbullet.';
 
+@save_column;
+
 @hc_small_segment;
 
 if(@find_next_bsr == 'rubric')
@@ -5455,6 +5457,8 @@ if(@find_next_bsr == 'rubric')
 @bol;
 @paste;
 @find_previous_subbullet;
+
+@restore_column;
 
 @say(fp);
 }

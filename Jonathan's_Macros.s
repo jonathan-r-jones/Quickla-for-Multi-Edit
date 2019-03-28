@@ -909,7 +909,7 @@ else
 void
 @jump
 {
-str fp = 'How high? Mar-22-2019 1:07 PM';
+str fp = 'How high? Mar-28-2019 1:40 PM';
 @say(fp);
 }
 
@@ -7403,7 +7403,12 @@ str sc;
 @header;
 sc = ':pass-through$';
 
-int is_found = @seek_in_all_files_2_arguments(sc, fp);
+If(!@seek_in_all_files_2_arguments(sc, fp))
+{
+  fp += ' Error. N.bat is probably not open.';
+  return();
+}
+//qq-1
 @bol;
 cr;
 cr;
@@ -7448,6 +7453,22 @@ else
 {
   fp += ' This is a not Jenkinsfile.';
 }
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@tab
+{
+str fp = "2 Space tab.";
+
+// lu: Mar-28-2019
+
+text('  ');
 
 @say(fp);
 }

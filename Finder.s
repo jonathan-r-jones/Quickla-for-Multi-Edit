@@ -377,12 +377,14 @@ str_block_begin;
 str sc;
 
 sc = get_word_in(@define_what_a_word_is);
+
 // Saw this cool line of code in the forums: Forward_Till(Word_Delimits);
 
 switch(@previous_character)
 {
   // I uncommented the following line on Apr-23-2014.
   case '.':
+  case '%':
   case ',':
     left;
     break;

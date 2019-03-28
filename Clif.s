@@ -2091,7 +2091,8 @@ str fp = "Run Multi-Edit abstraction layer batch file.";
 
 str command_line = 'c:\windows\system32\cmd.exe /k';
 
-razor_string = @replace_once(razor_string, 'rzr', 'rzr.bat');
+//razor_string = @replace_once(razor_string, 'rzrp', 'rzrp.bat');
+//razor_string = @replace_once(razor_string, 'rzr', 'rzr.bat');
 
 command_line += ' ' + razor_string;
 
