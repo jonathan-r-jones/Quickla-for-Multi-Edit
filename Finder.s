@@ -3692,10 +3692,13 @@ sc = make_literal_x(sc);
 
 if(@first_character(sc) != ':')
 {
-  sc = '^:' + sc + '$';
+  //sc = '^:' + sc + '$';
+  //sc = '^:cart$^.#$'; // definition
+  //qjq-1
+  //sc = '$$:' + sc + '$'; // definition only!
+  sc = '^:' + sc + '$^.*$^set fp'; // works
 }
 
-//@say(fp + ' sc:' + sc + ' (Nov-28-2016 6:18 PM)');return(); //
 @seek_in_all_files_2_arguments(sc, fp);
 
 @footer;

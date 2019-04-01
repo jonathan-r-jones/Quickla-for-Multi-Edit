@@ -7408,7 +7408,6 @@ If(!@seek_in_all_files_2_arguments(sc, fp))
   fp += ' Error. N.bat is probably not open.';
   return();
 }
-//qq-1
 @bol;
 cr;
 cr;
@@ -7470,6 +7469,50 @@ str fp = "2 Space tab.";
 
 text('  ');
 
+@say(fp);
+}
+
+
+
+//;
+
+void
+@rtm
+{
+str fp = "x";
+
+// lu: Apr-1-2019
+
+str rs;
+str sc;
+
+@header;
+sc = '^:cart^';     // nothing
+sc = '^:cart$^$s';  // nothing
+sc = '^:cart$';     // both
+sc = '^:cart$^?*';  // both
+sc = '^:cart$^.#$'; // definition
+sc = '^:cart$^?*$'; // label
+sc = '^:cart$^$';   // label
+sc = '^:cart$^$';   // label
+sc = ':cart$$';     // label
+sc = '^:cart$$';    // label
+sc = '^:cart$^';    // both
+sc = '$$:cart$';    // both
+sc = '^:cart$^hello$^s'; // works
+sc = '^:cart$^.*$^set fp'; // works
+
+down;
+
+int is_found = @seek_in_all_files_2_arguments(sc, fp);
+@footer;
+return();
+@seek(sc);
+rs = '\0';
+@replace_next_occurrence_only(sc, rs);
+@replace_all_occurrs_inf_one_tof(sc, rs);
+
+@say(found_str);
 @say(fp);
 }
 
