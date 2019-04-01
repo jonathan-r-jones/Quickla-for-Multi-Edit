@@ -1193,7 +1193,7 @@ void
 int
 @is_last_small_segment()
 {
-str fp = 'True if the user is on the last bullet or subbullet of a rubric.';
+str fp = 'True if the user is on the last small segment.';
 fp = "Next content area is big segment.";
 int rv = 0;
 
@@ -11928,11 +11928,15 @@ void
 {
 str fp = "Move subrubric to the last position with me.";
 
-// fcd: May-19-2014
+// lu: Apr-1-2019
+
+if(@is_last_big_segment){
+  @say(fp + ' You are on the last segment.');
+  return();
+}
 
 @cut_big_segment;
 @find_next_rubric;
-@eof;
 @bol;
 @paste;
 @find_previous_big_segment;
