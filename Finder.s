@@ -3690,6 +3690,8 @@ str sc = @hc_word_uc();
 
 sc = make_literal_x(sc);
 
+str first_sc = sc;
+
 if(@first_character(sc) != ':')
 {
   //sc = '^:' + sc + '$';
@@ -3699,7 +3701,11 @@ if(@first_character(sc) != ':')
   sc = '^:' + sc + '$^.*$^set fp'; // works
 }
 
-@seek_in_all_files_2_arguments(sc, fp);
+if(!@seek_in_all_files_2_arguments(sc, fp)){
+  first_sc = '^:' + first_sc + '$';
+  @next_window;
+  @seek_in_all_files_2_arguments(first_sc, fp);
+}
 
 @footer;
 @say('sc: ' + sc);
