@@ -7401,6 +7401,9 @@ str rs;
 str sc;
 
 @header;
+
+@hc_subject;
+
 sc = ':pass-through$';
 
 If(!@seek_in_all_files_2_arguments(sc, fp))
@@ -7414,6 +7417,7 @@ cr;
 up;
 up;
 text(':');
+@paste;
 
 @footer;
 @say(fp);

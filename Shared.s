@@ -3776,6 +3776,9 @@ switch(browser_number) // This list is ordered by how much i like them.
   case 5: // Safari
     Command_Line = Get_Environment("ProgramFiles") + "\\Safari\\Safari.exe";
     break;
+  case 6: // Vivaldi
+    Command_Line = Get_Environment("LOCALAPPDATA") + "\\Vivaldi\\Application\\vivaldi.exe";
+    break;
 }
 
 /* Use Case(s)

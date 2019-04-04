@@ -1194,7 +1194,7 @@ else
 URL += sc;
 URL += '&search_type=&aq=f';
 
-@surf(url, 0);
+@surf(url, 6);
 
 /*  Use Case(s)
 
