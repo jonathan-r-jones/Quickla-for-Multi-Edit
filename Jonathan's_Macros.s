@@ -7481,9 +7481,9 @@ text('  ');
 //;
 
 void
-@remove_all_commas_at_eol_in_fil
+@delete_all_commas_at_eol
 {
-str fp = "Remove all commas at eol in file.";
+str fp = "Delete all commas at eol in file.";
 
 // lu: Apr-9-2019
 
@@ -7491,11 +7491,9 @@ str rs;
 str sc;
 
 @header;
-sc = '\,$';
-@replace_all_occurrs_inf_one_tof(sc, '');
-@eol;
+sc = ',$';
 
-@seek(sc);
+@replace_all_occurrs_inf_one_tof(sc, rs);
 
 @footer;
 @say(found_str);
