@@ -129,20 +129,11 @@ str fp = 'Verify that the user is in a file with a white list extension.';
 
 switch(lower(get_extension(File_name)))
 {
-  case '':
-  case '1':
-  case 'config':
-  case 'llf':
-  case 'log':
-  case 'nww':
-  case 'mtp':
-  case 'txt':
-  case 'xml':
-  case 'xsl':
-    break;
-  default:
+  case 'asc':
     @say('This macro only works on text type files.');
     return(0);
+    break
+  default:
 }
 
 return(1);

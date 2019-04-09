@@ -473,7 +473,7 @@ skw delete matching, delete lines containing, delete line containing, delete lin
 
 if(!@is_text_file)
 {
-  return("");
+  return("Must be text file.");
 }
 
 int Number_of_Deletions = 0;
@@ -520,6 +520,7 @@ if(!@text_is_selected)
 @header;
 mark_pos;
 fp = @delete_matching_lines(@get_selected_text);
+//qq-1
 goto_mark;
 @footer;
 
