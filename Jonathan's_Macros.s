@@ -7478,4 +7478,30 @@ text('  ');
 
 
 
+//;
+
+void
+@remove_all_commas_at_eol_in_fil
+{
+str fp = "Remove all commas at eol in file.";
+
+// lu: Apr-9-2019
+
+str rs;
+str sc;
+
+@header;
+sc = '\,$';
+@replace_all_occurrs_inf_one_tof(sc, '');
+@eol;
+
+@seek(sc);
+
+@footer;
+@say(found_str);
+@say(fp);
+}
+
+
+
 //; (!efjm)
