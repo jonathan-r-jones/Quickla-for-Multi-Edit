@@ -6081,52 +6081,6 @@ void
 //;
 
 void
-@open_pretty_sett_file()
-{
-str fp = "Open pretty sett file.";
-
-str fp = "Synchronize my Savannah files in the background.";
-
-str command_string = 'c:\windows\system32\cmd.exe /k ';
-
-str parameter = get_environment("composable_batch_files") + '\show_set_3.bat';
-
-command_string += parameter;
-
-execprog(
-  command_string, 
-  '', 
-  '', 
-  '', 
-  _EP_FLAGS_EXEWIN | 
-  _EP_Flags_NoBypass);
-
-@say(fp);
-}
-
-
-
-//;
-
-void
-@open_pretty_sett_file_l1
-{
-@open_pretty_sett_file;
-@open_file('c:\a\j');
-@tof;
-@replace_semicolons_with_crs;
-@tof;
-@seek('^PATH=');
-@bol;
-cr;
-@tof;
-}
-
-
-
-//;
-
-void
 @open_rdp_an_easier_way
 {
 str fp = "Run RDP.";
@@ -7502,4 +7456,50 @@ sc = ',$';
 
 
 
-//; (!efjm)
+//;
+
+void
+@open_pretty_sett_file()
+{
+str fp = "Open pretty sett file.";
+
+str fp = "Synchronize my Savannah files in the background.";
+
+str command_string = 'c:\windows\system32\cmd.exe /k ';
+
+str parameter = get_environment("composable_batch_files") + '\show_set_3.bat';
+
+command_string += parameter;
+
+execprog(
+  command_string, 
+  '', 
+  '', 
+  '', 
+  _EP_FLAGS_EXEWIN | 
+  _EP_Flags_NoBypass);
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@rtm
+//qq-1
+{
+@header;
+@open_pretty_sett_file;
+//qq-1
+@open_file(get_environment('tmp') + '\set.txt');
+@replace_semicolons_with_crs;
+@sort_file;
+@tof;
+@footer;
+}
+
+
+
+//; (!efjm)            .

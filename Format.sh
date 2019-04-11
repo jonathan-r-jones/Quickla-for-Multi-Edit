@@ -20,5 +20,6 @@ prototype Format
   int  @replace_all_special_characters();
   void @replace_2_blank_lines_with_1();
   str  @replace_2_spaces_with_1();
+  void @sort_file();
   void @subdivide_long_line_wow_in_file();
 }

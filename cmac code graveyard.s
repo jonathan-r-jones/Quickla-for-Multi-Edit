@@ -1,3 +1,21 @@
+//;
+
+void
+@open_pretty_sett_file_l1
+{
+@open_pretty_sett_file;
+@open_file('c:\a\j');
+@tof;
+@replace_semicolons_with_crs;
+@tof;
+@seek('^PATH=');
+@bol;
+cr;
+@tof;
+}
+
+
+
 //;;
 
 void
