@@ -3256,7 +3256,7 @@ if(@contains(sc, 'cart-'))
   @search_jira('', 0);
   return();
 }
-else if(@contains(sc, 'DATA-'))
+else if(@contains(sc, 'sebplan-'))
 {
   @search_jira('', 0);
   return();
@@ -3331,19 +3331,14 @@ if(@contains(sc, 'MERDEV-'))
 {
   return(1);
 }
-else if(@contains(sc, 'DATA-'))
+else if(@contains(sc, 'cart-'))
 {
   return(1);
 }
-else if(@contains(sc, 'TNG-'))
+else if(@contains(sc, 'sebplan-'))
 {
   return(1);
 }
-else if(@contains(sc, 'Cart-'))
-{
-  return(1);
-}
-
 return(0);
 }
 

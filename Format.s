@@ -520,7 +520,6 @@ if(!@text_is_selected)
 @header;
 mark_pos;
 fp = @delete_matching_lines(@get_selected_text);
-//qq-1
 goto_mark;
 @footer;
 
