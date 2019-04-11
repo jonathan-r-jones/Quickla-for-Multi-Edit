@@ -662,6 +662,8 @@ if(!@is_text_file)
   return();
 }
 
+@tof;
+
 rm('textsort');
 @delete_blank_lines;
 
