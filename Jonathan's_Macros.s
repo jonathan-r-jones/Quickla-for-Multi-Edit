@@ -7487,12 +7487,10 @@ execprog(
 //;
 
 void
-@rtm
-//qq-1
+@show_set_file_4
 {
 @header;
 @open_pretty_sett_file;
-//qq-1
 @open_file(get_environment('tmp') + '\set.txt');
 @replace_semicolons_with_crs;
 @sort_file;
