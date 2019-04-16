@@ -1,6 +1,22 @@
 //;
 
 void
+@close_and_save_file_goto_task()
+{
+str fp = "Close and save the file, then go to task location.";
+@header;
+save_file;
+//qq-1
+Delete_Window;
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
 @open_pretty_sett_file_l1
 {
 @open_pretty_sett_file;

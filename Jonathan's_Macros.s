@@ -909,7 +909,7 @@ else
 void
 @jump
 {
-str fp = 'How high? Apr-11-2019 3:17 PM';
+str fp = 'How high? Apr-16-2019 12:44 PM';
 @say(fp);
 }
 
@@ -1107,21 +1107,6 @@ rm("Compile /F=" + Get_Environment('savannah') +
 
 switch_window(Initial_Window);
 
-@say(fp);
-}
-
-
-
-//;
-
-void
-@close_and_save_file_goto_task()
-{
-str fp = "Close and save the file, then go to task location.";
-@header;
-Save_File;
-Delete_Window;
-@footer;
 @say(fp);
 }
 
@@ -1991,11 +1976,7 @@ void
 @save_file
 {
 str fp = "Save file.";
-@header;
-
-Save_File;
-
-@footer;
+save_File;
 @say(fp);
 }
 
@@ -5464,19 +5445,19 @@ str fp = "Add batch file stub router.";
 
 // lu: Nov-2-2018
 
-if(!@is_batch_file)
-{
-  @say(fp + ' Error: This macro only works in batch files.');
-  return();
-}
-
 @header;
 
-if(starting_position == 'e')
+switch(starting_position)
 {
-  @eof;
+  case 'e':
+    @eof;
+    break;
+  case '':
+    break;
+  default:
+    @find_lc(starting_position);
+    @eof;
 }
-
 
 if((@filename == 'n.bat') or (@filename == 'ni.bat'))
 {

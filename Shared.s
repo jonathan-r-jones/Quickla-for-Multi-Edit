@@ -3473,7 +3473,10 @@ void
 @close_and_save_file_wo_prompt()
 {
 str fp = "Close and save the file without prompting the user.";
-save_file;
+if(file_changed)
+{
+  save_file;
+}
 delete_window;
 @say(fp);
 }
