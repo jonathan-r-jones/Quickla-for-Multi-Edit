@@ -2133,6 +2133,18 @@ str fp = "Search Google with appended words.";
 //;
 
 void
+@search_google_with_appended_fcl
+{
+str fp = "Search Google with appended words.";
+// lu: Apr-17-2019
+@search_google_main(0, 4, @get_sj + ' from the command line');
+}
+
+
+
+//;
+
+void
 @search_google_with_appended_pn
 {
 str fp = "Search Google with appended words.";

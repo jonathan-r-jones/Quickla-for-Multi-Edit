@@ -7481,4 +7481,74 @@ void
 
 
 
+//;
+
+void
+@replace_help_1()
+{
+str fp = "Replace unwanted help line 1.";
+
+// lu: Apr-17-2019
+
+str rs;
+str sc;
+
+sc = '$$^.*"-h" goto help$';
+
+@eol;
+
+rs = '';
+
+@replace_all_occurrs_inf_one_tof(sc, rs);
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@replace_help_2()
+{
+str fp = "Replace unwanted help line 2.";
+
+// lu: Apr-17-2019
+
+str rs;
+str sc;
+
+sc = '$$^.*"help" goto help$';
+
+@eol;
+
+rs = '';
+
+@replace_all_occurrs_inf_one_tof(sc, rs);
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@dehe
+{
+str fp = "x";
+
+// lu: Apr-17-2019
+
+@header;
+
+@replace_help_1;
+@replace_help_2;
+
+@footer;
+@say(fp);
+}
+
+
+
 //; (!efjm)            .
