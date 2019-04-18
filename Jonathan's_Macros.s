@@ -1047,7 +1047,7 @@ else if(@is_bullet_file)
 else if(@is_batch_file)
 {
   @open_file(get_environment('composable_batch_files') + 
-    "\\batch file code archive.txt");
+    "\\batch file code archive.bat");
 }
 else if(@is_jenkinsfile)
 {
