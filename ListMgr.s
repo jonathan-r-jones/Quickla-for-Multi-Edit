@@ -9427,10 +9427,11 @@ str so = '';
 down;
 down;
 
+@save_column;
+
 if(@seek_in_all_files_2_arguments(sc, so))
 {
   fp += ' Double q found.';
-  @save_column;
   right;
   @make_double_q_adjustment;
   if(@is_bullet_file)
@@ -9464,6 +9465,7 @@ else
 {
   fp += ' Double q was NOT found, so go to the now playing task list.';
   @go_to_first_bullet_at_lc('rfnptl');
+  @restore_column;
 }
 
 @say(fp);

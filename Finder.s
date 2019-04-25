@@ -3696,7 +3696,6 @@ if(@first_character(sc) != ':')
 {
   //sc = '^:' + sc + '$';
   //sc = '^:cart$^.#$'; // definition
-  //qjq-1
   //sc = '$$:' + sc + '$'; // definition only!
   sc = '^:' + sc + '$^.*$^set fp'; // works
 }
