@@ -12804,7 +12804,7 @@ str wrapping_is_on = second_parameter; // Wrapping is on by default ("") versus 
 
 if(lc != '')
 {
-  lc = @modify_lc_based_on_computername(lc);
+  lc;
   @find_lc(lc);
 }
 
