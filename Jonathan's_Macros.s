@@ -7553,4 +7553,27 @@ str fp = "x";
 
 
 
+//;
+
+void
+@find_batch_label
+{
+str fp = "Find batch label.";
+
+// lu: Apr-30-2019
+
+@header;
+
+str sc = @get_user_input_raw(fp);;
+sc = make_literal_x(sc);
+sc = '^:' + sc + '$';
+@bof;
+@seek_in_all_files_2_arguments(sc, fp);
+
+@footer;
+@say(fp);
+}
+
+
+
 //; (!efjm)            .
