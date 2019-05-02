@@ -1515,7 +1515,8 @@ switch(lower(Get_Extension(File_name)))
   case 'sql':
     rv = '--';
     break;
-  case 'yaml':
+  case 'rb':
+  case 'yml':
     rv = '#';
     break;
 }
