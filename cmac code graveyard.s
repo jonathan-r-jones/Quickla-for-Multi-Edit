@@ -1,5 +1,27 @@
 //;
 
+str
+@modify_lc_based_on_computername(str lc = parse_str('/1=', mparm_str))
+{
+str fp = "Modify lc based on what computer you are working on.";
+
+// lu: Dec-30-2018
+
+switch(@first_4_characters(get_environment("computername")))
+{
+  case "LIPT":
+    lc = "gfe" + lc;
+    break;
+}
+
+@say(fp);
+return(lc);
+}
+
+
+
+//;
+
 void
 @close_and_save_file_goto_task()
 {

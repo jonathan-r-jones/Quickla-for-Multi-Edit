@@ -9281,28 +9281,6 @@ eof;
 
 //;
 
-str
-@modify_lc_based_on_computername(str lc = parse_str('/1=', mparm_str))
-{
-str fp = "Modify lc based on what computer you are working on.";
-
-// lu: Dec-30-2018
-
-switch(@first_4_characters(get_environment("computername")))
-{
-  case "LIPT":
-    lc = "gfe" + lc;
-    break;
-}
-
-@say(fp);
-return(lc);
-}
-
-
-
-//;
-
 void
 @go_to_first_bullet_at_lc(str lc = parse_str('/1=', mparm_str))
 {
@@ -9318,8 +9296,6 @@ go to jd, go_to_jd, junk_drawer
 str fp = 'Go to the first bullet at lc "' + lc + '".';
 
 @header;
-
-lc = @modify_lc_based_on_computername(lc);
 
 if(!@find_lc_known(fp, lc))
 {
@@ -9773,8 +9749,6 @@ void
 str fp = 'Add bullet at launch code.';
 
 @header;
-
-lc = @modify_lc_based_on_computername(lc);
 
 if(@find_lc(lc))
 {
