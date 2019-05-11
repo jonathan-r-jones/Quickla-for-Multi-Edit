@@ -1626,6 +1626,7 @@ if(@first_3_characters(get_line) == '//;')
 switch(lower(get_extension(File_name)))
 {
   case 'asc':
+  case 'rb':
     @bol;
     text(@comment_characters);
     break;
@@ -1638,6 +1639,7 @@ switch(lower(get_extension(File_name)))
     text(@comment_characters);
     break;
   case 'ps1':
+    text('#');
     text('#');
     break;
   case '':
@@ -2035,6 +2037,14 @@ switch(lower(get_extension(File_name)))
       del_char;
       del_char;
       goto_mark;
+    }
+    break;
+  case 'rb':
+    @bol;
+    if(@first_character(get_line) == '#')
+    {
+      del_char;
+      return();
     }
     break;
   case '':
