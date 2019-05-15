@@ -315,6 +315,7 @@ switch(lower(get_extension(File_name)))
   case 'cs':
   case 'js':
   case 'ps1':
+  case 'rb':
   case 's':
   case 'sql':
   case 'xsl':

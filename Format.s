@@ -1510,14 +1510,12 @@ switch(lower(Get_Extension(File_name)))
     rv = '//';
     break;
   case 'ps1':
+  case 'rb':
+  case 'yml':
     rv = '##';
     break;
   case 'sql':
     rv = '--';
-    break;
-  case 'rb':
-  case 'yml':
-    rv = '#';
     break;
 }
 
@@ -1858,33 +1856,33 @@ goto_line(Block_Line2);
 @eos;
 
 int is_Already_Commented = false;
-char Comment_Character = @left(@comment_characters, 1);
+char comment_character = @left(@comment_characters, 1);
 
-char Comment_Determinant = cur_char;
+char comment_determinant = cur_char;
 
 if(@is_markup_file(@filename_extension))
 {
   right;
   if(@current_character == '!')
   {
-    is_Already_Commented = true;
+    is_already_commented = true;
   }
 }
 else
 {
-  if(Comment_Determinant == Comment_Character)
+  if(comment_determinant == comment_character)
   {
-    is_Already_Commented = true;
+    is_already_commented = true;
   }
 }
 
-int Block_Length = block_line2 - block_line1 + 1;
+int block_length = block_line2 - block_line1 + 1;
 
 goto_line(Block_Line1);
 
 @bol;
 
-if(is_Already_Commented) // Uncomment the block.
+if(is_already_commented) // uncomment the block.
 {
   while(c_line <= Block_Line2)
   {
@@ -1899,7 +1897,7 @@ if(is_Already_Commented) // Uncomment the block.
     }
     else
     {
-      Find_Text(Comment_Character + Comment_Character, 1, 0);
+      find_text(comment_character + comment_character, 1, 0);
       Replace('');
     }
     goto_col(1);
