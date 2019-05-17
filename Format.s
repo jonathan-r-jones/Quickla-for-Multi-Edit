@@ -1512,7 +1512,7 @@ switch(lower(Get_Extension(File_name)))
   case 'ps1':
   case 'rb':
   case 'yml':
-    rv = '##';
+    rv = '#';
     break;
   case 'sql':
     rv = '--';
