@@ -5322,11 +5322,6 @@ str fp = "Add batch file new stub for n.bat.";
 
 // fcd: Jun-12-2018
 
-if(!@is_batch_file)
-{
-  return();
-}
-
 @save_location;
 
 int original_line_number = @current_line_number;
@@ -5461,7 +5456,7 @@ switch(starting_position)
     @eof;
 }
 
-if((@filename == 'n.bat') or (@filename == 'ni.bat'))
+if((@filename == 'n.bat') or (@filename == 'ni.bat') or (starting_position == 'nb') or (starting_position == 'ni'))
 {
   @add_batch_file_stub_for_n_bat;
 }
