@@ -911,7 +911,7 @@ else
 void
 @jump
 {
-str fp = 'How high? Apr-16-2019 12:44 PM';
+str fp = 'How high? May-22-2019 0:56 AM';
 @say(fp);
 }
 
@@ -5452,7 +5452,11 @@ switch(starting_position)
   case '':
     break;
   default:
-    @find_lc(starting_position);
+    if(!@find_lc(starting_position))
+    {
+      @say(fp + ' Starting postion lc not found.');
+      return();
+    }
     @eof;
 }
 
