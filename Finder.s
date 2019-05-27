@@ -1228,7 +1228,7 @@ str sc = @get_user_input_raw(fp);
 
 @footer;
 
-@say(fp + ' (' + sc + ')');
+//@say(fp + ' (' + sc + ')');
 }
 
 
