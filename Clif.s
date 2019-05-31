@@ -1586,7 +1586,6 @@ if(@rubric_contains_1way_string)
 }
 
 if(@rubric_contains_source_string)
-//qq-1
 {
   return(4);
 }
@@ -3415,6 +3414,12 @@ switch(lc) //qcq
     @add_bullet_below;
     @add_text_blank_url;
     break;
+  case 'cpam':
+    @add_bullet_below;
+    @add_text_date_and_time;
+    text(': ');
+    @paste;
+    break;
   // Add bullet then date. ****
   case 'diar':
   case 'droo':
@@ -3433,13 +3438,6 @@ switch(lc) //qcq
     @add_bullet_below;
     @add_text_date;
     @paste_without_wrapping;
-    break;
-  case 'cpam':
-    @add_bullet_below;
-    @add_text_date_and_time;
-//qq-1
-    text(': ');
-    @paste;
     break;
   case 'fast':
     @add_bullet_below;

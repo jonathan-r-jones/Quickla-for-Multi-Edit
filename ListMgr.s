@@ -6300,7 +6300,7 @@ if(!@is_bullet_file)
 
 
 
-//;; (skw first_child, first_sibling, first_amoung_siblings, sibling)
+//;; (skw first_child, first_sibling, first_among_siblings, sibling)
 
 int
 @is_first_subbullet()
@@ -6354,7 +6354,7 @@ str fp = 'Move subrubric up.';
 
 
 
-//;+ (skw first_child, first_sibling, first_amoung_siblings, sibling)
+//;+ (skw first_child, first_sibling, first_among_siblings, sibling)
 
 
 
@@ -12281,7 +12281,7 @@ if(@find_next_bobs != 'bullet')
 
 
 
-//;; (skw last_child, last_sibling, last_amoung_siblings)
+//;; (skw last_child, last_sibling, last_among_siblings)
 
 void
 @move_subbullet_to_last_pos()

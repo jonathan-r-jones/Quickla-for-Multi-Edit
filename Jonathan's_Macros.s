@@ -911,7 +911,7 @@ else
 void
 @jump
 {
-str fp = 'How high? May-31-2019 10:53 AM';
+str fp = 'How high? May-31-2019 11:15 AM';
 @say(fp);
 }
 
@@ -2931,6 +2931,33 @@ if(!@find_lc('q' + 'q'))
 }
 @bol;
 @paste;
+@restore_location;
+
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
+@move_bullet_to_jd
+{
+str fp = "Move bullet to jd.";
+@header;
+
+//lu: May-31-2019
+
+@save_location;
+@cut_bullet;
+if(!@find_lc('jd'))
+{
+  @paste;
+  return();
+}
+@bol;
+@paste_after;
 @restore_location;
 
 @footer;
