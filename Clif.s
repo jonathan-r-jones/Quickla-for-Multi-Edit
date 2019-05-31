@@ -3434,6 +3434,13 @@ switch(lc) //qcq
     @add_text_date;
     @paste_without_wrapping;
     break;
+  case 'cpam':
+    @add_bullet_below;
+    @add_text_date_and_time;
+//qq-1
+    text(': ');
+    @paste;
+    break;
   case 'fast':
     @add_bullet_below;
     @add_text_date;
