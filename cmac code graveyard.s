@@ -28,7 +28,6 @@ void
 str fp = "Close and save the file, then go to task location.";
 @header;
 save_file;
-//qq-1
 Delete_Window;
 @footer;
 @say(fp);
@@ -22608,8 +22607,11 @@ rs = '\0May-\3-\5';
 /*
 ;Metadata: Track Size on a Monthly Basis (!tscg)
 
+
    Date        Lines     Bytes    Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
+
+: Jun-2-2019  22,650    322,553      771
 
 :Jun-25-2017  21,392    304,142      730
 
