@@ -1,5 +1,7 @@
 prototype Clif
 {
+  void @add_text_lc_and_individuate_it(str lc);
+  void @add_text_lc_on_current_line(str lc);
   int  @anatomize_clif(int desired_action, str &fp);
   void @edit_file_remotely();
   void @edit_file_under_cursor();
