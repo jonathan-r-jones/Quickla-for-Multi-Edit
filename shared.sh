@@ -42,6 +42,7 @@ prototype Shared
   void @eof();
   void @eol();
   void @eos();
+  void @escape();
   str  @equate_spaces_and_underscores(str space_filled_string);
   int  @file_is_read_only(str &introduction);
   void @footer();
