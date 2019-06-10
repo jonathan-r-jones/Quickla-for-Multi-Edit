@@ -253,6 +253,15 @@ int window_counter = 1;
 mark_pos;
 eol;
 
+//if(@filename_extension == 'bat')
+//{
+////qq-1
+//{
+//  so = 'Found in bottom part of initial window.';
+//  fs = Found_Str;
+//  pop_mark;
+//  return(1);
+//}
 if(@seek_next(sc, sO))
 {
   so = 'Found in bottom part of initial window.';

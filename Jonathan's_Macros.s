@@ -7452,6 +7452,7 @@ sc = make_literal_x(sc);
 sc = '^:' + sc + '$';
 @bof;
 @seek_in_all_files_2_arguments(sc, fp);
+//qq-1
 
 @footer;
 @say(fp);
