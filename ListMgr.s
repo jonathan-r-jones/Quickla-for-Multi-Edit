@@ -1458,7 +1458,7 @@ str fp = 'Find next bullet or big segment.';
 
 
 
-//;; (skw @copy_bullet)
+//;; (skw @copy_bullet, @highlight_bullet)
 
 void
 @hc_bullet()

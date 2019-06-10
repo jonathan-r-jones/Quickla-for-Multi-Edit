@@ -2314,11 +2314,6 @@ while(Countdown <= 155)
   }
   else if((key2 == 5) && (key1 == 86)) // ctrl+v
   {
-    //sc += 'test Jan-1-2019';
-    sc += global_str('search_str');
-  }
-  else if((key2 == 9) && (key1 == 86)) // alt+v, alternative paste command
-  {
     // This is a hack.
     cr;
     cr;
@@ -2329,6 +2324,11 @@ while(Countdown <= 155)
     undo;
     undo;
     undo;
+  }
+  else if((key2 == 9) && (key1 == 86)) // alt+v, alternative paste command
+  {
+    //sc += 'test Jan-1-2019';
+    sc += global_str('search_str');
   }
   else if(key1 == 13) // the enter key
   {
@@ -3979,7 +3979,7 @@ str parameter_2 = @get_second_parameter_of_csv(fp, em_rp);
 
 
 
-//;;
+//;; (skw @hc_current_line)
 
 str
 @hc_line()

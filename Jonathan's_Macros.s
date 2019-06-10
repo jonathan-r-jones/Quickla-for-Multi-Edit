@@ -7459,4 +7459,53 @@ sc = '^:' + sc + '$';
 
 
 
-//; (!efjm)            .
+//;
+
+void
+@copy_bullet_to_bullet_buffer_he
+{
+str fp = "Copy bullet to bullet buffer helper.";
+
+// lu: Jun-10-2019
+
+@header;
+
+@save_location;
+@hc_bullet;
+@find_lc('bbh');
+@paste_after;
+@restore_location;
+
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
+@copy_line_to_line_buffer_helper
+{
+str fp = "Copy line to line buffer helper.";
+
+// lu: Jun-10-2019
+
+@header;
+
+@save_location;
+@hc_line;
+@find_lc('lbh');
+@add_bullet_below;
+@paste;
+@drag_left;
+@drag_left;
+@restore_location;
+
+@footer;
+@say(fp);
+}
+
+
+
+//; (!efjm)
