@@ -1511,6 +1511,7 @@ switch(lower(Get_Extension(File_name)))
     break;
   case 'ps1':
   case 'rb':
+  case 'tf':
   case 'yml':
     rv = '#';
     break;
