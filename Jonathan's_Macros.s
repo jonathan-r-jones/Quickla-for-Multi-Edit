@@ -911,7 +911,7 @@ else
 void
 @jump
 {
-str fp = 'How high? l Jun-10-2019 1:09 PM';
+str fp = 'How high? l Jun-10-2019 3:59 PM';
 @say(fp);
 }
 
@@ -7447,12 +7447,12 @@ str fp = "Find batch label.";
 
 @header;
 
+str found_string;
 str sc = @get_user_input_raw(fp);;
 sc = make_literal_x(sc);
 sc = '^:' + sc + '$';
 @bof;
-@seek_in_all_files_2_arguments(sc, fp);
-//qq-1
+@seek_in_all_files_batch_files_o(sc, fp, found_string);
 
 @footer;
 @say(fp);

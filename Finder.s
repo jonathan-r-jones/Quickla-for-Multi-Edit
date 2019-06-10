@@ -253,15 +253,6 @@ int window_counter = 1;
 mark_pos;
 eol;
 
-//if(@filename_extension == 'bat')
-//{
-////qq-1
-//{
-//  so = 'Found in bottom part of initial window.';
-//  fs = Found_Str;
-//  pop_mark;
-//  return(1);
-//}
 if(@seek_next(sc, sO))
 {
   so = 'Found in bottom part of initial window.';
@@ -281,6 +272,97 @@ while(@current_window != Initial_Window)
   mark_pos;
   tof;
   if(@seek_next(sc, sO))
+  {
+    so = 'Found in win. #' + str(window_counter) + '.';
+    so += ' @(' + @left(get_line, 32) + ')';
+    fs = Found_Str;
+    pop_mark;
+    return(1);
+  }
+  else
+  {
+    goto_mark;
+    rm('NextWin');
+    Window_Counter++;
+  }
+}
+
+mark_pos;
+tof;
+// Search top part of initial window.
+if(@seek_next(sc, sO))
+{
+  fs = Found_Str;
+  pop_mark;
+  if((@current_line_number == initial_line_number))
+  {
+    sO = 'This is the ONLY occurrence in all open files.';
+    return(2);
+  }
+  else
+  {
+    sO = 'Found in top part of initial window.';
+  }
+  return(1);
+}
+else
+{
+  goto_mark;
+}
+
+so = 'Search criterion NOT found.';
+
+@say(so);
+return(0);
+}
+
+
+
+//;;
+
+int
+@seek_in_all_files_batch_files_o(str sc, str &so, str &fs)
+{
+str fp = 'Seek in all files batch files only.';
+
+int initial_line_number = @current_line_number;
+int initial_window = @current_window;
+int window_counter = 1;
+
+mark_pos;
+eol;
+
+if(@filename_extension != 'bat')
+{
+  goto_mark;
+  rm('NextWin');
+  window_counter++;
+}
+else if(@seek_next(sc, so))
+{
+  so = 'Found in bottom part of initial window.';
+  fs = Found_Str;
+  pop_mark;
+  return(1);
+}
+else
+{
+  goto_mark;
+  rm('NextWin');
+  window_counter++;
+}
+
+while(@current_window != Initial_Window)
+{
+  mark_pos;
+  tof;
+  if(@filename_extension != 'bat')
+  {
+    goto_mark;
+    rm('NextWin');
+    window_counter++;
+  }
+  else if(@seek_next(sc, sO))
   {
     so = 'Found in win. #' + str(window_counter) + '.';
     so += ' @(' + @left(get_line, 32) + ')';

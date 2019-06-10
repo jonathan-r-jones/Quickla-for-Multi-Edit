@@ -29,6 +29,7 @@ prototype Finder
   int  @seek(str sc);
   int  @seek_from_bof(str sc);
   int  @seek_in_all_files_2_arguments(str sc, str &so);
+  int  @seek_in_all_files_batch_files_o(str sc, str &so, str &fs);
   int  @seek_in_all_files_core(str sc, str &so, str &fs);
   void @seek_in_all_files_descriptive(str fp, str sc);
   void @seek_in_all_files_simplest(str sc);
