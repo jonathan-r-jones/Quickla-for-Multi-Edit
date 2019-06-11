@@ -128,7 +128,7 @@ switch(@filename_extension)
     return("^;");
     break;
   case 'bat':
-    return("^:_");
+    return(":_");
     break;
   case 'config':
     return("^ @<entity type");

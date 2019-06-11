@@ -82,6 +82,7 @@ prototype Shared
   void @home();
   int  @i_am_on_my_home_computer();
   int  @int(str conversion_candidate);
+  int  @is_asc_file();
   int  @is_batch_file();
   int  @is_blank_line();
   int  @is_bul_file();

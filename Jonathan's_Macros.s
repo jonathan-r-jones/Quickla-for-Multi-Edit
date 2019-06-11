@@ -911,7 +911,7 @@ else
 void
 @jump
 {
-str fp = 'How high? l Jun-10-2019 3:59 PM';
+str fp = 'How high? l Jun-11-2019 1:13 PM';
 @say(fp);
 }
 
@@ -5150,7 +5150,10 @@ up;
 up;
 @paste;
 
-@find_bobs_or_previous_bs;
+
+@bobs;
+up;
+@bobs;
 
 @seek('x_marker');
 

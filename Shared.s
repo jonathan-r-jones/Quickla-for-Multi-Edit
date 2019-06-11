@@ -95,6 +95,26 @@ refresh=true;
 //;;
 
 int
+@is_asc_file()
+{
+str fp = 'Verify that the user is in an asc file.';
+
+switch(@filename_extension)
+{
+  case "asc":
+    break;
+  default:
+    @say('This macro only works on asc files.');
+    return(0);
+}
+return(1);
+}
+
+
+
+//;;
+
+int
 @is_bullet_file()
 {
 str fp = 'Verify that the user is in a file that contains bullets.';
