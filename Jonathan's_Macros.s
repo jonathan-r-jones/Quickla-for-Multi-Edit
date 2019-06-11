@@ -1053,7 +1053,7 @@ else if(@is_batch_file)
 }
 else if(@is_jenkinsfile)
 {
-  @open_file(get_environment('share-zone') + '\\Jenkinsfile_Code_Keepers')
+  @open_file(get_environment('share-zone') + '\\Jenkinsfiles\\Jenkinsfile_Code_Keepers')
 }
 
 @bof;

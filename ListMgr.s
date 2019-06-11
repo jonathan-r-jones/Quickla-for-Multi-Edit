@@ -191,6 +191,17 @@ return(rv);
 
 //;;
 
+void
+@current_line_type_say()
+{
+str fp = 'Say current line type.';
+@say(@current_line_type);
+}
+
+
+
+//;;
+
 int
 @is_structured_line()
 {
@@ -1450,6 +1461,17 @@ str fp = 'Find next bullet or big segment.';
 @find_next_bobs;
 @footer;
 @say(fp);
+}
+
+
+
+//;;
+
+void
+@find_next_bobs_say
+{
+str fp = 'Find next bullet or big segment say.';
+@say(@find_next_bobs);
 }
 
 
@@ -8069,7 +8091,7 @@ if(!@is_content_area_file)
 switch(current_line_type)
 {
   case 'bullet':
-    if(key2 == 13) // The alt+control key was pressed.
+    if(key2 == 13) // The alt+control keys were pressed.
     {
       @delete_parent;
     }
@@ -10091,7 +10113,7 @@ int is_bullet = false;
 int is_subbullet = false;
 str last_updated = ' Last updated: ' + @get_date();
 
-if(@is_bullet_file)
+if(@filename_extension == 'asc')
 {
   if(@is_bullet)
   {

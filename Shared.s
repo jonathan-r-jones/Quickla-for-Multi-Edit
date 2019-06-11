@@ -102,6 +102,7 @@ str fp = 'Verify that the user is in a file that contains bullets.';
 switch(@filename_extension)
 {
   case "asc":
+  case "bat":
     break;
   default:
     @say('This macro only works on bullet type files.');
