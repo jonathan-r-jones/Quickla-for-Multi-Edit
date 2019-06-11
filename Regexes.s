@@ -128,7 +128,7 @@ switch(@filename_extension)
     return("^;");
     break;
   case 'bat':
-    return(":_");
+    return("^:+_");
     break;
   case 'config':
     return("^ @<entity type");
@@ -417,7 +417,7 @@ switch(@filename_extension)
     sc = '(^:$)||(^:[^:])';
     break;
   case 'bat':
-    sc = '(^:$)||(^:[^_])';
+    sc = '(^:$)||(^:[^:])';
     break;
   case 'htm':
     sc = '^<!--:';
