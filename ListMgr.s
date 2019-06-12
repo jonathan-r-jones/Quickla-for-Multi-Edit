@@ -8147,9 +8147,7 @@ if(@is_selected)
 
 @header;
 
-str current_line_type = @current_line_type;
-
-switch(current_line_type)
+switch(@current_line_type)
 {
   case 'rubric':
     @copy_and_paste_rubric;
@@ -9434,7 +9432,7 @@ if(@seek_in_all_files_2_arguments(sc, so))
   fp += ' Double q found.';
   right;
   @make_double_q_adjustment;
-  if(@is_bullet_file)
+  if(@is_asc_file)
   {
     if(@first_character_in_line == ':')
     {
@@ -10683,6 +10681,11 @@ str fp = 'Add text time.';
 if(@text_is_selected)
 {
   delete_block;
+}
+
+if(@previous_character == ' ')
+{
+  @backspace;
 }
 
 text(@get_formatted_time);
