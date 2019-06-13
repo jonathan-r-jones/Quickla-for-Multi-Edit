@@ -165,7 +165,6 @@ if(find_text(@subrubric, 1, _regexp))
   rv = 'subrubric';
 }
 else if(find_text(@bullet, 1, _regexp))
-//qq-1
 {
   rv = 'bullet';
 }
