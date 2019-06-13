@@ -161,6 +161,7 @@ str rv = '';
 int current_column = @current_column;
 @bol;
 if(find_text(@bullet, 1, _regexp))
+//qq-1
 {
   rv = 'bullet';
 }
