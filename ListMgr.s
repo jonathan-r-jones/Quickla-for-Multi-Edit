@@ -160,7 +160,11 @@ str rv = '';
 
 int current_column = @current_column;
 @bol;
-if(find_text(@bullet, 1, _regexp))
+if(find_text(@subrubric, 1, _regexp))
+{
+  rv = 'subrubric';
+}
+else if(find_text(@bullet, 1, _regexp))
 //qq-1
 {
   rv = 'bullet';
@@ -172,10 +176,6 @@ else if(find_text(@subbullet, 1, _regexp))
 else if(find_text(@rubric, 1, _regexp))
 {
   rv = 'rubric';
-}
-else if(find_text(@subrubric, 1, _regexp))
-{
-  rv = 'subrubric';
 }
 goto_col(current_column);
 

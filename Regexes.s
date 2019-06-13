@@ -417,7 +417,6 @@ switch(@filename_extension)
     sc = '(^:$)||(^:[^:])';
     break;
   case 'bat':
-//qq-1
     sc = '(^:$)||(^:[^_])';
     break;
   case 'htm':
