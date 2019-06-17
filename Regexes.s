@@ -911,7 +911,6 @@ str
 // (skw fat_colon)
 str fp = "Fat colon.";
 str sc = '$$$^:';
-//rs = ''
 regex_Description = fp;
 return(sc);
 }
