@@ -4194,7 +4194,7 @@ if(is_lc_action || (lc != ''))
 
 if(@lower(@last_character(raw_sc)) == 'w')
 {
-  fp += 'with me.';
+  fp += ' with me.';
   pop_mark;
 }
 else
