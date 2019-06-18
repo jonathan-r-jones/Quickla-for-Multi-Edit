@@ -30,7 +30,7 @@ prototype Regexes
   str  @defined_for_kids(str &regex_Description, str &rS);
   str  @family_rubric();
   str  @family_rubric_text();
-  str  @fat_colon(str &regex_Description, str &rS);
+  str  @fat_bullet(str &regex_Description, str &rS);
   str  @fat_rubric(str &regex_Description, str &rS);
   str  @first_known_use(str &regex_Description, str &rS);
   str  @informal_followed_by_a_crowding(str &regex_Description, str &rs);

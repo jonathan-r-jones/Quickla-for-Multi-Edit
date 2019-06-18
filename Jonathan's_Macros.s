@@ -7512,4 +7512,35 @@ str fp = "Copy line to line buffer helper.";
 
 
 
+//;
+
+void
+@rtm
+{
+str fp = "x";
+
+// lu: Jun-18-2019
+
+str rs;
+str sc;
+
+@header;
+sc = @fat_bullet(sc, rs);
+
+@eol;
+
+@seek(sc);
+@footer;
+return();
+rs = '\0';
+@replace_next_occurrence_only(sc, rs);
+@replace_all_occurrs_inf_one_tof(sc, rs);
+int is_found = @seek_in_all_files_2_arguments(sc, fp);
+
+@say(found_str);
+@say(fp);
+}
+
+
+
 //; (!efjm)

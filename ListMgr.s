@@ -2871,7 +2871,7 @@ str fp = "Process Eclipse code file.";
 //;
 
 void
-@fix_fat_colon()
+@fix_fat_bullet()
 {
 str fp = "Fix fat colon or semicolon.";
 
@@ -2981,7 +2981,7 @@ cr;
 
 @bor;
 
-@fix_fat_colon;
+@fix_fat_bullet;
 @find_next_big_segment;
 @bol;
 @cursor_to_my_bof
@@ -5115,7 +5115,7 @@ eol;
 
 @backspace;
 
-@fix_fat_colon;
+@fix_fat_bullet;
 @restore_location;
 @word_wrap;
 @restore_location;
@@ -10246,7 +10246,7 @@ rm('Block^SelectAll');
 @add_bullet_above;
 cr;
 @paste;
-@fix_fat_colon;
+@fix_fat_bullet;
 
 @say(fp);
 @footer;

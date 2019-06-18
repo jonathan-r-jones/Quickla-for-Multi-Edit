@@ -2839,7 +2839,7 @@ do
   {
     if(@is_bullet_file)
     {
-      if(@seek_next(@fat_colon(Regex_Description, rs), so))
+      if(@seek_next(@fat_bullet(Regex_Description, rs), so))
       {
         em = Regex_Description;
       }

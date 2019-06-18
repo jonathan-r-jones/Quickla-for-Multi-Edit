@@ -906,12 +906,24 @@ return(sc);
 //;
 
 str
-@fat_colon(str &regex_Description, str &rS)
+@fat_bullet(str &regex_Description, str &rS)
 {
+str fp = 'Fat bullet.';
+
 // (skw fat_colon)
-str fp = "Fat colon.";
-str sc = '$$$^:';
-regex_Description = fp;
+
+str sc;
+
+switch(@filename_extension)
+{
+  case 'asc':
+    sc = '($$$^:$)||($$$^:[^:])';
+    break;
+  case 'bat':
+    sc = '($$$^:[^:_])';
+    break;
+}
+str regex_Description = fp;
 return(sc);
 }
 
