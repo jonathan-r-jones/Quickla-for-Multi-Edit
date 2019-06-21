@@ -1335,11 +1335,13 @@ str fp = 'Find from top using wost.';
 
 @header;
 
-@ff_top(@get_wost);
+str wost = @get_wost;
+
+@ff_top(wost);
 
 @footer;
 
-@say(fp);
+@say(fp + ' (' + wost + ')');
 }
 
 
