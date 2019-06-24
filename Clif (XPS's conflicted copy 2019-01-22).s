@@ -26,10 +26,6 @@ Metadata: Track Size (!tscf)
     Date       Lines     Bytes    Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
-:Jun-23-2019   4,647     83,765      119
-
-:Apr-26-2019   4,495     81,463      116
-
 : Jan-1-2019   4,442     80,622      113
 
 : Jul-1-2018   4,533     82,542      114
@@ -146,7 +142,6 @@ load_macro_file('Regexes');
 load_macro_file('Finder');
 
 @say(fp)
-
 }
 
 
@@ -1447,7 +1442,7 @@ mark_pos;
 
 @bobs;
 
-if(find_text('!sour', 3, _regexp))
+if(find_text('sour', 3, _regexp))
 {
   goto_mark;
   return(1);
@@ -2040,7 +2035,7 @@ void
 @process_batx_clif_block(str clif_block)
 {
 str fp = "Process batx clif block.";
-
+   fp = "Apr-6-2017 3:09 PM";
 // fcd: "Apr-6-2017
 
 str application;
@@ -2084,60 +2079,6 @@ execprog(
 
 
 
-//;;
-
-void
-@run_rzr_line(str razor_string = parse_str('/1=', mparm_str))
-{
-str fp = "Run Multi-Edit abstraction layer batch file.";
-
-// lu: Feb-1-2019
-
-str command_line = 'c:\windows\system32\cmd.exe /k';
-
-//razor_string = @replace_once(razor_string, 'rzrp', 'rzrp.bat');
-//razor_string = @replace_once(razor_string, 'rzr', 'rzr.bat');
-
-command_line += ' ' + razor_string;
-
-//@say(razor_string);
-//return();
-
-//str trimmed_clif_block = @trim_before_phrase(clif_block, '):');
-
-//trimmed_clif_block = @trim_first_character(trimmed_clif_block);
-//trimmed_clif_block = @trim_first_character(trimmed_clif_block);
-
-//@log('trimmed_clif_block: ' + trimmed_clif_block);
-
-//str bat_file_parameter = @trim_before_phrase(trimmed_clif_block, 'batx');
-
-//bat_file_parameter = @trim_left(bat_file_parameter, 5);
-
-//@log('bat_file_parameter: ' + bat_file_parameter);
-
-//str batch_file_name = @trim_after_phrase(trimmed_clif_block, 'batx');
-
-//batch_file_name = @trim_last_character(batch_file_name);
-
-//str argument = char(34) + batch_file_name + ' ' + bat_file_parameter + ' ' + char(34);
-
-//@log('batch_file_name: ' + batch_file_name);
-
-execprog(
-  command_line, 
-  '', 
-  '', 
-  '', 
-  _ep_flags_exewin | 
-  _ep_flags_nobypass |
-  _ep_flags_dontwait);
-
-@say(fp);
-}
-
-
-
 //;; (!anat)
 
 int
@@ -2166,8 +2107,8 @@ if(@text_is_selected)
 }
 else
 {
-  clif_block = @concatenate_multiple_lines;
-  clif_block = @trim_leading_colons_et_al(clif_block);
+  clif_Block = @concatenate_multiple_lines;
+  clif_Block = @trim_leading_colons_et_al(clif_Block);
 }
 
 // I probably need to refactor this to say if "%" occurs BEFORE http, than only modify that
@@ -2175,19 +2116,11 @@ else
 
 int http_position = xpos('http', clif_block, 1);
 
-if(@contains(clif_block, 'rzr'))
-{
-  @say(' Feb-1-2019');
-  @run_rzr_line(clif_block);
-  return(1);
-}
-
 if(@contains(clif_block, 'batx'))
 {
   @process_batx_clif_block(clif_block);
   return(1);
 }
-
 int percent_sign_position = xpos('%', clif_block, 1);
 
 if(percent_sign_position > 0)
@@ -3099,6 +3032,24 @@ str Pretty_sc = sc;
 
 URL += sc;
 
+//if(@contains(sc, 'MERDEV-'))
+//{
+//}
+//else if(@contains(sc, 'DATA-'))
+//{
+//  URL += sc;
+//}
+//else if(@contains(sc, 'TNG-'))
+//{
+//  URL += sc;
+//}
+//else
+//{
+//  Pretty_sc = "All Tickets Sorted By Newest First";
+//  @set_clipboard('MERDEV-12');
+//  URL = "https://mercuryproject.atlassian.net/projects/MERDEV/issues/MERDEV-36?filter=allopenissues";
+//}
+
 sc = @commute_character(sc, ' ', '+');
 
 if(is_print_mode)
@@ -3260,14 +3211,14 @@ if(@contains(sc, 'cart-'))
   @search_jira('', 0);
   return();
 }
-else if(@contains(sc, 'sebplan-'))
+else if(@contains(sc, 'DATA-'))
 {
   @search_jira('', 0);
   return();
 }
-else if(@contains(sc, 'rzr'))
+else if(@contains(sc, 'TNG-'))
 {
-  @run_rzr_line(sc);
+  @search_jira('', 0);
   return();
 }
 
@@ -3335,14 +3286,15 @@ if(@contains(sc, 'MERDEV-'))
 {
   return(1);
 }
-else if(@contains(sc, 'cart-'))
+else if(@contains(sc, 'DATA-'))
 {
   return(1);
 }
-else if(@contains(sc, 'sebplan-'))
+else if(@contains(sc, 'TNG-'))
 {
   return(1);
 }
+
 return(0);
 }
 
@@ -3393,149 +3345,6 @@ str Operation_Outcome = '';
 
 
 
-//;;
-
-void
-@add_text_lc_on_current_line(str lc = parse_str('/1=', mparm_str))
-{
-str fp = "Add text lc on current line.";
-str sc;
-
-sc = @lc;
-int isOpenParenthesis = false;
-
-@bol;
-if(find_text(sc, 1, _regexp))
-{
-  right;
-  text('!, ');
-  left;
-  left;
-}
-else
-{
-  @eoc;
-  while((@current_character != '(') and (@current_character != ':'))
-  {
-    if(at_eol)
-    {
-      break;
-    }
-    right;
-  }
-  if((@current_character == '('))
-  {
-    left;
-  }
-  if(@previous_character != ' ')
-  {
-    text(' ');
-  }
-  text('(!)');
-  left;
-}
-text(lc);
-
-/* Use Case(s)
-
-1. Use Case on Oct-24-2012:
-
-This macro should work with QuickLauncher Registry items, e.g.
-
-:ea: Email Address (prefix adjective)
-
-*/
-
-@say(fp);
-}
-
-
-
-//;;
-
-void
-@delete_specific_lc_from_cl(str lc = parse_str('/1=', mparm_str))
-{
-str fp = "Delete specific lc from current line.";
-
-// fcd: Feb-11-2016
-
-up;
-@find_lc(lc);
-@backspace;
-@delete_word_conservatively;
-if((@current_character == ')') and (@previous_character == '('))
-{
-  @backspace;
-  @delete_character;
-  @backspace;
-  return();
-}
-while((@current_character != ')') and (@current_character != ','))
-{
-  @delete_character;
-}
-if((@current_character == ')') and (@previous_character == '('))
-{
-  @backspace;
-  @delete_character;
-  @backspace;
-  return();
-}
-if(@current_character == ',')
-{
-  @delete_character;
-}
-if(@current_character == ' ')
-{
-  @delete_character;
-}
-if((@previous_character == ' ') and (@current_character == ')'))
-{
-  @backspace;
-  @backspace;
-}
-
-/*
-
-Use Cases for @delete_specific_lc_from_cl
-
-:1. test
-
-:2. test (!xx3, !xx1)
-
-*/
-
-@say(fp);
-}
-
-
-
-//;;
-
-void
-@add_text_lc_and_individuate_it(str lc = parse_str('/1=', mparm_str))
-{
-str fp = "Add launch code on current line and remove its remote occurrence.";
-
-//skw replace, new lc, new_lc, unique, lc, add_lc, add lc, update lc, update_lc
-
-@save_location;
-
-if(@find_lc(lc))
-{
-  @delete_specific_lc_from_cl(lc);
-}
-
-@restore_location;
-
-@add_text_lc_on_current_line(lc);
-
-@say(fp);
-}
-
-
-
 //;; (skw special processing, special_processing)
 
 void
@@ -3543,7 +3352,7 @@ void
 {
 str fp = "Perform custom processing per launch code.";
 
-@header_bloff;
+@header;
 
 if(!@find_lc_known(fp, lc))
 {
@@ -3553,19 +3362,6 @@ if(!@find_lc_known(fp, lc))
 // What do I call this feature? Auto-Rubric-Population? (skw January) (!arpo)
 switch(lc) //qcq
 {
-  // Add http string. ****
-  case 'aspl':
-  case 'lk':
-    @add_bullet_below;
-    @add_text_blank_url;
-    break;
-  case 'cpam':
-    @add_bullet_below;
-    @add_text_date;
-    text(': ');
-    @paste;
-    @add_text_lc_and_individuate_it('xc');
-    break;
   // Add bullet then date. ****
   case 'diar':
   case 'droo':
@@ -3574,16 +3370,22 @@ switch(lc) //qcq
     @add_text_date;
     text(': ');
     break;
-  // Unique. ****
-  case 'edit':
+  // Add http string. ****
+  case 'aspl':
+  case 'lk':
     @add_bullet_below;
-    cr;
-    @add_text_multiedit;
+    @add_text_blank_url;
     break;
+  // Unique. ****
   case 'ers':
     @add_bullet_below;
     @add_text_date;
     @paste_without_wrapping;
+    break;
+  case 'edit':
+    @add_bullet_below;
+    cr;
+    @add_text_multiedit;
     break;
   case 'fast':
     @add_bullet_below;
@@ -3596,11 +3398,6 @@ switch(lc) //qcq
     @add_bullet_below;
     @add_text_date;
     @paste_with_wikipedia_format;
-    break;
-  case 'j':
-  case 'rzr':
-    @add_bullet_below;
-    text('rzr ');
     break;
   default:
     if(@is_code_word_line)
@@ -3758,6 +3555,31 @@ while(loop_counter <= length_of_string)
 }
 
 return(postperiod_string);
+}
+
+
+
+//;;
+
+void
+@find_from_lc_arguments(str lc = parse_str('/1=', mparm_str))
+{
+str fp = 'Search from lc with reserved word sc.';
+
+// Sample Usage: f.al.sj
+// If the second parameter is left blank, the subject is used by default.
+
+str sc = @get_sj;
+
+@find_lc(lc);
+
+// I commented this out on Aug-30-2017 because it couldn't search "and time" correctly.
+//sc = @equate_spaces_and_dashes_wcl(sc);
+sc = make_literal_x(sc);
+
+@seek_in_all_files_2_arguments(sc, fp);
+
+@say(fp + ' (' + sc + ')');
 }
 
 
@@ -4440,23 +4262,49 @@ if(!@i_am_on_my_tablet)
 
 
 
-//;+ Find From Bottom
-
-
-
-//;;
+//; (!2mum2)
 
 void
-@ff_bottom(str sc = parse_str('/1=', mparm_str))
+@find_backwards(str arguments = parse_str('/1=', mparm_str))
 {
-str fp = "Find from bottom.";
+str fp = "Find backwards wost at lc.";
 
-// lu: Mar-18-2019
+@header;
 
-mark_pos;
-@eof;
+// fcd: Sep-21-2016
 
-sc = make_literal_x(sc);
+str first_parameter, second_parameter;
+
+@parse_arguments(arguments, ".", first_parameter, second_parameter);
+
+str lc = first_parameter; // location here (default) versus remote
+
+str sc;
+
+str option = second_parameter;
+
+if(option == 'u')
+{
+  sc = @get_user_input_raw(fp);
+}
+else
+{
+  sc = second_parameter;
+  //  sc = @get_wost; // default, a. k. a. nothing
+}
+
+if(lc == '')
+{
+  up;  // default, a. k. a. from here
+}
+else if (lc == 'rfeof')
+{
+  @eof;
+}
+else
+{
+  @find_lc(lc);
+}
 
 set_global_str('search_str', sc);
 
@@ -4464,12 +4312,10 @@ if(find_text(sc, 0, _regexp | _backward))
 {
   fp += ' Found: ' + found_str + '.';
   right;
-  pop_mark;
 }
 else
 {
-  fp += ' "' + sc + '"' + ' NOT found in this file. ';
-  goto_mark;
+   fp += ' "' + sc + '"' + ' NOT found in this file. ';
 }
 
 @footer;
@@ -4479,36 +4325,17 @@ else
 
 
 
-//;;
+//;
 
 void
-@ff_bottom_ui
+@find_backwards_from_eof_w_ui
 {
-str fp = "Find from bottom using user input.";
-
+str fp = "Find backwards from using user input.";
 @header;
 
-// lu: Mar-18-2019
+// fcd: Sep-22-2016
 
-@ff_bottom(@get_user_input_raw(fp));
-
-@footer;
-}
-
-
-
-//;;
-
-void
-@ff_bottom_wost
-{
-str fp = "Find from bottom using wost.";
-
-@header;
-
-// lu: Mar-18-2019
-
-@ff_bottom(@get_wost);
+@find_backwards('rfeof.u');
 
 @footer;
 }

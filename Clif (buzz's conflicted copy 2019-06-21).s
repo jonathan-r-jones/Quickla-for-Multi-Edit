@@ -26,8 +26,6 @@ Metadata: Track Size (!tscf)
     Date       Lines     Bytes    Macros  Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
-:Jun-23-2019   4,647     83,765      119
-
 :Apr-26-2019   4,495     81,463      116
 
 : Jan-1-2019   4,442     80,622      113
@@ -1588,6 +1586,7 @@ if(@rubric_contains_1way_string)
 }
 
 if(@rubric_contains_source_string)
+//qq-1
 {
   return(4);
 }
@@ -3393,149 +3392,6 @@ str Operation_Outcome = '';
 
 
 
-//;;
-
-void
-@add_text_lc_on_current_line(str lc = parse_str('/1=', mparm_str))
-{
-str fp = "Add text lc on current line.";
-str sc;
-
-sc = @lc;
-int isOpenParenthesis = false;
-
-@bol;
-if(find_text(sc, 1, _regexp))
-{
-  right;
-  text('!, ');
-  left;
-  left;
-}
-else
-{
-  @eoc;
-  while((@current_character != '(') and (@current_character != ':'))
-  {
-    if(at_eol)
-    {
-      break;
-    }
-    right;
-  }
-  if((@current_character == '('))
-  {
-    left;
-  }
-  if(@previous_character != ' ')
-  {
-    text(' ');
-  }
-  text('(!)');
-  left;
-}
-text(lc);
-
-/* Use Case(s)
-
-1. Use Case on Oct-24-2012:
-
-This macro should work with QuickLauncher Registry items, e.g.
-
-:ea: Email Address (prefix adjective)
-
-*/
-
-@say(fp);
-}
-
-
-
-//;;
-
-void
-@delete_specific_lc_from_cl(str lc = parse_str('/1=', mparm_str))
-{
-str fp = "Delete specific lc from current line.";
-
-// fcd: Feb-11-2016
-
-up;
-@find_lc(lc);
-@backspace;
-@delete_word_conservatively;
-if((@current_character == ')') and (@previous_character == '('))
-{
-  @backspace;
-  @delete_character;
-  @backspace;
-  return();
-}
-while((@current_character != ')') and (@current_character != ','))
-{
-  @delete_character;
-}
-if((@current_character == ')') and (@previous_character == '('))
-{
-  @backspace;
-  @delete_character;
-  @backspace;
-  return();
-}
-if(@current_character == ',')
-{
-  @delete_character;
-}
-if(@current_character == ' ')
-{
-  @delete_character;
-}
-if((@previous_character == ' ') and (@current_character == ')'))
-{
-  @backspace;
-  @backspace;
-}
-
-/*
-
-Use Cases for @delete_specific_lc_from_cl
-
-:1. test
-
-:2. test (!xx3, !xx1)
-
-*/
-
-@say(fp);
-}
-
-
-
-//;;
-
-void
-@add_text_lc_and_individuate_it(str lc = parse_str('/1=', mparm_str))
-{
-str fp = "Add launch code on current line and remove its remote occurrence.";
-
-//skw replace, new lc, new_lc, unique, lc, add_lc, add lc, update lc, update_lc
-
-@save_location;
-
-if(@find_lc(lc))
-{
-  @delete_specific_lc_from_cl(lc);
-}
-
-@restore_location;
-
-@add_text_lc_on_current_line(lc);
-
-@say(fp);
-}
-
-
-
 //;; (skw special processing, special_processing)
 
 void
@@ -3543,7 +3399,7 @@ void
 {
 str fp = "Perform custom processing per launch code.";
 
-@header_bloff;
+@header;
 
 if(!@find_lc_known(fp, lc))
 {
@@ -3558,13 +3414,6 @@ switch(lc) //qcq
   case 'lk':
     @add_bullet_below;
     @add_text_blank_url;
-    break;
-  case 'cpam':
-    @add_bullet_below;
-    @add_text_date;
-    text(': ');
-    @paste;
-    @add_text_lc_and_individuate_it('xc');
     break;
   // Add bullet then date. ****
   case 'diar':
