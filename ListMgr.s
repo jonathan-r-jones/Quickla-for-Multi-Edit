@@ -1243,7 +1243,7 @@ int current_Column_Number = @current_Column_Number;
 
 @header;
 
-if(@is_bullet_file && @is_structured_line)
+if(@is_asc_file && @is_structured_line)
 {
   @find_next_content_area;
 }
@@ -1274,7 +1274,7 @@ str Current_Line_Type = '';
 
 @header;
 
-if(@is_bullet_file && @is_structured_line)
+if(@is_asc_file && @is_structured_line)
 {
   @find_previous_content_area;
 }
