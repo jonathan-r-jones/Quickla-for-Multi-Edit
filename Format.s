@@ -825,6 +825,9 @@ Number_of_Replacements +=
   @replace_string_in_file_int(@special_character(Replacement_Description, rs, char(6)), rs);
 
 Number_of_Replacements += 
+  @replace_string_in_file_int(@special_character(Replacement_Description, rs, char(27)), rs);
+
+Number_of_Replacements += 
   @replace_string_in_file_int(@special_character(Replacement_Description, rs, char(128)), rs);
 
 Number_of_Replacements += 
