@@ -17,7 +17,8 @@ prototype Clif
   int  @open_folder(str path);
   void @open_folder_remotely();
   void @repeat_command();
-  void @set_clipboard(str stringToSet);
+  int  @rubric_contains_1way_string();
   int  @run_clif_under_cursor(str &operation_outcome);
   void @run_clif_internally(str lc);
+  void @set_clipboard(str stringToSet);
 }

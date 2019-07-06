@@ -3096,9 +3096,10 @@ void
 {
 str fp = "Find next lookup counter equal or higher.";
 
-@header;
+// next_highest, next_biggest, next_largest, highest, greatest, lookup, next_high, next high
+// skw
 
-// skw highest, greatest, lookup, next_high, next high
+@header;
 
 str so;
 int starting_line_lk_number;
@@ -4577,7 +4578,6 @@ if(find_text(sc, 2, _regexp))
 goto_mark;
 
 
-
 // Next test. ****
 
 sc = '!dest.+';
@@ -4597,7 +4597,6 @@ if(find_text(sc, 2, _regexp))
 goto_mark;
 
 
-
 // Next test. ****
 
 sc = '\^.+';
@@ -4609,6 +4608,23 @@ if(find_text(sc, 2, _regexp))
   distilled_lc = @distill_lc(found_str);;
   distilled_lc = @trim_before_character(distilled_lc, '^');
   remote_lc_partner = distilled_lc;
+  goto_mark;
+  return(1);
+}
+
+goto_mark;
+
+
+// Next test. ****
+
+sc = '1way.+,';
+
+@bol;
+
+if(find_text(sc, 2, _regexp))
+{
+  distilled_lc = @distill_lc(found_str);
+  remote_lc_partner = @replace(distilled_lc, '1way', '');
   goto_mark;
   return(1);
 }
@@ -7517,30 +7533,33 @@ str fp = "Copy line to line buffer helper.";
 //;
 
 void
-@rtm
+@load_clipboard_with_tail_string
 {
-str fp = "x";
+str fp = "Load clipboard with the tail string.";
 
-// lu: Jun-18-2019
-
-str rs;
-str sc;
+// lu: Jul-5-2019
 
 @header;
-sc = @fat_bullet(sc, rs);
 
-@eol;
+str sc = '!' + 'rftail';
+str so;
+int is_found = @seek_in_all_files_2_arguments(sc, so);
 
-@seek(sc);
+@hc_subject;
+
+@add_bullet_below;
+
+@paste;
+
+text(@get_date_tail_format + '.log');
+
+str subject = @hc_subject;
+
+@set_clipboard(subject);
+
 @footer;
-return();
-rs = '\0';
-@replace_next_occurrence_only(sc, rs);
-@replace_all_occurrs_inf_one_tof(sc, rs);
-int is_found = @seek_in_all_files_2_arguments(sc, fp);
 
-@say(found_str);
-@say(fp);
+@say(fp + ' (' + subject + ')');
 }
 
 

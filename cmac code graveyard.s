@@ -1,5 +1,68 @@
 //;
 
+void
+@rtm2
+{
+str fp = "x";
+
+// lu: Jul-5-2019
+
+str sc = '1way';
+str distilled_lc = '1waytest';
+distilled_lc = @replace(distilled_lc, sc, '');
+//qq-1
+
+@say(distilled_lc);
+}
+
+
+
+//;
+
+void
+@rtm
+{
+str fp = "x";
+
+// lu: Jul-5-2019
+
+str sc = '1way.+,';
+str distilled_lc;
+str remote_lc_partner;
+
+@bol;
+
+if(find_text(sc, 2, _regexp))
+{
+  distilled_lc = @distill_lc(found_str);
+  remote_lc_partner = @replace(distilled_lc, '1way', '');
+}
+
+goto_mark;
+
+@say(distilled_lc);
+}
+
+
+
+//;;
+
+str
+@get_formatted_date_as_fct_na_th
+{
+str fp = "Test harness.";
+
+str function_name = @get_formatted_date();
+function_name = @commute_character(function_name, "-", "");
+
+@say(function_name);
+return(function_name);
+}
+
+
+
+//;
+
 str
 @modify_lc_based_on_computername(str lc = parse_str('/1=', mparm_str))
 {

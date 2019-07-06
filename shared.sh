@@ -50,6 +50,7 @@ prototype Shared
   str  @get_date();
   str  @get_date_and_time();
   str  @get_date_smas_format();
+  str  @get_date_tail_format();
   str  @get_date_with_time();
   int  @get_eoc();
   str  @get_fixed_width_date();

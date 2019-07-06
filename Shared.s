@@ -1699,6 +1699,7 @@ int Position_of_First_Slash = xpos("/", date, 1);
 int Position_of_Second_Slash = xpos("/", date, Position_of_First_Slash+1);
 
 str Month = str_del(date, Position_of_First_Slash, 14);
+
 str Day = str_del(date, Position_of_Second_Slash, 14);
 Day = str_del(Day, 1, Position_of_First_Slash);
 str Year = str_del(Date, 1, Position_of_Second_Slash);
@@ -1805,22 +1806,6 @@ if(length_of_date == 10)
 }
 
 return(formatted_date);
-}
-
-
-
-//;;
-
-str
-@get_formatted_date_as_fct_na_th
-{
-str fp = "Test harness.";
-
-str function_name = @get_formatted_date();
-function_name = @commute_character(function_name, "-", "");
-
-@say(function_name);
-return(function_name);
 }
 
 
@@ -4319,6 +4304,42 @@ else
 set_global_str('cmac_return_value', fully_constructed_display_date);
 
 return(fully_constructed_date);
+}
+
+
+
+//;
+
+str
+@get_date_tail_format()
+{
+str fp = 'Get date formatted for the tail command.';
+
+int position_of_first_slash = xpos("/", date, 1);
+int position_of_second_slash = xpos("/", date, position_of_first_slash+1);
+
+str month = str_del(date, position_of_first_slash, 14);
+str day = str_del(date, position_of_second_slash, 14);
+
+day = str_del(day, 1, position_of_first_slash);
+
+if(length(month) == 1)
+{
+  month = '0' + month;
+}
+
+if(length(day) == 1)
+{
+  day = '0' + day;
+}
+
+str year = str_del(date, 1, position_of_second_slash);
+
+str return_value = '.' + year + '-' + month + '-' + day;
+
+@say(return_value);
+
+return(return_value);
 }
 
 

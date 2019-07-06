@@ -2053,6 +2053,12 @@ switch(lower(get_extension(File_name)))
     break;
   case '':
   case 'asc':
+    if(@first_2_characters(get_line) == ';;')
+    {
+      @bol;
+      @delete_character;
+    }
+    break;
   case 's':
     @eos;
     int character_Was_Deleted = false;
