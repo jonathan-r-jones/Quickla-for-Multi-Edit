@@ -2763,7 +2763,7 @@ void
 @open_l_file_with_pasted_text()
 {
 str fp = "Open l File with pasted text.";
-str full_filename[128] = 'c:\a\l';
+str full_filename[128] = 'c:\a\j1.txt';
 @open_file(full_filename);
 @select_all;
 delete_block;
