@@ -1976,46 +1976,14 @@ else
 //;;
 
 void
-@delete_colon()
-{
-str fp = "Subtract colon.";
-
-// lu: Jul-18-2018
-
-mark_pos;
-
-@bol;
-
-if(@first_2_characters(get_line) == '::')
-{
-  @delete_character;
-  goto_mark;
-  if(@current_column != 1)
-  {
-    left;
-  }
-}
-else
-{
-  fp += ' Cannot delete the sole remaining colon.';
-  goto_mark;
-}
-
-@say(fp);
-}
-
-
-
-//;;
-
-void
 @drag_left()
 {
 str fp = 'Drag left.';
 
 if(@first_character(get_line) == ':')
 {
-  @delete_colon;
+  @bol;
+  @delete_character;
   return();
 }
 
