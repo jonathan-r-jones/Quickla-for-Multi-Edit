@@ -6688,18 +6688,6 @@ str fp = "Find lc partner listed in big segment header.";
 //;
 
 void
-@say_this_filename
-{
-str fp = "Say this filename.";
-// lu: Jun-10-2018
-@say(fp + ' (' + @full_filename + ')');
-}
-
-
-
-//;
-
-void
 @copy_bullet_to_lc_together
 {
 str fp = "Copy bullet to lc together.";
@@ -7560,6 +7548,18 @@ str subject = @hc_subject;
 @footer;
 
 @say(fp + ' (' + subject + ')');
+}
+
+
+
+//;
+
+void
+@say_this_filename
+{
+str fp = "Say this filename.";
+// lu: Jun-10-2018
+@say(fp + ' (' + @full_filename + ')');
 }
 
 
