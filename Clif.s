@@ -4210,7 +4210,7 @@ switch(first_character)
     @find_lc(user_input_wo_first_2_chars);
     break;
   case '5':
-    // @cstyle_cmac_string_consumer(user_input_wo_first_2_chars);
+    //@cstyle_cmac_string_consumer(user_input_wo_first_2_chars);
     break;
   default:  // period
     @cstyle_cmac_with_parameter(user_input);
@@ -4324,6 +4324,12 @@ else if(xpos("-", user_input, 1))
 else if(xpos("=", user_input, 1))
 {
   @cstyle_say_string_consumer(user_input);
+  @footer;
+  return();
+}
+else if(xpos("^", user_input, 1))
+{
+  //@cstyle_cmac_string_consumer(user_input);
   @footer;
   return();
 }

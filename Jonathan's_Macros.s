@@ -913,7 +913,7 @@ else
 void
 @jump
 {
-str fp = 'How high? Jul-16-2019 10:42 AM';
+str fp = 'How high? Aug-30-2019 3:08 PM';
 @say(fp);
 }
 
@@ -7560,6 +7560,21 @@ void
 str fp = "Say this filename.";
 // lu: Jun-10-2018
 @say(fp + ' (' + @full_filename + ')');
+}
+
+
+
+//;
+
+void
+@lp_this_filename
+{
+str fp = "Load clipboard with this filename.";
+@header;
+// lu: Aug-30-2019
+@set_clipboard(@full_filename);
+@footer;
+@say(fp);
 }
 
 

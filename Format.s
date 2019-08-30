@@ -1598,7 +1598,7 @@ void
 {
 str fp = 'Drag right.';
 
-// lu: Jul-19-2018
+// lu: Aug-30-2019
 
 if(@first_character(get_line) == ':')
 {
@@ -2012,6 +2012,7 @@ switch(lower(get_extension(File_name)))
     }
     break;
   case 'rb':
+  case 'yml':
     @bol;
     if(@first_character(get_line) == '#')
     {
