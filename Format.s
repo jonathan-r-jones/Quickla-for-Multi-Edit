@@ -1631,6 +1631,7 @@ switch(lower(get_extension(File_name)))
 {
   case 'asc':
   case 'rb':
+  case 'yml':
     @bol;
     text(@comment_characters);
     break;
