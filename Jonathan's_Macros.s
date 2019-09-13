@@ -5771,6 +5771,8 @@ str fp = "Add text barckets.";
 
 text(char(91) + char(93));
 
+left;
+
 @say(fp);
 }
 
