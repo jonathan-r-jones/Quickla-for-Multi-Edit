@@ -7132,7 +7132,7 @@ public static bool IsPrimeNumber(int numberToTest)
 void
 @reverse_string_tn
 {
-@reverse_string('hey now');
+@reverse_string('Sep-24-2019');
 }
 
 
