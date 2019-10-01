@@ -7581,4 +7581,30 @@ str fp = "Load clipboard with this filename.";
 
 
 
+//;
+
+void
+@find_lc_or_batch_label
+{
+str fp = "Find lc or batch label.";
+
+// lu: Oct-1-2019
+
+@header;
+
+str found_string;
+str sc = @get_user_input_raw(fp);;
+sc = make_literal_x(sc);
+sc = '(^:' + sc + '$)||(!' + sc + ',||\))';
+
+@bof;
+//@seek_in_all_files_batch_files_o(sc, fp, found_string);
+int search_criterion_was_found = @seek_in_all_files_2_arguments(sc, found_string);
+
+@footer;
+@say(fp);
+}
+
+
+
 //; (!efjm)
