@@ -7592,6 +7592,8 @@ str fp = "Find lc or batch label.";
 
 @header;
 
+@save_location;
+
 str found_string;
 str sc = @get_user_input_raw(fp);;
 sc = make_literal_x(sc);
@@ -7599,7 +7601,15 @@ sc = '(^:' + sc + '$)||(!' + sc + ',||\))';
 
 @bof;
 //@seek_in_all_files_batch_files_o(sc, fp, found_string);
-int search_criterion_was_found = @seek_in_all_files_2_arguments(sc, found_string);
+if (@seek_in_all_files_2_arguments(sc, found_string))
+{
+  fp += ' Found.';
+}
+else
+{
+  fp += ' NOT found or aborted.';
+  @restore_location;
+}
 
 @footer;
 @say(fp);
