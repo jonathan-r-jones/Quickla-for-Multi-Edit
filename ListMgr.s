@@ -10617,12 +10617,10 @@ if(@text_is_selected)
 {
   delete_block;
 }
-
-if(@is_alphanumeric_character(@previous_character))
+if((@previous_character != ' ') and (@previous_character != ':') and (@previous_character != ';'))
 {
   text(' ');
 }
-
 text(@get_formatted_date + " " + @get_time);
 
 @say(fp);

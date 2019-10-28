@@ -7617,4 +7617,29 @@ else
 
 
 
+//;
+
+void
+@replace_double_colon_with_sing
+{
+str fp = "Replace double colon with single colon.";
+
+// lu: Oct-28-2019
+
+str rs;
+str sc;
+
+@header;
+sc = '^::';
+rs = ':';
+@eol;
+
+@replace_next_occurrence_only(sc, rs);
+
+@footer;
+@say(fp);
+}
+
+
+
 //; (!efjm)

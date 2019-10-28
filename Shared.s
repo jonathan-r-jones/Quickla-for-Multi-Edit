@@ -2620,8 +2620,6 @@ if(@text_is_selected)
 {
   delete_block;
 }
-
-//if(@previous_character != ' ')
 if((@previous_character != ' ') and (@previous_character != ':') and (@previous_character != ';'))
 {
   text(' ');
