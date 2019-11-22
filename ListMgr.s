@@ -10558,13 +10558,16 @@ void
 {
 str fp = 'Add text separator here.';
 
+@header;
+
 @add_bullet_below;
-text('  _/)       _/)      _/)');
-cr;
-text('  ~~~~~~~~~~~~~~~~~~~~~~~~');
+text(' >< >< >< >< >< >< >< >< >< >< >< >< >< >< >< >< >< >< >< >< >< >< >< ');
+up;
 up;
 @eol;
 right;
+
+@footer:
 
 @say(fp);
 }
