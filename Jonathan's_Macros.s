@@ -6712,11 +6712,11 @@ if(@find_lc(@get_user_input_nonspace(fp)))
 //;
 
 void
-@copy_ph_contents_to_nptl
+@copy_aff_file_contents_to_nptl
 {
 str fp = "Open ph and copy it's contents to nptl.";
 
-// lu: Jul-6-2018
+// lu: Dec-1-2019
 
 @header;
 
