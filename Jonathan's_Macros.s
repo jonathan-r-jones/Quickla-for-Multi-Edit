@@ -4954,6 +4954,9 @@ url = @get_remote_oj_using_klc('rfreas', is_found);
 url = @get_remote_oj_using_klc('rfght', is_found);
 @surf(url, 1);
 
+url = @get_remote_oj_using_klc('rfred', is_found);
+@surf(url, 1);
+
 @footer;
 @say(fp);
 }
