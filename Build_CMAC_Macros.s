@@ -75,7 +75,7 @@ str Command_String = 'c:\windows\system32\cmd.exe /k ' + char(34) +
   '\belfry\' + Batch_File_Filename + char(34);
 
 ExecProg(Command_String,
-  Get_Environment("userprofile") + '\my documents\!savannah\belfry',
+  Get_Environment("userprofile") + '\my documents\savannah\belfry',
   Get_Environment("TEMP") + '\\multi-edit output.txt',
   Get_Environment("TEMP") + '\\multi-edit error.txt',
   _EP_FLAGS_DONTWAIT | _EP_FLAGS_EXEWIN);
