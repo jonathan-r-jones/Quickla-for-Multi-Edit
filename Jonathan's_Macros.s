@@ -4297,7 +4297,7 @@ str fp = "Take the current file and save it into the work documents folder.";
 
 // fcd: Jul-28-2015
 
-@open_file('C:\Users\jonathan.r.jones\Documents\!Savannah\Java\HelloWorld.java');
+@open_file('C:\Users\jonathan.r.jones\Documents\savannah\Java\HelloWorld.java');
 
 @select_all;
 
@@ -6655,7 +6655,7 @@ str fp = "Prepare message to phone file.";
 
 @save_location;
 
-@open_file(get_environment('dropbox') + '\!savannah\reach out\message to phone.mtp');
+@open_file(get_environment('dropbox') + '\savannah\reach out\message to phone.mtp');
 
 @delete_all;
 
@@ -6726,7 +6726,7 @@ str fp = "Open ph and copy it's contents to nptl.";
 
 @header;
 
-str filename[128] = Get_Environment('dropbox') + '\!savannah\reach out\myfile.txt';
+str filename[128] = Get_Environment('dropbox') + '\savannah\reach out\myfile.txt';
 
 @open_file(filename);
 
