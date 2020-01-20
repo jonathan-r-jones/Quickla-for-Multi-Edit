@@ -9738,7 +9738,7 @@ else
 void
 @add_bullet_below()
 {
-str fp = 'Add below below.';
+str fp = 'Add bullet below.';
 if(@is_bullet_file)
 {
   @add_small_segment_below(true);
