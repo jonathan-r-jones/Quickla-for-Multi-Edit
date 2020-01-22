@@ -5284,11 +5284,8 @@ text(' ');
 down;
 down;
 down;
-down;
-down;
-down;
-down;
 
+down;
 down;
 down;
 down;
