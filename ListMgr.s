@@ -5119,7 +5119,10 @@ eol;
 
 @backspace;
 
-@fix_fat_bullet;
+// I commented the following line because it was causing a problem if the bullet we at tof
+// by itself. Jan-24-2020
+//@fix_fat_bullet;
+
 @restore_location;
 @word_wrap;
 @restore_location;
