@@ -4920,12 +4920,15 @@ void
 {
 str fp = "Pass a url to a browser.";
 
-// fcd: Aug-24-2016
+// fcd: Jan-29-2020
 
 @header;
 
 int is_found = 0;
 str url;
+
+url = @get_remote_oj_using_klc('rfscne', is_found);
+@surf(url, 1);
 
 url = @get_remote_oj_using_klc('rfcnet', is_found);
 @surf(url, 1);
