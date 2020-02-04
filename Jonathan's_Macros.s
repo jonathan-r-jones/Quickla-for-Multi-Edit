@@ -5291,13 +5291,10 @@ down;
 down;
 down;
 down;
-down;
 
 @bol;
 text('rem       q' + 'q-1');
 
-up;
-up;
 up;
 up;
 up;
@@ -5311,7 +5308,6 @@ up;
 up;
 
 @eol;
-text(' ');
 
 @say(fp);
 }
