@@ -6732,7 +6732,7 @@ rm('block^selectall');
 
 @close_file;
 
-@import_and_format_innovation_l1;
+@import_and_format_clipboard_l1;
 
 @footer;
 @say(fp);

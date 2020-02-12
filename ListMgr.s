@@ -2960,7 +2960,7 @@ void
 //;;
 
 void
-@import_and_format_innovation_da()
+@import_and_format_clipboard_bor()
 {
 str fp = "Import and format innovation data to bor.";
 
@@ -2998,10 +2998,10 @@ cr;
 //;;
 
 void
-@import_and_format_innovation_l1()
+@import_and_format_clipboard_l1()
 {
 @find_lc('rfnptl');
-@import_and_format_innovation_da;
+@import_and_format_clipboard_bor;
 }
 
 
@@ -3009,11 +3009,11 @@ void
 //;;
 
 void
-@import_and_format_innovation_l2()
+@import_and_format_clipboard_l2()
 {
 @header;
 @find_lc('rfnptl');
-@import_and_format_innovation_da;
+@import_and_format_clipboard_bor;
 @footer;
 }
 

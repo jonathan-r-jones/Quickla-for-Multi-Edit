@@ -88,7 +88,7 @@ prototype ListMgr
   void @hc_small_segment_content_dinc();
   str  @hc_subject();
   str  @hc_word_uc();
-  void @import_and_format_innovation_l1();
+  void @import_and_format_clipboard_l1();
   int  @is_big_segment();
   int  @is_bs();
   int  @is_bullet();
