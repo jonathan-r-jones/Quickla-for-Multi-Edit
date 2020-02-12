@@ -1200,7 +1200,7 @@ else
 URL += sc;
 URL += '&search_type=&aq=f';
 
-@surf(url, 6);
+@surf(url, 2);
 
 /*  Use Case(s)
 
