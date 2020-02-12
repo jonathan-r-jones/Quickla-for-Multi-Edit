@@ -2069,7 +2069,7 @@ str fp = 'The number of windows to keep open, by default.';
 switch(@first_3_characters(@lower(get_environment("computername"))))
 {
   case "lip":
-    return(10);
+    return(11);
     break;
   default:
     return(13);
@@ -2189,9 +2189,9 @@ while(open_window_counter > @constant_open_windows)
 //;;
 
 void
-@binary_window_opening_n_closing
+@toggle_window_opening_n_closing
 {
-str fp = "Binary window opening and closing.";
+str fp = "Toggle window opening and closing.";
 
 @header;
 

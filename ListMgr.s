@@ -3180,7 +3180,7 @@ str fp = "ListMgr.s v. Mar-9-2010.";
 //;
 
 void
-@fix_fat_rubric();
+@fix_fat_rubric()
 {
 str fp = "Fix fat rubric.";
 
