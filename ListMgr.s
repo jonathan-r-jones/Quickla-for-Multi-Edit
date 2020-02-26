@@ -10143,7 +10143,7 @@ else
   @eol;
   cr;
   text(@comment_characters);
-  text('q' + 'q-1');
+  text('q' + 'q1');
   if(@is_markup_file(@filename_extension))
   {
     eol;

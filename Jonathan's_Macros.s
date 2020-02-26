@@ -6716,7 +6716,7 @@ if(@find_lc(@get_user_input_nonspace(fp)))
 void
 @copy_aff_file_contents_to_nptl
 {
-str fp = "Open ph and copy it's contents to nptl.";
+str fp = "Open ph and copy it's contents to Now Playing Task List (nptl).";
 
 // lu: Dec-1-2019
 
