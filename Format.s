@@ -1257,33 +1257,6 @@ return();
 //;;
 
 void
-@format_json
-{
-str fp = "Format JSON";
-
-// fcd: Mar-16-2017
-str rs;
-str sc;
-
-@header;
-sc = '(los)';
-rs = '$\0';
-right;
-right;
-right;
-
-@replace_all_occurrs_inf_one_tof(sc, rs);
-
-@footer;
-
-@say(fp);
-}
-
-
-
-//;;
-
-void
 @format_file_2()
 {
 str fp = 'Format text file according to my new rules.';
