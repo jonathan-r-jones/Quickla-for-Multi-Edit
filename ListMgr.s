@@ -10768,6 +10768,28 @@ up;
 //;;
 
 void
+@add_text_footnote()
+{
+str fp = 'Add text footnote.';
+
+// Last Updated: Mar-5-2020
+
+@eol;
+cr;
+cr;
+cr;
+text('>< >< Footnote:');
+cr;
+cr;
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
 @add_text_my_initials_and_date
 {
 str fp = 'Add text my initials and date.';
