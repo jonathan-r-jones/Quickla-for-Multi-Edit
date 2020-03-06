@@ -10140,8 +10140,9 @@ if(@filename_extension == 'asc')
 else
 {
   int column_number = @current_column;
-  @eol;
+  @bol;
   cr;
+  up;
   text(@comment_characters);
   text('q' + 'q1');
   if(@is_markup_file(@filename_extension))
@@ -10149,7 +10150,7 @@ else
     eol;
     text(' -->');
   }
-  up;
+  down;
   goto_col(column_number);
 }
 
