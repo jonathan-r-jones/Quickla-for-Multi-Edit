@@ -3274,6 +3274,7 @@ else if(@contains(sc, 'rzr'))
 }
 
 str Operation_Outcome;
+
 @run_clif_under_cursor(Operation_Outcome);
 
 if(@contains(operation_outcome, 'not an executable'))

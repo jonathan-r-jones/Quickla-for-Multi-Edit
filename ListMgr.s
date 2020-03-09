@@ -10308,6 +10308,17 @@ str fp = 'Add text misspelling.';
 //;;
 
 void
+@add_text_nid
+{
+str fp = 'Add text not in dictionary.';
+@add_text_at_eol('nid');
+}
+
+
+
+//;;
+
+void
 @add_text_alternate_spelling
 {
 str fp = 'Add text alternate spelling.';
