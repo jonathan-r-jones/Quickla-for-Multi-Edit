@@ -12871,4 +12871,18 @@ else
 
 
 
+//;
+
+void
+@add_text_highlighted_event
+{
+str fp = 'Add text highligthed event.';
+
+@add_bullet_below;
+text('><    ><    ><    ><    ><      I have highlighted this event!     ><    ><    ><    ><    ><');
+@say(fp);
+}
+
+
+
 //; (!eflm)
