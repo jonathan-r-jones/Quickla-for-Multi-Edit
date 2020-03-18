@@ -5177,7 +5177,6 @@ str so;
 @seek_next(sc, so);
 @delete_character;
 cr;
-//@convert_line_to_lower_case;
 @word_wrap;
 @restore_location;
 

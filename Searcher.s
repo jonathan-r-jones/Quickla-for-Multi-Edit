@@ -288,7 +288,6 @@ if(sc == '')
 str Pretty_sc = sc;
 
 sc = @commute_character(sc, ' ', '_');
-//sc = @convert_line_to_proper_case
 
 /*
 I found that IE, although the font is too big, is the best for printing. - JRJ Jul-17-2009
