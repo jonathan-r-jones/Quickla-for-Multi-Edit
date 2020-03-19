@@ -10568,32 +10568,9 @@ if(!@find_lc('rfoqt'))
 //;;
 
 void
-@add_text_separator
+@add_text_highlight_event
 {
-str fp = 'Add text separator here.';
-
-@header;
-
-@add_bullet_below;
-text(' >< >< >< >< >< >< >< >< >< >< >< >< >< >< >< >< >< >< >< >< >< >< >< ');
-up;
-up;
-@eol;
-right;
-
-@footer:
-
-@say(fp);
-}
-
-
-
-//;;
-
-void
-@add_text_event_highlighting
-{
-str fp = 'Add text event highlighting.';
+str fp = 'Add text highlight event.';
 
 @eol;
 cr;
@@ -12873,12 +12850,12 @@ else
 //;
 
 void
-@add_text_highlighted_event
+@add_text_separator
 {
 str fp = 'Add text highligthed event.';
 
 @add_bullet_below;
-text('><    ><    ><    ><    ><      I have highlighted this event!     ><    ><    ><    ><    ><');
+text('><    ><    ><    ><    ><    Separator:      ><    ><    ><    ><    ><');
 @say(fp);
 }
 
