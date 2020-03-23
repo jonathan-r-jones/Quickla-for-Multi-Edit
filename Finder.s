@@ -780,6 +780,7 @@ int Is_Found = @seek_in_all_files_2_arguments(sc, fp);
 void
 @find_lc_with_uc
 {
+//qjq
 str fp = 'Find launch codes with word under cursor.';
 
 // fcd: Aug-21-2015
@@ -3776,9 +3777,9 @@ void
 //;
 
 void
-@find_batch_file_label()
+@find_batch_file_label_uc()
 {
-str fp = "Find batch file label.";
+str fp = "Find batch file label under cursor.";
 @header;
 
 // fcd: Nov-28-2016
@@ -3796,6 +3797,42 @@ if(@first_character(sc) != ':')
   //sc = '^:' + sc + '$';
   //sc = '^:cart$^.#$'; // definition
   //sc = '$$:' + sc + '$'; // definition only!
+  sc = '^:' + sc + '$^.*$^set fp'; // works
+}
+
+if(!@seek_in_all_files_2_arguments(sc, fp)){
+  first_sc = '^:' + first_sc + '$';
+  @next_window;
+  @seek_in_all_files_2_arguments(first_sc, fp);
+}
+
+@footer;
+@say('sc: ' + sc);
+@say(fp);
+}
+
+
+
+//;
+
+void
+@find_batch_file_label()
+{
+str fp = "Find batch file label.";
+@header;
+
+// lu: Mar-22-2020
+
+str sc = @get_user_input_nonspace(fp);
+
+@bof;
+
+sc = make_literal_x(sc);
+
+str first_sc = sc;
+
+if(@first_character(sc) != ':')
+{
   sc = '^:' + sc + '$^.*$^set fp'; // works
 }
 
@@ -3877,7 +3914,7 @@ switch(@filename_extension)
     @find_jenkinsfile_function;
     break;
   case 'bat':
-    @find_batch_file_label;
+    @find_batch_file_label_uc;
     break;
   case 'config':
     @find_mappings_file_definition;
