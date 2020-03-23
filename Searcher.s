@@ -1175,7 +1175,7 @@ void
 void
 @search_youtube(int is_Exact_Search)
 {
-str fp = 'Search YouTube.';
+str fp = 'Search YouTube using Firefox.';
 
 str URL = 'http://www.youtube.com/results?search_query=';
 
