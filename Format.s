@@ -1484,6 +1484,7 @@ switch(lower(Get_Extension(File_name)))
     break;
   case '':
   case 'cs':
+  case 'java':
   case 'js':
   case 's':
   case 'sh':
