@@ -8068,8 +8068,6 @@ switch(current_line_type)
     @cut;
 }
 
-@put_cursor_somewhere_useful;
-
 @say(fp);
 @footer;
 }

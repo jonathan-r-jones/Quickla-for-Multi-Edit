@@ -1476,6 +1476,7 @@ switch(lower(Get_Extension(File_name)))
     break;
   case 'config':
   case 'htm':
+  case 'html':
   case 'xaml':
   case 'xml':
   case 'xsl':
