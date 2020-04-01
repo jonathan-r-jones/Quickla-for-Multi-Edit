@@ -12852,8 +12852,8 @@ void
 {
 str fp = 'Add text highligthed event.';
 
-@add_bullet_below;
-text('><    ><    ><    ><    ><    Separator:      ><    ><    ><    ><    ><');
+text('><    ><    ><    ><    ><    Separator:');
+
 @say(fp);
 }
 
