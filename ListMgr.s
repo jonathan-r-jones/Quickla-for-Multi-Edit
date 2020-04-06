@@ -10763,7 +10763,6 @@ str fp = 'Add text footnote.';
 @eol;
 cr;
 cr;
-cr;
 text('>< >< Footnote:');
 cr;
 cr;
