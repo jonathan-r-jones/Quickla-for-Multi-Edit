@@ -10766,6 +10766,11 @@ cr;
 text('>< >< Footnote:');
 cr;
 cr;
+text('Takeaway:');
+cr;
+cr;
+text('Outcome:');
+cr;
 
 @say(fp);
 }
