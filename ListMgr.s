@@ -6834,7 +6834,7 @@ int Number_of_Lines_in_Rubric = @count_lines_in_rubric;
 
 @bobs;
 
-while(find_text(':', Number_of_Lines_in_Rubric, _regexp))
+while(find_text('::', Number_of_Lines_in_Rubric, _regexp))
 {
   replace(':');
   Number_of_Replacements++;
