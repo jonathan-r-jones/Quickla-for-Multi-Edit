@@ -6820,7 +6820,7 @@ goto_mark;
 void
 @replace_2_colons_with_1_in_rub
 {
-str fp = 'Replace 2 colons with 1 in current rubric.';
+str fp = 'Replace 2 colons with 1 in current big segment.';
 
 if(!@is_bullet_file)
 {
@@ -6830,11 +6830,11 @@ if(!@is_bullet_file)
 @header;
 
 int Number_of_Replacements = 0;
-int Number_of_Lines_in_Rubric = @count_lines_in_rubric;
+int Number_of_Lines_in_BS = @count_lines_in_bs;
 
 @bobs;
 
-while(find_text('::', Number_of_Lines_in_Rubric, _regexp))
+while(find_text('::', Number_of_Lines_in_BS, _regexp))
 {
   replace(':');
   Number_of_Replacements++;
