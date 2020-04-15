@@ -2074,7 +2074,7 @@ switch(@first_3_characters(@lower(get_environment("computername"))))
     return(11);
     break;
   default:
-    return(13);
+    return(12);
 }
 }
 
