@@ -4965,6 +4965,9 @@ url = @get_remote_oj_using_klc('rfguar', is_found);
 url = @get_remote_oj_using_klc('rfwsj', is_found);
 @surf(url, 1);
 
+url = @get_remote_oj_using_klc('rfquil', is_found);
+@surf(url, 1);
+
 @footer;
 @say(fp);
 }
