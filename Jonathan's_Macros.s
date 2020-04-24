@@ -7604,6 +7604,8 @@ str sc = @get_user_input_raw(fp);;
 sc = make_literal_x(sc);
 sc = '(^:' + sc + '$)||(!' + sc + ',||\))';
 
+set_global_str('lc', sc); // Added Apr-23-2020.
+
 @bof;
 //@seek_in_all_files_batch_files_o(sc, fp, found_string);
 if (@seek_in_all_files_2_arguments(sc, found_string))

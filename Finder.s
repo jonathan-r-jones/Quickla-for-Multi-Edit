@@ -782,7 +782,6 @@ int Is_Found = @seek_in_all_files_2_arguments(sc, fp);
 void
 @find_lc_with_uc
 {
-//qjq
 str fp = 'Find launch codes with word under cursor.';
 
 // fcd: Aug-21-2015
@@ -806,13 +805,16 @@ void
 @find_lc_again
 {
 str fp = 'Find again for Launch Codes. ';
+
+str lc = global_str('lc');
 str so = '';
+
 @header;
 
-@seek_in_all_files_2_arguments(global_str('lc'), so);
+@seek_in_all_files_2_arguments(lc, so);
 
 @footer;
-@say(fp + so);
+@say(fp + '(' + lc + ') ' + so);
 }
 
 
