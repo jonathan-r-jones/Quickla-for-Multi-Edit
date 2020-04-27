@@ -6094,6 +6094,18 @@ text(';');
 //;
 
 void
+@add_text_batch_file_error_check
+{
+str fp = 'Add batch file error check.';
+
+text('if %errorlevel% gtr 0 exit/b');
+}
+
+
+
+//;
+
+void
 @add_text_brackets
 {
 str fp = 'Add text brackets.';
