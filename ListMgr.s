@@ -2565,6 +2565,8 @@ void
 {
 str fp = "Delete text characters but NOT paragraph separating ones.";
 
+//skw delete line, line_breaks, delete line breaks, delete_line_breaks
+
 if(!@is_text_file)
 {
   return();
