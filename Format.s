@@ -923,6 +923,10 @@ number_of_replacements +=
 number_of_replacements += 
   @replace_string_in_file_int('v\.' + 'tr', 'v. tr');
 
+// Three special characters.
+number_of_replacements += 
+  @replace_string_in_file_int('ï' + '¿½', '·');
+
 // Word
 number_of_replacements += 
   @replace_string_in_file_int(@word_history_space_space(replacement_description, rs), rs);
