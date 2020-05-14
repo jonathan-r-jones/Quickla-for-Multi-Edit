@@ -72,6 +72,7 @@ prototype Shared
   str  @get_subject_or_selected_text();
   str  @get_selected_text();
   str  @get_time();
+  str  @get_time_with_seconds();
   str  @get_user_input_raw(str introduction);
   str  @get_user_input_nonspace(str introduction);
   str  @get_uc();

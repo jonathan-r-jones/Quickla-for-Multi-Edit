@@ -1902,6 +1902,29 @@ return(formatted_time);
 //;;
 
 str
+@get_time_with_seconds()
+{
+str fp = 'Get time with seconds.';
+
+str formatted_time = time;
+
+str ampm = @right(formatted_time, 2);
+
+int length_of_formatted_time = length(formatted_time);
+
+formatted_time = @left(formatted_time, length_of_formatted_time - 2);
+
+formatted_time += " " + ampm;
+
+set_global_str('cmac_return_value', formatted_time);
+return(formatted_time);
+}
+
+
+
+//;;
+
+str
 @get_formatted_time()
 {
 str fp = "Get formatted time.";

@@ -10653,6 +10653,30 @@ text(date_time);
 //;;
 
 void
+@add_text_date_time_no_spaces_ws()
+{
+str fp = 'Add text date and time no spaces with seconds.';
+
+if(@text_is_selected)
+{
+  delete_block;
+}
+
+str date_time = @get_formatted_date + " " + @get_time_with_seconds;
+
+date_time = @replace(date_time, ':', '_');
+date_time = @replace(date_time, ' ', '_');
+
+text(date_time);
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
 @add_text_date_plus_full_time()
 {
 str fp = 'Add text date plus full time.';
@@ -12861,6 +12885,23 @@ void
 str fp = 'Add text highligthed event.';
 
 text('><    ><    ><    ><    ><    Separator:');
+
+@say(fp);
+}
+
+
+
+//;
+
+void
+@add_text_debug_for_cbf
+{
+str fp = 'Add text debug for CBF.';
+
+//qq
+text('echo ');
+@add_text_date_time_no_spaces_ws;
+text(' cbf' + 'q');
 
 @say(fp);
 }
