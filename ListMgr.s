@@ -12898,10 +12898,12 @@ void
 {
 str fp = 'Add text debug for CBF.';
 
-//qq
+@eol;
+cr;
 text('echo ');
 @add_text_date_time_no_spaces_ws;
 text(' cbf' + 'q');
+@bol;
 
 @say(fp);
 }
