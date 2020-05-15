@@ -5071,6 +5071,9 @@ tof;
 @replace_next_occurrence_only('search results', rs);
 
 tof;
+@replace_next_occurrence_only('Featured snippet from the web', rs);
+
+tof;
 str sc = @share_american_heritage_dot_com(description, rs);
 @replace_next_occurrence_only(sc, rs);
 
