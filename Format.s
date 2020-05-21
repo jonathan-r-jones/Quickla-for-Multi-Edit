@@ -2004,7 +2004,6 @@ switch(lower(get_extension(File_name)))
       return();
     }
     break;
-  case '':
   case 'asc':
     if(@first_2_characters(get_line) == ';;')
     {
@@ -2013,6 +2012,7 @@ switch(lower(get_extension(File_name)))
     }
     break;
   case 's':
+  case '':
     @eos;
     int character_Was_Deleted = false;
     if(@current_character == '/')
