@@ -1620,6 +1620,7 @@ void
 str fp = 'Shoot bullet.';
 str returned_description = '';
 
+//qq
 // lu: Nov-19-2018
 
 @header;
