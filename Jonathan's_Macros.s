@@ -1,4 +1,4 @@
-macro_file Jonathan's_Macros; // (!jm)
+macro_file Jonathan's_Macros; // (!jo, !jm)
 
 // Miscellaneous macros.
 
@@ -351,6 +351,9 @@ void
 @add_cmac_stub_1(str sc = parse_str('/1=', mparm_str))
 {
 str fp = 'Add CMAC stub for a bare bones macro.';
+
+// skw cmac1, sm1, sn1
+
 str so;
 
 if(sc == '')
@@ -4941,6 +4944,9 @@ url = @get_remote_oj_using_klc('rfbbc', is_found);
 url = @get_remote_oj_using_klc('rfcnn', is_found);
 @surf(url, 1);
 
+url = @get_remote_oj_using_klc('fcnp', is_found);
+@surf(url, 1);
+
 url = @get_remote_oj_using_klc('rffran', is_found);
 @surf(url, 1);
 
@@ -5916,13 +5922,13 @@ fp = "Start new Jira ticket.";
 @header;
 @find_lc('rftk');
 @add_subrubric_below('');
-//text('TK');
-int ticket_number_counter = @increment_ticket_number_counter;
+//int ticket_number_counter = @increment_ticket_number_counter;
 //text(str(ticket_number_counter));
-text(' - Created on ');
+//text(' - Created on ');
+text(' - ');
 eol;
 @add_text_date;
-@add_text_lc_on_current_line('tk' + str(ticket_number_counter));
+//@add_text_lc_on_current_line('tk' + str(ticket_number_counter));
 @add_text_lc_and_individuate_it('cj');
 @bol;
 right;
@@ -7571,7 +7577,11 @@ str subject = @hc_subject;
 
 
 
-//;
+//;+
+
+
+
+//;;
 
 void
 @say_this_filename
@@ -7583,7 +7593,7 @@ str fp = "Say this filename.";
 
 
 
-//;
+//;;
 
 void
 @lp_this_filename
@@ -7661,4 +7671,42 @@ rs = ':';
 
 
 
-//; (!efjm)
+//;
+
+void
+@lp_with_smart_commit_info
+{
+str fp = "Load clipboard with smart commit information.";
+
+// lu: May-29-2020
+
+@save_location;
+
+@header;
+
+@find_lc('cj');
+
+@hc_subject;
+
+@create_timestamped_file;
+
+cr;
+@paste;
+
+@eof;
+text('-jjones');
+
+@hc_subject;
+
+@close_and_save_file_wo_prompt;
+
+@recall_location;
+
+@footer;
+
+@say(fp);
+}
+
+
+
+//; (!efjo, !efjm)
