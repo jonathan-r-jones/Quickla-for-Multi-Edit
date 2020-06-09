@@ -2132,7 +2132,7 @@ void
 {
 str fp = "Search Google with appended words.";
 // lu: Mar-5-2018
-@search_google_main(0, 4, @get_sj + ' download for windows');
+@search_google_main(0, 0, @get_sj + ' download for windows');
 }
 
 
