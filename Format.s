@@ -1497,6 +1497,7 @@ switch(lower(Get_Extension(File_name)))
   case 'sh':
     rv = '//';
     break;
+  case 'erb':
   case 'ps1':
   case 'rb':
   case 'tf':
