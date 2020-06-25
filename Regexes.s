@@ -1561,7 +1561,11 @@ return(sc);
 
 
 
-//;
+//;+ Informal Regex Workshop
+
+
+
+//;;
 
 str
 @informal_followed_by_a_crowding(str &regex_Description, str &rS)
@@ -1573,6 +1577,36 @@ rs = '\0 - \1';
 //original: str sc = 'infor' + 'mal[^ ilIL.):,]]';
 regex_Description = fp;
 return(sc);
+}
+
+
+
+//;;
+
+void
+@regex_workshop
+{
+str fp = "Regex workshop.";
+
+// lu: Jun-25-2020
+
+str rs;
+str sc;
+
+@header;
+sc = '([a-z])(informal)';
+//sc = '(adjective)([i])';
+rs = '\0 \1';
+@eol;
+
+//int is_found = @seek_in_all_files_2_arguments(sc, fp);
+return();
+//@replace_all_occurrs_inf_one_tof(sc, rs);
+//@replace_next_occurrence_only(sc, rs);
+
+@footer;
+@say(found_str);
+@say(fp);
 }
 
 
