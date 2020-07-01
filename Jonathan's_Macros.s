@@ -5162,6 +5162,94 @@ if(@seek_from_bof('!rf' + 'cea') != 1)
 //;;
 
 void
+@add_batch_file_stub_bare_bones()
+{
+str fp = "Add batch file stub bare bones.";
+
+// fcd: Jun-30-2020
+
+if(!@is_batch_file)
+{
+  return();
+}
+
+@save_location;
+
+@move_dog_park_to_eof;
+
+str sc = 'rfbare';
+//int is_found = @seek_in_all_files_2_arguments(sc, fp);
+@find_lc(sc);
+
+@hc_small_segment_content_dinc();
+
+@restore_location;
+
+@find_next_rubric;
+
+@bol;
+cr;
+cr;
+cr;
+up;
+up;
+up;
+@paste;
+
+
+@bobs;
+up;
+@bobs;
+
+@seek('x_marker');
+
+@hc_subject;
+
+@delete_block;
+
+@seek('x_marker');
+
+@hc_subject;
+
+@delete_block;
+
+@seek('lu');
+@eol;
+text(' ');
+@add_text_date;
+
+down;
+down;
+down;
+down;
+//qq
+down;
+down;
+down;
+@bol;
+text('rem q' + 'q-1');
+cr;
+up;
+up;
+up;
+up;
+up;
+up;
+up;
+up;
+up;
+up;
+@eol;
+text(' ');
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
 @add_batch_file_stub_generic()
 {
 str fp = "Add batch file new stub.";
