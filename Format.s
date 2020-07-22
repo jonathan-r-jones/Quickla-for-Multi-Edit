@@ -1617,6 +1617,7 @@ switch(lower(get_extension(File_name)))
 {
   case 'asc':
   case 'rb':
+  case 'tf':
   case 'yml':
     @bol;
     text(@comment_characters);
@@ -1999,6 +2000,7 @@ switch(lower(get_extension(File_name)))
     }
     break;
   case 'rb':
+  case 'tf':
   case 'yml':
     @bol;
     if(@first_character(get_line) == '#')
