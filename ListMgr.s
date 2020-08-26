@@ -10638,11 +10638,6 @@ void
 {
 str fp = 'Add text date and time no spaces.';
 
-if(@text_is_selected)
-{
-  delete_block;
-}
-
 str date_time = @get_formatted_date + " " + @get_time;
 
 date_time = @replace(date_time, ':', '_');
