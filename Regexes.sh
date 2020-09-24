@@ -20,6 +20,8 @@ prototype Regexes
   str  @bullet();
   str  @bullet_text();
   str  @childless_rubric();
+  str  @citation_needed(str &regex_Description, str &rS);
+  str  @clarification_needed(str &regex_Description, str &rS);
   str  @close_parenthesis_number(str &regex_Description, str &rS);
   str  @cmac_function_header();
   str  @colon_period_space_period();

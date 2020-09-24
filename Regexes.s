@@ -1443,6 +1443,34 @@ return(sc);
 //;
 
 str
+@citation_needed(str &regex_Description, str &rS)
+{
+str fp = "Citation" + " needed.";
+str sc = '\[citation' + ' ($^)needed\]';
+rs = ' ';
+regex_Description = fp;
+return(sc);
+}
+
+
+
+//;
+
+str
+@clarification_needed(str &regex_Description, str &rS)
+{
+str fp = "Clarification" + " needed.";
+str sc = '\[clarification' + ' ($^)needed\]';
+rs = ' ';
+regex_Description = fp;
+return(sc);
+}
+
+
+
+//;
+
+str
 @first_known_use(str &regex_Description, str &rS)
 {
 str fp = "First known " + "use.";
