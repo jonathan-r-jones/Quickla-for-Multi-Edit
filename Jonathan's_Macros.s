@@ -1029,13 +1029,14 @@ while(!at_eof)
 void
 @archive_big_segment
 {
-str fp = "Archive big segment.";
+str fp = "Archive big segment Oct-6-2020_1_39_PM.";
 
-// lu: Jan-16-2015
+// lu: Oct-6-2020
 
 if(!((@is_s_file) or (@is_bullet_file) or (@is_batch_file) or (@is_jenkinsfile)))
 {
   @say(fp + " Error: This macro doesn't work with the current file type.");
+  @say(fp);
   return();
 }
 
@@ -7818,7 +7819,6 @@ str sc;
 
 @header;
 sc = '\[clarification needed\]';
-  //qq-1
 @eol;
 
 int is_found = @seek_in_all_files_2_arguments(sc, fp);
