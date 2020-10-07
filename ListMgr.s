@@ -9530,6 +9530,8 @@ void
 {
 str fp = 'Cursor to starting point.';
 
+// skw: initial position, initial start, start position, starting position
+
 if(@filename_extension == 'txt')
 {
   return();
