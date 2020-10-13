@@ -18,6 +18,8 @@ Metadata: Track Size (!tsfm)
     Date       Lines     Bytes    Macros   Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+:Oct-12-2020   2,341     37,000       75
+
 : Jul-2-2020   2,327     36,532       75
 
 : Apr-8-2020   2,320     36,362       75
@@ -751,7 +753,8 @@ str fp2 = ' Please wait . . .';
 
 int number_of_replacements = 0;
 str replacement_description = '';
-str rs;
+
+str rs = '';
 str sc;
 
 @say(fp + fp2);
@@ -873,7 +876,6 @@ Number_of_Replacements +=
 Number_of_Replacements += 
   @replace_string_in_file_int(@special_character(Replacement_Description, rs, char(139)), rs);
 
-// Special
 Number_of_Replacements += 
   @replace_string_in_file_int(@special_character(Replacement_Description, rs, char(140)), rs);
 
@@ -913,15 +915,18 @@ Number_of_Replacements +=
 Number_of_Replacements += 
   @replace_string_in_file_int(@special_character(Replacement_Description, rs, char(158)), rs);
 
-Number_of_Replacements += 
-  @replace_string_in_file_int(@special_character(Replacement_Description, rs, char(171)), rs);
+number_of_replacements += 
+  @replace_string_in_file_int(@special_character(replacement_description, rs, char(171)), rs);
 
-// Special (last)
-Number_of_Replacements += 
-  @replace_string_in_file_int(@special_character(Replacement_Description, rs, char(187)), rs);
+number_of_replacements += 
+  @replace_string_in_file_int(@special_character(replacement_description, rs, char(187)), rs);
 
-Number_of_Replacements += 
-  @replace_string_in_file_int(@synonyms_space_space(Replacement_Description, rs), rs);
+// Example of how to change the replacement character.
+number_of_replacements += 
+  @replace_string_in_file_int(@special_character(replacement_description, rs, char(194)), '');
+
+number_of_replacements += 
+  @replace_string_in_file_int(@synonyms_space_space(replacement_description, rs), rs);
 
 number_of_replacements += 
   @replace_string_in_file_int('tr\.' + 'v', 'tr. v');

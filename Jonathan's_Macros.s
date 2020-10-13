@@ -24,6 +24,8 @@ Metadata: Track Size (!tsjm)
     Date       Lines    Bytes    Macros   Notes
  -----------  ------  ---------  -------  ----------------------------------------------------
 
+:Oct-12-2020   7,838    106,455      279
+
 : Jul-2-2020   7,805    105,997      278
 
 : Apr-8-2020   7,645    104,255      274
@@ -1126,7 +1128,7 @@ switch_window(Initial_Window);
 
 
 
-//; (skw query_ascii_character, query ascii character)
+//; (skw query_ascii_character, query ascii character, identify ascii character)
 
 void
 @query_current_character
