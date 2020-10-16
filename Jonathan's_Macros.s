@@ -815,7 +815,7 @@ int Result;
 int Starting_Window = cur_window;
 int Window_Counter = 0;
 
-str Filename = Get_Environment('savannah') + '\reach out\Savannah Summary.txt';
+str Filename = Get_Environment('reach out') + '\Savannah Summary.txt';
 
 Result = S_Create_File(Filename, Handle);
 
