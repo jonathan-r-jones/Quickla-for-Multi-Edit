@@ -1553,8 +1553,9 @@ str fp = 'Search Pluralsight.';
 str URL = 'http://pluralsight.com/search?q=';
 
 // New way as of Jan-7-2019.
-str URL = 'https://app.pluralsight.com/library/search?q=';
-
+//qq
+str URL = 'https://app.pluralsight.com/search/?q=';
+           
 str sc = parameter;
 
 if(sc == '')
