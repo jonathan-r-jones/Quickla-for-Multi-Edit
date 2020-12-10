@@ -5400,11 +5400,12 @@ down;
 down;
 down;
 down;
+down;
 
 @bol;
-text('rem       q' + 'q-1');
 
-up;
+text('rem Dec-10-2020_12_16_PM q' + 'q1');
+
 up;
 up;
 up;
