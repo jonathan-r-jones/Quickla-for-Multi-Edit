@@ -3270,7 +3270,12 @@ if(@contains(sc, 'cart-'))
   @search_jira('', 0);
   return();
 }
-else if(@contains(sc, 'sebplan-'))
+else if(@contains(sc, 'atp-'))
+{
+  @search_jira('', 0);
+  return();
+}
+else if(@contains(sc, 'imm-'))
 {
   @search_jira('', 0);
   return();
@@ -3278,6 +3283,11 @@ else if(@contains(sc, 'sebplan-'))
 else if(@contains(sc, 'rzr'))
 {
   @run_rzr_line(sc);
+  return();
+}
+else if(@contains(sc, 'sebplan-'))
+{
+  @search_jira('', 0);
   return();
 }
 
