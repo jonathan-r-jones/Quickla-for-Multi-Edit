@@ -10806,13 +10806,11 @@ str fp = 'Add text footnote.';
 @eol;
 cr;
 cr;
-text('>< >< Footnote:');
+text('Footnote');
+cr;
+text('>< >< ><');
 cr;
 cr;
-text('Takeaway:');
-cr;
-cr;
-text('Outcome:');
 cr;
 
 @say(fp);
