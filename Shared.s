@@ -1737,18 +1737,6 @@ str Year = str_del(Date, 1, Position_of_Second_Slash);
 // program that sets an environment variable to the date format that we could then read
 // with the CMAC Get_Environment command.
 
-switch(get_environment("computername"))
-{
-  case "JONATHAN":
-  case "JONATHANS-HP":
-  case "JONATHANS_HP2":
-  case "TEAMWORK":
-    str Month_Unchanged = Month;
-    Month = Day;
-    Day = Month_Unchanged;
-    break;
-}
-
 // Strip leading zeros from the month field.
 if(str_char(Month, 1) == '0')
 {

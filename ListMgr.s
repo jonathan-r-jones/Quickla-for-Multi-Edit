@@ -794,8 +794,8 @@ if(lc == '')
 switch(lc)
 {
   // So this is a glass ceiling registry of sorts. May-17-2018
-  case 'wk':
-  case 'tr':
+  case 'wkxxxxxx':
+  case 'trxxxxxx':
     lc = 'gg' + lc;
     break;
   default:
@@ -10653,6 +10653,7 @@ if((@previous_character != ' ') and (@previous_character != ':') and (@previous_
   text(' ');
 }
 
+//qq
 str date_time = @get_formatted_date + " " + @get_time;
 
 date_time = @replace(date_time, ':', '_');
