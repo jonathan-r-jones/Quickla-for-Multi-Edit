@@ -1517,7 +1517,9 @@ void
 
 str fp = 'Search Google Translate.';
 
-str URL = 'https://translate.google.com/';
+//qq1
+           
+str URL = 'https://translate.google.com/?sl=en&tl=it%0A&op=translate';
 
 str sc = parameter;
 
@@ -1529,7 +1531,7 @@ if(sc == '')
 str Pretty_sc = sc;
 sc = @commute_character(sc, ' ', '+');
 
-URL += "#pt/en/";
+URL += "&text=";
 URL += sc;
 
 @surf(URL, 0);
