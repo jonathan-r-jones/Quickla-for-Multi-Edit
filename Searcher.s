@@ -1517,8 +1517,6 @@ void
 
 str fp = 'Search Google Translate.';
 
-//qq1
-           
 str URL = 'https://translate.google.com/?sl=en&tl=it%0A&op=translate';
 
 str sc = parameter;

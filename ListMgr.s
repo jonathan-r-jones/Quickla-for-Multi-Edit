@@ -1961,6 +1961,8 @@ str fp = 'Calculate the size of the current big segment.';
 
 // This macro does work on "s" and "sql" files.
 
+// skw: count_bullets, number_of_bullets, count_lines, size
+
 str rubric_heading;
 
 str Filename = Truncate_Path(File_Name);

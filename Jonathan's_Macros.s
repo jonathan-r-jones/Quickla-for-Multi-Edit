@@ -841,12 +841,9 @@ while(Window_Counter < Window_Count)
       @bol;
       while(!find_text(':</plb>', 1, _regexp))
       {
-        Line = @trim_leading_colons_et_al(Get_Line);
-        if(Line != '')
-        {
-          Result = S_Write_Bytes(Line, Handle, Amount);
-          Result = S_Write_Bytes(LINE_TERMINATOR, Handle, Amount);
-        }
+        line = get_line;
+        Result = S_Write_Bytes(Line, Handle, Amount);
+        Result = S_Write_Bytes(LINE_TERMINATOR, Handle, Amount);
         down;
       }
       Found_Counter++;
