@@ -1512,12 +1512,48 @@ make_message(@trim_period(fp) + ' for "' + sc + '".');
 //;
 
 void
-@search_google_translate(str parameter = parse_str('/1=', mparm_str))
+@search_google_translate_to_engl(str parameter = parse_str('/1=', mparm_str))
 {
 
 str fp = 'Search Google Translate.';
 
-str URL = 'https://translate.google.com/?sl=en&tl=it%0A&op=translate';
+str URL = 'https://translate.google.com/?sl=it&tl=en&op=translate';
+
+str sc = parameter;
+
+if(sc == '')
+{
+  sc = @get_subject_or_selected_text;
+}
+
+str Pretty_sc = sc;
+sc = @commute_character(sc, ' ', '+');
+
+URL += "&text=";
+URL += sc;
+
+@surf(URL, 0);
+
+/* Use Cases
+
+Austin
+
+*/
+
+@say(@trim_period(fp) + ' for "' + pretty_sc + '".');
+}
+
+
+
+//;
+
+void
+@search_google_translate_fr_engl(str parameter = parse_str('/1=', mparm_str))
+{
+
+str fp = 'Search Google Translate.';
+
+str URL = 'https://translate.google.com/?sl=en&tl=it&op=translate';
 
 str sc = parameter;
 
