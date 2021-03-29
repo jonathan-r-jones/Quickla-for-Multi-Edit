@@ -3290,6 +3290,16 @@ else if(@contains(sc, 'sebplan-'))
   @search_jira('', 0);
   return();
 }
+else if(@contains(sc, 'esops-'))
+{
+  @search_jira('earm', 0);
+  return();
+}
+else if(@contains(sc, 'earm-'))
+{
+  @search_jira('', 0);
+  return();
+}
 
 str Operation_Outcome;
 
