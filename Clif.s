@@ -3265,12 +3265,23 @@ if(@current_line_contains_regex(@comma_lc))
 }
 
 str sc = @get_subject_or_selected_text;
+
 if(@contains(sc, 'cart-'))
 {
   @search_jira('', 0);
   return();
 }
 else if(@contains(sc, 'atp-'))
+{
+  @search_jira('', 0);
+  return();
+}
+else if(@contains(sc, 'earm-'))
+{
+  @search_jira('', 0);
+  return();
+}
+else if(@contains(sc, 'esops-'))
 {
   @search_jira('', 0);
   return();
@@ -3286,16 +3297,6 @@ else if(@contains(sc, 'rzr'))
   return();
 }
 else if(@contains(sc, 'sebplan-'))
-{
-  @search_jira('', 0);
-  return();
-}
-else if(@contains(sc, 'esops-'))
-{
-  @search_jira('earm', 0);
-  return();
-}
-else if(@contains(sc, 'earm-'))
 {
   @search_jira('', 0);
   return();

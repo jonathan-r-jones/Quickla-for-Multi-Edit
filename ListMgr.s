@@ -10805,13 +10805,9 @@ str fp = 'Add text footnote.';
 
 // Last Updated: Mar-5-2020
 
-@eol;
-cr;
-cr;
 text('Footnote');
 cr;
 text('>< >< ><');
-cr;
 cr;
 cr;
 
