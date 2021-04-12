@@ -10650,10 +10650,6 @@ if(@text_is_selected)
 {
   delete_block;
 }
-if((@previous_character != ' ') and (@previous_character != ':') and (@previous_character != ';'))
-{
-  text(' ');
-}
 
 str date_time = @get_formatted_date + " " + @get_time;
 
@@ -10804,6 +10800,10 @@ void
 str fp = 'Add text footnote.';
 
 // Last Updated: Mar-5-2020
+
+eol;
+cr;
+cr;
 
 text('Footnote');
 cr;
