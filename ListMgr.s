@@ -10810,6 +10810,8 @@ cr;
 text('>< >< ><');
 cr;
 cr;
+cr;
+up;
 
 @say(fp);
 }

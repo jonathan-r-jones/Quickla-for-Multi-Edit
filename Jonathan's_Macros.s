@@ -4939,7 +4939,7 @@ str url;
 url = @get_remote_oj_using_klc('rfscne', is_found);
 @surf(url, 1);
 
-url = @get_remote_oj_using_klc('wire', is_found);
+url = @get_remote_oj_using_klc('cnet', is_found);
 @surf(url, 1);
 
 url = @get_remote_oj_using_klc('rfbbc', is_found);

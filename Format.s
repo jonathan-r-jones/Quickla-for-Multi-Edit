@@ -1652,6 +1652,7 @@ switch(lower(get_extension(File_name)))
     text('#');
     break;
   case '':
+  case 'java':
   case 's':
   case 'sh':
     if(@next_character != '/')
@@ -2033,6 +2034,7 @@ switch(lower(get_extension(File_name)))
       @delete_character;
     }
     break;
+  case 'java':
   case 's':
   case '':
     @eos;
