@@ -1567,6 +1567,8 @@ else if(key2 == 3) // Shift key pressed.
              break;
     case 189: return("_");
              break;
+    case 190: return(">");
+             break;
     case 191: return("?");
              break;
     case 220: return("|");

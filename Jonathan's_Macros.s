@@ -1573,7 +1573,11 @@ text(')');
 
 
 
-//;
+//;+ ASCII Family
+
+
+
+//;;
 
 void
 @open_the_multi_edit_ascii_table
@@ -1589,7 +1593,7 @@ rm('ascii');
 
 
 
-//;
+//;;
 
 void
 @identify_ascii_value_uc()
