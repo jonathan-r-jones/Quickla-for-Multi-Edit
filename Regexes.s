@@ -1461,6 +1461,20 @@ return(sc);
 //;
 
 str
+@learn_to_pronounce(str &regex_Description, str &rS)
+{
+str fp = "Learn to" + " pronounce.";
+str sc = 'Learn to' + ' pronounce ';
+rs = '';
+regex_Description = fp;
+return(sc);
+}
+
+
+
+//;
+
+str
 @clarification_needed(str &regex_Description, str &rS)
 {
 str fp = "Clarification" + " needed.";

@@ -37,6 +37,7 @@ prototype Regexes
   str  @first_known_use(str &regex_Description, str &rS);
   str  @informal_followed_by_a_crowding(str &regex_Description, str &rs);
   str  @language_learner(str &regex_Description, str &rs);
+  str  @learn_to_pronounce(str &regex_Description, str &rS);
   str  @lc();
   str  @lc_ending_in_2_letters(str last_Two_Letters_of_lc);
   // (!sp)

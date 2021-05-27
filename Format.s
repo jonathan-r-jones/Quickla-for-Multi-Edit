@@ -782,9 +782,11 @@ number_of_replacements +=
 Number_of_Replacements += 
   @replace_string_in_file_int(@defined_for_kids(Replacement_Description, rs), rs);
 
-//qjq
 Number_of_Replacements += 
   @replace_string_in_file_int(@citation_needed(Replacement_Description, rs), rs);
+
+Number_of_Replacements += 
+  @replace_string_in_file_int(@learn_to_pronounce(Replacement_Description, rs), rs);
 
 Number_of_Replacements += 
   @replace_string_in_file_int(@clarification_needed(Replacement_Description, rs), rs);
