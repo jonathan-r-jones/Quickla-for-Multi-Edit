@@ -797,6 +797,12 @@ number_of_replacements +=
 number_of_replacements += 
   @replace_string_in_file_int('â-"', "'");
 
+// I am not implementing this because the 3 special character here can represent multiple 
+// different characters.
+//ï¿½
+//number_of_replacements += 
+//@replace_string_in_file_int('ï¿½', char(233));
+
 number_of_replacements += 
   @replace_string_in_file_int(@first_known_use(replacement_description, rs), rs);
 
