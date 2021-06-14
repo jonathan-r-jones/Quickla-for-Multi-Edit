@@ -3266,12 +3266,12 @@ if(@current_line_contains_regex(@comma_lc))
 
 str sc = @get_subject_or_selected_text;
 
-if(@contains(sc, 'cart-'))
+if(@contains(sc, 'atp-'))
 {
   @search_jira('', 0);
   return();
 }
-else if(@contains(sc, 'atp-'))
+else if(@contains(sc, 'cart-'))
 {
   @search_jira('', 0);
   return();
@@ -3287,6 +3287,11 @@ else if(@contains(sc, 'esops-'))
   return();
 }
 else if(@contains(sc, 'imm-'))
+{
+  @search_jira('', 0);
+  return();
+}
+else if(@contains(sc, 'lbm-'))
 {
   @search_jira('', 0);
   return();
