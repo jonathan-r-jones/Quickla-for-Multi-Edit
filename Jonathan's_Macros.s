@@ -5356,7 +5356,7 @@ int original_line_number = @current_line_number;
 
 @move_dog_park_to_eof;
 
-str sc = '!' + 'rftnew';
+str sc = '!' + 'rfaf';
 int is_found = @seek_in_all_files_2_arguments(sc, fp);
 
 @hc_small_segment_content_dinc();
@@ -5370,7 +5370,6 @@ goto_line(original_line_number);
 @bol;
 cr;
 cr;
-//qq1
 up;
 up;
 up;
@@ -5407,7 +5406,7 @@ down;
 
 @bol;
 
-text('rem Dec-10-2020_12_16_PM q' + 'q1jj');
+text('rem Dec-10-2020_12_16_PM q' + 'q1');
 
 up;
 up;
