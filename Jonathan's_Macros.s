@@ -5288,9 +5288,9 @@ cr;
 cr;
 up;
 up;
-up;
 @paste;
 
+return();
 
 @bobs;
 up;
@@ -5370,7 +5370,7 @@ goto_line(original_line_number);
 @bol;
 cr;
 cr;
-cr;
+//qq1
 up;
 up;
 up;
@@ -5407,7 +5407,7 @@ down;
 
 @bol;
 
-text('rem Dec-10-2020_12_16_PM q' + 'q1');
+text('rem Dec-10-2020_12_16_PM q' + 'q1jj');
 
 up;
 up;
