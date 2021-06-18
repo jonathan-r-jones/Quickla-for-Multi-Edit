@@ -5344,7 +5344,7 @@ text(' ');
 //;;
 
 void
-@add_batch_file_stub_for_n_bat()
+@add_cbf_template()
 {
 str fp = "Add batch file new stub for n.bat.";
 
@@ -5429,10 +5429,95 @@ up;
 //;;
 
 void
-@@add_batch_file_stub_for_n_bat
+@add_cbf_template_short_version()
+{
+str fp = "Add cbf template short version.";
+
+// fcd: Jun-18-2021
+
+@save_location;
+
+int original_line_number = @current_line_number;
+
+@move_dog_park_to_eof;
+
+str sc = '!' + 'rfafs';
+int is_found = @seek_in_all_files_2_arguments(sc, fp);
+
+@hc_small_segment_content_dinc();
+
+@restore_location;
+
+goto_line(original_line_number);
+
+@find_next_rubric;
+
+@bol;
+cr;
+cr;
+up;
+up;
+up;
+@paste;
+
+@find_bobs_or_previous_bs;
+
+@seek('x_marker');
+
+@hc_subject;
+
+@delete_block;
+
+@seek('x_marker');
+
+@hc_subject;
+
+@delete_block;
+
+@seek('lu');
+
+@eol;
+text(' ');
+@add_text_date;
+
+down;
+down;
+down;
+
+down;
+down;
+down;
+down;
+
+@bol;
+
+text('rem Dec-10-2020_12_16_PM q' + 'q1');
+
+up;
+up;
+up;
+up;
+up;
+up;
+up;
+
+up;
+up;
+
+@eol;
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@@add_cbf_template
 {
 @header;
-@add_batch_file_stub_for_n_bat;
+@add_cbf_template;
 @footer;
 }
 
@@ -5471,20 +5556,48 @@ switch(starting_position)
   default:
     if(!@find_lc(starting_position))
     {
-      @say(fp + ' Starting postion lc not found.');
+      @say(fp + ' Starting position lc not found.');
       return();
     }
     @eof;
 }
 
-if((@filename == 'n.bat') or (@filename == 'ni.bat') or (starting_position == 'nb') or (starting_position == 'ni'))
-{
-  @add_batch_file_stub_for_n_bat;
+@add_cbf_template;
+
+@footer;
 }
-else
+
+
+
+//;;
+
+void
+@add_batch_file_stub_router_sv(str starting_position = parse_str('/1=', mparm_str))
 {
-  @add_batch_file_stub_generic;
+str fp = "Add batch file stub router - short version.";
+
+// lu: Nov-2-2018
+
+@header;
+
+switch(starting_position)
+{
+  case 'e':
+    @eof;
+    break;
+  case '':
+    break;
+  default:
+    if(!@find_lc(starting_position))
+    {
+      @say(fp + ' Starting position lc not found.');
+      return();
+    }
+    @eof;
 }
+
+@add_cbf_template_short_version;
+//qq1
 
 @footer;
 }
@@ -6910,7 +7023,7 @@ str filename[128] = get_environment('dropbox') + '\it\composable-batch-files\n.b
 
 @open_file(filename);
 
-@add_batch_file_stub_for_n_bat;
+@add_cbf_template;
 
 @footer;
 @say(fp);
