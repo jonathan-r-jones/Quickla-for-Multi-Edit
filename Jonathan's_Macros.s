@@ -5597,7 +5597,6 @@ switch(starting_position)
 }
 
 @add_cbf_template_short_version;
-//qq1
 
 @footer;
 }
