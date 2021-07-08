@@ -2870,6 +2870,33 @@ if(!@find_lc('jd'))
 //;
 
 void
+@move_bullet_to_co
+{
+str fp = "Move bullet to co.";
+@header;
+
+//lu: May-31-2019
+
+@save_location;
+@cut_bullet;
+if(!@find_lc('co'))
+{
+  @paste;
+  return();
+}
+@bol;
+@paste_after;
+@restore_location;
+
+@footer;
+@say(fp);
+}
+
+
+
+//;
+
+void
 @find_next_lc()
 {
 str fp = "Find next launch code.";
