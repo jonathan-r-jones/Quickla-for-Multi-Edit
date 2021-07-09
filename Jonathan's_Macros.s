@@ -2084,7 +2084,7 @@ str fp = 'The number of windows to keep open, by default.';
 switch(@first_3_characters(@lower(get_environment("computername"))))
 {
   case "lip":
-    return(8);
+    return(9);
     break;
   default:
     return(12);
