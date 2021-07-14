@@ -8056,6 +8056,7 @@ int number_of_rows_in_block = block_line2 - block_line1 + 1;
 void
 @cut_pb
 {
+
 str fp = "Contextually aware cut perimeter button.";
 
 @header;
@@ -8158,7 +8159,7 @@ goto_col(current_column);
 void
 @copy_and_paste_pb
 {
-str fp = 'Contextually aware copy and paste perimeter button.';
+str fp = 'Contextually aware copy and paste.';
 
 if(@is_selected)
 {
@@ -8212,7 +8213,7 @@ str fp = "Highcopy current area type.";
 void
 @control_highcopy_pb
 {
-str fp = 'Control key plus contextually aware highcopy perimeter button.';
+str fp = 'Control key plus contextually aware highcopy.';
 
 if(@is_bullet_File)
 {
@@ -8233,7 +8234,7 @@ else
 void
 @control_copy_and_paste_pb
 {
-str fp = 'Control key plus copy and paste perimeter button.';
+str fp = 'Control key plus copy and paste.';
 
 if(@is_bullet_File)
 {
@@ -8255,7 +8256,7 @@ else
 void
 @control_delete_pb
 {
-str fp = 'Control key plus contextually aware delete perimeter button.';
+str fp = 'Control key plus contextually aware delete.';
 
 @header;
 
@@ -8281,7 +8282,7 @@ else
 void
 @control_cut_pb
 {
-str fp = 'Control key plus contextually aware cut perimeter button.';
+str fp = 'Control key plus contextually aware cut.';
 
 if(@is_bullet_File)
 {
@@ -8303,7 +8304,7 @@ else
 void
 @alt_highcopy_pb
 {
-str fp = 'Alt key plus contextually aware highcopy perimeter button.';
+str fp = 'Alt key plus contextually aware highcopy.';
 
 switch(@current_area_type)
 {
@@ -8332,7 +8333,7 @@ switch(@current_area_type)
 void
 @alt_cut_pb
 {
-str fp = 'Alt key plus contextually aware cut perimeter button.';
+str fp = 'Alt key plus contextually aware cut.';
 
 int Context = 0;
 
@@ -8375,7 +8376,7 @@ if(Context == 0)
 void
 @alt_delete_pb
 {
-str fp = 'Alt key plus contextually aware delete perimeter button.';
+str fp = 'Alt key plus contextually aware delete.';
 
 int Context = 0;
 
@@ -8408,7 +8409,7 @@ switch(@current_area_type)
 void
 @alt_copy_and_paste_pb
 {
-str fp = 'Alt key plus contextually aware copy-and-paste perimeter button.';
+str fp = 'Alt key plus contextually aware copy-and-paste.';
 
 int Context = 1;
 
@@ -8447,7 +8448,7 @@ if(Context == 0)
 void
 @control_shift_key_plus_pbh
 {
-str fp = 'Ctrl+Shift key plus contextually aware highcopy perimeter button.';
+str fp = 'Ctrl+Shift key plus contextually aware highcopy.';
 
 //Turning on @header or footer here for some reason turns off highlighting. - JRJ May-24-2011
 refresh=false;
@@ -8488,7 +8489,7 @@ int number_of_rows_in_block = block_line2 - block_line1;
 void
 @control_key_plus_pbh
 {
-str fp = 'Ctrl+ key plus contextually aware highcopy perimeter button.';
+str fp = 'Ctrl+ key plus contextually aware highcopy.';
 
 //Turning on @header or footer here for some reason turns off highlighting. - JRJ May-24-2011
 refresh=false;
@@ -8526,7 +8527,7 @@ refresh=true;
 void
 @control_shift_key_plus_pbc
 {
-str fp = 'Ctrl+Shift key plus contextually aware cut perimeter button.';
+str fp = 'Ctrl+Shift key plus contextually aware cut.';
 
 @header;
 
@@ -8558,7 +8559,7 @@ if(@is_bullet_File())
 void
 @control_shift_key_plus_pbd
 {
-str fp = 'Ctrl+Shift key plus contextually aware delete perimeter button.';
+str fp = 'Ctrl+Shift key plus contextually aware delete.';
 
 @header;
 
