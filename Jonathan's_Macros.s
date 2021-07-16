@@ -2084,7 +2084,7 @@ str fp = 'The number of windows to keep open, by default.';
 switch(@first_3_characters(@lower(get_environment("computername"))))
 {
   case "lip":
-    return(9);
+    return(10);
     break;
   default:
     return(12);
@@ -5435,7 +5435,93 @@ down;
 
 @bol;
 
-text('rem Dec-10-2020_12_16_PM q' + 'q1');
+text('rem Jul-16-2021_11_43_AM q' + 'q1');
+
+up;
+up;
+up;
+up;
+up;
+up;
+up;
+
+up;
+up;
+
+@eol;
+
+@say(fp);
+}
+
+
+
+//;;
+
+void
+@add_cbf_template_v1()
+{
+str fp = "Add batch file stub - v1.";
+
+// fcd: Jul-16-2021
+
+@save_location;
+
+int original_line_number = @current_line_number;
+
+@move_dog_park_to_eof;
+
+str sc = '!' + 'rfaf';
+
+int is_found = @seek_in_all_files_2_arguments(sc, fp);
+
+@hc_small_segment_content_dinc();
+
+@restore_location;
+
+goto_line(original_line_number);
+
+@find_next_rubric;
+
+@bol;
+cr;
+cr;
+up;
+up;
+up;
+@paste;
+
+@find_bobs_or_previous_bs;
+
+@seek('x_marker');
+
+@hc_subject;
+
+@delete_block;
+
+@seek('x_marker');
+
+@hc_subject;
+
+@delete_block;
+
+@seek('lu');
+
+@eol;
+text(' ');
+@add_text_date;
+
+down;
+down;
+down;
+
+down;
+down;
+down;
+down;
+
+@bol;
+
+text('rem Jul-16-2021_11_40_AM q' + 'q1');
 
 up;
 up;
@@ -5559,6 +5645,40 @@ void
 {
 @header;
 @add_batch_file_stub_generic;
+@footer;
+}
+
+
+
+//;;
+
+void
+@add_batch_file_stub_router_v1(str starting_position = parse_str('/1=', mparm_str))
+{
+str fp = "Add batch file stub router version 1.";
+
+// lu: Nov-2-2018
+
+@header;
+
+switch(starting_position)
+{
+  case 'e':
+    @eof;
+    break;
+  case '':
+    break;
+  default:
+    if(!@find_lc(starting_position))
+    {
+      @say(fp + ' Starting position lc not found.');
+      return();
+    }
+    @eof;
+}
+
+@add_cbf_template_v1;
+
 @footer;
 }
 
